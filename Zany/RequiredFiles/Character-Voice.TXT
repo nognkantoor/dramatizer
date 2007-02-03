@@ -1,0 +1,2352 @@
+"Aaron",28,0
+"Abigail",23,0
+"Abijah, king of Judah",12,0
+"Abimelech",2,0
+"Abimelech, (1st)",2,0
+"Abimelech, Gideon's son",2,0
+"Abimelech, King of Philistines",2,0
+"Abimelech/Phicol",2,0
+"Abishai, Joab's brother",16,0
+"Abner",13,0
+"Abraham",1,0
+"Abraham's chief servant",4,0
+"Abram (Abraham)",1,0
+"Absalom",3,0
+"Absalom's secret messengers",14,0
+"Absalom/Israel, men of",3,0
+"Achan",14,0
+"Achish [said to himself]",14,0
+"Achish",10,0
+"Acsah, Caleb's daughter",24,0
+"Adam",1,0
+"Adoni-Bezek",10,0
+"Adoni-Zedek, king of Jerusalem",10,0
+"Adonijah, son of David",6,0
+"Adullamite|Hirah, friend of Judah",1,0
+"Advisers to king",6,0
+"Agabus the prophet #5 [proclaim]",5,0
+"Agag, king of Amalekites",17,0
+"Ahab, king of Israel",19,0
+"Ahaz, king of Judah [thought]",4,0
+"Ahaz, king of Judah",4,0
+"Ahaziah, king of Israel",6,0
+"Ahijah, the prophet [word of the LORD]",5,0
+"Ahijah, the prophet",5,0
+"Ahimelech the priest",6,0
+"Ahithophel",2,0
+"Amasai, chief of thirty (Spirit came upon)",6,0
+"Amaziah, king of Judah",1,0
+"Amaziah, priest of Bethel",1,0
+"Ammonite nobles",16,0
+"Amnon",13,0
+"Amos [lament]",15,0
+"Amos",15,0
+"Anakites",17,0
+"Ananias [awe]",17,0
+"Ananias [praying]",17,0
+"Ananias [puzzled]",3,4
+"Andrew [excited]",3,4
+"Andrew",3,4
+"Andrew=disciples, the=disciples, His #3",3,4
+"Andrew=disciples, the=disciples, His",3,4
+"Andrew=twelve, the #3 [frustrated]",3,4
+"Andrew=twelve, the",3,4
+"Anna, prophetess",22,0
+"Anyone with complaint for king",6,0
+"Appolos",29,0
+"Aram",30,0
+"Aramean soldiers",6,0
+"Araunah",28,0
+"Arioch",4,0
+"Army cry",28,0
+"Army officer, one of",4,0
+"Army officers",11,0
+"Artaxerxes, king of Persia",1,0
+"Asa, king of Judah",1,0
+"Asahel, brother of Joab",9,0
+"Assembly, whole",12,0
+"Athaliah",25,0
+"Athaliah, queen [wicked]",25,0
+"Attendants to Xerxes, king",9,0
+"Azariah the priest",11,0
+"Azariah the priest/80 priests [courageous]",11,0
+"Azariah, prophet (Spirit of God on)",11,0
+"BC-1CH",26,0
+"BC-1CO",26,0
+"BC-1JN",26,0
+"BC-1KI",26,0
+"BC-1PE",26,0
+"BC-1SA",26,0
+"BC-1TH",26,0
+"BC-1TI",26,0
+"BC-2CH",26,0
+"BC-2CO",26,0
+"BC-2JN",26,0
+"BC-2KI",26,0
+"BC-2PE",26,0
+"BC-2SA",26,0
+"BC-2TH",26,0
+"BC-2TI",26,0
+"BC-3JN",26,0
+"BC-ACT",26,0
+"BC-AMO",26,0
+"BC-COL",26,0
+"BC-DAN",26,0
+"BC-DEU",26,0
+"BC-ECC",26,0
+"BC-EPH",26,0
+"BC-EST",26,0
+"BC-EXO",26,0
+"BC-EZK",26,0
+"BC-EZR",26,0
+"BC-GAL",26,0
+"BC-GEN",26,0
+"BC-HAB",26,0
+"BC-HAG",26,0
+"BC-HEB",26,0
+"BC-HOS",26,0
+"BC-ISA",26,0
+"BC-JAS",26,0
+"BC-JDG",26,0
+"BC-JER",26,0
+"BC-JHN",26,0
+"BC-JOB",26,0
+"BC-JOL",26,0
+"BC-JON",26,0
+"BC-JOS",26,0
+"BC-JUD",26,0
+"BC-LAM",26,0
+"BC-LEV",26,0
+"BC-LUK",26,0
+"BC-MAL",26,0
+"BC-MAT",26,0
+"BC-MIC",26,0
+"BC-MRK",26,0
+"BC-NAM",26,0
+"BC-NEH",26,0
+"BC-NUM",26,0
+"BC-OBA",26,0
+"BC-PHM",26,0
+"BC-PHP",26,0
+"BC-REV",26,0
+"BC-ROM",26,0
+"BC-RUT",26,0
+"BC-SNG",26,0
+"BC-TIT",26,0
+"BC-ZEC",26,0
+"BC-ZEP",26,0
+"Baal",1,0
+"Babylon #21",21,0
+"Balaam (Spirit of God upon him)",6,0
+"Balaam",6,0
+"Balak",14,0
+"Barak",1,0
+"Barnabas/Paul [preaching]",19,4
+"Barnabas/Paul",19,4
+"Baruch",1,0
+"Barzillai",1,0
+"Barzillai/Shobi/Makir",1,0
+"Bathsheba",23,0
+"Belshazzar, king of Babylon",17,0
+"Ben-Hadad",8,0
+"Ben-Hadad, king of Aram [letter]",8,0
+"Ben-Hadad, king of Aram",8,0
+"Benaiah, son of Jehoiada",1,0
+"Benjamite",1,0
+"Benjamites",1,0
+"Beth Shemesh, men of",16,0
+"Bethlehem, elders of [trembled]",16,0
+"Bildad the Shuhite",3,0
+"Boaz",10,0
+"Book of the Wars of the LORD|leader of Zebulun",16,0
+"Caesar Augustus",28,0
+"Caiaphas, high priest #11 [indignant]",11,0
+"Caiaphas, high priest",11,4
+"Cain",15,0
+"Caleb [old]",6,0
+"Caleb",6,0
+"Canaanite mother of possessed girl=Syrophoenician mother of possessed girl [pleading]",21,0
+"Canaanite mother of possessed girl=Syrophoenician mother of possessed girl",21,11
+"Canaanites",12,0
+"Christ) [boastful]",30,0
+"Cleopas and other (on road to Emmaus) #3 [urging]",3,4
+"Cleopas and other (on road to Emmaus) #3",3,0
+"Cleopas and other (on road to Emmaus) #3|Cleopas [urging]",3,0
+"Cleopas and other (on road to Emmaus) #3|Cleopas",3,0
+"Cleopas and other (on road to Emmaus) #9",9,4
+"Cleopas and other (on road to Emmaus) [urging]",3,4
+"Cornelius [afraid]",2,4
+"Cornelius [gracious]",2,4
+"Cornelius",2,4
+"Cretan prophet",8,0
+"Cyrus, king of Persia",17,0
+"Daniel [pleading in prayer]",3,0
+"Daniel [vision written]",3,0
+"Daniel",3,0
+"Danites",1,0
+"Darius, king of Medes and Persians [letter]",4,0
+"Darius, king of Medes and Persians",4,0
+"Dathan/Abiram|Dathan",3,0
+"Daughter of Zion (Jerusalem)",21,0
+"Daughter of Zion will say",21,0
+"Daughter of Zion",21,0
+"Daughter-in-law of Eli",21,0
+"Daughters of Zelophehad|daughter of Zelophehad",21,0
+"David (had said)",17,0
+"David [thought]",17,0
+"David",17,0
+"David's men",19,0
+"David's servants",9,0
+"David, king [psalm]",17,0
+"David, king [thought]",17,0
+"David, king [very old]",17,0
+"David, king",17,0
+"Deborah",23,0
+"Deborah/Barak",23,0
+"Delilah",25,0
+"Demetrius",28,4
+"Demetruis",29,0
+"Devil in the desert",8,0
+"Devil",8,9
+"Do not say",27,0
+"Doeg the Edomite",3,0
+"extra-1CH",27,0
+"extra-1CO",27,0
+"extra-1JN",27,0
+"extra-1KI",27,0
+"extra-1PE",27,0
+"extra-1SA",27,0
+"extra-1TH",27,0
+"extra-1TI",27,0
+"extra-2CH",27,0
+"extra-2CO",27,0
+"extra-2KI",27,0
+"extra-2PE",27,0
+"extra-2SA",27,0
+"extra-2TH",27,0
+"extra-2TI",27,0
+"extra-ACT",27,0
+"extra-AMO",27,0
+"extra-COL",27,0
+"extra-DAN",27,0
+"extra-DEU",27,0
+"extra-ECC",27,0
+"extra-EPH",27,0
+"extra-EST",27,0
+"extra-EXO",27,0
+"extra-EZK",27,0
+"extra-EZR",27,0
+"extra-GAL",27,0
+"extra-GEN",27,0
+"extra-HAB",27,0
+"extra-HAG",27,0
+"extra-HEB",27,0
+"extra-HOS",27,0
+"extra-ISA",27,0
+"extra-JAS",27,0
+"extra-JDG",27,0
+"extra-JER",27,0
+"extra-JHN",27,0
+"extra-JOB",27,0
+"extra-JOL",27,0
+"extra-JON",27,0
+"extra-JOS",27,0
+"extra-JUD",27,0
+"extra-LEV",27,0
+"extra-LUK",27,0
+"extra-MAL",27,0
+"extra-MAT",27,0
+"extra-MIC",27,0
+"extra-MRK",27,0
+"extra-NAM",27,0
+"extra-NEH",27,0
+"extra-NUM",27,0
+"extra-PHM",27,0
+"extra-PHP",27,0
+"extra-REV",27,0
+"extra-ROM",27,0
+"extra-RUT",27,0
+"extra-TIT",27,0
+"extra-ZEC",27,0
+"extra-ZEP",27,0
+"Ebed-Melech (official of king of Judea)",9,0
+"Edom may say",6,0
+"Edom|king of Edom",4,0
+"Eglon, king of Moab",15,0
+"Egyptian (slave of Amalekite)",16,0
+"Egyptian",30,0
+"Egyptians [afraid]",15,0
+"Egyptians [terrified]",15,0
+"Ehud",14,0
+"Ekron, people of",3,0
+"Eleazar, the priest",9,0
+"Eleven/those with them",12,4
+"Eli",9,0
+"Eliab, David's brother",3,0
+"Eliakim/Shebna/Joah",11,0
+"Eliakim/Shebna/leading priests",11,0
+"Eliakim/Shebna/priests",11,0
+"Eliezer, prophet of the Lord",5,0
+"Elihu, son of Barakel",9,0
+"Elijah [word of the LORD]",17,0
+"Elijah the prophet [letter from]",17,0
+"Elijah",17,0
+"Eliphaz the Temanite",11,0
+"Elisha (LORD has shown me)",13,0
+"Elisha (had said)",13,0
+"Elisha (prophecy)",13,0
+"Elisha (the LORD says)",13,0
+"Elisha",13,0
+"Elisha's messenger",6,0
+"Elisha's servant",4,0
+"Elishama/Delaiah/Elnathan/Gemariah/Zedekiah/other officials",9,0
+"Elizabeth [loudly]",22,11
+"Elizabeth",22,11
+"Elkanah",3,0
+"Enemies (scoffing)",9,0
+"Enemies of Judah and Benjamin",6,0
+"Enemy",6,0
+"Enoch",2,3
+"Ephraim, men of",6,0
+"Ephraim, survivor of",6,0
+"Ephraim/Samaria, people of",6,0
+"Ephraimites [critical]",6,0
+"Ephraimites",6,0
+"Ephron the Hittite",6,0
+"Epicurean and Stoic philosophers, other #1 [curious]",1,0
+"Epicurean and Stoic philosophers, other #2 [superior]",2,0
+"Epicurean and Stoic philosophers, other",2,4
+"Epicurean and Stoic philosophers, others",10,4
+"Epicurean and Stoic philosophers, some",10,4
+"Epicurean and Stoic philosophers, they #1 [curious]",1,0
+"Epicurean and Stoic philosophers, they #1 [insulting]",1,0
+"Epicurean and Stoic philosophers, they #2 [curious]",2,0
+"Epicurean and Stoic philosophers, they #4",4,0
+"Epicurean and Stoic philosophers, they",1,4
+"Esau",10,0
+"Esther",23,0
+"Esther, queen",23,0
+"Ethiopian",16,4
+"Eve",21,0
+"Ezekiel (in vision of God)",4,0
+"Ezekiel",4,0
+"Ezra, priest and teacher [ashamed and disgraced]",2,0
+"Ezra, priest and teacher",2,0
+"Felix #5 [afraid]",5,0
+"Felix #5 [with authority]",5,0
+"Felix #5",5,0
+"Felix",5,4
+"Festus",10,4
+"Field commander from King of Assyria",16,0
+"Friend of Tamar",21,0
+"Gaal, son of Ebed",28,0
+"Gabriel",10,0
+"Gad, the prophet, David's seer",14,0
+"Gadites/Reubenites|leader of Gad",14,0
+"Gadites/Reubenites|leader of Reuben",14,0
+"Gadites|leader of Reuben",14,0
+"Gallio [stern]",17,0
+"Gallio",17,4
+"Gamaliel",29,0
+"Gamaliel, a Pharisee on Sanhedrin",5,4
+"Gath",14,0
+"Gedaliah, governor of Judah",14,0
+"Gehazi, servant of Elisha",14,0
+"Gentiles",29,0
+"Gibeonites [with deception]",13,0
+"Gibeonites",13,0
+"Gideon",4,0
+"Gideon's son",14,0
+"Gilead, elders of",14,0
+"Gilead, men of",4,0
+"Gilead|leader of Manasseh",14,0
+"God (Holy One of Israel)",20,0
+"God (LORD appeared at night)",20,0
+"God (LORD appeared in dream at night)",20,0
+"God (LORD appeared) [blessing]",20,0
+"God (LORD appeared)",20,0
+"God (LORD came down to see)",20,0
+"God (LORD came in dream at night)",20,0
+"God (LORD in vision at night)",20,0
+"God (LORD made garments & clothed)",20,0
+"God (LORD made garments and clothed)",20,0
+"God (LORD stood in dream)",20,0
+"God (LORD) [blessing]",20,0
+"God (LORD) [calling]",20,0
+"God (LORD) [commanding]",20,0
+"God (LORD) [had said]",20,0
+"God (LORD) [has spoken]",20,0
+"God (LORD) [said in his heart]",20,0
+"God (LORD)",20,0
+"God (LORD)(Glory of LORD appeared)",20,0
+"God (LORD)(appeared during night in dream)",20,0
+"God (Spirit of the LORD came into Ezekiel)",20,0
+"God (Spirit of the LORD came upon Ezekiel)",20,0
+"God (Spirit of the LORD came upon Ezekiel)(in vision)",20,0
+"God (The Sovereign LORD) [lament]",20,0
+"God (The Sovereign LORD)",20,0
+"God (The Sovereign LORD, the Holy One of Israel)",20,0
+"God (angel of the LORD in burning bush)",20,0
+"God (angel of the LORD within burning bush)",20,0
+"God (glory of the LORD appeared)",20,0
+"God (glory of the LORD appeared, cloud covering Tent of Meeting)",20,0
+"God (lord, the LORD Almighty, the Mighty One of Israel)",20,0
+"God (sound of LORD walking) [calling]",20,0
+"God (sound of LORD walking)",20,0
+"God (the Holy One)",20,0
+"God (the King, the LORD Almighty)",20,0
+"God (the LORD Almighty) [has sworn]",20,0
+"God (the LORD Almighty)",20,0
+"God (the LORD Almighty, Redeemer, the Holy One of Israel)",20,0
+"God (the LORD Almighty, the God of Israel)",20,0
+"God (the LORD God Almighty)",20,0
+"God (the LORD) [blessing]",20,0
+"God (the LORD) [calling]",20,0
+"God (the LORD) [had said]",20,0
+"God (the LORD) [has spoken]",20,0
+"God (the LORD) [said in his heart]",20,0
+"God (the LORD) had ordered them",20,0
+"God (the LORD) had said",20,0
+"God (the LORD) had warned through prophets and seers",20,0
+"God (the LORD) word of the LORD came",20,0
+"God (the LORD)",20,0
+"God (the LORD)(Glory of LORD appeared)",20,0
+"God (the LORD)(appeared during night in dream)",20,0
+"God (the LORD)(in vision of God)",20,0
+"God (the LORD)(word of the LORD came) [lament]",20,0
+"God (the LORD)(word of the LORD came)",20,0
+"God (the LORD)(word of the LORD came)(in vision of God)",20,0
+"God (the LORD)(word of the LORD)",20,0
+"God (the LORD), commandment of",20,0
+"God (the LORD, Israel's King, Redeemer, the LORD Almighty)",20,0
+"God (the LORD, Jacob's king)",20,0
+"God (the LORD, Redeemer)",20,0
+"God (the LORD, Redeemer, Holy One of Israel)",20,0
+"God (the LORD, Redeemer, the Holy One of Israel)",20,0
+"God (the LORD, Savior)",20,0
+"God (the LORD, Savior, Redeemer, Mighty One of Jacob)",20,0
+"God (the LORD, the God of Israel)",20,0
+"God (the LORD, the Holy One of Israel)",20,0
+"God (the Lord) [will say]",20,0
+"God (the Lord)",20,0
+"God (the Lord), voice of",20,0
+"God (the Lord, the LORD Almighty)",20,0
+"God (the Lord, the LORD God Almighty)",20,0
+"God (the Sovereign LORD says)",20,0
+"God (the Sovereign LORD, the LORD God Almighty)",20,0
+"God (word of the LORD came in a vision)",20,0
+"God (word of the LORD came to Jeremiah)",20,0
+"God (word of the LORD came to Zechariah)",20,0
+"God (word of the LORD came)",20,0
+"God (word of the LORD in a vision)",20,0
+"God (word of the LORD)",20,0
+"God (word the LORD spoke through Jeremiah)",20,0
+"God quoted in scripture",20,3
+"God saying what Israel should say",20,0
+"God saying what invaders will say",20,0
+"God saying what the people will say",20,0
+"God the Father (Majestic Glory)",20,3
+"God upon him)",30,0
+"God",20,0
+"Goliath",2,0
+"Greeks [respectful]",17,0
+"Hadad the Edomite",28,0
+"Hagar, the Egyptian",24,0
+"Haggai (word of the LORD)",15,0
+"Haman, highest noble to Xerxes, king (thinking to self)",19,0
+"Haman, highest noble to Xerxes, king",14,0
+"Hamor-father",2,0
+"Hamor/Shechem|Hamor-father",2,0
+"Hanani the seer",4,0
+"Hanani, brother of Nehemiah/men of Judah, some",4,0
+"Hananiah, false prophet",4,0
+"Hannah",23,0
+"Harbona, eunuch attending Xerxes, king",16,0
+"Hazael of Aram",16,0
+"Herod Agrippa II",2,0
+"Herod Antipas (the tetrarch) #17 [drunk]",17,0
+"Herod Antipas (the tetrarch) #17 [fearful]",17,0
+"Herod Antipas (the tetrarch)",17,0
+"Herod the Great #19 [sly]",19,0
+"Herod the Great #19",19,0
+"Herod the Great",19,0
+"Herodias",21,11
+"Herodias' daughter",25,11
+"Hezekiah, king of Judah [had said]",13,0
+"Hezekiah, king of Judah [letter]",13,0
+"Hezekiah, king of Judah [thought]",13,0
+"Hezekiah, king of Judah [writing]",13,0
+"Hezekiah, king of Judah",13,0
+"Hilkiah, high priest",11,0
+"Hirah, the Adullamite",1,0
+"Hiram, king of Tyre [sent letter]",14,0
+"Hiram, king of Tyre [sent word]",14,0
+"Hiram, king of Tyre",14,0
+"His #13 [sad]",13,0
+"Hittites",15,0
+"Hobab, Moses brother-in-law",3,0
+"Holy Spirit, the #7",7,5
+"Holy Spirit, the",20,10
+"Horseman, first",9,0
+"Horseman, second",15,0
+"Horses (in vision)",14,0
+"Hosea saying what Israel should say",15,0
+"Hosea saying what Israel will say",15,0
+"Hosea saying what wicked will say",15,0
+"Hosea",15,0
+"Huldah, prophetess (the LORD says)",23,0
+"Huldah, prophetess [woman]",23,0
+"Hushai, David's friend",10,0
+"Irijah, captain of the guard of Judah",15,0
+"Isaac [thought]",9,0
+"Isaac",3,0
+"Isaac, old",3,0
+"Isaiah",28,0
+"Isaiah, prophet",28,0
+"Isaiah, the prophet (sign)",28,0
+"Isaiah, the prophet (the LORD says)",28,0
+"Isaiah, the prophet (word of the LORD came)",28,0
+"Isaiah, the prophet (word of the LORD)",28,0
+"Isaiah, the prophet (word the LORD has spoken)",28,0
+"Isaiah, the prophet [had said]",28,0
+"Isaiah, the prophet",28,0
+"Ish-Bosheth, son of Saul",16,0
+"Ishmael, son of Nethaniah (murderer)",17,0
+"Israel [singing]",2,0
+"Israel [will say]",14,0
+"Israel says",11,0
+"Israel",2,0
+"Israel, all [worshipping God]",14,0
+"Israel, all leaders of",11,0
+"Israel, all the men of",2,0
+"Israel, all the tribes",14,0
+"Israel, all",4,0
+"Israel, elders of",10,0
+"Israel, leaders of/Rehoboam, king",2,0
+"Israel, men of",12,0
+"Israelite assembly",17,0
+"Israelite assembly, elders of",11,0
+"Israelite community [grumbling]",2,0
+"Israelite community [mourning bitterly]",11,0
+"Israelite foreman",2,0
+"Israelite messengers",9,0
+"Israelite people |man [fearful]",2,0
+"Israelite people",14,0
+"Israelite people, all|crowd",2,0
+"Israelite people|Grumbler",11,0
+"Israelite people|Grumbling person-use a woman",22,0
+"Israelite people|grumbler",30,0
+"Israelite people|grumbling person-use a woman",30,0
+"Israelite people|man-cried out [terrified]",2,0
+"Israelite people|man-grumbling",14,0
+"Israelite soldier",2,0
+"Israelite soldier, some",10,0
+"Israelite soldiers",28,0
+"Israelite",30,0
+"Israelites [weeping]",14,0
+"Israelites",9,0
+"Israelites, all [mourning bitterly]",1,0
+"Israelites, all [weeping bitterly]",2,0
+"Israelites, all",14,0
+"Israelites, all|Israelite [frightened, shouting]",2,0
+"Israelites, some",1,0
+"Israelites|Israelite",2,0
+"Israelites|make us gods",30,0
+"Israelites|woman",22,0
+"Israel|leader of Gad",2,0
+"Israel|leader of Naphtali",14,0
+"Issachar",30,0
+"It is said",2,0
+"Ittai",2,0
+"JER quoting Israel",2,0
+"JOL saying what the priests should say",6,0
+"JOL saying what the weakling should say",6,0
+"Jabesh, elders of",17,0
+"Jabesh, men of",6,0
+"Jabez",17,0
+"Jabez's mother",22,0
+"Jacob (Israel)",15,0
+"Jacob (prayed)",15,0
+"Jacob (thought)",15,0
+"Jacob [thought]",15,0
+"Jacob",15,0
+"Jacob's son, Judah|Judah",3,0
+"Jacob's son, Reuben|Reuben",5,0
+"Jacob's sons [thought]|Levi",6,0
+"Jacob's sons",5,0
+"Jacob's sons|Dan",2,0
+"Jacob's sons|Judah",3,0
+"Jacob's sons|Levi",6,0
+"Jacob's sons|Levi/Reuben",5,0
+"Jacob's sons|Reuben",5,0
+"Jacob's sons|Simeon",11,0
+"Jacob's son|Judah",3,0
+"Jacob's son|Reuben",5,0
+"Jacob's son|Simeon",11,0
+"Jael",22,0
+"Jahaziel (Spirit of the Lord on)",2,0
+"Jairus",15,0
+"Jairus=ruler, a [pleading]",16,0
+"Jairus=ruler, a",16,0
+"James",15,4
+"James/John (sons of Zebedee) #12 [audacious]",12,4
+"James/John (sons of Zebedee) #12 [boldly]",12,4
+"James/John (sons of Zebedee)",12,4
+"James/John (sons of Zebedee)#12 [boldly]",12,0
+"James/all the elders #15 [encouraging]",15,4
+"James/all the elders",15,4
+"Jebusites [thought]",12,0
+"Jebusites",12,0
+"Jehoash, king of Israel",15,0
+"Jehoiada the priest",16,0
+"Jehoiada the priest/his sons",16,0
+"Jehonadab, son of Recab",17,0
+"Jehoshapat, king of Judah [praying]",6,0
+"Jehoshaphat, king of Judah [praying]",6,0
+"Jehoshaphat, king of Judah",6,0
+"Jehu, son of Hanani [word of the LORD]",13,0
+"Jehu, son of Hanani, the seer",13,0
+"Jehu, son of Nimshi [letter]",14,0
+"Jehu, son of Nimshi",14,0
+"Jehucal/Zephaniah, priest",14,0
+"Jehudi",4,0
+"Jephtha's brothers",3,0
+"Jephthah",13,0
+"Jephthah's daughter",18,0
+"Jereboam/all Israel",3,0
+"Jeremiah quoting his enemies",2,0
+"Jeremiah quoting messenger (man)",2,0
+"Jeremiah quoting the prophets",2,0
+"Jeremiah saying what Israel will say",2,0
+"Jeremiah",2,0
+"Jeremiah's enemies",13,0
+"Jeremiah, the prophet (the LORD says) [letter]",2,0
+"Jeremiah, the prophet (the LORD says)",2,0
+"Jeremiah, the prophet (word of the LORD came)",2,0
+"Jeremiah, the prophet (word of the LORD)",2,0
+"Jeremiah, the prophet [praying]",2,0
+"Jeremiah, the prophet",2,0
+"Jeroboam, king of Israel [thought]",13,0
+"Jeroboam, king of Israel",13,0
+"Jeroboam/Israel, all",13,0
+"Jesse",13,0
+"Jesus #7 [in a vision]",7,0
+"Jesus #7",7,5
+"Jesus (Lord)",7,5
+"Jesus (child)",18,4
+"Jesus [compassionately]",7,5
+"Jesus [deeply distressed]",7,0
+"Jesus [exasperated; giving orders]",7,0
+"Jesus [exasperated]",7,0
+"Jesus [forcefully]",7,0
+"Jesus [giving orders]",7,0
+"Jesus [instructing]",7,0
+"Jesus [inviting]",7,0
+"Jesus [patiently]",7,0
+"Jesus [praying]",7,0
+"Jesus [preaching]",7,0
+"Jesus [questioning]",7,0
+"Jesus [reassuring]",7,0
+"Jesus [rebuking]",7,5
+"Jesus [requesting]",7,0
+"Jesus [resigned]",7,0
+"Jesus [sternly]",7,5
+"Jesus [surprised]",7,0
+"Jesus [testing faith]",7,0
+"Jesus [warning]",7,5
+"Jesus in 2 John",7,0
+"Jesus in Acts",7,5
+"Jesus in Hebrews",7,5
+"Jesus",7,5
+"Jesus' brothers #4 [challenging]",4,0
+"Jesus' family",22,11
+"Jewish believer #5",5,4
+"Jews #1",1,0
+"Jews #11",11,4
+"Jews #19 [impatient]",19,0
+"Jews #19",19,0
+"Jews #9",9,4
+"Jews ,the #1",1,4
+"Jews [desperate]",14,0
+"Jews of Cyrene, Alexandria, Cilicia & Asia #14 [accusing]",14,0
+"Jews of Cyrene, Alexandria, Cilicia & Asia",14,4
+"Jews",14,0
+"Jews",15,1
+"Jews",15,4
+"Jews, 40 in conspiracy #14 [plotting]",14,0
+"Jews, God-fearing from every nation #1 [amazed]",1,0
+"Jews, God-fearing from every nation [amazed and perplexed]",14,4
+"Jews, God-fearing from every nation, some [made fun of them]",21,11
+"Jews, God-fearing from every nation, some",29,4
+"Jews, leaders of the #1",1,4
+"Jews, leaders of the",17,4
+"Jews, many of the #11 [contempt]",11,0
+"Jews, many of the",11,4
+"Jews, others of the #23",23,11
+"Jews, others of the",23,11
+"Jews, some from Asia",9,4
+"Jews, the #1 [angry]",1,0
+"Jews, the #1 [challenging]",1,0
+"Jews, the #1 [grumbling]",1,0
+"Jews, the #1 [inquiring]",1,0
+"Jews, the #1 [offended]",1,0
+"Jews, the #1 [outraged]",1,0
+"Jews, the #1 [rebuke]",1,0
+"Jews, the #1 [superior]",1,0
+"Jews, the #1",1,4
+"Jews, the #11 [angry]",11,0
+"Jews, the #11",11,4
+"Jews, the #15 [insisting]",15,0
+"Jews, the #15",15,0
+"Jews, the #19 [harsh]",19,0
+"Jews, the #19",19,0
+"Jews, the #21",21,0
+"Jews, the #24 [grumbling]",24,0
+"Jews, the #24",24,11
+"Jews, the #3",3,0
+"Jews, the #5",5,0
+"Jews, the #9 [angry]",9,0
+"Jews, the #9 [screaming]",9,0
+"Jews, the #9",9,4
+"Jews, the (with Mary and Martha) #25 |Mary",25,0
+"Jews, the (with Mary and Martha) #25",25,11
+"Jews, the (with Mary and Martha) |Mary#25",25,0
+"Jews, the (with Mary and Martha)",10,4
+"Jews, the (with Mary and Martha, some)",22,11
+"Jews, the [accusing]",28,0
+"Jews, the [amazed]",19,0
+"Jews, the [arguing]",28,0
+"Jews, the [questioning]",28,0
+"Jews, the [shouting]",19,0
+"Jews, the [speaking ironically]",28,0
+"Jews, the",1,4
+"Jews, they [shouting]",9,4
+"Jews, they",1,4
+"Jews/priests/nobles/officials",14,0
+"Jezebel",25,0
+"Joab",4,0
+"Joab's men, one of",14,0
+"Joash, father of Gideon",14,0
+"Joash, king of Judah",12,0
+"Job's wife",25,0
+"Job, the man [thinking]",13,0
+"Job, the man",13,0
+"Johanan",9,0
+"Johanan/Azariah/arrogant men",13,0
+"Johanan/all the army officers",13,0
+"Johanan/all the army officers/all the people",13,0
+"John #12 [amazed]",12,4
+"John #12 [calling out]",12,4
+"John #12 [puzzled]",12,4
+"John (disciple whom Jesus loved) [sad]",12,4
+"John (disciple whom Jesus loved)",12,4
+"John saying Lord who is going to betray you",12,0
+"John the Baptist [discouraged]",6,4
+"John the Baptist [humble]",6,4
+"John the Baptist [proclaiming truth]",6,0
+"John the Baptist [rebuke]",6,4
+"John the Baptist [warning]",6,0
+"John the Baptist",6,4
+"John the Baptist's disciples",3,4
+"John the Baptist's disciples, two",29,4
+"John",12,4
+"John's disciples #3 [puzzled]",3,4
+"John's disciples",3,4
+"Jonadab [shrewd]",14,0
+"Jonah [praying]",15,0
+"Jonah",15,0
+"Jonathan",12,0
+"Jonathan's armor bearer",13,0
+"Jonathan, son of Abiathar",14,0
+"Joram, king of Israel",28,0
+"Joseph of Arimathea",28,0
+"Joseph",17,0
+"Joseph's brothers|Simeon",11,0
+"Joseph, people of",13,0
+"Joshua",15,0
+"Joshua, old",13,0
+"Josiah, king of Judah",12,0
+"Jotham",10,0
+"Judah and Benjamin",30,0
+"Judah",3,0
+"Judah, men of",13,0
+"Judah, people in",10,0
+"Judah, son of Jacob|Judah",11,0
+"Judas (not Judas Iscariot) #3 [puzzled]",3,4
+"Judas (not Judas Iscariot)",3,4
+"Judas Iscariot [fake innocence]",14,0
+"Judas Iscariot [fake respect]",14,0
+"Judas Iscariot [objecting]",14,0
+"Judas Iscariot [plotting]",14,0
+"Judas Iscariot [remorse]",14,0
+"Judas Iscariot",14,4
+"Judas Iscariot=disciples, the [indignant]",14,0
+"Judas Iscariot=disciples, the",14,4
+"Judas Iscariot=some in home of Simon, leper [indignant]",14,0
+"Judas Iscariot=some in home of Simon, leper",14,4
+"King of Ammonites",16,0
+"King of Aram [had ordered]",16,0
+"King of Aram",16,0
+"King of Assyria",15,0
+"King of Babylon [said]",16,0
+"King of Jericho",16,0
+"King of Nineveh [proclamation]",16,0
+"King of Philistines",16,0
+"Kish, father of Saul",6,0
+"Korah/Dathan/Abiram/250 Israelite leaders|Korah [wicked]",11,0
+"LORD (God)",20,0
+"LORD appeared as men|angel",20,0
+"LORD said)",30,0
+"LORD",20,0
+"Laban",28,0
+"Laban's sons",11,0
+"Laban/Bethuel (Laban's father)",28,0
+"Laban/Laban's mother|Laban",28,0
+"Laban/Laban's mother|Laban's mother",22,0
+"Lamech (descendent of Cain)",13,0
+"Lamech (descendent of Seth)",12,0
+"Leah",23,0
+"Levite, young, from Bethlehem",2,0
+"Levites [praying]",4,0
+"Levites",1,0
+"Levitical heads",14,0
+"Lookout",3,0
+"Lord #7",7,0
+"Lord God Almighty (spoken by God-10 commentaries)",20,3
+"Lord God Almighty (spoken by Jesus-5 commentaries)",7,5
+"Lord Jesus",7,0
+"Lord spoken by prophet #2",2,3
+"Lord spoken by prophet",2,3
+"Lord",20,0
+"Lot",10,0
+"Lover",12,0
+"Lydia",22,0
+"Macedonian",10,0
+"Magicians",9,0
+"Mahlah/Noah/Hoglah/Milcah/Tirzah, daughters of Zelophehad",21,0
+"Manoah's wife, mother of Samson",23,0
+"Manoah, father of Samson",28,0
+"Martha",24,11
+"Mary (Jesus' mother)",23,11
+"Mary (sister of Martha)",21,11
+"Mary Magdalene",24,11
+"Mary Magdalene/Mary mother of James/Salome",24,11
+"Mary/Martha",21,11
+"Melchizedek, king of Salem (priest of God Most High)",28,0
+"Memucan, noble advisor to Xerxes, king",16,0
+"Mephibosheth",28,0
+"Micah",11,0
+"Micah's mother",22,0
+"Micaiah, prophet of the LORD [word of the LORD)",11,0
+"Micaiah, prophet of the LORD",11,0
+"Michal, David's wife",24,0
+"Miriam-young girl",21,0
+"Miriam/Aaron|Aaron",28,0
+"Miriam/women [sang]",21,0
+"Moabite prince #1",16,0
+"Moabite prince #2 [afraid]",15,0
+"Moabite prince #2",15,0
+"Moabites (female)",21,0
+"Moabites",16,0
+"Mordecai",13,0
+"Mordecai, cousin of Esther",13,0
+"Moses (at LORD's command)",19,0
+"Moses prophecying what God will say",19,0
+"Moses prophecying what the nations will say",19,0
+"Moses prophesying what God will say",19,0
+"Moses quoting God (LORD)",19,0
+"Moses quoting God (the LORD)",19,0
+"Moses quoting Israel",19,0
+"Moses saying what Israel may say",19,0
+"Moses saying what Israel should say",19,0
+"Moses saying what Israel shouldn't say",19,0
+"Moses saying what Levites should say",19,0
+"Moses saying what brother-in-law may say",19,0
+"Moses saying what elders of town will say",19,0
+"Moses saying what father may say",19,0
+"Moses saying what husband may say",19,0
+"Moses saying what officers will say",19,0
+"Moses saying what parents may say",19,0
+"Moses saying what priest will say",19,0
+"Moses saying what widow may say",19,0
+"Moses where LORD commanded",19,0
+"Moses",19,0
+"Moses' father-in-law",15,0
+"Moses' messengers from Kadesh|Leader of Issachar",12,0
+"Moses/Aaron|Aaron",28,0
+"Moses/Aaron|Moses",19,0
+"Moses/Elders of Israel",19,0
+"Moses/Eleazar|Moses",19,0
+"Moses/Israelites [sang]",19,0
+"Moses/Priests",19,0
+"Naaman",4,0
+"Naaman's servants",5,0
+"Nabal",14,0
+"Naboth",9,0
+"Nahash the Ammonite",28,0
+"Naomi",22,0
+"Naphtali",30,0
+"Nathan",12,0
+"Nathan, the prophet",12,0
+"Nathanael [awe]",4,4
+"Nathanael [puzzled]",4,4
+"Nathanael",4,4
+"Nations, many",1,0
+"Nations, the, people of",5,0
+"Nebuchadnezzar, king of Babylon [letter]",16,0
+"Nebuchadnezzar, king of Babylon",16,0
+"Nebuzaradan, Babylonian commander of imperial guard",16,0
+"Nebuzaradan, commander for king of Babylon",16,0
+"Neco, king of Egypt",16,0
+"Nehemiah [message]",28,0
+"Nehemiah [praying]",28,0
+"Nehemiah",28,0
+"Nehemiah/Ezra/Levites",28,0
+"Nicodemus",10,4
+"Noah",5,0
+"Nobles/officials",13,0
+"Not A Quote",30,0
+"Obadiah, manager of Ahab's palace",5,0
+"Oded, prophet of the Lord",5,0
+"Oppressors of poor (women)",21,0
+"Oppressors of poor",6,0
+"Orpah/Ruth|Orpah",24,0
+"Pashur/Zephaniah",16,0
+"Paul [awe]",19,4
+"Paul [boasting]",19,0
+"Paul [called out]",19,4
+"Paul [defense to governor]",19,4
+"Paul [encouraging]",19,4
+"Paul [preaching]",19,4
+"Paul [rebuking]",19,4
+"Paul [sad]",19,4
+"Paul [shouting]",19,4
+"Paul [stern]",19,4
+"Paul [to new believers]",19,4
+"Paul [upset]",19,4
+"Paul [warning]",19,4
+"Paul and Silas",19,4
+"Paul",19,4
+"Paul's traveling companions, Luke and #3 [resigned]",3,4
+"Paul's traveling companions, Luke and",3,4
+"Paul/Barnabas [bold]",19,4
+"Paul/Barnabas",19,4
+"Person",16,0
+"Peter (Simon) [afraid]",13,4
+"Peter (Simon) [amazed]",13,4
+"Peter (Simon) [asking question]",13,0
+"Peter (Simon) [calling out]",13,4
+"Peter (Simon) [confused]",13,4
+"Peter (Simon) [declare]",13,4
+"Peter (Simon) [defensive]",13,4
+"Peter (Simon) [denial]",13,4
+"Peter (Simon) [humble]",13,4
+"Peter (Simon) [passionate]",13,4
+"Peter (Simon) [perplexed]",13,4
+"Peter (Simon) [polite]",13,4
+"Peter (Simon) [puzzled]",13,4
+"Peter (Simon) [rebuking]",13,4
+"Peter (Simon) [stage whisper]",13,4
+"Peter (Simon) [stronger denial]",13,0
+"Peter (Simon) [stronger]",13,4
+"Peter (Simon) [strongest]",13,4
+"Peter (Simon) [swearing]",13,4
+"Peter (Simon) and companions [exclaimed]",13,4
+"Peter (Simon) and companions",13,4
+"Peter (Simon)",13,4
+"Peter (Simon), with Eleven",13,4
+"Peter (Simon)/James/John/Andrew=disciples=they [confused]",13,0
+"Peter (Simon)/James/John/Andrew=disciples=they",12,4
+"Peter (Simon)/James/John=disciples, the #12 |John [puzzled]",12,0
+"Peter (Simon)/James/John=disciples, the |John #12",12,0
+"Peter (Simon)/James/John=disciples, the",12,4
+"Peter (Simon)/John",13,4
+"Peter (Simon)/John/own people #9",9,4
+"Peter (Simon)/John/own people",13,4
+"Peter (Simon)/John=disciples (Jesus') #12|disciples",12,0
+"Peter (Simon)/John=disciples (Jesus') |John #12",12,0
+"Peter (Simon)/John=disciples (Jesus')",13,4
+"Peter (Simon)/Thomas/Nathanael/James/John/2 disciples",13,4
+"Peter",12,0
+"Peter(Simon) [afraid]",13,0
+"Peter(Simon) [amazed]",13,0
+"Peter(Simon) [calling out]",13,0
+"Peter(Simon) [confused]",13,0
+"Peter(Simon) [declare]",13,0
+"Peter(Simon) [defensive]",13,0
+"Peter(Simon) [denial]",13,0
+"Peter(Simon) [humble]",13,0
+"Peter(Simon) [passionate]",13,0
+"Peter(Simon) [perplexed]",13,0
+"Peter(Simon) [polite]",13,0
+"Peter(Simon) [puzzled]",13,0
+"Peter(Simon) [rebuking]",13,0
+"Peter(Simon) [stage whisper]",13,0
+"Peter(Simon) [stronger]",13,0
+"Peter(Simon) [strongest]",13,0
+"Peter(Simon) [swearing]",13,0
+"Peter(Simon) and companions [exclaimed]",13,0
+"Peter(Simon)",13,0
+"Peter(Simon), with Eleven",13,0
+"Peter(Simon)/James/John/Andrew=disciples=they [confused]",13,0
+"Peter(Simon)/James/John/Andrew=disciples=they",13,0
+"Peter(Simon)/James/John=disciples, the #12 |John [puzzled]",12,0
+"Peter(Simon)/James/John=disciples, the |John #12",12,0
+"Peter(Simon)/John",13,0
+"Peter(Simon)/John/own people #9",9,0
+"Peter(Simon)/John=disciples (Jesus') #12|disciples",12,0
+"Peter(Simon)/John=disciples (Jesus') |John #12",12,0
+"Peter(Simon)/John=disciples (Jesus')",13,0
+"Pharaoh (2nd)",16,0
+"Pharaoh (3rd) [giving order]",16,0
+"Pharaoh (3rd)",16,0
+"Pharaoh (4th)",16,0
+"Pharaoh's daughter",23,0
+"Pharaoh's officials",6,0
+"Pharaoh, 1st",16,0
+"Pharaoh, 2nd",16,0
+"Pharisee (Simon)",29,0
+"Pharisee expert in law #5 [testing]",5,4
+"Pharisee expert in law #5 [warning]",5,4
+"Pharisee expert in law #5 |Good Priest [warning]",5,0
+"Pharisee expert in law #5",5,4
+"Pharisee expert in law |Good Priest #5 [warning]",5,0
+"Pharisee expert in law",5,4
+"Pharisee expert in law|Good Priest #5 [testing]",5,0
+"Pharisee expert-in-law #5 |Good Priest [warning]",5,0
+"Pharisee expert-in-law|Good Priest #5 [testing]",5,0
+"Pharisee(Simon) #1 [judgmental]",1,0
+"Pharisee(Simon) #1",1,0
+"Pharisee(Simon)",1,0
+"Pharisee, a",10,0
+"Pharisee, one #1 [muttering]",1,0
+"Pharisee, one",1,0
+"Pharisees #1 [angry]",1,0
+"Pharisees #1 [challenging]",1,0
+"Pharisees #11 [angry]",11,0
+"Pharisees #11",11,0
+"Pharisees #15 [accusing]",15,0
+"Pharisees #15 [exasperated]",15,0
+"Pharisees #15 [testing]",15,0
+"Pharisees #15",15,0
+"Pharisees #19 [questioning]",19,0
+"Pharisees #19",19,0
+"Pharisees sent from Jews",15,0
+"Pharisees",1,0
+"Pharisees, other #10",10,0
+"Pharisees, other #5 |Good Priest",5,0
+"Pharisees, other",1,0
+"Pharisees, other|Good Priest #5",5,0
+"Pharisees, some #1 [angry]",1,0
+"Pharisees, some #1 [challenging]",1,0
+"Pharisees, some #1",1,0
+"Pharisees, some #15 [challenge]",15,0
+"Pharisees, some #15 [demanding]",15,0
+"Pharisees, some [questioning]",29,0
+"Pharisees, some",15,0
+"Pharisees/teachers of law|Pharisee, one #1 [muttering]",1,0
+"Pharisees/teachers of the law #15 [contempt]",15,0
+"Pharisees/teachers of the law #15",15,0
+"Pharisees/teachers of the law [muttering]",4,0
+"Pharisees/teachers of the law",9,0
+"Pharisees/teachers of the law, some #15 [challenge]",15,0
+"Pharisees/teachers of the law, some #15 [rebuke]",15,0
+"Pharisees/teachers of the law, some",15,0
+"Pharoah (2nd)",16,0
+"Pharoah (3rd) [giving order]",16,0
+"Pharoah (3rd)",16,0
+"Pharoah's daughter",23,0
+"Pharoah's officials",17,0
+"Pharoah, 1st",16,0
+"Philip (apostle) #9 [excited]",9,4
+"Philip (apostle) #9",9,4
+"Philip (apostle)",9,4
+"Philip (one of 7 men) #4",4,4
+"Philip (the evangelist) #4",4,4
+"Philip=disciples, the=disciples, His #14 [frustrated]",14,0
+"Philip=disciples, the=disciples, His #14",14,0
+"Philip=disciples, the=disciples, His",9,4
+"Philistine commanders",15,0
+"Philistine priests and diviners",15,0
+"Philistines",6,0
+"Philistines, rulers of",16,0
+"Phineas",1,0
+"Phineas, priest/chiefs of tribes",1,0
+"Pilate [impatient]",17,0
+"Pilate [surprise]",17,0
+"Pilate [surprised]",17,0
+"Pilate [to Jesus]",17,0
+"Pilate [to crowd]",17,0
+"Pilate",17,4
+"Pilate's wife",23,11
+"Pine trees/cedars of Lebanon",2,0
+"Poets|leader of Ephraim",11,0
+"Potiphar's wife",25,0
+"Rabble/Complainer #2",2,0
+"Rachel",24,0
+"Rachel/Leah",21,0
+"Rahab",23,0
+"Rebekah",21,0
+"Rebels",14,0
+"Recab/Baanah",1,0
+"Recabite family, men of",3,0
+"Rehoboam, king",1,0
+"Rehoboam, king, had said",1,0
+"Relatives of Ahaziah, king of Judah",1,0
+"Report to King of Aram",3,0
+"Report to King of Assyria",3,0
+"Reuben/Gad/Manasseh",2,0
+"Reubenites/Gadites/Manasseh",2,0
+"Reubenites/Gadites|leader of Gad",1,0
+"Reubenites/Gadites|leader of Reuben",2,0
+"Rhoda [could be a young girl]",18,0
+"Ruth",21,0
+"Sadducees",19,0
+"Sailors",4,0
+"Samaria",30,0
+"Samson",3,0
+"Samson's 30 companions",11,0
+"Samson's father-in-law",10,0
+"Samson's wife",24,0
+"Samuel [thought]",5,0
+"Samuel",5,0
+"Sanballat, enemy [angry, ridiculing]",11,0
+"Sanballat, enemy [letter]",11,0
+"Sanballat/Geshem, enemies [scheming] [message]",11,0
+"Sanballat/Geshem, enemies [thinking]",11,0
+"Sanballat/Tobiah/Geshem, enemies [mocking, ridiculing]",11,0
+"Sanhedrin)",30,0
+"Sapphira (Ananias' wife)",21,0
+"Sarai (Sarah)",23,0
+"Satan",8,0
+"Satraps",6,0
+"Satraps/Administrators",6,0
+"Saul [thought]",11,0
+"Saul",11,0
+"Saul's announcement",3,0
+"Saul's attendants",15,0
+"Saul's camp (young)",15,0
+"Saul's messengers",12,0
+"Saul's servant",14,0
+"Saul's uncle",1,0
+"Sea, the",3,0
+"Sennacherib's messengers",15,0
+"Sennacherib, king of Assyria [letter]",17,0
+"Sennacherib, king of Assyria",17,0
+"Shadrach/Meshach/Abednego",14,0
+"Shaphan, secretary",4,0
+"Sharezer/Regem-Melech/men of Bethel",15,0
+"Sheba, son of Bicri [troublemaker]",8,0
+"Shecaniah, son of Jehiel [suggesting solution]",3,0
+"Shechem",30,0
+"Shechem|son of Shechem",4,0
+"Shemaiah, prophet (the LORD says)",11,0
+"Shemaiah, son of Delaiah, false prophet",8,0
+"Shephatiah/Gedaliah/Jehucal/ Pashur (officials)",4,0
+"Shimei",14,0
+"Shunammite",30,0
+"Simeon-old",15,0
+"Simon practiced magic",6,0
+"Simon the Sorcerer",14,0
+"Sisera",11,0
+"Sisera's mother",22,0
+"Slave driver",1,0
+"Slave girls",21,0
+"Sodom",30,0
+"Solomon, king [blessing Israel in a loud voice]",3,0
+"Solomon, king [prayer]",3,0
+"Solomon, king [sent message]",3,0
+"Solomon, king",3,0
+"Spirit and the Bride",28,0
+"Spirit, the #10",10,3
+"Spirit, the #7",7,5
+"Spirit, the",10,10
+"Spirit, the, and the bride #22",22,11
+"Spy from Joseph",11,0
+"Spy",10,0
+"Stephen [cried out]",9,4
+"Stephen",9,4
+"Steward",1,0
+"Tamar, daughter of David",21,0
+"Tamar, daughter-in-law of Judah",24,0
+"Tattenai, governor/Shethar-Bozenai/officials of Trans-Euphrates [letter]",11,0
+"Tattenai, governor/Shethar-Bozenai/officials of Trans-Euphrates",11,0
+"Tekoa",30,0
+"Tempter",8,0
+"Tertius",1,0
+"Tertullus-Lawyer #3 [accusing]",3,0
+"Tertullus-Lawyer",3,0
+"Thomas (Didymus)",6,4
+"Thomas [frustrated]",6,4
+"Thomas [resigned]",6,4
+"Thomas [shocked]",6,4
+"Thomas [stubborn]",6,4
+"Thomas",6,4
+"Thomas/Nathaniel/James/John/2 disciples",6,4
+"Tobiah, enemy [mocking, ridiculing]",8,0
+"Uriah",1,0
+"Xerxes",6,0
+"Xerxes, king of Persia and Media (Ahasuerus)",6,0
+"Zaccheaus",17,4
+"Zeba/Zalmunna",17,0
+"Zebedee's sons",9,0
+"Zebul, governor of Shechem",19,0
+"Zechariah (the LORD says)",17,0
+"Zechariah (vision)",17,0
+"Zechariah (word of the LORD)",17,0
+"Zechariah [praising]",5,4
+"Zechariah",17,0
+"Zechariah",5,4
+"Zechariah, son of Jehoiada the priest (Spirit of God upon)",17,0
+"Zechariah, son of Jehoiada the priest",17,0
+"Zedekiah, king of Judah",17,0
+"Zedekiah, son of Kenaanah, prophet [false prophet]",12,0
+"Zedekiah, son of Kenaanah, prophet [false]",12,0
+"Zedekiah, son of Kenaanah, prophet",12,0
+"Zeresh, wife of Haman/friends of Haman",25,0
+"Zerubbabel/Jeshua/rest of heads of families",13,0
+"Ziba",19,0
+"Zion",1,0
+"Ziphites",10,0
+"Zipporah-Moses wife",24,0
+"Zipporah-Moses wife/her sisters",24,0
+"Zophar the Naamathite",4,0
+"advisor (young) [foolish men]",9,0
+"all Egypt",14,0
+"all Israelites|make us gods",11,0
+"all in synagogue #5 [perplexed]",5,0
+"all who heard (in synagogues)",1,0
+"alone",30,0
+"altar, the",11,0
+"angel (wrestling with Jacob)",17,0
+"angel Gabriel, sent by God [to Mary]",10,0
+"angel Gabriel, sent by God",1,0
+"angel flying directly overhead #17",17,0
+"angel flying directly overhead, second #13",13,0
+"angel flying directly overhead, third",10,0
+"angel from the rising sun with seal of living God",17,0
+"angel in white=man dressed in white robe, young",14,0
+"angel of God, an",17,0
+"angel of God, the",7,0
+"angel of the LORD, an",12,0
+"angel of the LORD, the (vision)",7,0
+"angel of the LORD, the [calling from Heaven]",7,0
+"angel of the LORD, the",7,0
+"angel of the Lord, an [commanding]",17,0
+"angel of the Lord, an [official announcement]",11,0
+"angel of the Lord, an",12,0
+"angel over waters #6",6,0
+"angel standing in sun",2,0
+"angel standing on sea and land #17",17,3
+"angel who talked with Zechariah (vision)",19,0
+"angel who talked with Zechariah",19,0
+"angel wrestling with Jacob|angel",17,0
+"angel",17,0
+"angel, another (vision)",13,0
+"angel, another, coming down from heaven  #17",17,0
+"angel, another, coming down from heaven #17",17,0
+"angel, another, with powerful voice #17",17,3
+"angel, another, with powerful voice",17,3
+"angel, arch-, Michael",10,3
+"angel, coming out of temple #9",9,4
+"angel, coming out of temple",10,3
+"angel, coming out of temple, another #6",6,3
+"angel, coming out of temple, another",10,3
+"angel, mighty #6 [loud]",6,3
+"angel, powerful #1",1,3
+"angel, powerful #13",13,3
+"angel, powerful #6 [loud]",6,0
+"angel, powerful",10,3
+"angel, the #15",15,3
+"angel, the #19",19,3
+"angel, the",19,3
+"angels appeared like men, 2|angel",5,0
+"angels in white, two",10,3
+"angels in white=men in clothes that gleamed like lightning, two",10,3
+"angels, all the #13",13,3
+"angels, all the",19,3
+"angels, many, living creatures, elders, thousands of thousands #13",13,3
+"angels, many, living creatures, elders, thousands of thousands #16",16,3
+"angels, many, living creatures, elders, thousands of thousands #22",22,11
+"angels, seven, one of #19",19,3
+"angels, seven, one of",19,3
+"anger of the LORD",8,0
+"another (follower of Apollos) [boastful]",11,0
+"another (follower of Cephas) [boastful]",27,0
+"another (follower of Peter/Cephas) [boastful]",28,0
+"another [boastful]",29,0
+"another holy one (in vision)",11,0
+"another man #16",16,0
+"another man #4",4,4
+"another of you [boastful]",29,0
+"another of you",29,0
+"another=someone else",30,0
+"answer from Israel",11,0
+"anyone",11,0
+"apostles #13",13,0
+"apostles and elders",30,0
+"apostles",13,0
+"assembly, whole",11,0
+"astrologers",9,0
+"at table with him",30,5
+"attendants to Xerxes, king",11,0
+"believers who were Pharisees",17,0
+"believers, circumcised #1 [critical]",1,0
+"believers, circumcised #5 [rejoicing]",5,4
+"believers, circumcised #5",5,4
+"believers, circumcised |Jewish believer #5 [rejoicing]",5,0
+"believers, circumcised",1,4
+"believers, one hundred twenty [praying]",12,4
+"believers, one hundred twenty",12,4
+"beloved",23,0
+"blind Bartimaeus [shouting]",11,4
+"blind Bartimaeus/other=blind men, two #9 [begging]",9,4
+"blind Bartimaeus/other=blind men, two #9 [shouting]",9,4
+"blind Bartimaeus/other=blind men, two",9,4
+"blind Bartimaeus=blind man, a #11 [pleading]",11,4
+"blind Bartimaeus=blind man, a #11 [shouting]",11,4
+"blind Bartimaeus=blind man, a #3 [pleading]",3,4
+"blind Bartimaeus=blind man, a #3 [shouting]",3,4
+"blind Bartimaeus=blind man, a #4 [pleading]",4,4
+"blind Bartimaeus=blind man, a #4 [shouting]",4,4
+"blind Bartimaeus=blind man, a #9 [pleading]",9,4
+"blind Bartimaeus=blind man, a #9 [shouting]",9,4
+"blind Bartimaeus=blind man, a #9",9,0
+"blind Bartimaeus=blind man, a",3,4
+"blind from birth",28,0
+"blind man",3,0
+"blind men, two #11 [quieter]",11,4
+"blind men, two #11 [shouting]",11,4
+"blind men, two #11",11,4
+"book-chapter",26,0
+"brother",30,0
+"brother-in-law",30,0
+"bystanders, rest #4 [jeering]",4,0
+"bystanders=some standing near #3 [uneasy]",3,0
+"captain",3,0
+"captain, first",1,0
+"captain, of temple guard/chief priests",28,0
+"captain, second",3,0
+"captain, third",4,0
+"centurion #10 [entreating]",10,4
+"centurion #10 |army officer [entreating]",10,0
+"centurion #10 |army officer",10,0
+"centurion #17",17,4
+"centurion #2 |army officer [amazed]",2,0
+"centurion #2",2,4
+"centurion #6 [anxious]",6,4
+"centurion #6 |army officer [anxious]",6,0
+"centurion #6 |army officer",6,0
+"centurion #6",6,4
+"centurion [praising God]",2,4
+"centurion",10,4
+"centurion=centurion/other guards #2 [amazed]",2,4
+"centurion=centurion/other guards #2 |army officer [amazed]",2,0
+"centurion=centurion/other guards |army officer #2 [amazed]",2,0
+"centurion=centurion/other guards |army officer #2 [polite]",2,0
+"centurion=centurion/other guards",2,4
+"certain=man",30,0
+"chariot commanders of Aram [thought]",5,0
+"chief baker",10,0
+"chief cupbearer",28,0
+"chief cupbearer/chief baker",28,0
+"chief official",11,0
+"chief priests #15 [disdain]",15,0
+"chief priests #15 [worried]",15,0
+"chief priests #19 [intimidating]",19,0
+"chief priests #9",9,0
+"chief priests",28,0
+"chief priests/Pharisees #11",11,0
+"chief priests/Pharisees #15 [negotiating]",15,0
+"chief priests/Pharisees [angry]",29,0
+"chief priests/Pharisees",15,0
+"chief priests/Sanhedrin=chief priests/whole Sanhedrin #1 [loud, angry]",1,0
+"chief priests/Sanhedrin=chief priests/whole Sanhedrin #1 [mocking]",1,0
+"chief priests/Sanhedrin=chief priests/whole Sanhedrin #1 [protest]",1,0
+"chief priests/Sanhedrin=chief priests/whole Sanhedrin #1 [upset]",1,0
+"chief priests/Sanhedrin=chief priests/whole Sanhedrin #15",15,0
+"chief priests/Sanhedrin=chief priests/whole Sanhedrin #19",19,0
+"chief priests/Sanhedrin=chief priests/whole Sanhedrin",1,0
+"chief priests/elders #11 [impatient]",11,0
+"chief priests/elders #11",11,0
+"chief priests/elders #15 [bribing]",15,0
+"chief priests/elders of people #5 [serious]",5,4
+"chief priests/elders of people #5 |Good Priest [alarmed]",5,0
+"chief priests/elders of people #5 |Good Priest [serious]",5,0
+"chief priests/elders of people #5 |Good Priest",5,0
+"chief priests/elders of people #5",5,4
+"chief priests/elders of people |Good Priest #5 [alarmed]",5,0
+"chief priests/elders of people |Good Priest #5 [serious]",5,0
+"chief priests/elders of people |Good Priest #5",5,0
+"chief priests/elders of people",5,4
+"chief priests/elders",15,0
+"chief priests/officers of temple guard",28,0
+"chief priests/rulers/the people #6 [shouting]",6,0
+"chief priests/rulers/the people #9 [shouting]",9,0
+"chief priests/rulers/the people |mob #6",6,0
+"chief priests/rulers/the people",17,0
+"chief priests/teachers of the law #11 [upset]",11,0
+"chief priests/teachers of the law",11,0
+"chief priests/teachers of the law/elders=chief priests/elders of people #10 [challenge]",10,0
+"chief priests/teachers of the law/elders=chief priests/elders of people #10 [to themselves]",10,0
+"chief priests/teachers of the law/elders=chief priests/elders of people",1,0
+"chief priests/teachers of the law=chief priests/elders of people #11",11,0
+"chief priests/teachers of the law=chief priests/elders of people",11,0
+"chief priests/their officials  #19 [shouting]",19,0
+"chief priests/their officials [shouting]",4,0
+"chief priests/their officials",19,0
+"children [praising]",18,0
+"children of Zion (Jerusalem)",18,0
+"children",18,4
+"citizens of Shechem",11,0
+"city clerk #4 [diplomatic]",4,0
+"city clerk",4,4
+"city, the whole",21,11
+"collectors #3 [calling out]",3,3
+"collectors of temple tax #3 [demanding]",3,0
+"colt=people",28,0
+"colt=people",30,0
+"commander #17 [ordering]",17,0
+"commander #17",17,0
+"commander of LORD's army",7,0
+"commander",17,0
+"commander's letter",17,0
+"commander|leader of Benjamin",11,0
+"companions",30,0
+"company of the prophets (Bethel)",10,0
+"company of the prophets (Jericho)",11,0
+"company of the prophets",11,0
+"company of the prophets, one of (the LORD says) (young man)",12,0
+"company of the prophets, one of (young man)",5,0
+"company of the prophets, one of",12,0
+"complaint for king",30,0
+"concubine's husband",4,0
+"conquerors of beast, image & his name #22",22,0
+"council of elders:chief priests/teachers of the law #15 [demanding]",15,0
+"council of elders:chief priests/teachers of the law #15 [furious]",15,0
+"council of elders:chief priests/teachers of the law",15,0
+"craftsman",11,0
+"craftsmen/workmen #14 [furiously shouting]",14,0
+"craftsmen/workmen",14,0
+"criminal on cross, another #4 [repentant]",4,4
+"criminal on cross, another [rebuking]",4,4
+"criminal on cross, another",4,0
+"criminal on cross, one #14 [insulting] (2nd choice)",14,0
+"criminal on cross, one #16 [insulting] (1st choice)",16,0
+"criminal on cross, one #16 [insulting]",16,0
+"criminal on cross, one [insulting]",14,0
+"crippled man",28,0
+"crowd #1 [challenging]",1,0
+"crowd #1 [insulting]",1,0
+"crowd #1 [superior]",1,0
+"crowd #1",1,0
+"crowd #10 [polite]",10,4
+"crowd #10",10,0
+"crowd #13",13,4
+"crowd #14 [excited]",14,0
+"crowd #14 [screaming]",14,0
+"crowd #15",15,0
+"crowd #16",16,11
+"crowd #25 [amazed]",25,4
+"crowd #3",3,4
+"crowd #4 [screaming]",4,0
+"crowd #4 [shouting",4,0
+"crowd #4",4,0
+"crowd #6 [shouting louder]",6,0
+"crowd #9 [screaming]",9,0
+"crowd #9",9,0
+"crowd following mob",3,0
+"crowd",1,0
+"crowd, large #21 [praising]",21,0
+"crowd, large #5",5,0
+"crowd, large [praising]",12,4
+"crowd, many in the",22,11
+"crowd, some of",19,0
+"crowds, others in #1 [harsh]",1,0
+"crowds, others in",1,0
+"crowds, some in",23,11
+"cry",30,0
+"cured man, blind from birth",5,0
+"daughter",30,0
+"demon-possessed man",8,0
+"demon-possessed men, two [screaming]",8,0
+"demon-possessed men, two",8,9
+"demons [begging]",8,9
+"demons coming out of people",8,9
+"demons",8,9
+"directly overhead",30,0
+"disciple, another=man, another #3 [making excuse]",3,4
+"disciples of John Baptist, two #3 [curious]",3,4
+"disciples of John Baptist, two",3,4
+"disciples, 2 men #5 [urgent]",5,4
+"disciples, 2 men",5,4
+"disciples, His #12 [calling out]",12,4
+"disciples, His #12 [excited]",12,4
+"disciples, His #12 [puzzled]",12,4
+"disciples, His #12 [sad]",12,4
+"disciples, His #12 |John [calling out]",12,0
+"disciples, His #13 [sad]",13,4
+"disciples, His #14 [excited]",14,0
+"disciples, His #14 [impatient]",14,0
+"disciples, His #14 [upset]",14,0
+"disciples, His #9",9,4
+"disciples, His",12,4
+"disciples, Jesus' [declare]",13,4
+"disciples, Jesus' [perplexed]",13,4
+"disciples, Jesus' [relieved]",13,4
+"disciples, Jesus'",13,4
+"disciples, John Baptists/Jew, a certain #3 [concerned]",3,4
+"disciples, John Baptists/Jew, a certain",3,4
+"disciples, many of His #14 [grumbling]",14,4
+"disciples, many of His",14,4
+"disciples, one of His #12 [awe]",12,4
+"disciples, one of His #12",12,4
+"disciples, one of his",12,4
+"disciples, some of his #13 [puzzled]",13,4
+"disciples, some of his #13 [shocked]",13,4
+"disciples, some of his #6 |Thomas [frustrated]",6,0
+"disciples, some of his",13,4
+"disciples, some",3,4
+"disciples, the  #12 [awe]",12,0
+"disciples, the #12 [awe]",12,4
+"disciples, the #12 [excited]",12,4
+"disciples, the #12",12,4
+"disciples, the #13 [hesitant]",13,4
+"disciples, the #13 [shocked]",13,0
+"disciples, the #13",13,4
+"disciples, the #14 [accusing]",14,4
+"disciples, the #14 [defensive]",14,4
+"disciples, the #14 [disturbed]",14,4
+"disciples, the #14 [excited]",14,4
+"disciples, the #14 [fear, amazement]",14,0
+"disciples, the #14 [frustrated]",14,4
+"disciples, the #14 [impatient]",14,4
+"disciples, the #14 [questioning]",14,4
+"disciples, the #14 [rebuke]",14,4
+"disciples, the #14 [terrified]",14,4
+"disciples, the #14 [upset]",14,4
+"disciples, the (but not Thomas) #12 [awe]",12,0
+"disciples, the (but not Thomas) #12 [excited]",12,4
+"disciples, the (but not Thomas)",12,4
+"disciples, the [amazed]",13,4
+"disciples, the [cried out in fear]",14,4
+"disciples, the [fear, amazement]",13,0
+"disciples, the [terrified]",13,4
+"disciples, the",14,4
+"disciples, the=disciples, His #13 [taking charge]",13,4
+"disciples, the=disciples, His [declare]",13,0
+"disciples, the=disciples, His",13,4
+"disciples, the=those who heard #14 [disturbed]",14,0
+"disciples, the=those who heard #14 [frustrated]",14,0
+"disciples, the=those who heard #14 [shocked]",14,0
+"disciples, the=those who heard",14,4
+"disciples, two of His",12,4
+"disciples, whole crowd of=people, many=crowd, great #12 |crowd [praising]",12,0
+"disciples, whole crowd of=people, many=crowd, great [shouting]",13,4
+"disciples, whole crowd of=people, many=crowd, great",13,4
+"eagle crying with loud voice",25,11
+"ear",29,0
+"elders of the Jews #5 [interceding]",5,4
+"elders of the Jews #5|Good Priest [interceding]",5,0
+"elders of the Jews #5|Good Priest",5,0
+"elders of the land",10,0
+"elders",4,0
+"elders, one of the",10,4
+"elders/nobles of city",10,0
+"elders/people",10,0
+"every nation",30,0
+"everyone in crowd [praising God]",21,11
+"everyone who heard",21,11
+"everyone",17,0
+"evil men/troublemakers",14,0
+"evil spirit",8,9
+"evil spirits",8,9
+"exiles",17,0
+"experts in law, one|teachers of the law #1 [insulted]",1,0
+"experts-in-law, one|teachers of the law #1 [insulted]",1,0
+"explorers, 12",17,0
+"explorers, ten",17,0
+"eye",29,0
+"false #3 [mocking]",3,3
+"false witnesses",8,0
+"family heads of Gilead|leader of Manasseh",15,0
+"father of concubine",15,0
+"father of possessed boy=man in crowd #4 [distraught]",4,4
+"father of possessed boy=man in crowd #4",4,0
+"father of possessed boy=man in crowd [exclaimed]",4,4
+"father of possessed boy=man in crowd",4,4
+"father of possessed son=man in crowd #4 [distraught]",4,4
+"father of possessed son=man in crowd",4,4
+"father-in-law",30,0
+"field commander=Sennacherib's officers",15,0
+"figure like that of a man (in vision of God)",7,0
+"flying directly overhead #17",14,0
+"flying directly overhead",30,3
+"followers of Jesus [ready to fight]",13,4
+"foot",29,0
+"for word of God",30,0
+"foreman",16,0
+"fortune telling slave girl",18,0
+"four living creatures",4,1
+"four living creatures, one (voice of thunder)",4,1
+"four living creatures, twenty-four elders",10,4
+"from the LORD",30,0
+"girl at high priest's courtyard=servant girl #24",24,0
+"girls",21,0
+"great company of heavenly host [stage whisper extra voices will be added]",10,0
+"guard mocking #6",6,4
+"guard of Judah",30,0
+"harvesters",9,0
+"head",9,0
+"heard (in synagogues)",30,0
+"hearers [mocking]",15,0
+"herald",5,0
+"herdsman",14,0
+"high priest #11 [demanding]",11,0
+"high priest #11 [screaming]",11,0
+"high priest #15 [worried but stern]",15,0
+"high priest #15",15,0
+"high priest [praying]",11,0
+"high priest",15,0
+"high priest's courtyard=servant girl #21",21,0
+"high priest's courtyard=servant girl #24",24,0
+"high priest's courtyard=servant girl",24,0
+"high priest's servant (man), one=those standing near #16 |another man [accusing]",9,0
+"high priest's servant (man), one=those standing near=another #16 [accusing]",16,0
+"high priests/men of their family/rulers, elders, teachers of the law #1 [frustrated]",1,0
+"high priests/men of their family/rulers, elders, teachers of the law #1",1,0
+"high priests/men of their family/rulers, elders, teachers of the law #5 [defending]",1,0
+"high priests/men of their family/rulers, elders, teachers of the law #5 |Good Priest [defending]",5,0
+"high priests/men of their family/rulers, elders, teachers of the law #5",5,4
+"high priests/men of their family/rulers, teachers of the law",15,0
+"him who hears",9,0
+"his name #22",22,0
+"his name is John [written]",27,0
+"holy one (in vision)",6,0
+"host",30,0
+"husband of Shunammite",1,0
+"husband of concubine",3,0
+"hymn, early credal",28,0
+"idol worshiper from Israel",8,0
+"idolators from Judah (men)",6,0
+"idolators from Judah (women)",25,0
+"informer",2,0
+"inscription on turban",4,0
+"inscription",4,0
+"invaders",14,0
+"invalid for 38 years #11 [whining]",11,0
+"invalid for 38 years",11,0
+"islanders #4 [suspicious]",4,0
+"islanders",4,0
+"jailer #3 [fearful]",3,0
+"jailer #3 [respectful]",3,4
+"king [blessing Israel in a loud voice]",30,0
+"king [psalm]",30,0
+"king of Israel (had said)",30,0
+"king of Israel",30,0
+"king of Sodom",12,0
+"kings of the earth",12,0
+"kings over the nations",12,0
+"kings, magnates, generals, rich, powerful, slave and free #14 [crying out]",14,2
+"kings, princes, generals, rich, powerful, slave and free #14 [crying out]",14,0
+"kinsman-redeemer",3,0
+"languages",30,0
+"large #21 [praising]",21,0
+"law of Moses where LORD commanded",5,0
+"law, the",28,0
+"leader of Ephraim,Joshua/leader of Judah, Caleb|Joshua/Caleb",13,0
+"leader of Judah, Caleb|Caleb",6,0
+"leaders in Ephraim",2,0
+"leaders",17,0
+"living creature, fourth",4,1
+"living creature, second",2,1
+"living creature, third",3,1
+"magi",16,4
+"magic",17,0
+"man (Hebrew fighting)",1,0
+"man (at Shechem)",12,0
+"man (at Shechem)|man",12,0
+"man [accusing]",30,0
+"man [begging]",30,8
+"man [pleading]",15,0
+"man all alone",12,0
+"man answered David",14,0
+"man blind from birth #24",30,0
+"man blind from birth #25",30,0
+"man blind from birth #3",3,3
+"man blind from birth",3,0
+"man covered with leprosy #16 [pleading]",16,0
+"man escaped from Jerusalem",15,0
+"man from Saul's camp (young)",15,0
+"man in crowd #10 [polite]",10,4
+"man in linen above river",12,0
+"man in linen with writing kit (in vision)",12,0
+"man like bronze with measuring rod (vision of God)",3,0
+"man of Babel, 1st",6,0
+"man of Babel, 2nd",14,0
+"man of Gibeah",15,0
+"man of God from Judah [word of the LORD]",9,0
+"man of God from Judah",9,0
+"man of God",3,0
+"man of God, a",9,0
+"man possessed by evil spirit",8,9
+"man reporting to David",2,0
+"man standing among myrtle trees [vision]",12,0
+"man told David",13,0
+"man told Joab",11,0
+"man told Solomon",13,0
+"man told troops",2,0
+"man who says 'I know him'",15,0
+"man with evil spirit [shrieking]",8,0
+"man with evil spirit",8,9
+"man with leprosy #10",10,0
+"man with leprosy #16 [pleading]",16,4
+"man with leprosy #21",16,4
+"man with leprosy",16,4
+"man with measuring line (vision)",15,0
+"man's brother",14,0
+"man's voice from the Ulai (in vision)",14,0
+"man, a",15,0
+"man, one #16",16,4
+"man, one #4 [jeering]",4,0
+"man, one #5",5,0
+"man, one",4,0
+"man, still another",9,4
+"many Samaritans",17,0
+"many in crowd",24,11
+"master of the banquet #11 [complimenting]",11,4
+"master of the banquet",11,4
+"men [singing and praising God]",3,0
+"men dressed in white, two",10,3
+"men from Cornelius #4 [respectful]",4,4
+"men from Cornelius",4,4
+"men from Enaim",14,0
+"men from Jairus house #5 [sad]",5,4
+"men from Jairus house",5,4
+"men from Judea, some #4 [harsh]",4,4
+"men from Judea, some",4,0
+"men in mourning, ten of eighty",3,0
+"men in synagogue #12 [amazed]",12,4
+"men in synagogue #14 [amazed]",14,4
+"men in synagogue #3 [amazed]",3,4
+"men in synagogue #3",3,4
+"men in synagogue #5",5,0
+"men in synagogue [amazed] #3",3,4
+"men in synagogue [amazed]",3,4
+"men in synagogue [taking offense at Jesus' teaching]",14,0
+"men in synagogue",14,4
+"men of Anathoth",3,0
+"men of Ashdod",12,0
+"men of David",11,0
+"men of David, one",6,0
+"men of Enaim|townsman",14,0
+"men of Pharaoh|messenger of Pharaoh",4,0
+"men of Pharoah|messenger of Pharoah",6,0
+"men of Sodom",3,0
+"men of the city (Bethel)",3,0
+"men of the city",3,0
+"men who were guarding #6 [mocking]",6,0
+"men who were guarding #6",6,0
+"men who were guarding",29,0
+"men with leprosy, four",3,0
+"men",3,0
+"men, large force of",3,0
+"men, some",9,0
+"men/their wives [desperate]",3,0
+"men/their wives, other [desperate]",15,0
+"men/wives, still others [desperate]",4,0
+"merchants of the earth #13",13,2
+"merchants of the earth #14 [wailing]",14,2
+"merchants of the earth #14",14,0
+"merchants of the earth #8",8,0
+"merchants of the earth #9",9,0
+"merchants of the earth",14,0
+"message to Saul",15,0
+"messenger Ahimaaz",12,0
+"messenger from battle to David",9,0
+"messenger from guardians of Ahab's children",3,0
+"messenger of Ahab, king of Israel",9,0
+"messenger to Abraham",10,0
+"messenger to David",9,0
+"messenger to King of Jericho",3,0
+"messenger to Saul",9,0
+"messenger",9,0
+"messenger, Cushite",3,0
+"messenger, a",3,0
+"messenger, another",9,0
+"messenger, still another",12,0
+"messenger, yet another",15,0
+"messengers from Moses",3,0
+"messengers of Ahaziah",9,0
+"messengers of Ben-Hadad. king of Aram",6,0
+"messengers of Jacob",9,0
+"messengers",9,0
+"midwife of Rachel|midwife",22,0
+"midwife of Tamar",22,0
+"midwives, Shiphrah/Puah",22,0
+"mighty angel #6 [loud]",6,3
+"mob #14 [screaming]",14,0
+"mob #6",6,0
+"mother of Samson",22,0
+"mother of Zebedee's sons",22,0
+"mother|Laban's mother",22,0
+"multitude from all nations, tribes, peoples, languages,",6,0
+"narrator-1CH",15,0
+"narrator-1CO",19,0
+"narrator-1JN",12,0
+"narrator-1KI",2,0
+"narrator-1PE",12,0
+"narrator-1SA",5,0
+"narrator-1TH",19,0
+"narrator-1TI",19,0
+"narrator-2CH",10,0
+"narrator-2CO",19,0
+"narrator-2JN",12,0
+"narrator-2KI",2,0
+"narrator-2PE",12,0
+"narrator-2SA",5,0
+"narrator-2TH",19,0
+"narrator-2TI",19,0
+"narrator-3JN",12,0
+"narrator-ACT",11,0
+"narrator-AMO",15,0
+"narrator-COL",19,4
+"narrator-DAN",15,0
+"narrator-DEU",19,0
+"narrator-ECC",3,0
+"narrator-EPH",19,0
+"narrator-EST",1,0
+"narrator-EXO",19,0
+"narrator-EZK",4,0
+"narrator-EZR",10,0
+"narrator-GAL",19,15
+"narrator-GEN",19,0
+"narrator-HAB",15,0
+"narrator-HAG",15,0
+"narrator-HEB",19,0
+"narrator-HOS",15,0
+"narrator-ISA",28,0
+"narrator-JAS",15,0
+"narrator-JDG",5,0
+"narrator-JER",2,0
+"narrator-JHN",12,0
+"narrator-JOB",16,0
+"narrator-JOL",6,0
+"narrator-JON",6,0
+"narrator-JOS",15,0
+"narrator-JUD",6,0
+"narrator-LAM",2,0
+"narrator-LEV",19,0
+"narrator-LUK",11,0
+"narrator-MAL",15,0
+"narrator-MAT",1,0
+"narrator-MIC",15,0
+"narrator-MRK",28,0
+"narrator-NAM",11,0
+"narrator-NEH",9,0
+"narrator-NUM",19,0
+"narrator-OBA",11,0
+"narrator-PHM",19,0
+"narrator-PHP",19,0
+"narrator-REV",5,0
+"narrator-ROM",19,0
+"narrator-RUT",5,0
+"narrator-SNG",3,0
+"narrator-TIT",19,0
+"narrator-ZEC",17,0
+"narrator-ZEP",17,0
+"nations",30,0
+"nations, all the",6,0
+"near #16 |another man [accusing]",16,0
+"neighbors of man blind from birth #24",24,0
+"neighbors of man blind from birth",24,0
+"neighbors of man blind from birth, others #25",25,0
+"neighbors of man blind from birth, some",28,0
+"neighbors/others who had seen blind man begging",3,4
+"neighbors/relatives of Zechariah/Elizabeth",24,11
+"news giver to Jacob",6,0
+"news giver to Joseph",12,0
+"no one asked",28,0
+"no one",2,0
+"non-reader",12,0
+"none of the disciples",29,0
+"officer of king of Israel (had said)",9,0
+"officer of king of Israel",9,0
+"officer of king of Israel, one of",5,0
+"officer",30,0
+"officers of King of Aram",6,0
+"officers of magistrates",4,0
+"officers",6,0
+"official, royal #4 [pleading]",4,0
+"officials of Ben-Hadad, king of Aram",6,0
+"officials of David",12,0
+"officials of Samaria",6,0
+"officials of Succoth [mocking]",12,0
+"officials, one of the #9 [gruff]",9,0
+"officials, one of the [gruff]",9,0
+"officials, one of the",9,0
+"officials, royal, to Xerxes, king",12,0
+"officials/all the people",12,0
+"old man of Gibeah",28,0
+"older daughter of Lot",25,0
+"on sea and land",30,0
+"one at table with him #5",5,0
+"one of the",30,0
+"one of you (follower of Paul) [boastful]",14,0
+"one of you [boastful]",29,0
+"one of you",5,0
+"one other who looked like a man",9,0
+"one seated on throne (God)",20,3
+"one who looked like a man",5,0
+"one with garments stained crimson (Christ?)",7,0
+"onlookers",9,0
+"other and Cleopas (on road to Emmaus) female",28,0
+"other and Cleopas (on road to Emmaus) female|other female",28,0
+"other and Cleopas (on road to Emmaus) male #9|other male",9,0
+"other and Cleopas (on road to Emmaus)",9,4
+"other guests at Pharisee(Simon)'s house #15 [unhappy]",15,0
+"other guests at Pharisee(Simon)'s house",15,0
+"other voice listing cargoes #4",4,0
+"others #1",1,4
+"others",9,0
+"ought to say",28,0
+"ought to say",30,0
+"over fire #6",6,6
+"owner of colt=people, some standing there #3 [suspicious]",3,0
+"owners of the slave girl #14 [angry]",14,0
+"parents of cured man, blind from birth #10 [cautious]",10,4
+"parents of cured man, blind from birth #17 [cautious]",17,4
+"parents of cured man, blind from birth #22",22,11
+"parents of cured man, blind from birth",10,4
+"passers by #15 [insulting]",15,0
+"passers by #9 [mocking]",9,0
+"passers by #9",9,0
+"passers by",15,0
+"passers by",8,0
+"people #14 [amazed]",14,4
+"people #14",14,4
+"people #24 [amazed]",24,4
+"people #5",5,0
+"people #6 [grieved]",6,4
+"people #6 [shouting]",6,4
+"people #6",6,0
+"people [overwhelmed with amazement]",23,11
+"people at cistern",10,0
+"people gathered to pray #24",24,11
+"people gathered to pray",12,4
+"people in crowd",24,11
+"people who knew Saul",9,0
+"people",12,0
+"people's chief priests/teachers of the law #5 |Good Priest",5,0
+"people's chief priests/teachers of the law #5",5,4
+"people's chief priests/teachers of the law |Good Priest #5",5,0
+"people's chief priests/teachers of the law",5,4
+"people, God's",9,0
+"people, Israel, tribes of",6,0
+"people, all the #21",21,11
+"people, all the #22",22,11
+"people, all the #6 [shouting]",6,4
+"people, all the #6",6,0
+"people, all the [praising]",12,0
+"people, all the [shouting]",9,0
+"people, all the",3,0
+"people, hurried",14,0
+"people, many #22",22,11
+"people, many #24",24,11
+"people, many",22,11
+"people, other #14",14,0
+"people, other #21 [guessing]",21,0
+"people, other #21",21,4
+"people, other",19,11
+"people, others #13",13,4
+"people, others of the",16,11
+"people, some #4 [critical]",4,0
+"people, some #4 [excited]",4,0
+"people, some #4",4,0
+"people, some of the",21,11
+"people, some",3,4
+"people, some, in Jerusalem #14 [arguing]",14,0
+"people, some, in Jerusalem #24 [arguing]",24,0
+"people, some, in Jerusalem #9 [arguing]",9,0
+"people, some, in Jerusalem #9",9,0
+"people, still other #12",12,4
+"people, still other #19",19,0
+"people, the #25",25,11
+"people, the #5 [alarmed]",5,4
+"people, the [shouting]",10,0
+"people, the",3,0
+"people, the|complainer #2/woman [complaining]",25,0
+"people, the|leader of Naphtali",10,0
+"peoples, many",17,0
+"person",30,0
+"poor",30,0
+"priest",4,0
+"priests",28,0
+"priests/Levites [singing praise]",28,0
+"priests/Levites from Jews",28,0
+"priests/Levites",17,0
+"priests/Levites/people",28,0
+"priests/prophets",28,0
+"priests/prophets/all the people",28,0
+"proclaim",13,0
+"prophet #5 [proclaim]",5,5
+"prophet Gad",28,0
+"prophet in Bethel [old]",28,0
+"prophet in Bethel [old]/sons",17,0
+"prophet in Bethel [old][word of the LORD]",28,0
+"prophet of the LORD, a",28,0
+"prophet",2,0
+"prophet, a",28,0
+"prophet, sons of the, one",13,0
+"prophets (the LORD said)",6,0
+"prophets of Baal",8,0
+"prophets, 400 [false prophets]",14,0
+"prophets, 400",14,0
+"prophets, their",6,0
+"prophets/priests",17,0
+"prostitute, one",22,0
+"prostitute, other",25,0
+"proverb about a dog",28,0
+"proverb",28,0
+"queen of Babylon",23,0
+"queen of Sheba",23,0
+"reader",17,0
+"rest #4 [critical]",4,4
+"rest #4 [jeering]",4,4
+"rising sun with seal of living God #1",1,0
+"rule given by Paul",17,0
+"ruler #1 [angry]",1,1
+"ruler #6",6,6
+"ruler, a certain=man, rich young #6 [respectful]",6,0
+"ruler, a certain=man, rich young #6 [upset]",6,4
+"ruler, a certain=man, rich young #6",6,0
+"rulers of people in Jerusalem [boasting]",17,0
+"rulers=chief priests/teachers of the law/elders #19 [sneering]",19,0
+"rulers=chief priests/teachers of the law/elders [sneering]",15,0
+"saying about Anakites",2,0
+"saying about Nimrod",2,0
+"saying about Saul",2,0
+"saying about blind and lame",2,0
+"saying about going beyond what is written",29,0
+"saying about seer",13,0
+"saying about sow",29,0
+"saying about wake up o sleeper",29,0
+"saying about what controls you",28,0
+"saying about yeast",21,0
+"scoffers",8,0
+"scoundrels",8,0
+"scouts of Ben-Hadad, king of Aram",12,0
+"scripture (God)",20,3
+"scripture (Moses quoting God)",19,0
+"scripture (prophet Isaiah)",30,0
+"scripture (prophet Jeremiah)",30,0
+"scripture (prophets)",30,0
+"scripture",30,3
+"secret messengers",30,0
+"sent by God [to Mary]",30,10
+"sent by God",30,0
+"seraph, one of the",6,0
+"seraphs",6,0
+"serpent",8,0
+"servant (man)",30,0
+"servant girl [accusing]",30,0
+"servant girl, another=someone else #22",22,11
+"servant girl, another=someone else #25 [accusing]",25,0
+"servant girl, another=someone else #25 | servant girl [accusing]",25,0
+"servant girl, another=someone else #25",25,0
+"servant of Elijah",6,0
+"servant of Israelite",9,0
+"servant of Naaman's wife (young girl)",18,0
+"servant of Nabal",12,0
+"servant of Saul",2,0
+"servant of concubine's husband",6,0
+"servant of priest [demanding]",6,0
+"servant of priest",14,0
+"servant",30,0
+"servants (Isaac's)",6,0
+"servants of Achish, king of Gath",4,0
+"servants of David",11,0
+"servants of Eglon, king of Moab",3,0
+"servants of royal official #3 [excited]",3,4
+"servants of royal official",3,4
+"seven angels, one of the #19",19,2
+"seven sons of Sceva #14 [over-dramatic]",14,0
+"seven sons of Sceva",14,0
+"seventy-two #14 [excited]",14,4
+"seventy-two",14,4
+"she donkey",23,0
+"shepherds #4 [awe]",4,4
+"shepherds",4,4
+"shepherds",6,0
+"ship captains, seafarers, sailors #1 [weeping/ cry out]",1,2
+"ship captains, seafarers, sailors #1",1,2
+"ship captains, seafarers, sailors #3",3,2
+"ship captains, seafarers, sailors",13,0
+"sign on the cross",14,0
+"singers from the ends of the earth",6,0
+"singers",13,0
+"singers, and relatives [singing accompanied by 120 trumpets]",6,0
+"sinners",6,0
+"sitting with Festus",30,0
+"slave and free",30,0
+"soldier at the cross #6",6,0
+"soldier#1-enemy",1,0
+"soldier#2-enemy",2,0
+"soldier, Israelite",3,0
+"soldiers #4 [calling out]",4,0
+"soldiers #4 [mocking]",4,0
+"soldiers #6 [mocking]",6,0
+"soldiers #9 [gruff]",9,0
+"soldiers #9 [mocking]",9,0
+"soldiers #9",9,0
+"soldiers [mocking]",4,0
+"soldiers",4,0
+"soldiers, Assyrian",30,0
+"soldiers/officials from chief priests/Pharisees #4 [afraid]",4,0
+"soldiers/officials from chief priests/Pharisees #4 [rowdy]",4,0
+"soldiers/officials from chief priests/Pharisees #4 [screaming]",4,0
+"soldiers/officials from chief priests/Pharisees",4,0
+"some claim we say",29,0
+"someone #14 [questioning]",14,0
+"someone #14",14,4
+"someone #4 [excited]",4,4
+"someone [might argue]",29,0
+"someone else #16 [accusing]",16,0
+"someone else #21 [accusing]",21,0
+"someone else (male) [accusing]",16,0
+"someone from Jairus' house #5 [sad]",5,4
+"someone from Jairus' house",5,4
+"someone in Jerusalem",6,0
+"someone in crowd",9,0
+"someone like a son of man #7",7,0
+"someone told David",16,0
+"someone told King of Aram",6,0
+"someone told Shimei",28,0
+"someone",15,0
+"someone=they (in crowd) #4 [announcing]",4,4
+"someone=they (in crowd) #4 [excited]",4,4
+"someone=they (in crowd) #4 [shouting]",4,4
+"someone=they (in crowd)",4,4
+"son in Israel (child) will say",18,0
+"son of Paul's sister (young man)",18,4
+"son of Shunammite",18,0
+"son of man",28,0
+"son of widow",18,0
+"song (of the prostitute)",25,0
+"souls of those killed for word of God",28,0
+"spies of teachers of the law/chief priests=Pharisees, disciples of/Herodians",6,0
+"standing near #3 [uneasy]",3,3
+"still another (follower of Christ) [boastful]",6,0
+"still another [boastful]",29,0
+"sun with seal of living God",30,0
+"synagogue ruler #1 [angry]",1,0
+"synagogue ruler #1 [indignantly]",1,0
+"synagogue ruler [indignantly]",1,0
+"synagogue rulers #5 [gracious]",5,4
+"synagogue rulers",29,0
+"synagogue rulers|Good Priest #5 [gracious]",5,0
+"table with him #5",5,5
+"tax collectors #3 [calling out]",3,0
+"teacher of the law=man #4 [eager]",4,4
+"teacher of the law=man #4",4,0
+"teacher of the law=man",4,0
+"teacher of the law=man|man #16 [eager]",16,0
+"teacher of the law=man|man #5 [eager]",5,0
+"teacher, the [said in heart]",3,0
+"teacher, the [thought in heart]",3,0
+"teacher, the [thought]",3,0
+"teacher, the",3,0
+"teachers of the law #1 [insulting]",1,0
+"teachers of the law #1",1,0
+"teachers of the law #19 [indignant]",19,0
+"teachers of the law #19 [insulting]",19,0
+"teachers of the law #19",19,0
+"teachers of the law #5 [defending]",5,0
+"teachers of the law (Pharisees) #19 [contempt]",19,0
+"teachers of the law (Pharisees) #19",19,0
+"teachers of the law (Pharisees)",4,0
+"teachers of the law",19,0
+"teachers of the law, one=expert in the law, an #5 [complimenting]",5,4
+"teachers of the law, one=expert in the law, an #5 [justifying]",5,4
+"teachers of the law, one=expert in the law, an #5 [testing]",5,4
+"teachers of the law, one=expert in the law, an #5 |Good Priest [complimenting]",5,0
+"teachers of the law, one=expert in the law, an #5 |Good Priest [justifying]",5,0
+"teachers of the law, one=expert in the law, an #5 |Good Priest [respectful]",5,0
+"teachers of the law, one=expert in the law, an #5 |Good Priest [testing]",5,0
+"teachers of the law, one=expert in the law, an #5 |Good Priest",5,0
+"teachers of the law, one=expert in the law, an #5",5,4
+"teachers of the law, one=expert in the law, an | Good Priest #5",5,0
+"teachers of the law, one=expert in the law, an |Good Priest #5 [complimenting]",5,0
+"teachers of the law, one=expert in the law, an |Good Priest #5 [justifying]",5,0
+"teachers of the law, one=expert in the law, an |Good Priest #5 [respectful]",5,0
+"teachers of the law, one=expert in the law, an |Good Priest #5 [testing]",5,0
+"teachers of the law, one=expert in the law, an |Good Priest #5",5,0
+"teachers of the law, one=expert in the law, an",5,4
+"teachers of the law, some #5 [compliment]",5,4
+"teachers of the law, some #5 |Good Priest [compliment]",5,0
+"teachers of the law, some who were Pharisees #1 [arguing]",1,0
+"teachers of the law, some who were Pharisees",1,0
+"teachers of the law, some |Good Priest #5 [compliment]",5,0
+"teachers of the law, some",29,0
+"teachers of the law/Pharisees",15,0
+"teachers of the law/Pharisees=Pharisees/teachers of the law #1 [angry]",1,0
+"teachers of the law/Pharisees=Pharisees/teachers of the law #1 [angry]|Pharisees, some",1,0
+"teachers of the law/Pharisees=Pharisees/teachers of the law #1 [critical]",1,0
+"teachers of the law/Pharisees=Pharisees/teachers of the law #1 [frustrated]",1,0
+"teachers of the law/Pharisees=Pharisees/teachers of the law #1 [insulted]",1,0
+"teachers of the law/Pharisees=Pharisees/teachers of the law #19 [insulting]",19,0
+"teachers of the law/Pharisees=Pharisees/teachers of the law",1,0
+"temple guards #17 [amazed]",17,0
+"temple guards",17,0
+"temple police #6 [perplexed]",6,0
+"temple police #6",6,0
+"temple tax",30,3
+"ten men with leprosy #4",4,0
+"ten men with leprosy [calling in loud voice]",4,4
+"that of a man (in vision of God)",30,0
+"the LORD",30,0
+"the Lord",30,0
+"the earth",30,0
+"the prophets",30,0
+"they (unclear in Greek)",9,0
+"they (unclear in Greek/voice from heaven & angel?)",6,0
+"those hiding from the LORD",9,0
+"those sitting with Festus, Herod Agrippa II and Bernice",6,0
+"those standing near #1 [angry]",1,0
+"townsman",9,0
+"townsmen (wicked)",8,0
+"townsmen",9,0
+"townsmen-wicked (of Sodom)",14,0
+"troublemakers",8,0
+"twelve, the=disciples|disciples, His #13 [sad]",13,0
+"twenty-four elders",10,4
+"twenty-four elders/four living creatures",4,4
+"two",30,11
+"vineyard owner (God?)",20,0
+"voice #1",1,1
+"voice #11",11,2
+"voice #14",14,2
+"voice #15",15,2
+"voice #17",17,2
+"voice #19",19,2
+"voice #2",2,1
+"voice #4",4,1
+"voice #9",9,2
+"voice (in trance)",7,5
+"voice among living creatures",15,0
+"voice from altar #11",11,2
+"voice from altar",20,11
+"voice from bright cloud  #20 (God)",20,0
+"voice from bright cloud #20 (God)",20,0
+"voice from bright cloud",20,11
+"voice from cloud",20,11
+"voice from heaven #1",1,1
+"voice from heaven #13",13,0
+"voice from heaven",20,0
+"voice from heaven",20,11
+"voice from heaven, another #13 [wailing]",13,0
+"voice from heaven, another #13 [weeping/ cry out]",13,0
+"voice from heaven, another #13",13,2
+"voice from heaven, another #9",9,0
+"voice from heaven, another",11,11
+"voice from heaven, loud #1",1,1
+"voice from heaven, loud",20,11
+"voice from temple, loud",9,11
+"voice from throne #11",11,2
+"voice from throne",20,11
+"voice from throne, loud #11",11,2
+"voice from throne, loud",20,11
+"voice in heaven, loud #11",11,0
+"voice in heaven, loud",13,11
+"voice like a trumpet #9",9,2
+"voice like a trumpet",1,1
+"voice of great crowd in heaven, loud #22",22,11
+"voice of great crowd in heaven, loud #23",23,0
+"voice of great crowd in heaven, loud",22,11
+"voice of great crowd, like roar of many waters, loud thunderclaps #23",23,2
+"voice of great crowd, like roar of many waters, loud thunderclaps",24,11
+"voice of one calling, a (preparing way for Christ)",6,0
+"voice of one speaking (in vision of God)",6,0
+"voice out of temple, from throne",20,11
+"voice, a (God?)",20,0
+"voice, a",20,0
+"voices in heaven, loud #11",11,0
+"voices in heaven, loud",15,0
+"warriors from Zorah and Eshtaol, 5",10,0
+"watchman",9,0
+"waters #6",6,6
+"we [cry]",5,0
+"what is formed",13,0
+"white=man dressed in white robe",30,0
+"who were Pharisees",30,1
+"wicked men of Gibeah",8,0
+"widow (from company of prophets)",22,0
+"widow at Zarephath",23,0
+"wise men of Pharoah",16,0
+"with Festus",30,0
+"with leprosy #10",10,0
+"with leprosy #16 [pleading]",16,0
+"with leprosy",30,0
+"witnesses, false, two=witnesses, some false #3 [mocking]",3,0
+"woman from Tekoa",23,0
+"woman in crowd",23,0
+"woman in famine [cried out]",23,0
+"woman in famine",23,0
+"woman medium",25,0
+"woman",23,0
+"woman, Samaritan",21,11
+"woman, Shunammite [well-to-do]",23,0
+"woman, bleeding for 12 years [thinking to herself]",22,0
+"woman, bleeding for 12 years",22,11
+"woman, caught in adultery",24,11
+"woman, wise",23,0
+"women [joyfully singing]",24,0
+"women of Bethlehem",25,0
+"women",23,0
+"word of the LORD came to Shemaiah",20,0
+"word of the LORD fulfilled",20,0
+"word of the LORD had come",20,0
+"word of the LORD spoken through Hosea",20,0
+"word of the LORD through Malachi",15,0
+"word of the LORD",20,0
+"world, the whole",21,11
+"years #11 [whining]",11,0
+"you [smug]",9,0
+"you ought to say",5,0
+"you preach",28,0
+"you who bring good tidings to Zion",5,0
+"you",17,0
+"young man, a [excited]",11,0
+"young men",12,0
+"youths [jeering]",8,0
+"zzzz 01",1,0
+"zzzz 02",2,0
+"zzzz 03",3,0
+"zzzz 04",4,0
+"zzzz 05",5,0
+"zzzz 06",6,0
+"zzzz 07",7,0
+"zzzz 08",8,0
+"zzzz 09",9,0
+"zzzz 10",10,0
+"zzzz 11",11,0
+"zzzz 12",12,0
+"zzzz 13",13,0
+"zzzz 14",14,0
+"zzzz 15",15,0
+"zzzz 16",16,0
+"zzzz 17",17,0
+"zzzz 18",18,0
+"zzzz 19",19,0
+"zzzz 20",20,0
+"zzzz 21",21,0
+"zzzz 22",22,0
+"zzzz 23",23,0
+"zzzz 24",24,0
+"zzzz 25",25,0
+"zzzz 26",26,0
+"zzzz 27",27,0
+"zzzz 28",28,0
+"zzzz 29",29,0
+"zzzz 30",30,0
+"zzzzzzzzz20061003zzzz limit of 4000 lines in this file by Dramatizer zzzzzz",30,0

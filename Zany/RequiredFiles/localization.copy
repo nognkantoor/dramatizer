@@ -1,0 +1,110 @@
+English - USA	English - USA	France - fran+AOc-ais	Brazil - Portuguese
+Name of language in that language	English	fran+AOc-ais	portugu+AOo-s
+Program	Dramatizer	Dramatizer	Dramatizer
+language	Language	Langue	Idioma
+start new project/open file	Select options	Select options	Select options
+start processing	Start processing	Start processing	Start processing
+unknown/unidentified speaker	Fix unidentified characters	Fix unidentified characters	Fix unidentified characters
+multilple speakers	Verify multiple characters in same verse	Verify multiple characters in same verse	Verify multiple characters in same verse
+verify updated clips	Verify updated clips	Verify updated clips	Verify updated clips
+verify all clips	Verify all clips	Verify all clips	Verify all clips
+assign character to speaker	Assign each character to a speaker	Assign each character to a speaker	Assign each character to a speaker
+create scripts	Create scripts and wav files	Create scripts and wav files	Create scripts and wav files
+record	Record	Record	Gravar xxxxx
+about program	About	About	Sobre
+How to quit/end the program	Exit	Quitter	Quitter
+Next/proceed	Next	Next	Next
+info start project	You may select several options for the project including the following: (1) file name, (2) text encoding, (3) Ethnologue langugae code, (4) font name, (5) font size, and (6) first level quote style. +AHw-These options will be saved and used for the project. You can return to make changes to your choices at any time. +AHw-Click Next to start.	You may select several options for the project including the following: (1) file name, (2) font name, (3) font size, (4) first level quote style, and (5) text encoding. These options will be saved and used for the project. You can return to make changes to your choices at any time. Click Next to start.	You may select several options for the project including the following: (1) file name, (2) font name, (3) font size, (4) first level quote style, and (5) text encoding. These options will be saved and used for the project. You can return to make changes to your choices at any time. Click Next to start.
+info start processing file	A clip is a sentence or group of sentences spoken by one person (or character). In the New Testament, there are between  4,000 to 6,000 clips. Dramatizer can usually identify the character speaking in at least  90 percent of the clips. +AHw-Maximum clip size should be set in Select options+AHw-Click Next to start.	A clip is a sentence or group sentences spoken by one person (or character). In the New Testament there are between  4,000 to 6,000 clips. Dramatizer can usually unambiguously identify the characters for over 90 percent of the clips. Click on	A clip is a sentence or group sentences spoken by one person (or character). In the New Testament there are between  4,000 to 6,000 clips. Dramatizer can usually unambiguously identify the characters for over 90 percent of the clips. Click on
+0 unidentified	Dramatizer was able to identify all characters. There are no unidentified characters to identify. 	Dramatizer was able to identify all characters. There are no unidentified characters to identify. 	Dramatizer was able to identify all characters. There are no unidentified characters to identify. 
+1 unidentified	Dramatizer was unable to identify who the character should be in one clip. Please identify the speaking character. 	Dramatizer was unable to identify who the character should be in one clip. Please identify the speaking character. 	Dramatizer was unable to identify who the character should be in one clip. Please identify the speaking character. 
+many unidentified	Dramatizer was unable to identify who the character should be in some clips. Please identify the speaking characters. 	Dramatizer was unable to identify who the character should be in +AFs-number+AF0- clips. Please identify the speaking characters. 	Dramatizer was unable to identify who the character should be in +AFs-number+AF0- clips. Please identify the speaking characters. 
+Speaker/speaker number	Speaker number	Speaker number	Speaker number
+clip number	Clip number	Clip number	Clip number
+prompt	Prompt	Prompt	Prompt
+show context	Show context	Show context	Show context
+hide context	Hide context	Hide context	Hide context
+advance to next	Clip	Clip	Clip
+advance by Unidentfied character clip	Unidentified characters	Unidentified characters	Unidentified characters
+advance by Multiple characters clip	Multiple characters	Multiple characters	Multiple characters
+advance by my Updated clip	Updated character	Updated character	Updated character
+0 multiple	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 
+1 multiple	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.
+many multiples	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.
+warning deleting active master file	Warning: This will delete your previously saved work.+AHw-	Warning: This will delete your previously saved work.	Warning: This will delete your previously saved work.
+translate menu items	Translate/correct menu items	Traduire menu	Traduza lista
+file name	File name	File name	File name
+browse	Browse +AIU-. . .	Browse +AIU-. . .	Browse +AIU-. . .
+font name	Font name	Font name	Font name
+font size	Font size	Font size	Font size
+quote type	Quote type	Quote type	Quote type
+audio recording program	Audio recording program	Audio recording program	Audio recording program
+display quotes	Display quotes	Display quotes	Display quotes
+text encoding	Text encoding	Text encoding	Text encoding
+ansi	ANSI	ANSI	ANSI
+utf8	UTF-8	UTF-8	UTF-8
+cancel	Cancel	Cancel	Cancel
+set options	Set options	Set options	Set options
+current location number	Current location number	Current location number	Current location number
+ok	OK	OK	OK
+update	Update	Update	Update
+edit	Edit	Edit	Edit
+maximum clip size	Maximum clip size in seconds (approximate) 	Maximum clip size in seconds (approximate) 	Maximum clip size in seconds (approximate) 
+Ethnologue code	Ethnologue code	Ethnologue code	Ethnologue code
+Heading	Headings +AFw-h	Headings +AFw-h	Headings +AFw-h
+Introduction	Introductions +AFw-is +AFw-ip and +AFw-id	Introductions +AFw-is +AFw-ip	Introductions +AFw-is +AFw-ip
+Section heads	Section heads +AFw-s	Section heads +AFw-s	Section heads +AFw-s
+Footnotes	Footnotes +AFw-f+AIUAXA-f+ACo-	Footnotes +AFw-f+AIUAXA-f+ACo-	Footnotes +AFw-f+AIUAXA-f+ACo-
+References	References +AFw-r	References +AFw-r	References +AFw-r
+Chapter number	Chapter numbers +AFw-c	Chapter numbers +AFw-c	Chapter numbers +AFw-c
+Don't speak these	Remove from final scripts	Remove from final scripts	Remove from final scripts
+Character name	Character name	Character name	Character name
+no INI file (short)	No INI file found.	No INI file found.	No INI file found.
+no INI file (long)	An INI file will be created when you save settings. This will keep your settings that you choose.	An INI file will be created when you save settings. This will keep your settings that you choose	An INI file will be created when you save settings. This will keep your settings that you choose
+correct the text	Please correct the problem in the source text.	Please correct the problem in the source text.	Please correct the problem in the source text.
+unable to process text	Unable to process the text.	Unable to process the text.	Unable to process the text.
+verify opening quote 	Verify that the opening quote	Verify that the opening quote	Verify that the opening quote
+continue verify opening quote	found after the start of this text is really a continuing quote marker. If it is not a continuing quote marker then there is a problem.	found after the start of this text is really a continuing quote marker. If it is not a continuing quote marker then there is a problem.	found after the start of this text is really a continuing quote marker. If it is not a continuing quote marker then there is a problem.
+continuing quote?	Is this a continuing quote marker?	Is this a continuing quote marker?	Is this a continuing quote marker?
+second quote found	Second opening quote mark found	Second opening quote mark found	Second opening quote mark found
+text unusable	Dramatizer will not be able to use this text until this is corrected. Please look at the original text and see if it is possible that a closing quote marker is missing. Look for a closing quote marker found inside of a footnote. All footnotes (+AFw-f..+AFw-f+ACo-) and references (+AFw-r) are discarded at the start of processing the text in Dramatizer. Make sure that you have checked the quotations with a tool such as Paratext scripture checks.  Please correct the problem in the source text.	Dramatizer will not be able to use this text until this is corrected. Please look at the original text and see if it is possible that a closing quote marker is missing. Look for a closing quote marker found inside of a footnote. All footnotes (+AFw-f..+AFw-f+ACo-) and references (+AFw-r) are discarded at the start of processing the text in Dramatizer. Make sure that you have checked the quotations with a tool such as Paratext scripture checks.  Please correct the problem in the source text.	Dramatizer will not be able to use this text until this is corrected. Please look at the original text and see if it is possible that a closing quote marker is missing. Look for a closing quote marker found inside of a footnote. All footnotes (+AFw-f..+AFw-f+ACo-) and references (+AFw-r) are discarded at the start of processing the text in Dramatizer. Make sure that you have checked the quotations with a tool such as Paratext scripture checks.  Please correct the problem in the source text.
+see more problems	Do you see if there are other problems?	Do you to see if there are other problems?	Do you to see if there are other problems?
+continuing quote tip	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.
+fileReadError	File reading error	File reading error	File reading error
+Unidentified characters to fix	Unidentified characters to fix	Unidentified characters to fix	Unidentified characters to fix
+Multiple characters to fix	Multiple characters to fix	Multiple characters to fix	Multiple characters to fix
+totalClips	Total clips	Total clips	Total clips
+Clips to record	Clips to record	Clips to record	Clips to record
+ClickNextToStart	Click Next to start.	Click Next to start	Click Next to start
+VerifyUpdatedText	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.
+VerifyAllText	Verify all characters. You must do this before assigning characters to speakers.	Verify all characters. You must do this before assigning characters to speakers.	Verify all characters. You must do this before assigning characters to speakers.
+AssignCharacterToSpeakerText	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.
+CreateScriptsText	In the scripts folder, create a master script and a script for each speaker. Scripts are html files that can be printed out. In the recordings folder create a blank wave file for each clip.	A script for each speaker will be created. It is a plain text file that can be printed out. Look in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/scripts +AHw-to find all the scripts.	A script for each speaker will be created. It is a plain text file that can be printed out. Look in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/scripts +AHw-to find all the scripts.
+RecordText	Use the selected audio recording program to record each clip. Output files:	After creating scripts you may either record or start completely over. You may record until all the clips have been recorded. Completed recordings are found in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/recordings +AHw-to find all the scripts.	After creating scripts you may either record or start completely over. You may record until all the clips have been recorded. Completed recordings are found in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/recordings +AHw-to find all the scripts.
+UnassignedCharactersToFix	Unassigned characters to fix	Unassigned characters to fix	Unassigned characters to fix
+showVerses	Show verses	Show verses	Show verses
+showSFMcodes	Show SFM codes	Show SFM codes	Show SFM codes
+showSpeakerText	Show speaker text	Show speaker text	Show speaker text
+useSettingsToAdjustClipSize	Use settings to adjust clip size	Use settings to adjust clip size	Use settings to adjust clip size
+inputTab	Input	Input	Input
+quoteTypeTab	Quote type	Quote type	Quote type
+omitTextTab	Omit text	Omit text	Omit text
+recordingProgramTab	Audio recording program	Audio recording program	Audio recording program
+clipSizeTab	Clip size	Clip size	Clip size
+EthnologueCodeTab	Ethnologue code	Ethnologue code	Ethnologue code
+outputTab	Output	Output	Output
+displayUnrecorded	Show unrecorded clips	Show unrecorded clips	Show unrecorded clips
+recordOneSpeakerAtATime	Record one speaker at a time	Record one speaker at a time	Record one speaker at a time
+showPrompt	Show prompt	Show prompt	Show prompt
+fontTab	Font	Font	Font
+OmitThisOne	Omit this one	Omit this one	Omit this one
+OutputFolder	Dramatizer output folder	Dramatizer output folder	Dramatizer output folder
+SpeechContinuesInNextClip	Continues in next clip	Continues in next clip	Continues in next clip
+ClipSize	Clip size in seconds (approximate)	Clip size in seconds (approximate)	Clip size in seconds (approximate)
+PercentIdentified	+ACU- of clips Dramatizer identified.	+ACU- of clips Dramatizer identified.	+ACU- of clips Dramatizer identified.
+BreakAtMostParagraphs	Break at most paragraphs	Break at most paragraphs	Break at most paragraphs
+DefaultSettings	Reset to default settings	Reset to default settings	Reset to default settings
+MasterText	Master text	Master text	Master text
+AvailableDiskSpaceC	Available Disk Space Drive C:	Available Disk Space Drive C:	Available Disk Space Drive C:
+AvailableDiskSpaceD	available Disk Space Drive D:	available Disk Space Drive D:	available Disk Space Drive D:
+NoteAQuote	Not a quote	Not a quote	Not a quote
