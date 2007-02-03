@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Basic Express 2005
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Zany.Tests", "Zany.Tests\Zany.Tests.vbproj", "{4F084311-4005-42B4-B0CE-B02225513DBA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Zany", "Zany\Zany.vbproj", "{466EBA44-5131-4496-91C4-1AAEF9210CD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F084311-4005-42B4-B0CE-B02225513DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F084311-4005-42B4-B0CE-B02225513DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F084311-4005-42B4-B0CE-B02225513DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F084311-4005-42B4-B0CE-B02225513DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{466EBA44-5131-4496-91C4-1AAEF9210CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{466EBA44-5131-4496-91C4-1AAEF9210CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{466EBA44-5131-4496-91C4-1AAEF9210CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{466EBA44-5131-4496-91C4-1AAEF9210CD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
