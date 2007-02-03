@@ -275,7 +275,6 @@ Public Class dramatizer
         Dim i As Integer = Main.iCurrentClipNumber
         Select Case lbForwardBackBy.SelectedIndex
             Case -1, 0, 5 ' "Next clip" "Verify All" "record all" ' can't match string as string changes
-                i += 1
                 i = skipForward(i)
             Case 1 ' "Unidentified character clip"
                 Do
@@ -286,7 +285,7 @@ Public Class dramatizer
                 Do
                     i = skipForward(i)
                     If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-                Loop Until Main.iNumberOfCharactersInClip(i) > 1 And Main.sCharacter(i, 0) = Nothing
+                Loop Until Main.iNumberOfCharactersInClip(i) > 1
             Case 3 '"Verify Updated clip"
                 Do
                     i = skipForward(i)
@@ -314,11 +313,12 @@ Public Class dramatizer
             If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1
         Else
             ' hide omitted clip
-            Do
+            Do Until (Main.blnOmit(clipNumber) = False Or clipNumber = Main.iLastClipNumber)
                 clipNumber += 1
                 If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1 : Exit Do
-            Loop Until Main.blnOmit(clipNumber) = False Or clipNumber = Main.iLastClipNumber
+            Loop
         End If
+        clipNumber = Me.skipForwardProcessed(clipNumber)
         Return clipNumber
     End Function
     Private Function skipBack(ByVal clipNumber As Integer)
@@ -327,10 +327,37 @@ Public Class dramatizer
             If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1
         Else
             ' hide omitted clip
-            Do
+            Do Until (Main.blnOmit(clipNumber) = False Or clipNumber = Main.iLastClipNumber)
                 clipNumber -= 1
                 If clipNumber <= 1 Then Beep() : clipNumber = 1 : Exit Do
-            Loop Until Main.blnOmit(clipNumber) = False Or clipNumber = Main.iLastClipNumber
+            Loop
+        End If
+        clipNumber = Me.skipBackProcessed(clipNumber)
+        Return clipNumber
+    End Function
+    Private Function skipForwardProcessed(ByVal clipNumber)
+        If Me.chkbxDisplayUnprocessedOnly.Checked = True Then
+            If Main.sCharacter(clipNumber, 0) = Nothing Then
+                '  not processed
+            Else
+                ' processed
+                clipNumber += 1
+            End If
+        Else
+            ' show all
+        End If
+        Return clipNumber
+    End Function
+    Private Function skipBackProcessed(ByVal clipNumber)
+        If Me.chkbxDisplayUnprocessedOnly.Checked = True Then
+            If Main.sCharacter(clipNumber, 0) = Nothing Then
+                '  not processed
+            Else
+                ' processed
+                clipNumber -= 1
+            End If
+        Else
+            ' show all
         End If
         Return clipNumber
     End Function
@@ -349,7 +376,7 @@ Public Class dramatizer
                 Do
                     i = skipBack(i)
                     If i <= 1 Then Beep() : i = 1 : Exit Do
-                Loop Until Main.iNumberOfCharactersInClip(i) > 1 And Main.sCharacter(i, 0) = Nothing
+                Loop Until Main.iNumberOfCharactersInClip(i) > 1
             Case 3 '"Verify Updated clip"
                 Do
                     i = skipBack(i)
@@ -453,12 +480,12 @@ Public Class dramatizer
     Private Sub dramatizer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If MainMenu.rbRecord.Checked Then
             Me.btnRecord.Visible = True
-            Me.chkbxDisplayUnrecordedOnly.Visible = True
+            Me.chkbxDisplayUnprocessedOnly.Text = MainMenu.sLocalizationStrings(MainMenu.iDisplayUnrecordedClipsOnly, MainMenu.iLanguageSelected)
             Me.chkbxRecordOneSpeakerAtATime.Visible = True
             Me.tbSpeakerNumber.Visible = True
         Else
             Me.btnRecord.Visible = False
-            Me.chkbxDisplayUnrecordedOnly.Visible = False
+            Me.chkbxDisplayUnprocessedOnly.Text = MainMenu.sLocalizationStrings(MainMenu.iDisplayUnprocessedClipsOnly, MainMenu.iLanguageSelected)
             Me.chkbxRecordOneSpeakerAtATime.Visible = False
             Me.tbSpeakerNumber.Visible = False
 
@@ -510,14 +537,28 @@ Public Class dramatizer
     End Sub
 
     Private Sub chkbxDisplayUnprocessedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayUnprocessedOnly.CheckedChanged
-
+        If Me.chkbxDisplayUnprocessedOnly.Checked = True Then
+            Me.chkbxDisplayOmittedClips.Checked = False
+        Else
+            ' do nothing
+        End If
+  
     End Sub
 
-    Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayUnrecordedOnly.CheckedChanged
+    Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 
     Private Sub chkbxDisplayOmittedClips_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayOmittedClips.CheckedChanged
+        If Me.chkbxDisplayOmittedClips.Checked = True Then
+            Me.chkbxDisplayUnprocessedOnly.Checked = False
 
+        Else
+            ' do nothing
+        End If
+    End Sub
+
+    Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
+        Me.cbCharacters.Text = "Not a quote"
     End Sub
 End Class

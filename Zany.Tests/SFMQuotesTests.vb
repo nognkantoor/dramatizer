@@ -60,15 +60,6 @@ Imports str = Microsoft.VisualBasic.Strings
         sOutput = sfmQuotes.getBookChapterVerse()
         Debug.Assert(str.StrComp(sOutput, sExpectedOutput), "output and expected output differ", "output " & sOutput & " expectedOutput " & sExpectedOutput)
     End Sub
-    <Test()> Public Sub GetBookChapterVerse_Book()
-        Dim sInput(1) As String
-        sInput(1) = "<block character1='extra-GEN' tag='\v' id='GEN 1.3'>" & vbCrLf & "3" & vbCrLf & ""
-        Dim myblock As New Clip(1, sInput, 1)
-        Dim sExpectedOutput As String = ("GEN")
-        Dim sOutput As String
-        sOutput = myblock.sCurrentBook
-        Debug.Assert(str.StrComp(sOutput, sExpectedOutput), "output and expected output differ", "output " & sOutput & " expectedOutput " & sExpectedOutput)
-    End Sub
     Private Function string2stream(ByVal testString As String)
         ' create unicode encoding
         Dim utf8Encoding As System.Text.UTF8Encoding = New System.Text.UTF8Encoding

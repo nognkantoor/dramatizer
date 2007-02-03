@@ -49,7 +49,6 @@ Partial Class dramatizer
         Me.upDownSpeakerNumber = New System.Windows.Forms.NumericUpDown
         Me.chkbxRecordOneSpeakerAtATime = New System.Windows.Forms.CheckBox
         Me.btnRecord = New System.Windows.Forms.Button
-        Me.chkbxDisplayUnrecordedOnly = New System.Windows.Forms.CheckBox
         Me.chkbxDisplayUnprocessedOnly = New System.Windows.Forms.CheckBox
         Me.chkbxDisplayOmittedClips = New System.Windows.Forms.CheckBox
         Me.StatusStrip1.SuspendLayout()
@@ -242,7 +241,6 @@ Partial Class dramatizer
         Me.Panel1.Controls.Add(Me.btnNotAQuote)
         Me.Panel1.Controls.Add(Me.chkbxDisplayUnprocessedOnly)
         Me.Panel1.Controls.Add(Me.cbCharactersEdit)
-        Me.Panel1.Controls.Add(Me.chkbxDisplayUnrecordedOnly)
         Me.Panel1.Controls.Add(Me.chkbxShowPrompt)
         Me.Panel1.Controls.Add(Me.upDownSpeakerNumber)
         Me.Panel1.Controls.Add(Me.cbCharacters)
@@ -318,16 +316,6 @@ Partial Class dramatizer
         Me.btnRecord.TabIndex = 43
         Me.btnRecord.UseVisualStyleBackColor = True
         '
-        'chkbxDisplayUnrecordedOnly
-        '
-        Me.chkbxDisplayUnrecordedOnly.AutoSize = True
-        Me.chkbxDisplayUnrecordedOnly.Location = New System.Drawing.Point(314, 24)
-        Me.chkbxDisplayUnrecordedOnly.Name = "chkbxDisplayUnrecordedOnly"
-        Me.chkbxDisplayUnrecordedOnly.Size = New System.Drawing.Size(166, 17)
-        Me.chkbxDisplayUnrecordedOnly.TabIndex = 45
-        Me.chkbxDisplayUnrecordedOnly.Text = "Display unrecordeed only  xxx"
-        Me.chkbxDisplayUnrecordedOnly.UseVisualStyleBackColor = True
-        '
         'chkbxDisplayUnprocessedOnly
         '
         Me.chkbxDisplayUnprocessedOnly.AutoSize = True
@@ -341,7 +329,7 @@ Partial Class dramatizer
         'chkbxDisplayOmittedClips
         '
         Me.chkbxDisplayOmittedClips.AutoSize = True
-        Me.chkbxDisplayOmittedClips.Location = New System.Drawing.Point(314, 42)
+        Me.chkbxDisplayOmittedClips.Location = New System.Drawing.Point(314, 28)
         Me.chkbxDisplayOmittedClips.Name = "chkbxDisplayOmittedClips"
         Me.chkbxDisplayOmittedClips.Size = New System.Drawing.Size(142, 17)
         Me.chkbxDisplayOmittedClips.TabIndex = 49
@@ -406,7 +394,6 @@ Partial Class dramatizer
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents btnRecord As System.Windows.Forms.Button
     Friend WithEvents chkbxRecordOneSpeakerAtATime As System.Windows.Forms.CheckBox
-    Friend WithEvents chkbxDisplayUnrecordedOnly As System.Windows.Forms.CheckBox
     Friend WithEvents upDownSpeakerNumber As System.Windows.Forms.NumericUpDown
     Friend WithEvents chkbxShowPrompt As System.Windows.Forms.CheckBox
     Friend WithEvents cbCharactersEdit As System.Windows.Forms.ComboBox

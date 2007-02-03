@@ -437,7 +437,7 @@ Public Class MainMenu
         dramatizer.Text = Main.Text
         dramatizer.chkbxShowPrompt.Text = sLocalizationStrings(Me.iShowPrompt, language)
         dramatizer.chkbxDisplayOmittedClips.Text = sLocalizationStrings(Me.iDisplayOmittedClipsToo, language)
-        dramatizer.chkbxDisplayUnrecordedOnly.Text = sLocalizationStrings(Me.iDisplayUnrecordedClipsOnly, language)
+        ' dramatizer.chkbxDisplayUnrecordedOnly.Text = sLocalizationStrings(Me.iDisplayUnrecordedClipsOnly, language)
         dramatizer.chkbxDisplayUnprocessedOnly.Text = sLocalizationStrings(Me.iDisplayUnprocessedClipsOnly, language)
         dramatizer.chkbxRecordOneSpeakerAtATime.Text = sLocalizationStrings(Me.iRecordOneSpeakerAtATime, language)
         dramatizer.lblClipNumber.Text = sLocalizationStrings(iClipNumber, language)
