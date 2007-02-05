@@ -59,7 +59,7 @@ Partial Class dramatizer
         'btnUpdate
         '
         Me.btnUpdate.Image = CType(resources.GetObject("btnUpdate.Image"), System.Drawing.Image)
-        Me.btnUpdate.Location = New System.Drawing.Point(111, 15)
+        Me.btnUpdate.Location = New System.Drawing.Point(111, 14)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(46, 29)
         Me.btnUpdate.TabIndex = 39
@@ -310,7 +310,7 @@ Partial Class dramatizer
         'btnRecord
         '
         Me.btnRecord.BackgroundImage = CType(resources.GetObject("btnRecord.BackgroundImage"), System.Drawing.Image)
-        Me.btnRecord.Location = New System.Drawing.Point(111, 15)
+        Me.btnRecord.Location = New System.Drawing.Point(111, 14)
         Me.btnRecord.Name = "btnRecord"
         Me.btnRecord.Size = New System.Drawing.Size(29, 29)
         Me.btnRecord.TabIndex = 43

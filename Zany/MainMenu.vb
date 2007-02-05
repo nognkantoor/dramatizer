@@ -130,6 +130,17 @@ Public Class MainMenu
     Public iDisplayUnprocessedClipsOnly = 111
     Public iDisplayOmittedClipsToo = 112
 
+
+    Public iSaveChangeAndSeeNext = 113
+    Public iCancelChangeAndCloseMenu = 114
+    Public iSaveChangeAndCloseMenu = 115
+    Public iBackAndCancelChange = 116
+    Public iStart = 117
+    Public iTypeInOtherBox = 118
+
+
+
+
     Public sProgramName As String = "Dramatizer"
     Public sProgramVersion As String = "2.0"
     Public sProjectName As String

@@ -173,8 +173,22 @@ Public Class MasterText
     Private Sub chkbxReferences_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxReferences.CheckedChanged
         chkbxReferences.Checked = True
     End Sub
+    Private Sub textBox_Shift(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) _
+       Handles rtbTextOnly.KeyPress
+        ' Check for the flag being set in the KeyDown event.
+        If ((Control.ModifierKeys And Keys.Shift) = Keys.Shift) Then
+            btnMagnify.Text = "-"
+        Else
+            btnMagnify.Text = "+"
+        End If
+    End Sub 'textBox1_KeyPress
 
-    Private Sub lblOmitTextFoundIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblOmitTextFoundIn.Click
-
+    Private Sub btnMagnify_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMagnify.Click
+        Dim increase As Boolean = True
+        Main.changeFontSize(increase)
+    End Sub
+    Private Sub btnShrink_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnShrink.Click
+        Dim increase As Boolean = False
+        Main.changeFontSize(increase)
     End Sub
 End Class

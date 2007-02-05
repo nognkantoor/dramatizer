@@ -152,6 +152,8 @@ Public Class dramatizer
         cbCharacters.Items.Clear()
         Me.cbCharacters.Text = ""
         Me.cbCharactersEdit.Text = ""
+        Me.cbCharacters.DroppedDown = False
+
         For i = 1 To Main.iNumberOfCharactersInClip(iCurrentClip)
             If cbCharacters.Items.IndexOf(Main.getCharacterShort(Main.sCharacter(iCurrentClip, i))) > -1 Then
                 ' already have so do nothing
@@ -162,6 +164,7 @@ Public Class dramatizer
         Next
         If Main.sCharacter(iCurrentClip, 0) <> "" Then
             ' human has made a choice stored in 0  (confirmed)
+            Me.cbCharacters.DroppedDown = False
             Me.cbCharacters.Text = Main.sCharacter(iCurrentClip, 0)
             Me.cbCharacters.BackColor = Color.LightBlue
         ElseIf Main.iNumberOfCharactersInClip(iCurrentClip) = 0 Then
@@ -175,6 +178,7 @@ Public Class dramatizer
             Me.cbCharacters.BackColor = Color.LightBlue
         Else
             ' multiple unconfirmed
+            Me.cbCharacters.DroppedDown = True
             Me.cbCharacters.Text = Main.sCharacter(iCurrentClip, 1)
             Me.cbCharacters.BackColor = Color.HotPink
         End If
@@ -222,8 +226,10 @@ Public Class dramatizer
         updateCharactersFile()
         Me.btnUpdate.BackColor = Color.LightGray
         Me.goForward()
-
     End Sub
+    '  Private Sub cbCharacters_Changed(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedValueChanged
+    '     Me.btnUpdate.BackColor = Color.LawnGreen
+    'End Sub
     Private Sub cbCharacters_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
         updateCharactersFile()
         Me.btnForward.BackColor = Color.LightGray
@@ -362,6 +368,8 @@ Public Class dramatizer
         Return clipNumber
     End Function
     Private Sub goBack()
+        Me.btnUpdate.BackColor = Color.LightGray
+        Me.btnForward.BackColor = Color.LightGray
         If Main.iCurrentClipNumber = 1 Then Main.iCurrentClipNumber = Main.iLastClipNumber + 1
         Dim i As Integer = Main.iCurrentClipNumber
         Select Case lbForwardBackBy.SelectedIndex
@@ -394,11 +402,13 @@ Public Class dramatizer
         displayPropertiesOfClip(2)
     End Sub
     Private Sub goHome()
+        Me.btnUpdate.BackColor = Color.LightGray
+        Me.btnForward.BackColor = Color.LightGray
         Main.iCurrentClipNumber = 1
         displayPropertiesOfClip(2)
     End Sub
     Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
-        Me.btnForward.BackColor = Color.LawnGreen
+        Me.btnUpdate.BackColor = Color.LawnGreen
     End Sub
     Private Sub btnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEdit.Click
         editCharacter()
@@ -409,7 +419,6 @@ Public Class dramatizer
         Me.cbCharactersEdit.Show()
         Me.cbCharactersEdit.Visible = True
         Me.cbCharactersEdit.Focus()
-
     End Sub
     Private Sub btnEnd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEnd.Click
         End
@@ -461,7 +470,6 @@ Public Class dramatizer
         Dim tempWaveFile As String = tempRecordingFolder & bookNumber & sequence & ".wav"
         Dim tempCWaveFile As String = tempC & bookNumber & sequence & ".wav"
         Try
-
             File.Move(tempWaveFile, tempCWaveFile)
             startTime = File.GetCreationTime(tempCWaveFile)
             Shell(Main.cbAudioProgram.Text + " " + "" + tempCWaveFile + "", AppWinStyle.NormalFocus, False)
@@ -519,14 +527,14 @@ Public Class dramatizer
     Private Sub showMultipleCharactersOrEdit()
         If Main.iNumberOfCharactersInClip(Main.iCurrentClipNumber) > 1 Then
             'Me.cbCharacters.DroppedDown = True
-            Me.cbCharacters.DroppedDown = False
+            '  Me.cbCharacters.DroppedDown = False
             Me.cbCharacters.BackColor = Color.AntiqueWhite
         Else
-            Me.cbCharacters.DroppedDown = False
+            ' Me.cbCharacters.DroppedDown = False
             Me.cbCharacters.BackColor = Color.AliceBlue
         End If
         If Main.iNumberOfCharactersInClip(Main.iCurrentClipNumber) = 0 Then
-            Me.cbCharacters.DroppedDown = False
+            ' Me.cbCharacters.DroppedDown = False
             Me.cbCharacters.BackColor = Color.AliceBlue
             Me.cbCharactersEdit.Visible = True
             Me.btnEdit.Visible = False
@@ -542,7 +550,7 @@ Public Class dramatizer
         Else
             ' do nothing
         End If
-  
+
     End Sub
 
     Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)

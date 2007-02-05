@@ -101,12 +101,18 @@ OmitThisOne	Omit this one	Omit this one	Omit this one
 OutputFolder	Dramatizer output folder	Dramatizer output folder	Dramatizer output folder
 SpeechContinuesInNextClip	Continues in next clip	Continues in next clip	Continues in next clip
 ClipSize	Clip size in seconds (approximate)	Clip size in seconds (approximate)	Clip size in seconds (approximate)
-PercentIdentified	#NAME?	#NAME?	#NAME?
+PercentIdentified	"""% of the clips Dramatizer identified."		
 BreakAtMostParagraphs	Break at most paragraphs	Break at most paragraphs	Break at most paragraphs
 DefaultSettings	Reset to default settings	Reset to default settings	Reset to default settings
 MasterText	Master text	Master text	Master text
 AvailableDiskSpaceC	Available Disk Space Drive C:	Available Disk Space Drive C:	Available Disk Space Drive C:
 AvailableDiskSpaceD	available Disk Space Drive D:	available Disk Space Drive D:	available Disk Space Drive D:
 NoteAQuote	Not a quote	Not a quote	Not a quote
-DisplayUnprocessedOnly	Display unprocessed clips only		
-DisplayOmittedClips	Display omitted clips too		
+DisplayUnprocessedOnly	Display only clips to process	Display only clips to process	Display only clips to process
+DisplayOmittedClips	Display omitted clips too	Display omitted clips too	Display omitted clips too
+SaveChangeAndSeeNext	"Save change, see next item"
+CancelChangeAndCloseMenu	Cancel change and close translate menu.
+SaveChangeAndCloseMenu	Save change and close translate menu.
+BackAndCancelChange	"Go back, cancel any change."
+GoToStart	Go to first item.
+TypeInOtherBox	Type your changes in other box please.

@@ -202,6 +202,7 @@ Public Class Main
             fontSize = cbFontSize.Text
         End If
         If fontSize = Nothing Then fontSize = 14
+        MasterText.tbFontSize.Text = fontSize
         ' ProgressIndicator.Show()
         ToolStripProgressBar1.ProgressBar.Visible = True
 
@@ -843,7 +844,8 @@ Public Class Main
     Public Function getCharacterShort(ByVal character)
         Dim temp As String
         temp = regexReplace(character, "(\[.+])|(\(.+)", "")
-        temp.Trim()
+
+        temp = Trim(temp)
         Return temp
     End Function
     Public Sub writeCurrentSettings()
@@ -2192,4 +2194,40 @@ Public Class Main
     Private Sub tbISOcode_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbISOcode.TextChanged
 
     End Sub
+    Public Sub changeFontSize(ByVal increase As Boolean)
+        Dim fontName As String = cbFontName.SelectedItem
+        Dim fontSize As String = cbFontSize.SelectedItem
+        If cbFontName.SelectedItem = Nothing Then
+            fontName = cbFontName.Text
+        End If
+        Try
+
+        If increase Then
+                cbFontSize.SelectedIndex = cbFontSize.SelectedIndex + 1
+            Else
+                cbFontSize.SelectedIndex = cbFontSize.SelectedIndex - 1
+            End If
+        Catch ex As Exception
+            Beep()
+        End Try
+        'If cbFontSize.SelectedItem = Nothing Then
+        'If cbFontSize.Text = "" Then
+        'fontSize = 14
+        'Else
+        'fontSize = cbFontSize.Text
+        'End If
+        'End If
+
+        ' Dim x
+        ' For x = 1 To 10
+        '  me.cbFontName.Items.Add (
+        ' Next
+        'Me.rtbEncodingANSI.Font = New Font(fontName, fontSize)
+        'Me.rtbEncodingUTF8.Font = New Font(fontName, fontSize)
+        'VoiceTalentText.rtbText.Font = New Font(fontName, fontSize)
+        'MasterText.rtbContextAbove.Font = New Font(fontName, fontSize - 2)
+        'MasterText.rtbTextOnly.Font = New Font(fontName, fontSize)
+        'MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
+    End Sub
+
 End Class

@@ -11,6 +11,7 @@ Public Class translate
     End Sub
 
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOK.Click
+        MainMenu.sLocalizationStrings(row, MainMenu.iLanguageSelected) = tbTarget.Text
         MainMenu.writeLocalizationFile()
         Me.Hide()
 
@@ -25,6 +26,26 @@ Public Class translate
     End Sub
     Public Sub loadTranslate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
         fillControls()
+        ' This example assumes that the Form_Load event handling method
+        ' is connected to the Load event of the form.
+        ' Create the ToolTip and associate with the Form container.
+        Dim toolTip1 As New ToolTip()
+
+        ' Set up the delays for the ToolTip.
+        toolTip1.AutoPopDelay = 5000
+        toolTip1.InitialDelay = 1000
+        toolTip1.ReshowDelay = 500
+        ' Force the ToolTip text to be displayed whether or not the form is active.
+        toolTip1.ShowAlways = True
+
+        ' Set up the ToolTip text for the Buttons and Textbox.
+        toolTip1.SetToolTip(Me.btnBack, MainMenu.sLocalizationStrings(MainMenu.iBackAndCancelChange, MainMenu.iLanguageSelected))
+        toolTip1.SetToolTip(Me.btnForward, MainMenu.sLocalizationStrings(MainMenu.iSaveChangeAndSeeNext, MainMenu.iLanguageSelected))
+        toolTip1.SetToolTip(Me.btnStart, MainMenu.sLocalizationStrings(MainMenu.iStart, MainMenu.iLanguageSelected))
+        toolTip1.SetToolTip(Me.tbSource, MainMenu.sLocalizationStrings(MainMenu.iTypeInOtherBox, MainMenu.iLanguageSelected))
+        toolTip1.SetToolTip(Me.btnOK, MainMenu.sLocalizationStrings(MainMenu.iSaveChangeAndCloseMenu, MainMenu.iLanguageSelected))
+        toolTip1.SetToolTip(Me.btnCancel, MainMenu.sLocalizationStrings(MainMenu.iCancelChangeAndCloseMenu, MainMenu.iLanguageSelected))
+
 
     End Sub
     Public Sub fillControls()
@@ -59,7 +80,7 @@ Public Class translate
     Private Function currentLocation()
         Return row.ToString & ", " & MainMenu.iLanguageSelected.ToString
     End Function
-  
+
     Private Sub tbTarget_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbTarget.TextChanged
         Me.btnForward.BackColor = Color.LimeGreen
     End Sub

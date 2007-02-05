@@ -31,7 +31,7 @@ advance by my Updated clip	Updated character	Updated character	Updated character
 0 multiple	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 
 1 multiple	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.
 many multiples	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.
-warning deleting active master file	Warning: This will delete your previously saved work.+AHw-	Warning: This will delete your previously saved work.	Warning: This will delete your previously saved work.
+warning deleting active master file	Warning: This will delete your previously processed and saved work.+AHw-	Warning: This will delete your previously saved work.	Warning: This will delete your previously saved work.
 translate menu items	Translate/correct menu items	Traduire menu	Traduza lista
 file name	File name	File name	File name
 browse	Browse +AIU-. . .	Browse +AIU-. . .	Browse +AIU-. . .
@@ -93,7 +93,7 @@ recordingProgramTab	Audio recording program	Audio recording program	Audio record
 clipSizeTab	Clip size	Clip size	Clip size
 EthnologueCodeTab	Ethnologue code	Ethnologue code	Ethnologue code
 outputTab	Output	Output	Output
-displayUnrecorded	Show unrecorded clips	Show unrecorded clips	Show unrecorded clips
+displayUnrecordedOn ly	Display unrecorded clips only	Show unrecorded clips	Show unrecorded clips
 recordOneSpeakerAtATime	Record one speaker at a time	Record one speaker at a time	Record one speaker at a time
 showPrompt	Show prompt	Show prompt	Show prompt
 fontTab	Font	Font	Font
@@ -101,10 +101,18 @@ OmitThisOne	Omit this one	Omit this one	Omit this one
 OutputFolder	Dramatizer output folder	Dramatizer output folder	Dramatizer output folder
 SpeechContinuesInNextClip	Continues in next clip	Continues in next clip	Continues in next clip
 ClipSize	Clip size in seconds (approximate)	Clip size in seconds (approximate)	Clip size in seconds (approximate)
-PercentIdentified	+ACU- of clips Dramatizer identified.	+ACU- of clips Dramatizer identified.	+ACU- of clips Dramatizer identified.
+PercentIdentified	+ACU- of the clips Dramatizer identified.	+ACU- of the clips Dramatizer identified.	+ACU- of the clips Dramatizer identified.
 BreakAtMostParagraphs	Break at most paragraphs	Break at most paragraphs	Break at most paragraphs
 DefaultSettings	Reset to default settings	Reset to default settings	Reset to default settings
 MasterText	Master text	Master text	Master text
 AvailableDiskSpaceC	Available Disk Space Drive C:	Available Disk Space Drive C:	Available Disk Space Drive C:
 AvailableDiskSpaceD	available Disk Space Drive D:	available Disk Space Drive D:	available Disk Space Drive D:
 NoteAQuote	Not a quote	Not a quote	Not a quote
+DisplayUnprocessedOnly	Display only clips to process	Display only clips to process	Display only clips to process
+DisplayOmittedClips	Display omitted clips too	Display omitted clips too	Display omitted clips too
+SaveChangeAndSeeNext	Save change, see next item		
+CancelChangeAndCloseMenu	Cancel change and close translate menu.		
+SaveChangeAndCloseMenu	Save change and close translate menu.		
+BackAndCancelChange	Go back, cancel any change.		
+GoToStart	Go to first item.		
+TypeInOtherBox	Type your changes in other box please.		

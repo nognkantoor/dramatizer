@@ -19,6 +19,8 @@ Partial Class translate
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(translate))
         Me.btnCancel = New System.Windows.Forms.Button
         Me.btnOK = New System.Windows.Forms.Button
         Me.lblSource = New System.Windows.Forms.Label
@@ -29,11 +31,12 @@ Partial Class translate
         Me.tbTarget = New System.Windows.Forms.TextBox
         Me.btnStart = New System.Windows.Forms.Button
         Me.lblLocation = New System.Windows.Forms.Label
+        Me.ToolTipTranslate = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(435, 213)
+        Me.btnCancel.Location = New System.Drawing.Point(364, 214)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 1
@@ -42,7 +45,7 @@ Partial Class translate
         '
         'btnOK
         '
-        Me.btnOK.Location = New System.Drawing.Point(516, 213)
+        Me.btnOK.Location = New System.Drawing.Point(446, 214)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(75, 23)
         Me.btnOK.TabIndex = 2
@@ -52,7 +55,7 @@ Partial Class translate
         'lblSource
         '
         Me.lblSource.AutoSize = True
-        Me.lblSource.Location = New System.Drawing.Point(432, 37)
+        Me.lblSource.Location = New System.Drawing.Point(387, 30)
         Me.lblSource.Name = "lblSource"
         Me.lblSource.Size = New System.Drawing.Size(57, 13)
         Me.lblSource.TabIndex = 5
@@ -61,7 +64,7 @@ Partial Class translate
         'lblTarget
         '
         Me.lblTarget.AutoSize = True
-        Me.lblTarget.Location = New System.Drawing.Point(432, 124)
+        Me.lblTarget.Location = New System.Drawing.Point(387, 117)
         Me.lblTarget.Name = "lblTarget"
         Me.lblTarget.Size = New System.Drawing.Size(52, 13)
         Me.lblTarget.TabIndex = 6
@@ -69,25 +72,25 @@ Partial Class translate
         '
         'btnForward
         '
-        Me.btnForward.Location = New System.Drawing.Point(129, 12)
+        Me.btnForward.Image = CType(resources.GetObject("btnForward.Image"), System.Drawing.Image)
+        Me.btnForward.Location = New System.Drawing.Point(84, 5)
         Me.btnForward.Name = "btnForward"
         Me.btnForward.Size = New System.Drawing.Size(29, 29)
         Me.btnForward.TabIndex = 21
-        Me.btnForward.Text = ">"
         Me.btnForward.UseVisualStyleBackColor = True
         '
         'btnBack
         '
-        Me.btnBack.Location = New System.Drawing.Point(94, 12)
+        Me.btnBack.Image = CType(resources.GetObject("btnBack.Image"), System.Drawing.Image)
+        Me.btnBack.Location = New System.Drawing.Point(49, 5)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(29, 29)
         Me.btnBack.TabIndex = 22
-        Me.btnBack.Text = "<"
         Me.btnBack.UseVisualStyleBackColor = True
         '
         'tbSource
         '
-        Me.tbSource.Location = New System.Drawing.Point(57, 53)
+        Me.tbSource.Location = New System.Drawing.Point(12, 46)
         Me.tbSource.Multiline = True
         Me.tbSource.Name = "tbSource"
         Me.tbSource.Size = New System.Drawing.Size(509, 68)
@@ -95,7 +98,7 @@ Partial Class translate
         '
         'tbTarget
         '
-        Me.tbTarget.Location = New System.Drawing.Point(57, 139)
+        Me.tbTarget.Location = New System.Drawing.Point(12, 132)
         Me.tbTarget.Multiline = True
         Me.tbTarget.Name = "tbTarget"
         Me.tbTarget.Size = New System.Drawing.Size(509, 68)
@@ -103,27 +106,31 @@ Partial Class translate
         '
         'btnStart
         '
-        Me.btnStart.Location = New System.Drawing.Point(57, 12)
+        Me.btnStart.Image = CType(resources.GetObject("btnStart.Image"), System.Drawing.Image)
+        Me.btnStart.Location = New System.Drawing.Point(12, 5)
         Me.btnStart.Name = "btnStart"
         Me.btnStart.Size = New System.Drawing.Size(29, 29)
         Me.btnStart.TabIndex = 25
-        Me.btnStart.Text = "<<"
         Me.btnStart.UseVisualStyleBackColor = True
         '
         'lblLocation
         '
         Me.lblLocation.AutoSize = True
-        Me.lblLocation.Location = New System.Drawing.Point(164, 28)
+        Me.lblLocation.Location = New System.Drawing.Point(119, 21)
         Me.lblLocation.Name = "lblLocation"
         Me.lblLocation.Size = New System.Drawing.Size(62, 13)
         Me.lblLocation.TabIndex = 26
         Me.lblLocation.Text = "location xxx"
         '
+        'ToolTipTranslate
+        '
+        Me.ToolTipTranslate.ToolTipTitle = "tool xxx"
+        '
         'translate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(692, 273)
+        Me.ClientSize = New System.Drawing.Size(535, 249)
         Me.Controls.Add(Me.lblLocation)
         Me.Controls.Add(Me.btnStart)
         Me.Controls.Add(Me.tbTarget)
@@ -150,4 +157,5 @@ Partial Class translate
     Friend WithEvents tbTarget As System.Windows.Forms.TextBox
     Friend WithEvents btnStart As System.Windows.Forms.Button
     Friend WithEvents lblLocation As System.Windows.Forms.Label
+    Friend WithEvents ToolTipTranslate As System.Windows.Forms.ToolTip
 End Class

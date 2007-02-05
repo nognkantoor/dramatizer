@@ -19,6 +19,7 @@ Partial Class MasterText
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MasterText))
         Me.rtbTextWithContext = New System.Windows.Forms.RichTextBox
         Me.rtbContextAbove = New System.Windows.Forms.RichTextBox
         Me.tbClipSize = New System.Windows.Forms.TextBox
@@ -39,6 +40,9 @@ Partial Class MasterText
         Me.lblClipSize = New System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.Panel2 = New System.Windows.Forms.Panel
+        Me.btnMagnify = New System.Windows.Forms.Button
+        Me.btnShrink = New System.Windows.Forms.Button
+        Me.tbFontSize = New System.Windows.Forms.TextBox
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -76,7 +80,7 @@ Partial Class MasterText
         Me.tbContinued.Location = New System.Drawing.Point(506, 151)
         Me.tbContinued.Name = "tbContinued"
         Me.tbContinued.ReadOnly = True
-        Me.tbContinued.Size = New System.Drawing.Size(182, 20)
+        Me.tbContinued.Size = New System.Drawing.Size(235, 20)
         Me.tbContinued.TabIndex = 6
         '
         'chkbxShowSpeakerText
@@ -248,15 +252,52 @@ Partial Class MasterText
         Me.Panel2.Controls.Add(Me.chkbxShowSpeakerText)
         Me.Panel2.Controls.Add(Me.chkbxShowVerses)
         Me.Panel2.Controls.Add(Me.chkbxShowSFMcodes)
-        Me.Panel2.Location = New System.Drawing.Point(506, 11)
+        Me.Panel2.Location = New System.Drawing.Point(507, 1)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(182, 94)
+        Me.Panel2.Size = New System.Drawing.Size(223, 94)
         Me.Panel2.TabIndex = 61
+        '
+        'btnMagnify
+        '
+        Me.btnMagnify.BackgroundImage = CType(resources.GetObject("btnMagnify.BackgroundImage"), System.Drawing.Image)
+        Me.btnMagnify.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnMagnify.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMagnify.Location = New System.Drawing.Point(691, 226)
+        Me.btnMagnify.Name = "btnMagnify"
+        Me.btnMagnify.Size = New System.Drawing.Size(50, 50)
+        Me.btnMagnify.TabIndex = 62
+        Me.btnMagnify.Text = "+"
+        Me.btnMagnify.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnMagnify.UseVisualStyleBackColor = True
+        '
+        'btnShrink
+        '
+        Me.btnShrink.BackgroundImage = CType(resources.GetObject("btnShrink.BackgroundImage"), System.Drawing.Image)
+        Me.btnShrink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnShrink.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnShrink.Location = New System.Drawing.Point(692, 312)
+        Me.btnShrink.Name = "btnShrink"
+        Me.btnShrink.Size = New System.Drawing.Size(50, 50)
+        Me.btnShrink.TabIndex = 63
+        Me.btnShrink.Text = "-"
+        Me.btnShrink.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnShrink.UseVisualStyleBackColor = True
+        '
+        'tbFontSize
+        '
+        Me.tbFontSize.Location = New System.Drawing.Point(691, 284)
+        Me.tbFontSize.Name = "tbFontSize"
+        Me.tbFontSize.ReadOnly = True
+        Me.tbFontSize.Size = New System.Drawing.Size(50, 20)
+        Me.tbFontSize.TabIndex = 64
         '
         'MasterText
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(692, 622)
+        Me.ClientSize = New System.Drawing.Size(742, 622)
+        Me.Controls.Add(Me.tbFontSize)
+        Me.Controls.Add(Me.btnShrink)
+        Me.Controls.Add(Me.btnMagnify)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.lblClipSize)
@@ -267,7 +308,7 @@ Partial Class MasterText
         Me.Controls.Add(Me.rtbTextWithContext)
         Me.Location = New System.Drawing.Point(0, 300)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(700, 700)
+        Me.MaximumSize = New System.Drawing.Size(750, 700)
         Me.Name = "MasterText"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "MasterText xxx"
@@ -298,4 +339,7 @@ Partial Class MasterText
     Friend WithEvents lblClipSize As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents btnMagnify As System.Windows.Forms.Button
+    Friend WithEvents btnShrink As System.Windows.Forms.Button
+    Friend WithEvents tbFontSize As System.Windows.Forms.TextBox
 End Class
