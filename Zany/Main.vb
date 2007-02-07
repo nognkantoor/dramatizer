@@ -491,7 +491,7 @@ Public Class Main
     End Sub
     Private Sub writeSpeakerOmitRecordedMultipleCharacters(ByVal i As Integer, ByVal sw As StreamWriter)
         Dim j As Integer
-        sw.Write(""" voice=""" & sSpeakerNumber(i))
+        sw.Write(""" speaker=""" & sSpeakerNumber(i))
         ' prompt is carried with character
         '  sw.Write(""" prompt=""" & sPrompt(i))
         sw.Write(""" omit=""" & blnOmit(i))
@@ -647,7 +647,7 @@ Public Class Main
             sr.Close()
             '     System.IO.File.Copy(sTempFileName, sMasterFileName) ' makes it less likely we will loose data on power failure
             MainMenu.progressBar.Visible = False
-
+            MainMenu.tbProgress.Visible = False
             'ProgressIndicator.Hide()
             Me.iLastClipNumber = i ' some are blank though
         Catch ex As Exception
@@ -699,8 +699,8 @@ Public Class Main
             iLastClipNumber = getInitialInfo(temp)
             Do While Not sr.EndOfStream
                 i += 1  ' count clip numbers as iLastClipNumber is wrong at this time.
-                MainMenu.progressBar.Value = i
-                MainMenu.progressBar.Update()
+                '  MainMenu.progressBar.Value = i
+                ' MainMenu.progressBar.Update()
 
 
                 temp = sr.ReadLine()
@@ -714,7 +714,7 @@ Public Class Main
                 sScript(i) = ""
                 sScript(i) = (regexReplace(temp, "(<clip.+?>)(.*?)(</clip.+)", "$2")).ToString.Trim
                 sSpeakerNumber(i) = ""
-                sSpeakerNumber(i) = regexReplace(temp, "(.+\s)(voice="")(.*?)(""\s.+)", "$3")
+                sSpeakerNumber(i) = regexReplace(temp, "(.+\s)(speaker="")(.*?)(""\s.+)", "$3")
                 ' prompt is carried in the character name
                 '  sPrompt(i) = regexReplace(temp, "(.+\s)(prompt="")(.*?)("".+)", "$3")
                 sContinued(i) = regexReplace(temp, "(.+\s)(continued="")(.*?)("".+)", "$3")
@@ -725,8 +725,8 @@ Public Class Main
             Loop
             sr.Close()
             ' ProgressIndicator.Hide()
-            MainMenu.progressBar.Visible = False
-            MainMenu.tbProgress.Visible = False
+            '    MainMenu.progressBar.Visible = False
+            ' MainMenu.tbProgress.Visible = False
             Me.iLastClipNumber = i - 1  ' this is required to set it right
             '    Dim x3 As String = Me.sCharacter(77, 1)
             '   Dim x4 As String = Me.sCharacter(79, 1)
@@ -741,10 +741,10 @@ Public Class Main
         Dim sRecordingInProgress As String = regexReplace(temp, "(.+\s)(recordingInProgress="")(.*?)(""\s.+)", "$3")
         setRecordingStatus(sRecordingInProgress)
         '   ProgressIndicator.Visible = True
-        MainMenu.progressBar.Visible = True
-        MainMenu.progressBar.Maximum = total + total * 0.5
+        ' MainMenu.progressBar.Visible = True
+        ' MainMenu.progressBar.Maximum = total + total * 0.5
 
-        MainMenu.progressBar.Step = 100
+        ' MainMenu.progressBar.Step = 100
         Return total
 
     End Function
@@ -752,7 +752,6 @@ Public Class Main
         Dim itemp As String
         itemp = regexReplace(temp, "(.+\s)(multiple="")(.*?)(""\s.+)", "$3")
         iNumberOfCharactersInClip(i) = Convert.ToInt32(itemp)
-
     End Sub
     Private Sub getTag(ByVal temp As String, ByVal i As Integer)
         Dim temp2 As String
@@ -763,7 +762,6 @@ Public Class Main
         Else
             sTag(i) = temp2
         End If
-
     End Sub
     Private Sub getCharacters(ByVal temp As String, ByVal i As Integer)
         Dim j As Integer
@@ -775,7 +773,6 @@ Public Class Main
         For j = 0 To iNumberOfCharactersInClip(i)
             sCharacter(i, j) = regexReplace(temp, "(.+\s)(character" + j.ToString + "="")(.*?)(""\s.+)", "$3")
         Next
-
     End Sub
     Private Sub countUndentifiedSpeakingCharacgters_OneSpeakingCharacter_AndMultipleSpeakingCharacters(ByVal i As Integer)
         Select Case iNumberOfCharactersInClip(i)
@@ -789,7 +786,6 @@ Public Class Main
                 ' should never happen
                 Debug.Assert(False, "number of characters negative ... this should never happen")
         End Select
-
     End Sub
     Private Sub readRecorded(ByVal temp As String, ByVal i As Integer)
         Dim blnTemp As Boolean
@@ -800,19 +796,18 @@ Public Class Main
     Private Sub getOmit(ByVal temp As String, ByVal i As Integer)
         Dim blnTemp As Boolean
         blnTemp = regexReplace(temp, "(.+\s)(omit="")(.*?)(""\s.+)", "$3")
+        ' in case this is first time through and not set up yet all omits are false
         blnOmit(i) = False
         Try
             blnOmit(i) = Convert.ToBoolean(blnTemp)
         Catch ex As Exception
             ' false
         End Try
-
     End Sub
     Private Sub readBookChapterVerse(ByVal temp As String, ByVal i As Integer)
         sBook(i) = regexReplace(temp, "(.+\s)(book="")(.*?)(""\s.+)", "$3")
         sChapter(i) = regexReplace(temp, "(.+\s)(chapter="")(.*?)(""\s.+)", "$3")
         sVerse(i) = regexReplace(temp, "(.+\s)(verse="")(.*?)(""\s.+)", "$3")
-
     End Sub
     Private Sub setRecordingStatus(ByVal sRecordingInProgress)
         If sRecordingInProgress = "#TRUE#" Then
@@ -917,7 +912,7 @@ Public Class Main
                 readAndSetEncoding()
                 readAndSetSelectedFontInRTBcontrol()
                 readAndSetQuoteType()
-                readAndSetLastClipNumber()
+                readAndSetLastClipNumber() ' but if file was erased set to 0
                 readAndSetISOcode()
                 readAndSetOmitSectionHeads()
                 readAndSetOmitChapterNumbers()
@@ -1417,6 +1412,7 @@ Public Class Main
     End Function
     Public Function countUnidentified()
         Dim i, total As Integer
+        total = -1
         For i = 1 To iLastClipNumber
             If iNumberOfCharactersInClip(i) = 0 Then
                 total += 1
@@ -1454,8 +1450,8 @@ Public Class Main
     Public Function countClipsToRecord()
         Dim i, total As Integer
         For i = 1 To iLastClipNumber
-            If blnRecorded(i) = True Then
-                ' recorded
+            If (blnRecorded(i) = True Or blnOmit(i) = True) Then
+                ' recorded or we aren't going to record it because it is omitted
             Else
                 ' not recorded
                 total += 1
@@ -1578,6 +1574,7 @@ Public Class Main
                     ' already just read so skip
                 End If
             Else
+                Me.iLastClipNumber = 0
                 '  loadDocument()  ' name is misleading
             End If
         End If
@@ -1702,7 +1699,8 @@ Public Class Main
     End Sub
     Public Sub showStatsForUnidentifiedMultipleTotal()
         readClipsFromFileMaster()
-        Dim unidentifiedToFix As String = Me.countUnidentifiedNotFixedYet.ToString & "  " & MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedCharactersToFix, MainMenu.iLanguageSelected)
+        Dim unidentifiedToFix As String = Me.countUnidentifiedNotFixedYet.ToString & "  "
+        unidentifiedToFix = unidentifiedToFix + MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedCharactersToFix, MainMenu.iLanguageSelected)
         Dim unidentified As String = iUnidentifiedSpeakingCharacter & "  " & MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedCharacter, MainMenu.iLanguageSelected)
         Dim multipleToFix As String = Me.countMultipleNotFixedYet.ToString & "  " & MainMenu.sLocalizationStrings(MainMenu.iMultipleCharactersToFix, MainMenu.iLanguageSelected)
         Dim multiple As String = iMultipleSpeakingCharacter & "  " & MainMenu.sLocalizationStrings(MainMenu.iMultipleCharacters, MainMenu.iLanguageSelected)
@@ -1712,15 +1710,20 @@ Public Class Main
         Dim percent As Integer = (countTotal() - iUnidentifiedSpeakingCharacter - iMultipleSpeakingCharacter) * 100 / countTotal()
         Dim temp As String
         temp = MainMenu.TextBox1.Text
-        temp = temp + "|" + unidentifiedToFix & vbCrLf & unidentified & vbCrLf & multipleToFix & vbCrLf & multiple & vbCrLf & unassigned & vbCrLf & totalClips & vbCrLf & clipsToRecord
+        temp = temp + "|" + unidentifiedToFix & vbCrLf & unidentified & vbCrLf & multipleToFix & vbCrLf & multiple & vbCrLf & unassigned & vbCrLf & clipsToRecord & vbCrLf & totalClips
+        temp = temp + vbCrLf + percent.ToString + MainMenu.sLocalizationStrings(MainMenu.iPercentIdentified, MainMenu.iLanguageSelected)
         temp = temp + "|" & MainMenu.sLocalizationStrings(MainMenu.iClickNextToStart, MainMenu.iLanguageSelected)
-        temp = temp + "|" + percent.ToString
-        temp = temp + MainMenu.sLocalizationStrings(MainMenu.iPercentIdentified, MainMenu.iLanguageSelected)
         MainMenu.TextBox1.Text = MainMenu.formatTextForTextBox(temp)
+        If countUnidentifiedNotFixedYet() + countMultipleNotFixedYet() = 0 Then
+            MainMenu.TextBox1.BackColor = Color.LawnGreen
+        Else
+            MainMenu.TextBox1.BackColor = Color.LightYellow
+        End If
         ' MainMenu.TextBox1.BackColor = Color.Cyan
     End Sub
     Public Sub createWaveFiles()
         Dim i As Integer
+
         For i = 1 To Me.iLastClipNumber
             Dim temp As String = sRecordingFolder & "\" & tbISOcode.Text & "-"
             Dim bookNumber As String = getBookNumber(i)

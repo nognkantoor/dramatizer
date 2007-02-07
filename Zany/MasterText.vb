@@ -1,19 +1,5 @@
 Public Class MasterText
-
-
-    ' Private Sub btnShowHideContext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    '    If btnShowHideContext.Text = MainMenu.sLocalizationStrings(MainMenu.iShowContext, MainMenu.iLanguageSelected) Then
-    '       btnShowHideContext.Text = MainMenu.sLocalizationStrings(MainMenu.iHideContext, MainMenu.iLanguageSelected)
-    '      Me.rtbContextAbove.Show()
-    '     Me.rtbTextSmall.Height() = 600
-    ''    Me.rtbText.Location() = System.Drawing.Point(0, 311)
-
-    '   Else
-    '      Me.rtbContextAbove.Hide()
-    '     Me.rtbTextSmall.Height() = 300
-    '    btnShowHideContext.Text = MainMenu.sLocalizationStrings(MainMenu.iShowContext, MainMenu.iLanguageSelected)
-    '     End If
-    ' End Sub
+    Public blnTopRight As Boolean = True
 
     Private Sub chkbxShowSpeakerText_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowSpeakerText.CheckedChanged
         Try
@@ -61,10 +47,10 @@ Public Class MasterText
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
- 
+
     End Sub
- 
-    Private Sub MasterText_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.load
+
+    Private Sub MasterText_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         localizeMasterText()
         Main.processOmittedTextBasedOnCheckedInfo()
     End Sub
@@ -83,6 +69,7 @@ Public Class MasterText
         Me.chkbxThisOne.Text = MainMenu.sLocalizationStrings(MainMenu.iThisOne, MainMenu.iLanguageSelected)
         Me.lblClipSize.Text = MainMenu.sLocalizationStrings(MainMenu.iClipSize, MainMenu.iLanguageSelected)
         Me.Text = MainMenu.sLocalizationStrings(MainMenu.iMasterText, MainMenu.iLanguageSelected)
+        Me.btnMoveThis.Text = MainMenu.sLocalizationStrings(MainMenu.iMoveToTopRight, MainMenu.iLanguageSelected)
 
     End Sub
 
@@ -156,7 +143,7 @@ Public Class MasterText
     Private Sub chkbxThisOne_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxThisOne.CheckedChanged
         Try
 
-        If Me.chkbxThisOne.Checked Then
+            If Me.chkbxThisOne.Checked Then
                 Main.blnOmit(Main.iCurrentClipNumber) = True
             Else
                 Main.blnOmit(Main.iCurrentClipNumber) = False
@@ -190,5 +177,19 @@ Public Class MasterText
     Private Sub btnShrink_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnShrink.Click
         Dim increase As Boolean = False
         Main.changeFontSize(increase)
+    End Sub
+
+    Private Sub btnMoveThis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoveThis.Click
+        If Me.blnTopRight = True Then
+            ' move to top right
+            Me.btnMoveThis.Text = MainMenu.sLocalizationStrings(MainMenu.iMoveToBottomLeft, MainMenu.iLanguageSelected)
+            Me.Location = New Point(512, 0)
+            Me.blnTopRight = False
+        Else
+            ' move to lower left
+            Me.btnMoveThis.Text = MainMenu.sLocalizationStrings(MainMenu.iMoveToTopRight, MainMenu.iLanguageSelected)
+            Me.Location = New Point(0, 300)
+            Me.blnTopRight = True
+        End If
     End Sub
 End Class

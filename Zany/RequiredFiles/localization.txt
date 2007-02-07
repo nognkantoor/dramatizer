@@ -80,7 +80,7 @@ VerifyUpdatedText	Verify just the characters you have selected or typed in. Skip
 VerifyAllText	Verify all characters. You must do this before assigning characters to speakers.	Verify all characters. You must do this before assigning characters to speakers.	Verify all characters. You must do this before assigning characters to speakers.
 AssignCharacterToSpeakerText	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.
 CreateScriptsText	"In the scripts folder, create a master script and a script for each speaker. Scripts are html files that can be printed out. In the recordings folder create a blank wave file for each clip."	A script for each speaker will be created. It is a plain text file that can be printed out. Look in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/scripts +AHw-to find all the scripts.	A script for each speaker will be created. It is a plain text file that can be printed out. Look in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/scripts +AHw-to find all the scripts.
-RecordText	Use the selected audio recording program to record each clip. Output files:	After creating scripts you may either record or start completely over. You may record until all the clips have been recorded. Completed recordings are found in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/recordings +AHw-to find all the scripts.	After creating scripts you may either record or start completely over. You may record until all the clips have been recorded. Completed recordings are found in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/recordings +AHw-to find all the scripts.
+RecordText	Start recording now		
 UnassignedCharactersToFix	Unassigned characters to fix	Unassigned characters to fix	Unassigned characters to fix
 showVerses	Show verses	Show verses	Show verses
 showSFMcodes	Show SFM codes	Show SFM codes	Show SFM codes
@@ -101,7 +101,7 @@ OmitThisOne	Omit this one	Omit this one	Omit this one
 OutputFolder	Dramatizer output folder	Dramatizer output folder	Dramatizer output folder
 SpeechContinuesInNextClip	Continues in next clip	Continues in next clip	Continues in next clip
 ClipSize	Clip size in seconds (approximate)	Clip size in seconds (approximate)	Clip size in seconds (approximate)
-PercentIdentified	"""% of the clips Dramatizer identified."		
+PercentIdentified	 percent Dramatizer identified.		
 BreakAtMostParagraphs	Break at most paragraphs	Break at most paragraphs	Break at most paragraphs
 DefaultSettings	Reset to default settings	Reset to default settings	Reset to default settings
 MasterText	Master text	Master text	Master text
@@ -116,3 +116,14 @@ SaveChangeAndCloseMenu	Save change and close translate menu.
 BackAndCancelChange	"Go back, cancel any change."
 GoToStart	Go to first item.
 TypeInOtherBox	Type your changes in other box please.
+MoveToTopRight	Move this up
+MoveToBottomLeft	Move this down
+More	More
+Less	Less
+DisplayClipsBy	Display clips by
+All	All
+Unidenfied	Unidentified
+Multiple	Multiple
+CharacterName	Character name
+SpeakerNumber	Speaker number
+CongratulationsRecord	Congratulagtions! You are ready to start recording. Make sure you have the correct audio recording program selected in Select options. You may record in sequence or by speaker number. The default is to record by speaker number. Output files (wav) are located at:

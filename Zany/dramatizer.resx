@@ -171,6 +171,15 @@
   <metadata name="StatusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="btnLessOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>R0lGODlhDAAMAPAAAAAAAP///yH5BAEAAAEALAAAAAAMAAwAAAITjI+pywfPnlSyxhYsrSBxiIVKAQA7</value>
+  </data>
+  <data name="btnMoreOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhDAAMAPAAAAAAAP///yH5BAEAAAEALAAAAAAMAAwAAAIUjI+pCO2QXltvHUglZjVvC4ZiUAAA
+        Ow==
+</value>
+  </data>
   <data name="btnRecord.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhHQAdAPAAAP8AANHOziwAAAAAHQAdAAACOYyPqcvtD6OcC9gLKMLc6g5O4CiNIWSST3o6bIe+

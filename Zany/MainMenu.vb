@@ -137,6 +137,18 @@ Public Class MainMenu
     Public iBackAndCancelChange = 116
     Public iStart = 117
     Public iTypeInOtherBox = 118
+    Public iMoveToTopRight = 119
+    Public iMoveToBottomLeft = 120
+    Public iMore = 121
+    Public iLess = 122
+    Public iDisplayClipsBy = 123
+    Public iAllClips = 124
+    Public iUnidentifiedClips = 125
+    Public iMultipleClips = 126
+    Public iCharacterNameClips = 127
+    Public iSpeakerNumberClips = 128
+    Public iCongratulationsRecord = 129
+
 
 
 
@@ -159,9 +171,6 @@ Public Class MainMenu
         localizeDramatizer(1)
         Main.readMasterFile()
         setCheckMarksAndEnableMenuItems()
-        ' enableMenuChoices()
-        ' Main.Show()
-        '    Me.cbLanguage.DroppedDown = True
     End Sub
     Private Sub readLocalizationFile()
         Try
@@ -217,6 +226,14 @@ Public Class MainMenu
             dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iUpdatedCharacter, language))
             dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iSpeakerNumber, language))
             dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iNextClip, language))
+            dramatizer.btnMoreOptions.Text = Me.sLocalizationStrings(Me.iMore, language)
+            dramatizer.btnLessOptions.Text = Me.sLocalizationStrings(Me.iLess, language)
+            dramatizer.lblDisplay.Text = Me.sLocalizationStrings(Me.iDisplayClipsBy, language)
+            dramatizer.rbAll.Text = Me.sLocalizationStrings(Me.iAllClips, language)
+            dramatizer.rbUnidentified.Text = Me.sLocalizationStrings(Me.iUnidentifiedClips, language)
+            dramatizer.rbMultiple.Text = Me.sLocalizationStrings(Me.iMultipleClips, language)
+            dramatizer.rbCharacter.Text = Me.sLocalizationStrings(Me.iCharacterNameClips, language)
+            dramatizer.rbSpeaker.Text = Me.sLocalizationStrings(Me.iSpeakerNumberClips, language)
         Catch ex As Exception
             MessageBox.Show("Problem loading forward and back names into list box." & vbCrLf & ex.Message, "Problem loading forward and back names", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End Try
@@ -303,7 +320,6 @@ Public Class MainMenu
         End If
     End Sub
     Private Sub rbStartProcessing_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbStartProcessing.CheckedChanged
-
         ' you can't depend on the checked status
         ' how else do we know that we have processed the text
         ' if the lastclip is big
@@ -325,18 +341,21 @@ Public Class MainMenu
     Private Sub rbUnidentified_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbUnidentified.CheckedChanged
         Try
             If Me.rbUnidentified.Checked = True Then
-                Me.TextBox1.BackColor = Color.LightGoldenrodYellow
+                '  Me.TextBox1.BackColor = Color.LightGoldenrodYellow
                 Main.iUnidentfiedTotal = Main.countUnidentified()
                 If Main.iUnidentfiedTotal = 0 Then
                     Me.TextBox1.Text = Me.sLocalizationStrings(iInfo0Unidentified, Me.iLanguageSelected).Replace("""", "")
-                    Me.TextBox1.BackColor = Color.LawnGreen
+                    '      Me.TextBox1.BackColor = Color.LawnGreen
 
                 ElseIf Main.iUnidentfiedTotal = 1 Then
                     Me.TextBox1.Text = Me.sLocalizationStrings(iInfo1Unidentified, Me.iLanguageSelected).Replace("""", "")
                 ElseIf Main.iUnidentfiedTotal > 1 Then
                     Me.TextBox1.Text = Me.sLocalizationStrings(iInfoManyUnidentified, Me.iLanguageSelected).Replace("""", "")
                 Else
-                    Debug.Assert(False, "unidentified: " & Main.iUnidentfiedTotal.ToString)
+                    '
+                    ' we got here because we set iunidentifiedtotal to -1 if there wasn't a count
+
+                    ' Debug.Assert(False, "unidentified: " & Main.iUnidentfiedTotal.ToString)
                 End If
 
                 Main.showStatsForUnidentifiedMultipleTotal()
@@ -352,73 +371,65 @@ Public Class MainMenu
             If Me.rbInitialize.Checked = True Then
                 dramatizer.Hide()
                 Me.Hide()
-                ' ProgressIndicator.Show()
                 Main.ToolStripProgressBar1.Maximum = 10
-
-                ' ProgressIndicator.progressBar.Maximum = 10
                 Main.ToolStripProgressBar1.ProgressBar.Value = 1
                 Main.Show()
                 ' finish the initialize and move on
                 Me.rbStartProcessing.Checked = True
             ElseIf Me.rbStartProcessing.Checked = True Then
-                '  ForwardBackControl.Show()
-                ' Me.Hide()
                 Main.Hide()
                 Main.initializeText()
-                dramatizer.lbForwardBackBy.SelectedIndex = 0
-                '  MasterText.Show()
-                '     Main.Size.Height = Main.PanelDramatizer.Height
                 ' finish the processing and move on
                 Me.rbUnidentified.Checked = True
                 dramatizer.btnRecord.Visible = False
                 dramatizer.btnUpdate.Visible = True
-
+              
             ElseIf Me.rbUnidentified.Checked = True Then
                 prepareToWorkFromMaster()
-                dramatizer.lbForwardBackBy.SelectedIndex = 1
+                dramatizer.rbUnidentified.Checked = True
                 dramatizer.goForward()
+                ' when come back do multiple
                 Me.rbMultiple.Checked = True
 
             ElseIf Me.rbMultiple.Checked = True Then
                 prepareToWorkFromMaster()
-                dramatizer.lbForwardBackBy.SelectedIndex = 2
+                dramatizer.rbMultiple.Checked = True
+
                 dramatizer.goForward()
+                ' when come back do updated
                 Me.rbVerifyUpdated.Checked = True
-                '   Me.rbCreateScripts.Enabled = True
             ElseIf Me.rbVerifyUpdated.Checked = True Then
                 prepareToWorkFromMaster()
-                dramatizer.lbForwardBackBy.SelectedIndex = 3
-                dramatizer.goForward()
-                Me.rbVerifyAll.Checked = True
+                dramatizer.rbUpdated.Checked = True
 
+                dramatizer.goForward()
+                ' when come back do verify all
+                Me.rbVerifyAll.Checked = True
+    
             ElseIf Me.rbVerifyAll.Checked = True Then
                 prepareToWorkFromMaster()
-                dramatizer.lbForwardBackBy.SelectedIndex = 0
-                '              lblAssignVoice.Visible = True
-                '                Me.rbAssignVoices.Enabled = True
-                '               Me.rbCreateScripts.Enabled = True
+                dramatizer.rbAll.Checked = True
                 Me.rbAssignVoices.Checked = True
-
+    
             ElseIf Me.rbAssignVoices.Checked = True Then
                 '  prepareToWorkFromMaster()
                 MessageBox.Show("Here we assign any unassigned characters to a voice", "Assign", MessageBoxButtons.OK)
                 Me.lblCreateScripts.Visible = False
-                '             Me.rbCreateScripts.Enabled = True
-                '            Me.rbRecord.Enabled = True
                 Me.rbCreateScripts.Checked = True
-
+    
             ElseIf Me.rbCreateScripts.Checked = True Then
                 Main.readClipsFromFileMaster()
                 Me.rbCreateScripts.Enabled = True
                 createScriptsMaster()
-                '          MessageBox.Show("master script created", "file created", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
                 createScripts1to30()
                 Main.createWaveFiles() ' do just once
                 MessageBox.Show("All scripts created. See My Documents\My Dramatizer\scripts", "file created", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.rbRecord.Enabled = True
                 Me.rbRecord.Checked = True
             ElseIf Me.rbRecord.Checked = True Then
-                dramatizer.lbForwardBackBy.SelectedIndex = 4
+                dramatizer.rbSpeaker.Checked = True
+
+                '  dramatizer.lbForwardBackBy.SelectedIndex = 4
                 dramatizer.displayMasterAndVoiceTalentText()
                 dramatizer.btnRecord.Visible = True
                 dramatizer.btnUpdate.Visible = False
@@ -427,11 +438,12 @@ Public Class MainMenu
                 Me.Hide()
                 MasterText.Show()
 
-
+    
             End If
         Catch ex As Exception
             MessageBox.Show("oops 1" & ex.Message)
         End Try
+        Me.setCheckMarksAndEnableMenuItems()
 
     End Sub
     Private Sub prepareToWorkFromMaster()
@@ -446,11 +458,12 @@ Public Class MainMenu
     Private Sub localizeDramatizer(ByVal language As Int16)
         fillForwardBackByControl(language)
         dramatizer.Text = Main.Text
+        dramatizer.rbUpdated.Text = sLocalizationStrings(Me.iUpdatedCharacter, language)
         dramatizer.chkbxShowPrompt.Text = sLocalizationStrings(Me.iShowPrompt, language)
         dramatizer.chkbxDisplayOmittedClips.Text = sLocalizationStrings(Me.iDisplayOmittedClipsToo, language)
         ' dramatizer.chkbxDisplayUnrecordedOnly.Text = sLocalizationStrings(Me.iDisplayUnrecordedClipsOnly, language)
         dramatizer.chkbxDisplayUnprocessedOnly.Text = sLocalizationStrings(Me.iDisplayUnprocessedClipsOnly, language)
-        dramatizer.chkbxRecordOneSpeakerAtATime.Text = sLocalizationStrings(Me.iRecordOneSpeakerAtATime, language)
+        '     dramatizer.chkbxSpeaker.Text = sLocalizationStrings(Me.iRecordOneSpeakerAtATime, language)
         dramatizer.lblClipNumber.Text = sLocalizationStrings(iClipNumber, language)
         dramatizer.lblCharacterSpeakerNumber.Text = sLocalizationStrings(iSpeakerNumber, language)
         dramatizer.lblCharacterPrompt.Text = sLocalizationStrings(iPrompt, language)
@@ -461,6 +474,7 @@ Public Class MainMenu
         dramatizer.btnUpdate.Text = "" ' using icons now
         dramatizer.btnEdit.Text = sLocalizationStrings(iEdit, language)
         dramatizer.btnEnd.Text = sLocalizationStrings(iExit, language)
+
         '        ForwardBackControl.lbForwardBackBy.Text = Me.sLocalizationStrings(iNextClip, language)
     End Sub
     '   Private Sub localizeMasterText(ByVal language As Int16)
@@ -652,7 +666,7 @@ Public Class MainMenu
 
     Private Sub rbMultiple_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMultiple.CheckedChanged
         Try
-            Me.TextBox1.BackColor = Color.LightGoldenrodYellow
+            ' Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Main.iMultipleToFixTotal = Main.countMultipleNotFixedYet()
             If Main.iMultipleToFixTotal = 0 Then
                 Me.TextBox1.Text = formatTextForTextBox(Me.sLocalizationStrings(Me.iInfo0Multiple, Me.iLanguageSelected))
@@ -673,7 +687,7 @@ Public Class MainMenu
 
     Private Sub rbVerifyUpdated_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbVerifyUpdated.CheckedChanged
         Try
-            Me.TextBox1.BackColor = Color.LightGoldenrodYellow
+            ' Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Me.sLocalizationStrings(Me.iVerifyUpdatedText, Me.iLanguageSelected))
             Main.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
@@ -684,7 +698,7 @@ Public Class MainMenu
 
     Private Sub rbVerifyAll_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbVerifyAll.CheckedChanged
         Try
-            Me.TextBox1.BackColor = Color.LightGoldenrodYellow
+            '  Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Me.sLocalizationStrings(Me.iVerifyAllText, Me.iLanguageSelected))
             Main.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
@@ -695,7 +709,7 @@ Public Class MainMenu
 
     Private Sub rbAssignVoices_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbAssignVoices.CheckedChanged
         Try
-            Me.TextBox1.BackColor = Color.LightGoldenrodYellow
+            '   Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Me.sLocalizationStrings(Me.iAssignCharacterToSpeakerText, Me.iLanguageSelected))
             Main.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
@@ -706,7 +720,7 @@ Public Class MainMenu
 
     Private Sub rbCreateScripts_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbCreateScripts.CheckedChanged
         Try
-            Me.TextBox1.BackColor = Color.LightGoldenrodYellow
+            '    Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Me.sLocalizationStrings(Me.iCreateScriptsText, Me.iLanguageSelected))
             Main.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
@@ -717,60 +731,36 @@ Public Class MainMenu
 
     Private Sub rbRecord_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbRecord.CheckedChanged
         Try
-            Me.TextBox1.BackColor = Color.LightGoldenrodYellow
+            '     Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = Me.sLocalizationStrings(Me.iRecordText, Me.iLanguageSelected)
             Dim temp As String = Main.sRecordingFolder
             Dim iFound = str.InStr(temp, "My Documents")
             If iFound > 0 Then
+                ' start with "My Documents
                 temp = str.Mid(temp, iFound)
             Else
                 ' keep as is
             End If
-            Me.TextBox1.Text = Me.TextBox1.Text + "|" + temp
+            temp = formatFolderStructure(temp)
+            ' only show message when nothing is recorded
+            MessageBox.Show(Me.sLocalizationStrings(iCongratulationsRecord, iLanguageSelected) + vbCrLf + temp, sLocalizationStrings(iRecord, iLanguageSelected), MessageBoxButtons.OK, MessageBoxIcon.Information)
             Main.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
 
         End Try
 
     End Sub
-    Public Sub enableMenuChoiceszzzz()
-        '    enableStartProcessing()
-        '   enableFixUnidentified_Multiple()
-        '  enableAssignEachCharacterToASpeaker()
-        ' enableCreateScriptsAndWavFiles()
-        'enableRecord()
-    End Sub
-    Private Sub enableStartProcessingzzzz()
-        'If Me.lblInitialize.Visible Then
-        If Main.checkISOcodePresent() And Main.checkQuoteTypePresent And Main.checkFileNamePresent Then
-            Me.rbStartProcessing.Enabled = True
-            Me.rbStartProcessing.Focus()
-            Me.rbStartProcessing.Update()
-        Else
-            Me.rbStartProcessing.Enabled = False
-        End If
-
-    End Sub
-    Private Sub enableFixUnidentified_Multiplezzzz()
-        If Me.lblStartProcessing.Visible Then
-            Me.rbUnidentified.Enabled = True
-            Me.rbMultiple.Enabled = True
-            Me.rbVerifyAll.Enabled = True
-            Me.rbVerifyUpdated.Enabled = True
-        Else
-            Me.rbUnidentified.Enabled = False
-            Me.rbMultiple.Enabled = False
-            Me.rbVerifyAll.Enabled = False
-            Me.rbVerifyUpdated.Enabled = False
-        End If
-
-    End Sub
+    Private Function formatFolderStructure(ByVal temp As String)
+        Main.regexReplace(temp, "\", "$1\$2" + vbCrLf)
+        Return temp
+    End Function
     Private Sub setStart()
         If Main.checkISOcodePresent() And Main.checkQuoteTypePresent And Main.checkFileNamePresent Then
             Me.lblInitialize.Visible = True
             Me.lblInitialize.Update()
             Me.rbStartProcessing.Enabled = True
-            Me.rbStartProcessing.Focus()
+            Me.rbStartProcessing.Checked = True
+
         Else
             Me.lblInitialize.Visible = False
             Me.lblInitialize.Update()
@@ -786,12 +776,6 @@ Public Class MainMenu
             Me.rbVerifyAll.Enabled = True
             Me.rbVerifyUpdated.Enabled = True
         Else
-            'Me.lblStartProcessing.Visible = False
-            'Me.lblStartProcessing.Update()
-            'Me.rbUnidentified.Enabled = False
-            'Me.rbMultiple.Enabled = False
-            'Me.rbVerifyAll.Enabled = False
-            'Me.rbVerifyUpdated.Enabled = False
         End If
 
     End Sub
@@ -822,15 +806,26 @@ Public Class MainMenu
 
         setStart()
         setProcessed()
+        ' see if master txt exists
+        If File.Exists(Main.sMasterFileName) Then
+            Me.rbUnidentified.Checked = True
 
-        If Main.iLastClipNumber > 0 Then
             setUnidentified()
             setMultiple()
             setUnassigned()
             setCreateScripts()
             setRecord()
             setRecordDone()
-        Else
+            If Directory.GetFiles(Main.sRecordingFolder).Length > 0 Then
+                ' wav files creates so we can start recording
+                Me.resetAllMarksAndMenuItems()
+                Me.rbRecord.Checked = True
+                Me.rbRecord.Enabled = True
+            
+            Else
+                ' not ready to record yet
+            End If
+
             ' not ready yet
 
         End If

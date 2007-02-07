@@ -43,6 +43,7 @@ Partial Class MasterText
         Me.btnMagnify = New System.Windows.Forms.Button
         Me.btnShrink = New System.Windows.Forms.Button
         Me.tbFontSize = New System.Windows.Forms.TextBox
+        Me.btnMoveThis = New System.Windows.Forms.Button
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -59,11 +60,11 @@ Partial Class MasterText
         '
         'rtbContextAbove
         '
-        Me.rtbContextAbove.Location = New System.Drawing.Point(0, 0)
+        Me.rtbContextAbove.Location = New System.Drawing.Point(0, 24)
         Me.rtbContextAbove.MaximumSize = New System.Drawing.Size(600, 500)
         Me.rtbContextAbove.MinimumSize = New System.Drawing.Size(100, 100)
         Me.rtbContextAbove.Name = "rtbContextAbove"
-        Me.rtbContextAbove.Size = New System.Drawing.Size(500, 259)
+        Me.rtbContextAbove.Size = New System.Drawing.Size(500, 235)
         Me.rtbContextAbove.TabIndex = 3
         Me.rtbContextAbove.Text = ""
         '
@@ -223,7 +224,7 @@ Partial Class MasterText
         'lblClipSize
         '
         Me.lblClipSize.AutoSize = True
-        Me.lblClipSize.Location = New System.Drawing.Point(504, 109)
+        Me.lblClipSize.Location = New System.Drawing.Point(506, 109)
         Me.lblClipSize.Name = "lblClipSize"
         Me.lblClipSize.Size = New System.Drawing.Size(62, 13)
         Me.lblClipSize.TabIndex = 59
@@ -291,10 +292,20 @@ Partial Class MasterText
         Me.tbFontSize.Size = New System.Drawing.Size(50, 20)
         Me.tbFontSize.TabIndex = 64
         '
+        'btnMoveThis
+        '
+        Me.btnMoveThis.Location = New System.Drawing.Point(343, 1)
+        Me.btnMoveThis.Name = "btnMoveThis"
+        Me.btnMoveThis.Size = New System.Drawing.Size(157, 23)
+        Me.btnMoveThis.TabIndex = 65
+        Me.btnMoveThis.Text = "move this xxx"
+        Me.btnMoveThis.UseVisualStyleBackColor = True
+        '
         'MasterText
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(742, 622)
+        Me.Controls.Add(Me.btnMoveThis)
         Me.Controls.Add(Me.tbFontSize)
         Me.Controls.Add(Me.btnShrink)
         Me.Controls.Add(Me.btnMagnify)
@@ -342,4 +353,5 @@ Partial Class MasterText
     Friend WithEvents btnMagnify As System.Windows.Forms.Button
     Friend WithEvents btnShrink As System.Windows.Forms.Button
     Friend WithEvents tbFontSize As System.Windows.Forms.TextBox
+    Friend WithEvents btnMoveThis As System.Windows.Forms.Button
 End Class

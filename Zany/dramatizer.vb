@@ -4,6 +4,7 @@ Imports System.Text
 Imports str = Microsoft.VisualBasic.Strings
 Imports System.Text.RegularExpressions
 Public Class dramatizer
+    Public blnMoreOrLess As Boolean = True
     '    Public main.iCurrentClipNumber As Integer
     Public Sub New()
         Try
@@ -113,7 +114,7 @@ Public Class dramatizer
             MasterText.rtbTextOnly.Text = temp
             MasterText.rtbTextOnly.Show()
             MasterText.rtbContextAbove.Hide()
-            MasterText.Height = 410
+            MasterText.Height = 384
         End If
 
     End Sub
@@ -274,7 +275,7 @@ Public Class dramatizer
     '' pressed enter on the forward back control
     '   updateCharactersFile()
     ' End Sub
-    Public Sub goForward()
+    Public Sub goForwardold()
         If Main.iCurrentClipNumber >= (Main.iLastClipNumber) Then Beep() : Main.iCurrentClipNumber = 0
         ' iLastClipNumber is really 1 over in order to handle splits properly
         ' so don't show the "last" one as it is blank
@@ -489,26 +490,16 @@ Public Class dramatizer
         If MainMenu.rbRecord.Checked Then
             Me.btnRecord.Visible = True
             Me.chkbxDisplayUnprocessedOnly.Text = MainMenu.sLocalizationStrings(MainMenu.iDisplayUnrecordedClipsOnly, MainMenu.iLanguageSelected)
-            Me.chkbxRecordOneSpeakerAtATime.Visible = True
             Me.tbSpeakerNumber.Visible = True
         Else
             Me.btnRecord.Visible = False
             Me.chkbxDisplayUnprocessedOnly.Text = MainMenu.sLocalizationStrings(MainMenu.iDisplayUnprocessedClipsOnly, MainMenu.iLanguageSelected)
-            Me.chkbxRecordOneSpeakerAtATime.Visible = False
             Me.tbSpeakerNumber.Visible = False
 
         End If
     End Sub
 
-    Private Sub chkbxRecordOneSpeakerAtATime_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxRecordOneSpeakerAtATime.CheckedChanged
-        If Me.chkbxRecordOneSpeakerAtATime.Checked = True Then
-            Me.tbSpeakerNumber.Visible = True
-        Else
-            Me.tbSpeakerNumber.Visible = False
-
-        End If
-    End Sub
-
+   
     Private Sub chkbxShowPrompt_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowPrompt.CheckedChanged
         If Me.chkbxShowPrompt.Checked = True Then
             Me.lblCharacterPrompt.Visible = True
@@ -544,6 +535,45 @@ Public Class dramatizer
         End If
     End Sub
 
+
+    Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
+
+
+    Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
+        Me.cbCharacters.Text = "Not a quote"
+    End Sub
+
+    Private Sub btnMoreOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoreOptions.Click
+        ' show more
+        Me.btnLessOptions.Show()
+        Me.Height = 482
+        Me.Panel2.Show()
+        Me.btnMoreOptions.Hide()
+
+    End Sub
+
+    Private Sub btnLessOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLessOptions.Click
+        ' show less
+        Me.btnMoreOptions.Show()
+        Me.Height = 300
+        Me.Panel2.Hide()
+        Me.btnLessOptions.Hide()
+
+    End Sub
+
+    Private Sub lblDisplay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDisplay.Click
+
+    End Sub
+
+    Private Sub chkbxDisplayOmittedClips_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayOmittedClips.CheckedChanged
+        If Me.chkbxDisplayOmittedClips.Checked = True Then
+            Me.chkbxDisplayUnprocessedOnly.Checked = False
+        Else
+            ' do nothing
+        End If
+    End Sub
     Private Sub chkbxDisplayUnprocessedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayUnprocessedOnly.CheckedChanged
         If Me.chkbxDisplayUnprocessedOnly.Checked = True Then
             Me.chkbxDisplayOmittedClips.Checked = False
@@ -552,21 +582,84 @@ Public Class dramatizer
         End If
 
     End Sub
+    Public Sub goForward()
+        If Main.iCurrentClipNumber >= (Main.iLastClipNumber) Then Beep() : Main.iCurrentClipNumber = 0
+        ' iLastClipNumber is really 1 over in order to handle splits properly
+        ' so don't show the "last" one as it is blank
+        Dim i As Integer = Main.iCurrentClipNumber
 
-    Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        If Me.rbAll.Checked = True Then
 
-    End Sub
+            'Select Case lbForwardBackBy.SelectedIndex
+            '   Case -1, 0, 5 ' "Next clip" "Verify All" "record all" ' can't match string as string changes
+            i = skipForward(i)
+        ElseIf Me.rbUnidentified.Checked = True Then
 
-    Private Sub chkbxDisplayOmittedClips_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayOmittedClips.CheckedChanged
-        If Me.chkbxDisplayOmittedClips.Checked = True Then
-            Me.chkbxDisplayUnprocessedOnly.Checked = False
-
+            'Case 1 ' "Unidentified character clip"
+            Do
+                i = skipForward(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) = 0
+        ElseIf Me.rbMultiple.Checked = True Then
+            '       Case 2 '"Multiple characters in a clip"
+            Do
+                i = skipForward(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) > 1
+        ElseIf Me.rbUpdated.Checked = True Then
+            '      Case 3 '"Verify Updated clip"
+            Do
+                i = skipForward(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sCharacter(i, 0) <> Nothing
+        ElseIf Me.rbSpeaker.Checked Then
+            '     Case 4 ' "Same speaker number" Record
+            Do
+                i = skipForward(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
+        ElseIf Me.rbCharacter.Checked = True Then
+            '      Case 3 '"Verify character clip"
+            Do
+                i = skipForward(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
         Else
-            ' do nothing
+            '    Case Else
+            i = skipForward(i)
+            '    End Select
         End If
+        Main.iCurrentClipNumber = i
+        '    If Me.btnForward.BackColor = Color.Lime Then
+        '   Me.updateCharactersFile()
+        '   Me.btnForward.BackColor = color.lightgray
+        '   Else
+        displayPropertiesOfClip(2)
+        '    End If
     End Sub
 
-    Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
-        Me.cbCharacters.Text = "Not a quote"
+    Private Sub rbUnidentified_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbUnidentified.CheckedChanged
+        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedClips, MainMenu.iLanguageSelected)
+
+    End Sub
+
+    Private Sub rbMultiple_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMultiple.CheckedChanged
+        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iMultipleClips, MainMenu.iLanguageSelected)
+
+    End Sub
+
+    Private Sub rbSpeaker_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbSpeaker.CheckedChanged
+        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iSpeakerNumberClips, MainMenu.iLanguageSelected)
+
+    End Sub
+
+    Private Sub rbUpdated_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbUpdated.CheckedChanged
+        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iUpdate, MainMenu.iLanguageSelected)
+
+    End Sub
+
+    Private Sub rbAll_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbAll.CheckedChanged
+        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iAllClips, MainMenu.iLanguageSelected)
+
     End Sub
 End Class
