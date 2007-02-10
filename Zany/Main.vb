@@ -5,9 +5,158 @@ Imports str = Microsoft.VisualBasic.Strings
 Imports System.Text.RegularExpressions
 Public Class Main
 
+    ' these three also defined in MainMenu
     Public sProgramDirectory As String = Directory.GetCurrentDirectory ' beware that this may change
-    Public sDramatizeFolder As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\My Dramatizer"
     Public sRequiredFilesFolder As String = sProgramDirectory & "\RequiredFiles" ' beware that this may change
+    Public sINIfile As String = sRequiredFilesFolder & "\zany.ini"
+
+
+    ' links to table with info for each language
+    ' 1 is the language country identifier
+    Public iLanguageNames = 2
+    Public iProgramName = 3
+    Public iLanguage = 4
+    Public iInitialize = 5
+    Public iProcess = 6
+    Public iUnidentified = 7
+    Public iMultiple = 8
+    Public iVerifyUpdated = 9
+    Public iVerifyAll = 10
+    Public iAssignVoices = 11
+    Public iCreateScripts = 12
+    Public iRecord = 13
+    Public iAbout = 14
+    Public iExit = 15
+    Public iNext = 16
+    Public iInfoStartProject = 17
+    Public iInfoStartProcessing = 18
+    Public iInfo0Unidentified = 19
+    Public iInfo1Unidentified = 20
+    Public iInfoManyUnidentified = 21
+    Public iSpeakerNumber = 22
+    Public iClipNumber = 23
+    Public iPrompt = 24
+    ' need to make public in order to use in other form
+    Public iShowContext = 25
+    Public iHideContext = 26
+    Public iNextClip = 27
+    Public iUnidentifiedCharacter = 28
+    Public iMultipleCharacters = 29
+    Public iUpdatedCharacter = 30
+    Public iInfo0Multiple = 31
+    Public iInfo1Multiple = 32
+    Public iInfoManyMultiples = 33
+    Public iStartProcessingWarning = 34
+    Public iTranslateMenu = 35
+    Public iFileName = 36
+    Public iBrowse = 37
+    Public iFontName = 38
+    Public iFontSize = 39
+    Public iQuoteType = 40
+    Public iAudioRecordingProgram = 41
+    Public iDisplayQuotes = 42
+    Public iTextEncoding = 43
+    Public iANSI = 44
+    Public iUTF8 = 45
+    Public iCancel = 46
+    Public iSetOptions = 47
+    Public iCurrentLocationNumber = 48
+    Public iOK = 49
+    Public iUpdate = 50
+    Public iEdit = 51
+    Public iMaxClipSizeText = 52
+    Public iEthnologueCode = 53
+    Public iHeadings = 54
+    Public iIntroductions = 55
+    Public iSectionHeads = 56
+    Public iFootnotes = 57
+    Public iReferences = 58
+    Public iChapterNumbers = 59
+    Public iDoNotSpeakThis = 60
+    Public iCharacterName = 61
+    Public iNoINIfile_Short = 62
+    Public iNoINIfile_Long = 63
+    Public iCorrectTheText = 64
+    Public iUnableToProcessText = 65
+    Public iVerifyOpeningQuote = 66
+    Public iContinueVerifyOpeningQuote = 67
+    Public iContinuingQuote = 68
+    Public iSecondQuoteFound = 69
+    Public iTextUnusable = 70
+    Public iSeeMoreProblems = 71
+    Public iContinuingQuoteTip = 72
+    Public iFileReadError = 73
+    Public iUnidentifiedCharactersToFix = 74
+    Public iMultipleCharactersToFix = 75
+    Public iTotalClips = 76
+    Public iClipsToRecord = 77
+    Public iClickNextToStart = 78
+    Public iVerifyUpdatedText = 79
+    Public iVerifyAllText = 80
+    Public iAssignCharacterToSpeakerText = 81
+    Public iCreateScriptsText = 82
+    Public iRecordText = 83
+    Public iUnassignedCharactersToFix = 84
+    Public iShowVerses = 85
+    Public iShowSFMcodes = 86
+    Public iShowSpeakerText = 87
+    Public iUseSettingsToAdjustClipSize = 88
+    Public iInputTab = 89
+    Public iQuoteTypeTab = 90
+    Public iOmitTextTab = 91
+    Public iRecordingProgramTab = 92
+    Public iClipSizeTab = 93
+    Public iEthnologueCodeTab = 94
+    Public iOutputTab = 95
+    Public iDisplayUnrecordedClipsOnly = 96
+    Public iRecordOneSpeakerAtATime = 97
+    Public iShowPrompt = 98
+    Public iFontTab = 99
+    Public iThisOne = 100
+    Public iDramatizerOutputFolder = 101
+    Public iSpeechContinuedToNextClip = 102
+    Public iClipSize = 103
+    Public iPercentIdentified = 104
+    Public iBreakAtMostParagraphs = 105
+    Public iDefaultSettings = 106
+    Public iMasterText = 107
+    Public iAvailableDiskSpaceC = 108
+    Public iAvailableDiskSpaceD = 109
+    Public iNotAQuote = 110
+    Public iDisplayUnprocessedClipsOnly = 111
+    Public iDisplayOmittedClipsToo = 112
+
+
+    Public iSaveChangeAndSeeNext = 113
+    Public iCancelChangeAndCloseMenu = 114
+    Public iSaveChangeAndCloseMenu = 115
+    Public iBackAndCancelChange = 116
+    Public iStartText = 117
+    Public iTypeInOtherBox = 118
+    Public iMoveToTopRight = 119
+    Public iMoveToBottomLeft = 120
+    Public iMore = 121
+    Public iLess = 122
+    Public iDisplayClipsBy = 123
+    Public iAllClips = 124
+    Public iUnidentifiedClips = 125
+    Public iMultipleClips = 126
+    Public iCharacterNameClips = 127
+    Public iSpeakerNumberClips = 128
+    Public iCongratulationsRecord = 129
+    Public iMoveUp = 130
+    Public iMoveDown = 131
+    Public iRecordSpeaker = 132
+
+
+    Public sProgramName As String = "Dramatizer"
+    Public sProgramVersion As String = "2.0"
+    Public sProjectName As String
+    Public sProjectFileName As String
+
+
+
+    Public sDramatizeFolder As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\My Dramatizer"
     Public sTempFolder As String = My.Computer.FileSystem.SpecialDirectories.Temp & "\Dramatizer"
     Public sCreateClipsFileName As String = sTempFolder & "\01 - createClips.tmp"
     Public sGetBookChapterVerseFileName As String = sTempFolder & "\02 - bookChapterVerse.tmp"
@@ -15,10 +164,19 @@ Public Class Main
     Public sOneLinePerClip As String = sTempFolder & "\04 - oneLinePerClip.tmp"
     Public sMasterWaveFile As String = sRequiredFilesFolder & "\master.wav"
     Public sCharacterNames_BookChapterVerseFileName As String = sRequiredFilesFolder & "\CharacterNames_BookChapterVerse.txt"
-    Public sINIfile As String = sRequiredFilesFolder & "\zany.ini"
     Public sISO639_3file As String = sRequiredFilesFolder & "\iso-fdis-639-3_20061114.tab"
     Public sTempFileName As String = sTempFolder & "\temp.tmp"
+    Public sTempRecordingInProgressFolder As String = sRecordingFolder + "\recording in progress"
+
     Public sVoiceFile As String = sRequiredFilesFolder & "\Character-Voice.txt"
+    Public sInsertFile As String
+    Public utf8 As System.Text.UTF8Encoding = New System.Text.UTF8Encoding(False)
+    Public sLocalizationFile As String = sRequiredFilesFolder & "\localization.txt" ' tab delimeted text
+    Public sLocalizationBackupFile As String = sRequiredFilesFolder & "\localization.copy" ' tab delimeted text
+    Public iMaximumLocalizationLanguages As Int16 = 3
+    Public iMaximumLocalizationStrings As Int16 = 2000
+    Public sLocalizationStrings(iMaximumLocalizationStrings, iMaximumLocalizationLanguages) As String
+    Public iLanguageSelected As Int16
 
     Public timeOfLastReadOfMaster As Double
     Public blnContinuingQuoteFound As Boolean = False
@@ -35,7 +193,7 @@ Public Class Main
     Public iEnd As Integer
     Public iLastClipNumber As Integer
     Public iMaxCharacters As Integer = 5
-    Public iMaxClipSize As String = 500
+    Public iMaxClipSize As Integer = 500 ' characters = 30 seconds
     Public iMaxClips As Integer = 50000
     Public iMaxISOcode As Integer
     Public iMaxVoices As Int16 = 30
@@ -72,11 +230,11 @@ Public Class Main
     Public sLanguageFolder As String
     Public sMasterFileName As String
     Public sOpeningQuote As String
-    Public sProgramName As String = "Dramatizer"
-    Public sProgramVersion As String = "2.0"
-    Public sProjectFileName As String
+    ' Public sProgramName As String = "Dramatizer"
+    ' Public sProgramVersion As String = "2.0"
+    ' Public sProjectFileName As String
     Public sProjectFolder As String
-    Public sProjectName As String
+    '  Public sProjectName As String
     Public sProjectParatextFileName As String
     Public sProjectPath As String
     Public sPrompt As String ' get from sCharacter(i,j)
@@ -111,7 +269,7 @@ Public Class Main
         Me.cbOutputFolder.Text = Me.sDramatizeFolder
         readCurrentSettings()
         sProjectName = getFileNameWithoutExtensionFromFullName(sProjectFileName)
-        '    createFoldersAndMasterAndScriptsFileNames()
+        createFoldersAndMasterAndScriptsFileNames()
         Me.panelSettings.Show()
         readVoiceFile()
         readISOfile()
@@ -576,14 +734,14 @@ Public Class Main
             ' great no extra opening quote mark found
         Else
             ' oops this may be a continuing quote mark or an error
-            Dim response = MessageBox.Show(MainMenu.sLocalizationStrings(MainMenu.iVerifyOpeningQuote, MainMenu.iLanguageSelected) & " (" & sOpenQuote & ") " & MainMenu.sLocalizationStrings(MainMenu.iContinueVerifyOpeningQuote, MainMenu.iLanguageSelected) & vbCrLf & vbCrLf & MainMenu.sLocalizationStrings(MainMenu.iContinuingQuoteTip, MainMenu.iLanguageSelected) & vbCrLf & vbCrLf & sBook(Me.iCurrentClipNumber) & " " & sChapter(Me.iCurrentClipNumber) & "." & sVerse(Me.iCurrentClipNumber) & vbCrLf & vbCrLf & sStringToCheckOut & vbCrLf & vbCrLf & MainMenu.sLocalizationStrings(MainMenu.iContinuingQuote, MainMenu.iLanguageSelected), MainMenu.sLocalizationStrings(MainMenu.iSecondQuoteFound, MainMenu.iLanguageSelected), MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            Dim response = MessageBox.Show(Me.sLocalizationStrings(Me.iVerifyOpeningQuote, Me.iLanguageSelected) & " (" & sOpenQuote & ") " & Me.sLocalizationStrings(Me.iContinueVerifyOpeningQuote, Me.iLanguageSelected) & vbCrLf & vbCrLf & Me.sLocalizationStrings(Me.iContinuingQuoteTip, Me.iLanguageSelected) & vbCrLf & vbCrLf & sBook(Me.iCurrentClipNumber) & " " & sChapter(Me.iCurrentClipNumber) & "." & sVerse(Me.iCurrentClipNumber) & vbCrLf & vbCrLf & sStringToCheckOut & vbCrLf & vbCrLf & Me.sLocalizationStrings(Me.iContinuingQuote, Me.iLanguageSelected), Me.sLocalizationStrings(Me.iSecondQuoteFound, Me.iLanguageSelected), MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If response = vbYes Then
                 ' continuing quote marker - good
                 ' fix marker here.
                 blnContinuingQuoteFound = True
             Else
                 blnQuoteMarkerErrorFound = True
-                response = MessageBox.Show(MainMenu.sLocalizationStrings(MainMenu.iTextUnusable, MainMenu.iLanguageSelected) & MainMenu.sLocalizationStrings(MainMenu.iCorrectTheText, MainMenu.iLanguageSelected) & vbCrLf & vbCrLf & MainMenu.sLocalizationStrings(MainMenu.iSeeMoreProblems, MainMenu.iLanguageSelected), MainMenu.sLocalizationStrings(MainMenu.iCorrectTheText, MainMenu.iLanguageSelected), MessageBoxButtons.YesNo)
+                response = MessageBox.Show(Me.sLocalizationStrings(Me.iTextUnusable, Me.iLanguageSelected) & Me.sLocalizationStrings(Me.iCorrectTheText, Me.iLanguageSelected) & vbCrLf & vbCrLf & Me.sLocalizationStrings(Me.iSeeMoreProblems, Me.iLanguageSelected), Me.sLocalizationStrings(Me.iCorrectTheText, Me.iLanguageSelected), MessageBoxButtons.YesNo)
                 If response = vbYes Then
                     ' continue looking
                 Else
@@ -601,7 +759,7 @@ Public Class Main
         Try
             ' ProgressIndicator.Show()
             MainMenu.progressBar.Visible = True
-            '    MainMenu.progressBar.Show()
+            '    Me.progressBar.Show()
             MainMenu.progressBar.Maximum = iLastClipNumber + 50
             Dim sr As StreamReader = New StreamReader(Me.sOneLinePerClip, Encoding.UTF8)
             Do While Not sr.EndOfStream
@@ -699,8 +857,8 @@ Public Class Main
             iLastClipNumber = getInitialInfo(temp)
             Do While Not sr.EndOfStream
                 i += 1  ' count clip numbers as iLastClipNumber is wrong at this time.
-                '  MainMenu.progressBar.Value = i
-                ' MainMenu.progressBar.Update()
+                '  Me.progressBar.Value = i
+                ' Me.progressBar.Update()
 
 
                 temp = sr.ReadLine()
@@ -725,8 +883,8 @@ Public Class Main
             Loop
             sr.Close()
             ' ProgressIndicator.Hide()
-            '    MainMenu.progressBar.Visible = False
-            ' MainMenu.tbProgress.Visible = False
+            '    Me.progressBar.Visible = False
+            ' Me.tbProgress.Visible = False
             Me.iLastClipNumber = i - 1  ' this is required to set it right
             '    Dim x3 As String = Me.sCharacter(77, 1)
             '   Dim x4 As String = Me.sCharacter(79, 1)
@@ -739,12 +897,13 @@ Public Class Main
     Private Function getInitialInfo(ByVal temp As String)
         Dim total = regexReplace(temp, "(.+\s)(totalClips="")(.*?)(""\s.+)", "$3")
         Dim sRecordingInProgress As String = regexReplace(temp, "(.+\s)(recordingInProgress="")(.*?)(""\s.+)", "$3")
-        setRecordingStatus(sRecordingInProgress)
+        ' probably not right xxxxxxxxxxxx
+        ' MainMenu.setRecordingStatus(sRecordingInProgress)
         '   ProgressIndicator.Visible = True
-        ' MainMenu.progressBar.Visible = True
-        ' MainMenu.progressBar.Maximum = total + total * 0.5
+        ' Me.progressBar.Visible = True
+        ' Me.progressBar.Maximum = total + total * 0.5
 
-        ' MainMenu.progressBar.Step = 100
+        ' Me.progressBar.Step = 100
         Return total
 
     End Function
@@ -809,33 +968,6 @@ Public Class Main
         sChapter(i) = regexReplace(temp, "(.+\s)(chapter="")(.*?)(""\s.+)", "$3")
         sVerse(i) = regexReplace(temp, "(.+\s)(verse="")(.*?)(""\s.+)", "$3")
     End Sub
-    Private Sub setRecordingStatus(ByVal sRecordingInProgress)
-        If sRecordingInProgress = "#TRUE#" Then
-            blnRecordingInProgress = True
-            MainMenu.rbInitialize.Enabled = True
-            MainMenu.rbStartProcessing.Enabled = True
-            MainMenu.rbUnidentified.Enabled = False
-            MainMenu.rbMultiple.Enabled = False
-            MainMenu.rbVerifyUpdated.Enabled = False
-            MainMenu.rbVerifyAll.Enabled = False
-            MainMenu.rbAssignVoices.Enabled = False
-            MainMenu.rbCreateScripts.Enabled = False
-            MainMenu.rbRecord.Enabled = True
-        Else
-            blnRecordingInProgress = False
-            '   MainMenu.rbInitialize.Enabled = True
-            '  MainMenu.rbStartProcessing.Enabled = True
-            ' MainMenu.rbUnidentified.Enabled = True
-            ' MainMenu.rbMultiple.Enabled = False
-
-            '  MainMenu.rbVerifyUpdated.Enabled = True
-            ' MainMenu.rbVerifyAll.Enabled = True
-            ' MainMenu.rbAssignVoices.Enabled = True
-            '  MainMenu.rbCreateScripts.Enabled = True
-            '  MainMenu.rbRecord.Enabled = True
-        End If
-
-    End Sub
     Public Function getCharacterShort(ByVal character)
         Dim temp As String
         temp = regexReplace(character, "(\[.+])|(\(.+)", "")
@@ -870,7 +1002,7 @@ Public Class Main
             WriteLine(filenum, Me.tbISOcode.Text)
             WriteLine(filenum, "</ISOcode>")
             WriteLine(filenum, "<omitSectionHeads>")
-            WriteLine(filenum, MasterText.chkbxSectionHeads.Checked())
+            WriteLine(filenum, MasterText.chkbxSectionHeadsold.Checked())
             WriteLine(filenum, "</omitSectionHeads>")
             WriteLine(filenum, "<omitChapterNumbers>")
             WriteLine(filenum, MasterText.chkbxChapterNumbers.Checked())
@@ -965,9 +1097,9 @@ Public Class Main
     Private Sub readAndSetOmitSectionHeads()
         Dim temp As String = getCurrentInfoFromSettingsFile("<omitSectionHeads>")
         If temp = "#TRUE#" Then
-            MasterText.chkbxSectionHeads.Checked = True
+            MasterText.chkbxSectionHeadsold.Checked = True
         Else
-            MasterText.chkbxSectionHeads.Checked = False
+            MasterText.chkbxSectionHeadsold.Checked = False
         End If
     End Sub
     Private Sub readAndSetOmitChapterNumbers()
@@ -996,6 +1128,7 @@ Public Class Main
     End Sub
     Private Sub readAndSetISOcode()
         Me.sISOCode = getCurrentInfoFromSettingsFile("<ISOcode>")
+        Me.tbISOcode.Text = Me.sISOCode
     End Sub
     Private Sub readAndSetLastClipNumber()
         Me.iLastClipNumber = getCurrentInfoFromSettingsFile("<lastClipNumber>")
@@ -1127,6 +1260,7 @@ Public Class Main
     Public Sub initializeText()
         createFoldersAndMasterAndScriptsFileNames()
         deleteMasterFile()
+        Me.resetArrays()
         identifyAllQuotes()
         iLastClipNumber = buildArrayOfClips()  ' should set last correctly xxxxxxxxxxxxxxxx
         readClipsFromFileOneLinePerClip()
@@ -1138,7 +1272,7 @@ Public Class Main
         Me.readClipsFromFileMaster()
         Me.iCurrentClipNumber = 1 ' always start at 1
         ' ForwardBackControl.displayMasterAndVoiceTalentText()
-        showStatsForUnidentifiedMultipleTotal()
+        MainMenu.showStatsForUnidentifiedMultipleTotal()
     End Sub
     Private Sub rbQuoteChevrons_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         sOpeningQuote = "«"
@@ -1203,7 +1337,7 @@ Public Class Main
     End Sub
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         Me.Hide()
-        MainMenu.Show()
+        Me.Show()
     End Sub
     Private Sub btnDisplayClips_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisplayClips.Click
         Dim temp As String
@@ -1319,7 +1453,7 @@ Public Class Main
             ' createFoldersAndMasterAndScriptsFileNames()
             Me.Hide()
             MainMenu.setCheckMarksAndEnableMenuItems()
-            'MainMenu.enableMenuChoices()
+            'Me.enableMenuChoices()
             MainMenu.Show()
         Else
             Beep()
@@ -1552,9 +1686,9 @@ Public Class Main
             MessageBox.Show("Problem filling the audio program names control " & vbCrLf & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
-    Private Sub btnTranslateMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        translate.Show()
-    End Sub
+    ' Private Sub btnTranslateMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    translate.Show()
+    ' End Sub
     Private Sub btnDisplayText_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         fillSampleEncodingRTBoxes()
         '       Me.panelEncoding.Show()
@@ -1580,13 +1714,22 @@ Public Class Main
         End If
     End Sub
     Public Sub deleteMasterFile()
+        Dim previous As String = Me.sMasterFileName + ".previous"
         If sProjectName = Nothing Then
             ' do nothing
         Else
-            If System.IO.File.Exists(sMasterFileName) Then
+            If File.Exists(sMasterFileName) Then
+                If File.Exists(previous) Then
+                    ' master and previous exist
+                    File.Delete(previous)
+                Else
+                    ' no previous to delete
+                End If
+                ' master exists
+                File.Copy(Me.sMasterFileName, previous)
                 File.Delete(sMasterFileName)
             Else
-                '  nothing to delete
+                ' no master file
             End If
         End If
     End Sub
@@ -1625,31 +1768,35 @@ Public Class Main
             Me.tbISOcode.Text = sISOCode
         End If
         checkISOcodePresent()
+        areRequiredTabsCompleted()
     End Sub
     Private Sub cbISOcode_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbISOcode.Enter
         Dim temp As String = str.Left(Me.cbISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = temp
         checkISOcodePresent()
+        areRequiredTabsCompleted()
     End Sub
     Private Sub cbISOcode_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbISOcode.SelectedIndexChanged
         Dim temp As String = str.Left(Me.cbISOcode.SelectedItem, 3).Trim
-        Me.tbISOcode.Text = temp
+        Me.tbISOcode.Text = Trim(temp)
         checkISOcodePresent()
+        areRequiredTabsCompleted()
     End Sub
     Private Sub cbFindISOcode_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFindISOcode.SelectedIndexChanged
         Dim temp As String = str.Right(Me.cbFindISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = temp
         checkISOcodePresent()
+        areRequiredTabsCompleted()
     End Sub
     Public Function checkISOcodePresent()
         Dim temp As Boolean
-        If Me.tbISOcode.Text.Length = 3 Then
-            Me.tbISOcode.BackColor = Color.LawnGreen
-            temp = True
-        Else
+        If Me.tbISOcode.Text = "Id" Then
             Me.tbISOcode.BackColor = Color.Pink
             Me.tabControlOptions.SelectedIndex = 2
             temp = False
+        Else
+            Me.tbISOcode.BackColor = Color.LawnGreen
+            temp = True
         End If
         Return temp
     End Function
@@ -1670,7 +1817,6 @@ Public Class Main
         If Me.cbQuoteType.Text.Length > 0 Then
             Me.cbQuoteType.BackColor = Color.LawnGreen
             temp = True
-
         Else
             Me.cbQuoteType.BackColor = Color.Pink
             Me.tabControlOptions.SelectedIndex = 3
@@ -1679,11 +1825,11 @@ Public Class Main
         Return temp
     End Function
     Private Sub TrackBarClipSize_Scroll(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TrackBarClipSize.Scroll
-        If Me.TrackBarClipSize.Value < 6 Then Me.TrackBarClipSize.Value = 6
+        'If Me.TrackBarClipSize.Value < 6 Then Me.TrackBarClipSize.Value = 6
         showClipSize()
     End Sub
     Public Function calculateClipSize(ByVal clipSizeInCharacters As Integer)
-        Dim temp As Integer = (clipSizeInCharacters * Me.TrackBarClipSize.Value / 10 / 16.66).ToString
+        Dim temp As Integer = (clipSizeInCharacters * (Me.TrackBarClipSize.Value + 6) / 10 / 16.66).ToString
         If temp = 0 Then temp = 1
         Return temp.ToString()
     End Function
@@ -1697,30 +1843,6 @@ Public Class Main
         Me.sAudioProgram = OpenFileDialog1.FileName
         Me.cbAudioProgram.Text = Me.sAudioProgram
     End Sub
-    Public Sub showStatsForUnidentifiedMultipleTotal()
-        readClipsFromFileMaster()
-        Dim unidentifiedToFix As String = Me.countUnidentifiedNotFixedYet.ToString & "  "
-        unidentifiedToFix = unidentifiedToFix + MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedCharactersToFix, MainMenu.iLanguageSelected)
-        Dim unidentified As String = iUnidentifiedSpeakingCharacter & "  " & MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedCharacter, MainMenu.iLanguageSelected)
-        Dim multipleToFix As String = Me.countMultipleNotFixedYet.ToString & "  " & MainMenu.sLocalizationStrings(MainMenu.iMultipleCharactersToFix, MainMenu.iLanguageSelected)
-        Dim multiple As String = iMultipleSpeakingCharacter & "  " & MainMenu.sLocalizationStrings(MainMenu.iMultipleCharacters, MainMenu.iLanguageSelected)
-        Dim unassigned As String = Me.countUnassignedCharacters.ToString & "  " & MainMenu.sLocalizationStrings(MainMenu.iUnassignedCharactersToFix, MainMenu.iLanguageSelected)
-        Dim clipsToRecord As String = Me.countClipsToRecord.ToString & "  " & MainMenu.sLocalizationStrings(MainMenu.iClipsToRecord, MainMenu.iLanguageSelected)
-        Dim totalClips As String = Me.countTotal.ToString & "  " & MainMenu.sLocalizationStrings(MainMenu.iTotalClips, MainMenu.iLanguageSelected)
-        Dim percent As Integer = (countTotal() - iUnidentifiedSpeakingCharacter - iMultipleSpeakingCharacter) * 100 / countTotal()
-        Dim temp As String
-        temp = MainMenu.TextBox1.Text
-        temp = temp + "|" + unidentifiedToFix & vbCrLf & unidentified & vbCrLf & multipleToFix & vbCrLf & multiple & vbCrLf & unassigned & vbCrLf & clipsToRecord & vbCrLf & totalClips
-        temp = temp + vbCrLf + percent.ToString + MainMenu.sLocalizationStrings(MainMenu.iPercentIdentified, MainMenu.iLanguageSelected)
-        temp = temp + "|" & MainMenu.sLocalizationStrings(MainMenu.iClickNextToStart, MainMenu.iLanguageSelected)
-        MainMenu.TextBox1.Text = MainMenu.formatTextForTextBox(temp)
-        If countUnidentifiedNotFixedYet() + countMultipleNotFixedYet() = 0 Then
-            MainMenu.TextBox1.BackColor = Color.LawnGreen
-        Else
-            MainMenu.TextBox1.BackColor = Color.LightYellow
-        End If
-        ' MainMenu.TextBox1.BackColor = Color.Cyan
-    End Sub
     Public Sub createWaveFiles()
         Dim i As Integer
 
@@ -1728,7 +1850,7 @@ Public Class Main
             Dim temp As String = sRecordingFolder & "\" & tbISOcode.Text & "-"
             Dim bookNumber As String = getBookNumber(i)
             Dim sequence As String = dramatizer.sPadNumber(5, i.ToString)
-            Dim extra As String = justTag(i)
+            Dim extra As String = justTagOrOmit(i)
             Dim waveFile As String = temp & bookNumber & sequence & extra & ".wav"
 
             If Me.isWavFileAlreadyRecorded(waveFile) Then
@@ -1758,7 +1880,7 @@ Public Class Main
 
     End Function
 
-    Private Function justTag(ByVal i As Integer)
+    Public Function justTagOrOmit(ByVal i As Integer)
         Dim temp As String = Me.sTag(i)
         temp = Me.regexReplace(temp, "\\", "")
         If temp = Nothing Then
@@ -1766,7 +1888,7 @@ Public Class Main
                 Return ".omit"
             Else
                 'skip
-                Return temp
+                Return ""
             End If
         Else
             Return "." + temp
@@ -1917,22 +2039,67 @@ Public Class Main
         Me.cbOutputFolder.Text = Me.sDramatizeFolder
     End Sub
     Public Sub displayStatusText()
-        Try
-            Dim temp As String = MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedCharacter, MainMenu.iLanguageSelected) & ": " _
-         & countUnidentifiedNotFixedYet.ToString() & "           " _
-         & MainMenu.sLocalizationStrings(MainMenu.iMultipleCharacters, MainMenu.iLanguageSelected) & ": " _
-         & countMultipleNotFixedYet.ToString()
-            If countUnidentifiedNotFixedYet() + countMultipleNotFixedYet() = 0 Then
-                dramatizer.statusBar.BackColor = Color.LawnGreen
-            Else
-                dramatizer.statusBar.BackColor = Color.LightYellow
-            End If
-            dramatizer.statusBar.Text = temp
-            '  MainMenu.TextBox1.Text = temp
-        Catch ex As Exception
-            MessageBox.Show("Error trying to display status text in forward back control." & vbCrLf & ex.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End Try
+        If MainMenu.rbRecord.Checked = True Then
+            Try
+                Dim temp As String = Me.sLocalizationStrings(Me.iRecordSpeaker, Me.iLanguageSelected) & ": " _
+             & countUnidentifiedNotFixedYet.ToString() & "           " _
+             & Me.sLocalizationStrings(Me.iRecordTotal, Me.iLanguageSelected) & ": " _
+             & countMultipleNotFixedYet.ToString()
+                If countNotRecorded(dramatizer.upDownSpeakerNumber.Value) Then
+                    dramatizer.statusBar.BackColor = Color.LawnGreen
+                    If countNotRecordedTotal() = 0 Then
+                        ' all done
+                        MessageBox.Show("Recordings complete. Sort the audio wave files by size and make sure that the 1K files should really be unrecorded.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        ' more to record
+                        MessageBox.Show("Recording for the speaker complete.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
+                Else
+                    dramatizer.statusBar.BackColor = Color.LightYellow
+                End If
+                dramatizer.statusBar.Text = temp
+            Catch ex As Exception
+                MessageBox.Show("Error trying to display status text in forward back control." & vbCrLf & ex.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End Try
+        Else
+            Try
+
+                Dim temp As String = Me.sLocalizationStrings(Me.iUnidentifiedCharacter, Me.iLanguageSelected) & ": " _
+             & countUnidentifiedNotFixedYet.ToString() & "           " _
+             & Me.sLocalizationStrings(Me.iMultipleCharacters, Me.iLanguageSelected) & ": " _
+             & countMultipleNotFixedYet.ToString()
+                If countUnidentifiedNotFixedYet() + countMultipleNotFixedYet() = 0 Then
+                    dramatizer.statusBar.BackColor = Color.LawnGreen
+                Else
+                    dramatizer.statusBar.BackColor = Color.LightYellow
+                End If
+                dramatizer.statusBar.Text = temp
+            Catch ex As Exception
+                MessageBox.Show("Error trying to display status text in forward back control." & vbCrLf & ex.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End Try
+
+        End If
     End Sub
+    Private Function countNotRecorded(ByVal speaker As Int16)
+        Dim i, total As Integer
+        For i = 1 To Me.iLastClipNumber
+            If Me.blnRecorded(i) Then
+                If Me.iSpeakerNumber(i) Then
+                    total += 1
+                End If
+            End If
+
+        Next
+        Return total
+    End Function
+    Private Function countNotRecordedTotal()
+        Dim i, total As Integer
+
+        For i = 1 To Me.iLastClipNumber
+            total += 1
+        Next
+        Return total
+    End Function
     Public Sub removeChapterNumbers()
         Dim i As Integer
         ' remove section heads
@@ -2024,7 +2191,7 @@ Public Class Main
     Public Sub identifyOmittedText()
         MasterText.rtbTextOnly.BackColor = Color.White
         MasterText.rtbTextWithContext.BackColor = Color.White
-        MasterText.chkbxSectionHeads.BackColor = Color.LightGray
+        MasterText.chkbxSectionHeadsold.BackColor = Color.LightGray
         MasterText.chkbxIntroduction.BackColor = Color.LightGray
         MasterText.chkbxHeading.BackColor = Color.LightGray
         MasterText.chkbxChapterNumbers.BackColor = Color.LightGray
@@ -2102,7 +2269,7 @@ Public Class Main
         End If
         Dim break(1) As String
         Dim iFoundString As Integer
-        Dim iAdjustSize = Me.TrackBarClipSize.Value / 10
+        Dim iAdjustSize = (Me.TrackBarClipSize.Value + 6) / 10
 
         Dim iLowestMaxClipSize As Integer = (Me.iMaxClipSize * 0.5) * iAdjustSize
         Dim iLowerMaxClipSize As Integer = (Me.iMaxClipSize * 0.6) * iAdjustSize
@@ -2182,7 +2349,7 @@ Public Class Main
     End Function
 
     Private Sub btnDefaultSettings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDefaultSettings.Click
-        Me.TrackBarClipSize.Value = 10  ' this is the middle
+        Me.TrackBarClipSize.Value = 4  ' this is the 30 seconds
         Me.chkbxBreakAtParagraphs.Checked = True
         Me.chkbxAdjustClipSize.Checked = True
 
@@ -2192,10 +2359,19 @@ Public Class Main
 
     Private Sub cbQuoteType_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbQuoteType.SelectedIndexChanged
         checkQuoteTypePresent()
+        areRequiredTabsCompleted()
     End Sub
-
+    Private Function areRequiredTabsCompleted()
+        If checkISOcodePresent() And Me.checkQuoteTypePresent And Me.checkFileNamePresent Then
+            Me.btnSetOptions.BackColor = Color.LawnGreen
+            Return True
+        Else
+            Me.btnSetOptions.BackColor = Color.LightYellow
+            Return False
+        End If
+    End Function
     Private Sub tbISOcode_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbISOcode.TextChanged
-
+        areRequiredTabsCompleted()
     End Sub
     Public Sub changeFontSize(ByVal increase As Boolean)
         Dim fontName As String = cbFontName.SelectedItem
@@ -2205,7 +2381,7 @@ Public Class Main
         End If
         Try
 
-        If increase Then
+            If increase Then
                 cbFontSize.SelectedIndex = cbFontSize.SelectedIndex + 1
             Else
                 cbFontSize.SelectedIndex = cbFontSize.SelectedIndex - 1
@@ -2232,5 +2408,323 @@ Public Class Main
         'MasterText.rtbTextOnly.Font = New Font(fontName, fontSize)
         'MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
     End Sub
+    ' main menu
+    Public Sub readLocalizationFile()
+        Try
+            ' Excel saves as ANSI file
+            Dim sr As StreamReader = New StreamReader(Me.sLocalizationFile, Encoding.UTF7, True)
+            Dim temp As String
+            Dim temp2(1000) As String 'items in string
+            Dim item, language As Integer
+            Do While Not sr.EndOfStream
+                item += 1
+                temp = sr.ReadLine()
+                temp = Me.regexReplace(temp, """", "") ' remove quote marks
+                temp2 = temp.Split(vbTab)
+                For language = 0 To temp2.Length - 1
+                    If temp2(language) = "" Then temp2(language) = temp2(1) ' Column two always has English data 
+                    ' row is the item and column is the language
+                    sLocalizationStrings(item, language) = temp2(language)
+                Next
+            Loop
+            sr.Close()
+        Catch ex As Exception
+            MessageBox.Show(Me.sLocalizationStrings(iFileReadError, Me.iLanguageSelected) & vbCrLf & Me.sLocalizationFile & vbCrLf & vbCrLf & ex.Message, Me.sLocalizationStrings(Me.iFileReadError, Me.iLanguageSelected), MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            End
+        End Try
+    End Sub
 
+    ' Private Sub fillForwardBackByControl(ByVal language As Int16)
+    '    Try
+    '       dramatizer.lbForwardBackBy.Items.Clear()
+    '      dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iNextClip, language))
+    '     dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iUnidentifiedCharacter, language))
+    '    dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iMultipleCharacters, language))
+    '   dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iUpdatedCharacter, language))
+    '  dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iSpeakerNumber, language))
+    ' dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iNextClip, language))
+    'dramatizer.btnMoreOptions.Text = Me.sLocalizationStrings(Me.iMore, language)
+    '     dramatizer.btnLessOptions.Text = Me.sLocalizationStrings(Me.iLess, language)
+    '    dramatizer.lblDisplay.Text = Me.sLocalizationStrings(Me.iDisplayClipsBy, language)
+    '   dramatizer.rbAll.Text = Me.sLocalizationStrings(Me.iAllClips, language)
+    '  dramatizer.rbUnidentified.Text = Me.sLocalizationStrings(Me.iUnidentifiedClips, language)
+    ' dramatizer.rbMultiple.Text = Me.sLocalizationStrings(Me.iMultipleClips, language)
+    'dramatizer.rbCharacter.Text = Me.sLocalizationStrings(Me.iCharacterNameClips, language)
+    '    dramatizer.rbSpeaker.Text = Me.sLocalizationStrings(Me.iSpeakerNumberClips, language)
+    '  Catch ex As Exception
+    '     MessageBox.Show("Problem loading forward and back names into list box." & vbCrLf & ex.Message, "Problem loading forward and back names", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+    '  End Try
+    ' End Sub
+    Public Sub localizeTranslate(ByVal language As Int16)
+        translate.btnOK.Text = sLocalizationStrings(iOK, language)
+        translate.btnCancel.Text = sLocalizationStrings(iCancel, language)
+        translate.lblSource.Text = sLocalizationStrings(2, 1)
+        translate.lblTarget.Text = sLocalizationStrings(2, iLanguageSelected)
+    End Sub
+    Public Sub localizeMain(ByVal language As Int16)
+        Me.Text = Me.Text
+        Me.lblDiskSpaceDriveC.Text = Me.sLocalizationStrings(Me.iAvailableDiskSpaceC, language)
+        Me.lblFileName.Text = Me.sLocalizationStrings(iFileName, language)
+        Me.lblFontName.Text = Me.sLocalizationStrings(Me.iFontName, language)
+        Me.lblFontSize.Text = Me.sLocalizationStrings(Me.iFontSize, language)
+        Me.btnDefaultSettings.Text = Me.sLocalizationStrings(Me.iDefaultSettings, language)
+        Me.btnBrowse.Text = Me.sLocalizationStrings(Me.iBrowse, language)
+        Me.btnBrowseOutputFolder.Text = Me.sLocalizationStrings(Me.iBrowse, language)
+        Me.lblDramatizerOutputFolder.Text = Me.sLocalizationStrings(Me.iDramatizerOutputFolder, language)
+        Me.lblFirstLevelQuoteType.Text = Me.sLocalizationStrings(Me.iQuoteType, language)
+        Me.lblAudioRecordingProgram.Text = Me.sLocalizationStrings(Me.iAudioRecordingProgram, language)
+        Me.btnBrowseAudio.Text = Me.sLocalizationStrings(Me.iBrowse, language)
+        '  Me.btnChooseEncoding.Text = Me.sLocalizationStrings(Me.iTextEncoding, language)
+        Me.btnCancel.Text = Me.sLocalizationStrings(Me.iCancel, language)
+        Me.btnSetOptions.Text = Me.sLocalizationStrings(Me.iSetOptions, language)
+        Me.btnDisplayClips.Text = Me.sLocalizationStrings(Me.iDisplayQuotes, language)
+        ' Me.btnChooseEncoding.Text = Me.sLocalizationStrings(Me.iTextEncoding, language)
+        Me.rbEncodingANSI.Text = Me.sLocalizationStrings(Me.iANSI, language)
+        Me.rbEncodingUTF8.Text = Me.sLocalizationStrings(Me.iUTF8, language)
+        Me.lblEncoding.Text = Me.sLocalizationStrings(Me.iTextEncoding, language)
+        Me.lblEthnologueCode.Text = Me.sLocalizationStrings(Me.iEthnologueCode, language)
+        Me.lblMaxClipSize.Text = Me.sLocalizationStrings(Me.iMaxClipSizeText, language)
+        Me.lblCurrentPosition.Text = "" ' Me.sLocalizationStrings(Me.iCurrentLocationNumber, language)
+        Me.lblMaxClipSize.Text = Me.sLocalizationStrings(Me.iMaxClipSize, language)
+        Me.chkbxBreakAtParagraphs.Text = Me.sLocalizationStrings(Me.iBreakAtMostParagraphs, language)
+        Me.chkbxAdjustClipSize.Text = Me.sLocalizationStrings(Me.iUseSettingsToAdjustClipSize, language)
+        Me.TabPage1.Text = Me.sLocalizationStrings(Me.iInputTab, language)
+        Me.TabPage1.Text = Me.sLocalizationStrings(Me.iInputTab, language)
+        Me.TabPage2.Text = Me.sLocalizationStrings(Me.iQuoteTypeTab, language)
+        ' moved to mastertext Me.TabPage3.Text = Me.sLocalizationStrings(Me.iOmitTextTab, language)
+        Me.TabPage4.Text = Me.sLocalizationStrings(Me.iRecordingProgramTab, language)
+        Me.TabPage5.Text = Me.sLocalizationStrings(Me.iClipSizeTab, language)
+        Me.TabPage6.Text = Me.sLocalizationStrings(Me.iEthnologueCodeTab, language)
+        Me.TabPage7.Text = Me.sLocalizationStrings(Me.iOutputTab, language)
+        Me.TabPage8.Text = Me.sLocalizationStrings(Me.iFontTab, language)
+    End Sub
+    Public Sub prepareToWorkFromMaster()
+        dramatizer.Show()
+        MainMenu.Hide()
+        Me.Hide()
+        Me.readClipsFromFileMaster()
+        dramatizer.displayMasterAndVoiceTalentText()
+        Me.fillPromptControl()
+        Me.fillCharacterNamesControl()
+    End Sub
+    Public Sub localizeDramatizer(ByVal language As Int16)
+        '   fillForwardBackByControl(language)
+        dramatizer.Text = Me.Text
+        dramatizer.rbUpdated.Text = sLocalizationStrings(Me.iUpdatedCharacter, language)
+        dramatizer.chkbxShowPrompt.Text = sLocalizationStrings(Me.iShowPrompt, language)
+        dramatizer.chkbxDisplayOmittedClips.Text = sLocalizationStrings(Me.iDisplayOmittedClipsToo, language)
+        ' dramatizer.chkbxDisplayUnrecordedOnly.Text = sLocalizationStrings(Me.iDisplayUnrecordedClipsOnly, language)
+        dramatizer.chkbxDisplayUnprocessedOnly.Text = sLocalizationStrings(Me.iDisplayUnprocessedClipsOnly, language)
+        '     dramatizer.chkbxSpeaker.Text = sLocalizationStrings(Me.iRecordOneSpeakerAtATime, language)
+        dramatizer.lblClipNumber.Text = sLocalizationStrings(iClipNumber, language)
+        dramatizer.lblCharacterSpeakerNumber.Text = sLocalizationStrings(iSpeakerNumber, language)
+        dramatizer.lblCharacterPrompt.Text = sLocalizationStrings(iPrompt, language)
+        dramatizer.lblCharacterName.Text = sLocalizationStrings(Me.iCharacterName, language)
+        dramatizer.lblDisplay.Text = sLocalizationStrings(Me.iDisplayClipsBy, language)
+        dramatizer.btnNotAQuote.Text = sLocalizationStrings(Me.iNotAQuote, language)
+        dramatizer.btnNext.Text = sLocalizationStrings(iNext, language)
+        'dramatizer.btnUpdate.Text = sLocalizationStrings(iUpdate, language)
+        dramatizer.btnUpdate.Text = "" ' using icons now
+        dramatizer.btnEdit.Text = sLocalizationStrings(iEdit, language)
+        dramatizer.btnEnd.Text = sLocalizationStrings(iExit, language)
+        dramatizer.btnMoreOptions.Text = sLocalizationStrings(Me.iMore, language)
+        dramatizer.btnLessOptions.Text = sLocalizationStrings(Me.iLess, language)
+        dramatizer.rbAll.Text = sLocalizationStrings(Me.iAllClips, language)
+        dramatizer.rbCharacter.Text = sLocalizationStrings(Me.iCharacterNameClips, language)
+        dramatizer.rbMultiple.Text = sLocalizationStrings(Me.iMultipleClips, language)
+        dramatizer.rbSpeaker.Text = sLocalizationStrings(Me.iSpeakerNumberClips, language)
+        dramatizer.rbUnidentified.Text = sLocalizationStrings(Me.iUnidentifiedClips, language)
+        dramatizer.rbUpdated.Text = sLocalizationStrings(Me.iUpdatedCharacter, language)
+      
+        '        ForwardBackControl.lbForwardBackBy.Text = Me.sLocalizationStrings(iNextClip, language)
+    End Sub
+    '   Private Sub localizeMasterText(ByVal language As Int16)
+    '      MasterText.chkbxShowContext.Text = sLocalizationStrings(iShowContext, language)
+    '     MasterText.chkbxShowSFMcodes.Text = sLocalizationStrings(iShowSFMcodes, language)
+    '    MasterText.chkbxShowSpeakerText.Text = sLocalizationStrings(iShowSpeakerText, language)
+    '   MasterText.chkbxShowVerses.Text = sLocalizationStrings(iShowVerses, language)
+    '  End Sub
+    Public Sub createScripts1to30()
+        Try
+            Dim fontName As String = Me.cbFontName.SelectedItem
+            Dim fontSize As String = Me.cbFontSize.SelectedItem
+            Dim temp As String
+            Dim iScriptClipNumber, i As Integer
+            Dim iSpeakerNumber As Int16
+            For iSpeakerNumber = 1 To 30
+                i = 0 ' counter
+                Dim sw As StreamWriter = New StreamWriter(Me.sScriptSpeakerFile & iSpeakerNumber.ToString & ".html", False, System.Text.Encoding.UTF8)
+                writeStartHTML(sw)
+                sw.WriteLine("td.clip {font-family: " + fontName + ", Arial, Helvetica, sans-serif ; font-size: " + fontSize + "px; 	background-color: transparent}")
+                sw.WriteLine(" -->")
+                sw.WriteLine("</style>")
+                sw.WriteLine("</head>")
+                sw.WriteLine("<body>")
+                sw.WriteLine("<table>")
+                For iScriptClipNumber = 1 To Me.iLastClipNumber
+                    If Me.sSpeakerNumber(iScriptClipNumber) = iSpeakerNumber.ToString Then
+                        i += 1
+                        sw.WriteLine("<tr >")
+                        sw.Write("<td class=""counter"">")
+                        sw.Write(i)
+                        sw.Write("</td><td class=""speaker"">")
+                        sw.Write(Me.sSpeakerNumber(iScriptClipNumber))
+                        sw.Write("</td><td>")
+                        If Me.sCharacter(iScriptClipNumber, 0) <> Nothing Then
+                            sw.Write(Me.sCharacter(iScriptClipNumber, 0))
+                        Else
+                            sw.Write(Me.sCharacter(iScriptClipNumber, 1))
+                        End If
+                        sw.Write("</td><td>")
+                        sw.Write(Me.sBook(iScriptClipNumber))
+                        sw.Write(" ")
+                        sw.Write(Me.sChapter(iScriptClipNumber))
+                        sw.Write(".")
+                        sw.Write(Me.sVerse(iScriptClipNumber))
+                        sw.Write("</td><td>")
+                        sw.WriteLine(iScriptClipNumber)
+                        sw.Write("</td>")
+                        sw.Write("</tr>")
+                        temp = Me.sScript(iScriptClipNumber)
+                        ' remove verse and \ codes
+                        temp = dramatizer.removeVerseNumber(temp)
+                        temp = dramatizer.removeSFMcodes(temp)
+                        sw.WriteLine("<tr>")
+                        sw.Write("<td class=""clip"">")
+                        sw.WriteLine(temp)
+                        sw.Write("</td>")
+                        sw.Write("</tr>")
+                        sw.WriteLine()
+                    Else
+                        ' skip
+                    End If
+                Next
+                sw.Write("</table>")
+                sw.Write("</body>")
+                sw.Write("</html>")
+                sw.Close()
+            Next
+        Catch ex As Exception
+            MessageBox.Show("Error writing script for voice number " & iSpeakerNumber.ToString, "error writing file", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+    Private Sub writeStartHTML(ByVal fileOutput)
+        sInsertFile = sRequiredFilesFolder & "\scriptHead.html"
+        insertFileIntoCurrentFileOutput(fileOutput)
+    End Sub
+    Private Sub insertFileIntoCurrentFileOutput(ByVal fileOutput)
+        Dim fileReader As StreamReader = New StreamReader(sInsertFile, utf8, 512)
+        Do Until fileReader.EndOfStream
+            fileOutput.WriteLine(fileReader.ReadLine)
+        Loop
+        fileReader.Close()
+    End Sub
+    Public Sub createScriptsMaster()
+        Try
+            Dim fontName As String = Me.cbFontName.SelectedItem
+            Dim fontSize As String = Me.cbFontSize.SelectedItem
+            Dim temp As String
+            Dim iScriptClipNumber, i As Integer
+            i = 0 ' counter
+            Dim sw As StreamWriter = New StreamWriter(Me.sScriptSpeakerFile & "master.html", False, System.Text.Encoding.UTF8)
+            writeStartHTML(sw)
+            sw.WriteLine("td.clip {font-family: " + fontName + ", Arial, Helvetica, sans-serif ; font-size: " + fontSize + "px; 	background-color: transparent}")
+            sw.WriteLine(" -->")
+            sw.WriteLine("</style>")
+            sw.WriteLine("</head>")
+            sw.WriteLine("<body>")
+            sw.WriteLine("<table>")
+            For iScriptClipNumber = 1 To Me.iLastClipNumber
+                i += 1
+                sw.WriteLine("<tr >")
+                sw.Write("<td class=""counter"">")
+                sw.Write(i)
+                sw.Write("</td><td class=""speaker"">")
+                sw.Write(Me.sSpeakerNumber(iScriptClipNumber))
+                sw.Write("</td><td>")
+                If Me.sCharacter(iScriptClipNumber, 0) <> Nothing Then
+                    sw.Write(Me.sCharacter(iScriptClipNumber, 0))
+                Else
+                    sw.Write(Me.sCharacter(iScriptClipNumber, 1))
+                End If
+                sw.Write("</td><td>")
+                sw.Write(Me.sBook(iScriptClipNumber))
+                sw.Write(" ")
+                sw.Write(Me.sChapter(iScriptClipNumber))
+                sw.Write(".")
+                sw.Write(Me.sVerse(iScriptClipNumber))
+                sw.Write("</td><td>")
+                sw.WriteLine(iScriptClipNumber)
+                sw.Write("</td>")
+                sw.Write("</tr>")
+                temp = Me.sScript(iScriptClipNumber)
+                ' remove verse and \ codes
+                temp = dramatizer.removeVerseNumber(temp)
+                temp = dramatizer.removeSFMcodes(temp)
+                sw.WriteLine("<tr>")
+                sw.Write("<td class=""clip"">")
+                sw.WriteLine(temp)
+                sw.Write("</td>")
+                sw.Write("</tr>")
+                sw.WriteLine()
+            Next
+            sw.Write("</table>")
+            sw.Write("</body>")
+            sw.Write("</html>")
+            sw.Close()
+        Catch ex As Exception
+            MessageBox.Show("Error writing script for master " & Me.sScriptSpeakerFile & vbCrLf & ex.Message, "error writing file", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+    Public Sub writeLocalizationFile()
+        Try
+            ' make backup
+            If File.Exists(sLocalizationBackupFile) Then File.Delete(sLocalizationBackupFile)
+            File.Copy(Me.sLocalizationFile, Me.sLocalizationBackupFile)
+            ' Excel saves as ANSI file
+            Dim sw As StreamWriter = New StreamWriter(Me.sLocalizationFile, False, Encoding.UTF7)
+            Dim columnMax As Int16 = findMaxColumnForLocalization()
+            Dim row, column As Int16
+            ' write tab delimited file output
+            For row = 1 To Me.iMaximumLocalizationStrings
+                For column = 0 To columnMax - 1
+                    sw.Write(sLocalizationStrings(row, column))
+                    sw.Write(vbTab)
+                Next
+                sw.Write(sLocalizationStrings(row, column))
+                sw.WriteLine()
+                If sLocalizationStrings(row + 1, 1) = Nothing Then Exit For
+            Next
+            sw.Close()
+        Catch ex As Exception
+            MessageBox.Show("Problem writing the localization file: " & vbCrLf & Me.sLocalizationFile & vbCrLf & ex.Message, "File writing error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            End
+        End Try
+    End Sub
+    Public Function findMaxColumnForLocalization()
+        ' find maximum columns
+        Try
+            Dim i As Int16
+            Do
+                i += 1
+            Loop Until sLocalizationStrings(1, i) = Nothing Or i = Me.iMaximumLocalizationLanguages
+            Return i
+        Catch ex As Exception
+            MessageBox.Show("Problem finding max columns for localization: " & vbCrLf & ex.Message, "Localization error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return 0
+        End Try
+    End Function
+
+    Public Function formatTextForTextBox(ByVal temp As String)
+        temp = Me.regexReplace(temp, "(\()(\d)", vbCrLf & "    ($2")
+        temp = Me.regexReplace(temp, "\|", vbCrLf & vbCrLf) ' new line with space above 
+        Return temp
+    End Function
+
+
+
+    Public Function formatFolderStructure(ByVal temp As String)
+        Me.regexReplace(temp, "\", "$1\$2" + vbCrLf)
+        Return temp
+    End Function
 End Class

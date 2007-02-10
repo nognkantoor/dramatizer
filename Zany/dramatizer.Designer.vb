@@ -24,12 +24,10 @@ Partial Class dramatizer
         Me.lblCharacterPrompt = New System.Windows.Forms.Label
         Me.cbCharacterPrompt = New System.Windows.Forms.ComboBox
         Me.btnNext = New System.Windows.Forms.Button
-        Me.tbSpeakerNumber = New System.Windows.Forms.TextBox
         Me.lblCharacterSpeakerNumber = New System.Windows.Forms.Label
         Me.cbCharacters = New System.Windows.Forms.ComboBox
         Me.lblClipNumber = New System.Windows.Forms.Label
         Me.tbCurrentClipNumber = New System.Windows.Forms.TextBox
-        Me.lbForwardBackBy = New System.Windows.Forms.ListBox
         Me.tbBook = New System.Windows.Forms.TextBox
         Me.btnEnd = New System.Windows.Forms.Button
         Me.tbChapter = New System.Windows.Forms.TextBox
@@ -62,6 +60,7 @@ Partial Class dramatizer
         Me.lblDisplay = New System.Windows.Forms.Label
         Me.Panel3 = New System.Windows.Forms.Panel
         Me.tbDisplayClipsBy = New System.Windows.Forms.TextBox
+        Me.btnMoveDown = New System.Windows.Forms.Button
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.upDownSpeakerNumber, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +80,7 @@ Partial Class dramatizer
         'lblCharacterPrompt
         '
         Me.lblCharacterPrompt.AutoSize = True
-        Me.lblCharacterPrompt.Location = New System.Drawing.Point(123, 85)
+        Me.lblCharacterPrompt.Location = New System.Drawing.Point(123, 98)
         Me.lblCharacterPrompt.Name = "lblCharacterPrompt"
         Me.lblCharacterPrompt.Size = New System.Drawing.Size(57, 13)
         Me.lblCharacterPrompt.TabIndex = 38
@@ -93,7 +92,7 @@ Partial Class dramatizer
         Me.cbCharacterPrompt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbCharacterPrompt.BackColor = System.Drawing.Color.Gold
         Me.cbCharacterPrompt.FormattingEnabled = True
-        Me.cbCharacterPrompt.Location = New System.Drawing.Point(126, 101)
+        Me.cbCharacterPrompt.Location = New System.Drawing.Point(126, 114)
         Me.cbCharacterPrompt.Name = "cbCharacterPrompt"
         Me.cbCharacterPrompt.Size = New System.Drawing.Size(265, 21)
         Me.cbCharacterPrompt.TabIndex = 37
@@ -107,13 +106,6 @@ Partial Class dramatizer
         Me.btnNext.Text = "Next xxx"
         Me.btnNext.UseVisualStyleBackColor = True
         '
-        'tbSpeakerNumber
-        '
-        Me.tbSpeakerNumber.Location = New System.Drawing.Point(196, 17)
-        Me.tbSpeakerNumber.Name = "tbSpeakerNumber"
-        Me.tbSpeakerNumber.Size = New System.Drawing.Size(77, 20)
-        Me.tbSpeakerNumber.TabIndex = 35
-        '
         'lblCharacterSpeakerNumber
         '
         Me.lblCharacterSpeakerNumber.AutoSize = True
@@ -125,7 +117,7 @@ Partial Class dramatizer
         '
         'cbCharacters
         '
-        Me.cbCharacters.Location = New System.Drawing.Point(5, 59)
+        Me.cbCharacters.Location = New System.Drawing.Point(5, 72)
         Me.cbCharacters.Name = "cbCharacters"
         Me.cbCharacters.Size = New System.Drawing.Size(386, 21)
         Me.cbCharacters.TabIndex = 24
@@ -143,16 +135,8 @@ Partial Class dramatizer
         '
         Me.tbCurrentClipNumber.Location = New System.Drawing.Point(163, 23)
         Me.tbCurrentClipNumber.Name = "tbCurrentClipNumber"
-        Me.tbCurrentClipNumber.Size = New System.Drawing.Size(86, 20)
+        Me.tbCurrentClipNumber.Size = New System.Drawing.Size(52, 20)
         Me.tbCurrentClipNumber.TabIndex = 27
-        '
-        'lbForwardBackBy
-        '
-        Me.lbForwardBackBy.FormattingEnabled = True
-        Me.lbForwardBackBy.Location = New System.Drawing.Point(297, 17)
-        Me.lbForwardBackBy.Name = "lbForwardBackBy"
-        Me.lbForwardBackBy.Size = New System.Drawing.Size(195, 30)
-        Me.lbForwardBackBy.TabIndex = 24
         '
         'tbBook
         '
@@ -214,7 +198,7 @@ Partial Class dramatizer
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusBar, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 444)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 384)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(504, 22)
         Me.StatusStrip1.TabIndex = 14
@@ -234,9 +218,9 @@ Partial Class dramatizer
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(414, 59)
+        Me.btnEdit.Location = New System.Drawing.Point(414, 72)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(70, 23)
+        Me.btnEdit.Size = New System.Drawing.Size(76, 23)
         Me.btnEdit.TabIndex = 40
         Me.btnEdit.Text = "Edit xxx"
         Me.btnEdit.UseVisualStyleBackColor = True
@@ -244,7 +228,7 @@ Partial Class dramatizer
         'lblCharacterName
         '
         Me.lblCharacterName.AutoSize = True
-        Me.lblCharacterName.Location = New System.Drawing.Point(5, 40)
+        Me.lblCharacterName.Location = New System.Drawing.Point(5, 51)
         Me.lblCharacterName.Name = "lblCharacterName"
         Me.lblCharacterName.Size = New System.Drawing.Size(100, 13)
         Me.lblCharacterName.TabIndex = 41
@@ -254,6 +238,7 @@ Partial Class dramatizer
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.btnLessOptions)
+        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.btnMoreOptions)
         Me.Panel1.Controls.Add(Me.btnNotAQuote)
         Me.Panel1.Controls.Add(Me.cbCharactersEdit)
@@ -261,24 +246,22 @@ Partial Class dramatizer
         Me.Panel1.Controls.Add(Me.upDownSpeakerNumber)
         Me.Panel1.Controls.Add(Me.cbCharacters)
         Me.Panel1.Controls.Add(Me.lblCharacterName)
-        Me.Panel1.Controls.Add(Me.lbForwardBackBy)
         Me.Panel1.Controls.Add(Me.lblCharacterPrompt)
         Me.Panel1.Controls.Add(Me.btnEdit)
         Me.Panel1.Controls.Add(Me.cbCharacterPrompt)
         Me.Panel1.Controls.Add(Me.lblCharacterSpeakerNumber)
-        Me.Panel1.Controls.Add(Me.tbSpeakerNumber)
-        Me.Panel1.Location = New System.Drawing.Point(5, 86)
+        Me.Panel1.Location = New System.Drawing.Point(5, 76)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(499, 136)
+        Me.Panel1.Size = New System.Drawing.Size(499, 146)
         Me.Panel1.TabIndex = 42
         '
         'btnLessOptions
         '
         Me.btnLessOptions.Image = CType(resources.GetObject("btnLessOptions.Image"), System.Drawing.Image)
         Me.btnLessOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnLessOptions.Location = New System.Drawing.Point(414, 99)
+        Me.btnLessOptions.Location = New System.Drawing.Point(414, 112)
         Me.btnLessOptions.Name = "btnLessOptions"
-        Me.btnLessOptions.Size = New System.Drawing.Size(70, 23)
+        Me.btnLessOptions.Size = New System.Drawing.Size(76, 23)
         Me.btnLessOptions.TabIndex = 50
         Me.btnLessOptions.Text = "Less xxx"
         Me.btnLessOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -288,7 +271,7 @@ Partial Class dramatizer
         '
         Me.btnMoreOptions.Image = CType(resources.GetObject("btnMoreOptions.Image"), System.Drawing.Image)
         Me.btnMoreOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnMoreOptions.Location = New System.Drawing.Point(414, 99)
+        Me.btnMoreOptions.Location = New System.Drawing.Point(414, 112)
         Me.btnMoreOptions.Name = "btnMoreOptions"
         Me.btnMoreOptions.Size = New System.Drawing.Size(70, 23)
         Me.btnMoreOptions.TabIndex = 49
@@ -298,7 +281,7 @@ Partial Class dramatizer
         '
         'btnNotAQuote
         '
-        Me.btnNotAQuote.Location = New System.Drawing.Point(5, 99)
+        Me.btnNotAQuote.Location = New System.Drawing.Point(5, 112)
         Me.btnNotAQuote.Name = "btnNotAQuote"
         Me.btnNotAQuote.Size = New System.Drawing.Size(115, 23)
         Me.btnNotAQuote.TabIndex = 48
@@ -310,7 +293,7 @@ Partial Class dramatizer
         Me.cbCharactersEdit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.cbCharactersEdit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbCharactersEdit.BackColor = System.Drawing.Color.Gold
-        Me.cbCharactersEdit.Location = New System.Drawing.Point(5, 59)
+        Me.cbCharactersEdit.Location = New System.Drawing.Point(5, 72)
         Me.cbCharactersEdit.Name = "cbCharactersEdit"
         Me.cbCharactersEdit.Size = New System.Drawing.Size(386, 21)
         Me.cbCharactersEdit.TabIndex = 47
@@ -320,7 +303,7 @@ Partial Class dramatizer
         Me.chkbxShowPrompt.AutoSize = True
         Me.chkbxShowPrompt.Checked = True
         Me.chkbxShowPrompt.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbxShowPrompt.Location = New System.Drawing.Point(196, 84)
+        Me.chkbxShowPrompt.Location = New System.Drawing.Point(196, 97)
         Me.chkbxShowPrompt.Name = "chkbxShowPrompt"
         Me.chkbxShowPrompt.Size = New System.Drawing.Size(106, 17)
         Me.chkbxShowPrompt.TabIndex = 46
@@ -459,9 +442,9 @@ Partial Class dramatizer
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel3.Controls.Add(Me.chkbxDisplayOmittedClips)
         Me.Panel3.Controls.Add(Me.chkbxDisplayUnprocessedOnly)
-        Me.Panel3.Location = New System.Drawing.Point(3, 377)
+        Me.Panel3.Location = New System.Drawing.Point(225, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(395, 60)
+        Me.Panel3.Size = New System.Drawing.Size(265, 63)
         Me.Panel3.TabIndex = 55
         '
         'tbDisplayClipsBy
@@ -471,13 +454,24 @@ Partial Class dramatizer
         Me.tbDisplayClipsBy.Size = New System.Drawing.Size(208, 20)
         Me.tbDisplayClipsBy.TabIndex = 56
         '
+        'btnMoveDown
+        '
+        Me.btnMoveDown.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnMoveDown.Location = New System.Drawing.Point(404, 228)
+        Me.btnMoveDown.Name = "btnMoveDown"
+        Me.btnMoveDown.Size = New System.Drawing.Size(93, 23)
+        Me.btnMoveDown.TabIndex = 57
+        Me.btnMoveDown.Text = "move down xxx"
+        Me.btnMoveDown.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnMoveDown.UseVisualStyleBackColor = True
+        '
         'dramatizer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(504, 466)
+        Me.ClientSize = New System.Drawing.Size(504, 406)
+        Me.Controls.Add(Me.btnMoveDown)
         Me.Controls.Add(Me.tbDisplayClipsBy)
-        Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.StatusStrip1)
@@ -513,7 +507,6 @@ Partial Class dramatizer
     Friend WithEvents cbCharacters As System.Windows.Forms.ComboBox
     Friend WithEvents lblClipNumber As System.Windows.Forms.Label
     Friend WithEvents tbCurrentClipNumber As System.Windows.Forms.TextBox
-    Friend WithEvents lbForwardBackBy As System.Windows.Forms.ListBox
     Friend WithEvents tbBook As System.Windows.Forms.TextBox
     Friend WithEvents btnEnd As System.Windows.Forms.Button
     Friend WithEvents tbChapter As System.Windows.Forms.TextBox
@@ -525,7 +518,6 @@ Partial Class dramatizer
     Friend WithEvents statusBar As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents lblCharacterSpeakerNumber As System.Windows.Forms.Label
-    Friend WithEvents tbSpeakerNumber As System.Windows.Forms.TextBox
     Friend WithEvents btnNext As System.Windows.Forms.Button
     Friend WithEvents cbCharacterPrompt As System.Windows.Forms.ComboBox
     Friend WithEvents lblCharacterPrompt As System.Windows.Forms.Label
@@ -552,4 +544,5 @@ Partial Class dramatizer
     Friend WithEvents rbMultiple As System.Windows.Forms.RadioButton
     Friend WithEvents rbAll As System.Windows.Forms.RadioButton
     Friend WithEvents tbDisplayClipsBy As System.Windows.Forms.TextBox
+    Friend WithEvents btnMoveDown As System.Windows.Forms.Button
 End Class

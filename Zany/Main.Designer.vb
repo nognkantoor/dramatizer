@@ -504,11 +504,11 @@ Partial Class Main
         '
         Me.TrackBarClipSize.LargeChange = 6
         Me.TrackBarClipSize.Location = New System.Drawing.Point(106, 33)
-        Me.TrackBarClipSize.Maximum = 20
+        Me.TrackBarClipSize.Maximum = 14
         Me.TrackBarClipSize.Name = "TrackBarClipSize"
         Me.TrackBarClipSize.Size = New System.Drawing.Size(456, 42)
         Me.TrackBarClipSize.TabIndex = 45
-        Me.TrackBarClipSize.Value = 10
+        Me.TrackBarClipSize.Value = 4
         '
         'lblMaxClipSize
         '
@@ -669,12 +669,13 @@ Partial Class Main
         '
         'btnSetOptions
         '
+        Me.btnSetOptions.BackColor = System.Drawing.SystemColors.Control
         Me.btnSetOptions.Location = New System.Drawing.Point(505, 310)
         Me.btnSetOptions.Name = "btnSetOptions"
         Me.btnSetOptions.Size = New System.Drawing.Size(120, 23)
         Me.btnSetOptions.TabIndex = 37
         Me.btnSetOptions.Text = "set options xxx"
-        Me.btnSetOptions.UseVisualStyleBackColor = True
+        Me.btnSetOptions.UseVisualStyleBackColor = False
         '
         'panelEncoding
         '

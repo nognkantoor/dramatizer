@@ -55,40 +55,25 @@ Public Class MasterText
         Main.processOmittedTextBasedOnCheckedInfo()
     End Sub
     Private Sub localizeMasterText()
-        Me.chkbxShowContext.Text = MainMenu.sLocalizationStrings(MainMenu.iShowContext, MainMenu.iLanguageSelected)
-        Me.chkbxShowSFMcodes.Text = MainMenu.sLocalizationStrings(MainMenu.iShowSFMcodes, MainMenu.iLanguageSelected)
-        Me.chkbxShowSpeakerText.Text = MainMenu.sLocalizationStrings(MainMenu.iShowSpeakerText, MainMenu.iLanguageSelected)
-        Me.chkbxShowVerses.Text = MainMenu.sLocalizationStrings(MainMenu.iShowVerses, MainMenu.iLanguageSelected)
-        Me.lblOmitTextFoundIn.Text = MainMenu.sLocalizationStrings(MainMenu.iDoNotSpeakThis, MainMenu.iLanguageSelected)
-        Me.chkbxSectionHeads.Text = MainMenu.sLocalizationStrings(MainMenu.iSectionHeads, MainMenu.iLanguageSelected)
-        Me.chkbxIntroduction.Text = MainMenu.sLocalizationStrings(MainMenu.iIntroductions, MainMenu.iLanguageSelected)
-        Me.chkbxHeading.Text = MainMenu.sLocalizationStrings(MainMenu.iHeadings, MainMenu.iLanguageSelected)
-        Me.chkbxFootnotes.Text = MainMenu.sLocalizationStrings(MainMenu.iFootnotes, MainMenu.iLanguageSelected)
-        Me.chkbxChapterNumbers.Text = MainMenu.sLocalizationStrings(MainMenu.iChapterNumbers, MainMenu.iLanguageSelected)
-        Me.chkbxReferences.Text = MainMenu.sLocalizationStrings(MainMenu.iReferences, MainMenu.iLanguageSelected)
-        Me.chkbxThisOne.Text = MainMenu.sLocalizationStrings(MainMenu.iThisOne, MainMenu.iLanguageSelected)
-        Me.lblClipSize.Text = MainMenu.sLocalizationStrings(MainMenu.iClipSize, MainMenu.iLanguageSelected)
-        Me.Text = MainMenu.sLocalizationStrings(MainMenu.iMasterText, MainMenu.iLanguageSelected)
-        Me.btnMoveThis.Text = MainMenu.sLocalizationStrings(MainMenu.iMoveToTopRight, MainMenu.iLanguageSelected)
+        Me.chkbxShowContext.Text = Main.sLocalizationStrings(Main.iShowContext, Main.iLanguageSelected)
+        Me.chkbxShowSFMcodes.Text = Main.sLocalizationStrings(Main.iShowSFMcodes, Main.iLanguageSelected)
+        Me.chkbxShowSpeakerText.Text = Main.sLocalizationStrings(Main.iShowSpeakerText, Main.iLanguageSelected)
+        Me.chkbxShowVerses.Text = Main.sLocalizationStrings(Main.iShowVerses, Main.iLanguageSelected)
+        Me.lblOmitTextFoundIn.Text = Main.sLocalizationStrings(Main.iDoNotSpeakThis, Main.iLanguageSelected)
+        Me.chkbxSectionHeads.Text = Main.sLocalizationStrings(Main.iSectionHeads, Main.iLanguageSelected)
+        Me.chkbxIntroduction.Text = Main.sLocalizationStrings(Main.iIntroductions, Main.iLanguageSelected)
+        Me.chkbxHeading.Text = Main.sLocalizationStrings(Main.iHeadings, Main.iLanguageSelected)
+        Me.chkbxFootnotes.Text = Main.sLocalizationStrings(Main.iFootnotes, Main.iLanguageSelected)
+        Me.chkbxChapterNumbers.Text = Main.sLocalizationStrings(Main.iChapterNumbers, Main.iLanguageSelected)
+        Me.chkbxReferences.Text = Main.sLocalizationStrings(Main.iReferences, Main.iLanguageSelected)
+        Me.chkbxThisOne.Text = Main.sLocalizationStrings(Main.iThisOne, Main.iLanguageSelected)
+        Me.lblClipSize.Text = Main.sLocalizationStrings(Main.iClipSize, Main.iLanguageSelected)
+        Me.Text = Main.sLocalizationStrings(Main.iMasterText, Main.iLanguageSelected)
+        Me.btnMoveThis.Text = Main.sLocalizationStrings(Main.iMoveToTopRight, Main.iLanguageSelected)
 
     End Sub
 
-    Private Sub chkbxSectionHeads_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxSectionHeads.CheckedChanged
-        Try
-            If Me.chkbxSectionHeads.Checked = True Then
-                Main.removeSectionHeads()
-            Else
-                Main.showSectionHeads()
-            End If
-            Main.writeCurrentSettings()
-            Main.identifyOmittedText()
-            Main.writeClipsToMasterFileAndAdjustClipSize(False)
-        Catch ex As Exception
-            ' first time through this doesn't work
-            '    MessageBox.Show("error " & ex.Message, "Error")
-        End Try
-    End Sub
-
+    
     Private Sub chkbxChapterNumbers_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxChapterNumbers.CheckedChanged
         Try
             If Me.chkbxChapterNumbers.Checked = True Then
@@ -182,14 +167,33 @@ Public Class MasterText
     Private Sub btnMoveThis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoveThis.Click
         If Me.blnTopRight = True Then
             ' move to top right
-            Me.btnMoveThis.Text = MainMenu.sLocalizationStrings(MainMenu.iMoveToBottomLeft, MainMenu.iLanguageSelected)
-            Me.Location = New Point(512, 0)
-            Me.blnTopRight = False
+            topRight()
         Else
             ' move to lower left
-            Me.btnMoveThis.Text = MainMenu.sLocalizationStrings(MainMenu.iMoveToTopRight, MainMenu.iLanguageSelected)
+            Me.btnMoveThis.Text = Main.sLocalizationStrings(Main.iMoveToTopRight, Main.iLanguageSelected)
             Me.Location = New Point(0, 300)
             Me.blnTopRight = True
         End If
+    End Sub
+    Public Sub topRight()
+        Me.btnMoveThis.Text = Main.sLocalizationStrings(Main.iMoveToBottomLeft, Main.iLanguageSelected)
+        Me.Location = New Point(512, 0)
+        Me.blnTopRight = False
+    End Sub
+    Private Sub chkbxSectionHeads_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxSectionHeads.CheckedChanged
+        Try
+            If Me.chkbxSectionHeads.Checked = True Then
+                Main.removeSectionHeads()
+            Else
+                Main.showSectionHeads()
+            End If
+            Main.writeCurrentSettings()
+            Main.identifyOmittedText()
+            Main.writeClipsToMasterFileAndAdjustClipSize(False)
+        Catch ex As Exception
+            ' first time through this doesn't work
+            '    MessageBox.Show("error " & ex.Message, "Error")
+        End Try
+
     End Sub
 End Class

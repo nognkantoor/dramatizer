@@ -25,8 +25,8 @@ prompt	Prompt	Prompt	Prompt
 show context	Show context	Show context	Show context
 hide context	Hide context	Hide context	Hide context
 advance to next	Clip	Clip	Clip
-advance by Unidentfied character clip	Unidentified characters	Unidentified characters	Unidentified characters
-advance by Multiple characters clip	Multiple characters	Multiple characters	Multiple characters
+advance by Unidentfied character clip	unidentified characters	Unidentified characters	Unidentified characters
+advance by Multiple characters clip	multiple characters	Multiple characters	Multiple characters
 advance by my Updated clip	Updated character	Updated character	Updated character
 0 multiple	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 
 1 multiple	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.
@@ -71,17 +71,17 @@ text unusable	Dramatizer will not be able to use this text until this is correct
 see more problems	Do you see if there are other problems?	Do you to see if there are other problems?	Do you to see if there are other problems?
 continuing quote tip	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.
 fileReadError	File reading error	File reading error	File reading error
-Unidentified characters to fix	Unidentified characters to fix	Unidentified characters to fix	Unidentified characters to fix
-Multiple characters to fix	Multiple characters to fix	Multiple characters to fix	Multiple characters to fix
-totalClips	Total clips	Total clips	Total clips
-Clips to record	Clips to record	Clips to record	Clips to record
+Unidentified characters to fix	unidentified characters to fix	Unidentified characters to fix	Unidentified characters to fix
+Multiple characters to fix	multiple characters to fix	Multiple characters to fix	Multiple characters to fix
+totalClips	total clips	Total clips	Total clips
+Clips to record	clips to record	Clips to record	Clips to record
 ClickNextToStart	Click Next to start.	Click Next to start	Click Next to start
 VerifyUpdatedText	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.
 VerifyAllText	Verify all characters. You must do this before assigning characters to speakers.	Verify all characters. You must do this before assigning characters to speakers.	Verify all characters. You must do this before assigning characters to speakers.
 AssignCharacterToSpeakerText	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.
 CreateScriptsText	"In the scripts folder, create a master script and a script for each speaker. Scripts are html files that can be printed out. In the recordings folder create a blank wave file for each clip."	A script for each speaker will be created. It is a plain text file that can be printed out. Look in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/scripts +AHw-to find all the scripts.	A script for each speaker will be created. It is a plain text file that can be printed out. Look in +AHw-My Documents/My Dramatizer/+AFs-code for language+AF0-/project name/scripts +AHw-to find all the scripts.
-RecordText	Start recording now		
-UnassignedCharactersToFix	Unassigned characters to fix	Unassigned characters to fix	Unassigned characters to fix
+RecordText	Start recording now	Start recording now	Start recording now
+UnassignedCharactersToFix	unassigned characters to fix	Unassigned characters to fix	Unassigned characters to fix
 showVerses	Show verses	Show verses	Show verses
 showSFMcodes	Show SFM codes	Show SFM codes	Show SFM codes
 showSpeakerText	Show speaker text	Show speaker text	Show speaker text
@@ -101,7 +101,7 @@ OmitThisOne	Omit this one	Omit this one	Omit this one
 OutputFolder	Dramatizer output folder	Dramatizer output folder	Dramatizer output folder
 SpeechContinuesInNextClip	Continues in next clip	Continues in next clip	Continues in next clip
 ClipSize	Clip size in seconds (approximate)	Clip size in seconds (approximate)	Clip size in seconds (approximate)
-PercentIdentified	 percent Dramatizer identified.		
+PercentIdentified	 percent Dramatizer identified.	 percent Dramatizer identified.	 percent Dramatizer identified.
 BreakAtMostParagraphs	Break at most paragraphs	Break at most paragraphs	Break at most paragraphs
 DefaultSettings	Reset to default settings	Reset to default settings	Reset to default settings
 MasterText	Master text	Master text	Master text
@@ -126,4 +126,7 @@ Unidenfied	Unidentified
 Multiple	Multiple
 CharacterName	Character name
 SpeakerNumber	Speaker number
-CongratulationsRecord	Congratulagtions! You are ready to start recording. Make sure you have the correct audio recording program selected in Select options. You may record in sequence or by speaker number. The default is to record by speaker number. Output files (wav) are located at:
+CongratulationsRecord	Congratulagtions+ACE- You are ready to start recording. Make sure you have the correct audio recording program selected in Select options. You may record in sequence or by speaker number. The default is to record by speaker number. Output files (wav) are located at:
+MoveUp	Move up
+MoveDown	Move down
+RecordSpeaker	 left to record for this speaker

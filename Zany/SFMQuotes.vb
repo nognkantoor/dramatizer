@@ -31,17 +31,17 @@ Public Class SFMQuotes
     End Sub
     Public Function identifySpeakingCharacters()
         '  ForwardBackControl.Show()
-        MainMenu.Show()
-        MainMenu.progressBar.Show()
-        MainMenu.tbProgress.Show()
+        '  Me.Show()
+        ' Me.progressBar.Show()
+        'Me.tbProgress.Show()
         Dim sr As StreamReader = New StreamReader(sGetBookChapterVerseFileName, Text.Encoding.UTF8, True)
         Dim sw As StreamWriter = New StreamWriter(sIdentifySpeakingCharactersFileName, False, Text.Encoding.UTF8)
         Dim id, clip, newClip, sSpeakingCharacters As String
         Dim i As Integer
         Do While Not sr.EndOfStream
             i += 1
-            MainMenu.tbProgress.Text = i.ToString
-            MainMenu.tbProgress.Update()
+            '   Me.tbProgress.Text = i.ToString
+            '  Me.tbProgress.Update()
             clip = sr.ReadLine
             newClip = clip
             If clip.Contains(sBlankSpeakingCharacter) Then

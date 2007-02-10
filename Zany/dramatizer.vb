@@ -5,6 +5,7 @@ Imports str = Microsoft.VisualBasic.Strings
 Imports System.Text.RegularExpressions
 Public Class dramatizer
     Public blnMoreOrLess As Boolean = True
+    Public blnMoveDown As Boolean = True
     '    Public main.iCurrentClipNumber As Integer
     Public Sub New()
         Try
@@ -16,7 +17,8 @@ Public Class dramatizer
         End Try
         ' Add any initialization after the InitializeComponent() call.
         Try
-            If Me.lbForwardBackBy.SelectedItem = Nothing Then Me.lbForwardBackBy.SelectedItem = 1
+            showLessOptions()
+            '        If Me.lbForwardBackBy.SelectedItem = Nothing Then Me.lbForwardBackBy.SelectedItem = 1
          Catch ex As Exception
             MessageBox.Show("oops 3 " & ex.Message)
         End Try
@@ -81,7 +83,7 @@ Public Class dramatizer
         Try
             MasterText.tbClipSize.Text = Main.calculateClipSize(Main.sClipSize(Main.iCurrentClipNumber))
             If Main.sContinued(Main.iCurrentClipNumber + 1) > 0 Then
-                MasterText.tbContinued.Text = MainMenu.sLocalizationStrings(MainMenu.iSpeechContinuedToNextClip, MainMenu.iLanguageSelected)
+                MasterText.tbContinued.Text = Main.sLocalizationStrings(Main.iSpeechContinuedToNextClip, Main.iLanguageSelected)
                 MasterText.tbContinued.BackColor = Color.AliceBlue
             Else
                 MasterText.tbContinued.Text = ""
@@ -203,23 +205,23 @@ Public Class dramatizer
         Me.Hide()
         MainMenu.Show()
         MainMenu.setCheckMarksAndEnableMenuItems()
-        ' MainMenu.enableMenuChoices()
-        'If MainMenu.lblStartProcessing.Visible = True Then
-        ' MainMenu.rbInitialize.Focus()
+        ' me.enableMenuChoices()
+        'If me.lblStartProcessing.Visible = True Then
+        ' me.rbInitialize.Focus()
         ' End If
-        ' If MainMenu.lblInitialize.Visible = True Then
-        ' MainMenu.rbUnidentified.Focus()
+        ' If me.lblInitialize.Visible = True Then
+        ' me.rbUnidentified.Focus()
         ' End If
-        ' If MainMenu.lblUnidentified.Visible = True Then
-        ' MainMenu.rbMultiple.Focus()
+        ' If me.lblUnidentified.Visible = True Then
+        ' me.rbMultiple.Focus()
         ' End If
-        ' If MainMenu.lblMultiple.Visible = True Then
-        ' MainMenu.rbVerifyUpdated.Focus()
+        ' If me.lblMultiple.Visible = True Then
+        ' me.rbVerifyUpdated.Focus()
         ' End If
 
         MasterText.Hide()
         VoiceTalentText.Hide()
-        Main.showStatsForUnidentifiedMultipleTotal()
+        MainMenu.showStatsForUnidentifiedMultipleTotal()
     End Sub
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         ' set the properties of the current clip to displayed values
@@ -280,7 +282,7 @@ Public Class dramatizer
         ' iLastClipNumber is really 1 over in order to handle splits properly
         ' so don't show the "last" one as it is blank
         Dim i As Integer = Main.iCurrentClipNumber
-        Select Case lbForwardBackBy.SelectedIndex
+        Select Case "XXX" 'lbForwardBackBy.SelectedIndex
             Case -1, 0, 5 ' "Next clip" "Verify All" "record all" ' can't match string as string changes
                 i = skipForward(i)
             Case 1 ' "Unidentified character clip"
@@ -334,6 +336,7 @@ Public Class dramatizer
             If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1
         Else
             ' hide omitted clip
+            If clipNumber <= 1 Then Beep() : clipNumber = 1 : Return clipNumber
             Do Until (Main.blnOmit(clipNumber) = False Or clipNumber = Main.iLastClipNumber)
                 clipNumber -= 1
                 If clipNumber <= 1 Then Beep() : clipNumber = 1 : Exit Do
@@ -368,12 +371,80 @@ Public Class dramatizer
         End If
         Return clipNumber
     End Function
-    Private Sub goBack()
+
+    Public Sub goBack()
         Me.btnUpdate.BackColor = Color.LightGray
         Me.btnForward.BackColor = Color.LightGray
         If Main.iCurrentClipNumber = 1 Then Main.iCurrentClipNumber = Main.iLastClipNumber + 1
         Dim i As Integer = Main.iCurrentClipNumber
-        Select Case lbForwardBackBy.SelectedIndex
+        ' iLastClipNumber is really 1 over in order to handle splits properly
+        ' so don't show the "last" one as it is blank
+
+        If Me.rbAll.Checked = True Then
+
+            'Select Case lbForwardBackBy.SelectedIndex
+            '   Case -1, 0, 5 ' "Next clip" "Verify All" "record all" ' can't match string as string changes
+            i = skipBack(i)
+        ElseIf Me.rbUnidentified.Checked = True Then
+
+            'Case 1 ' "Unidentified character clip"
+            Do
+                i = skipBack(i)
+                If i <= 1 Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) = 0
+        ElseIf Me.rbMultiple.Checked = True Then
+            '       Case 2 '"Multiple characters in a clip"
+            Do
+                i = skipBack(i)
+                If i <= 1 Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) > 1
+        ElseIf Me.rbUpdated.Checked = True Then
+            '      Case 3 '"Verify Updated clip"
+            Do
+                i = skipBack(i)
+                If i <= 1 Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sCharacter(i, 0) <> Nothing
+        ElseIf Me.rbSpeaker.Checked Then
+            '     Case 4 ' "Same speaker number" Record
+            Do
+                i = skipBack(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
+        ElseIf Me.rbCharacter.Checked = True Then
+            '      Case 3 '"Verify character clip"
+            Do
+                i = skipBack(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
+        ElseIf Me.rbSpeaker.Checked = True Then
+            Do
+                i = skipBack(i)
+                If i <= 1 Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
+        ElseIf Me.rbCharacter.Checked = True Then
+            Do
+                i = skipBack(i)
+                If i <= 1 Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sCharacterShort(i) = Me.cbCharacters.Text
+        Else
+            i = skipBack(i)
+        End If
+        Main.iCurrentClipNumber = i
+        '    If Me.btnForward.BackColor = Color.Lime Then
+        '   Me.updateCharactersFile()
+        '   Me.btnForward.BackColor = color.lightgray
+        '   Else
+        displayPropertiesOfClip(2)
+        '    End If
+    End Sub
+
+    Private Sub goBackxxx()
+        Me.btnUpdate.BackColor = Color.LightGray
+        Me.btnForward.BackColor = Color.LightGray
+        If Main.iCurrentClipNumber = 1 Then Main.iCurrentClipNumber = Main.iLastClipNumber + 1
+        Dim i As Integer = Main.iCurrentClipNumber
+        '   Select Case lbForwardBackBy.SelectedIndex
+        Select Case "XXX"
             Case -1, 0 ' "Next clip" "Verify All"
                 i = skipBack(i)
             Case 1 ' "Unidentified character clip"
@@ -458,30 +529,69 @@ Public Class dramatizer
 
     Private Sub btnRecord_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRecord.Click
         ' result should be   XXX-000-00000 where XXX is ISO code and -000- is book and -00000- is sequence
-        ' save tag id
-        ' tag='\id'
         Dim startTime, endTime
         Dim i As Integer = Main.iCurrentClipNumber
-        'Dim sequence As String = sPadNumber(5, Me.tbCurrentClipNumber.Text)
-        'Dim temp As String = Main.sRecordingFolder & "\" & Main.tbISOcode.Text
-        Dim tempRecordingFolder As String = Main.sRecordingFolder & "\" & Main.tbISOcode.Text & "-"
-        Dim tempC As String = "c:\" & Main.tbISOcode.Text & "-"
+        Dim isoCode As String = "\" & Main.tbISOcode.Text & "-"
         Dim bookNumber As String = Main.getBookNumber(i)
         Dim sequence As String = sPadNumber(5, i.ToString)
-        Dim tempWaveFile As String = tempRecordingFolder & bookNumber & sequence & ".wav"
-        Dim tempCWaveFile As String = tempC & bookNumber & sequence & ".wav"
-        Try
-            File.Move(tempWaveFile, tempCWaveFile)
-            startTime = File.GetCreationTime(tempCWaveFile)
-            Shell(Main.cbAudioProgram.Text + " " + "" + tempCWaveFile + "", AppWinStyle.NormalFocus, False)
-            Do
-                endTime = File.GetLastWriteTime(tempCWaveFile)
-            Loop Until endTime > startTime
-            File.Move(tempCWaveFile, tempWaveFile)
-        Catch ex As Exception
-            MessageBox.Show("Possibly a missing wave file. " & vbCrLf & ex.Message, "Missing file?", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        Dim tempWaveFileStart As String = isoCode + bookNumber + sequence
+        Dim tempSourceFile As String
+        '      Dim tempOutputFile As String
+        '   Dim tempCWaveFile As String
+        Dim blnTagFound As Boolean = False
+        Dim extra As String = ""
+        '     createTempRecordingFolder()
+        blnTagFound = str.InStr(Main.sTag(i), "\")
+        extra = Main.justTagOrOmit(i) ' empty if no tag
+        tempSourceFile = Main.sRecordingFolder + tempWaveFileStart + extra + ".wav"
+        'tempOutputFile = Main.sTempRecordingInProgressFolder + tempWaveFileStart + extra + ".wav"
+        If File.Exists(tempSourceFile) Then
+            ' good
+            '     File.Move(tempSourceFile, tempOutputFile)
+            startTime = File.GetCreationTime(tempSourceFile)
+            '  Shell(Main.cbAudioProgram.Text + " " + "" + tempOutputFile + "", AppWinStyle.NormalFocus, False)
+
+
+            ' program to launch
+            Dim startInfo As New ProcessStartInfo(Main.cbAudioProgram.Text)
+            ' file to open
+            startInfo.Arguments = """" + tempSourceFile + """"
+            Process.Start(startInfo)
+            endTime = File.GetLastWriteTime(tempSourceFile)
+            If endTime > startTime Then ' file is written
+                Main.blnRecorded(i) = True
+                Main.writeClipsToMasterFileAndAdjustClipSize(False)
+            Else
+                ' process closed but no file written
+            End If
+        Else
+            ' missing file
+            MessageBox.Show("Missing wave file. This should not happen unless someone deleted files accidently. You will need to recreate the .wav files." & vbCrLf & tempSourceFile, "Missing file", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
+    'Private Sub createTempRecordingFolder()
+    '    If Directory.Exists(Main.sTempRecordingInProgressFolder) Then
+    ''should not happen
+    '        If Directory.GetFiles(Main.sTempRecordingInProgressFolder).Length > 0 Then
+    '            Debug.Assert(True, "Recording in progress folder found with a file in it.")
+    '' This should not happen. Please move file back to recording folder.", "Recording already in progress?", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    '        End If
+    '    Else
+    '' create folder
+    '        Directory.CreateDirectory(Main.sTempRecordingInProgressFolder)
+    '    End If
+    'End Sub
+    'Private Sub deleteTempRecordingFolder()
+    '    If Directory.Exists(Main.sTempRecordingInProgressFolder) Then
+    '        If Directory.GetFiles(Main.sTempRecordingInProgressFolder).Length > 0 Then
+    '            File.Move(Main.sTempRecordingInProgressFolder + "\*.*", Main.sRecordingFolder)
+    '        End If
+    '        Directory.Delete(Main.sTempRecordingInProgressFolder)
+    '    Else
+    '        Debug.Assert(True, "Expected to find a folder here. " + Main.sTempRecordingInProgressFolder)
+    '    End If
+    'End Sub
+
     Public Function sPadNumber(ByVal i As Integer, ByVal temp As String)
         Return temp.PadLeft(i, "0")
     End Function
@@ -489,17 +599,17 @@ Public Class dramatizer
     Private Sub dramatizer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If MainMenu.rbRecord.Checked Then
             Me.btnRecord.Visible = True
-            Me.chkbxDisplayUnprocessedOnly.Text = MainMenu.sLocalizationStrings(MainMenu.iDisplayUnrecordedClipsOnly, MainMenu.iLanguageSelected)
-            Me.tbSpeakerNumber.Visible = True
+            Me.chkbxDisplayUnprocessedOnly.Text = Main.sLocalizationStrings(Main.iDisplayUnrecordedClipsOnly, Main.iLanguageSelected)
+            '       Me.tbSpeakerNumber.Visible = True
         Else
             Me.btnRecord.Visible = False
-            Me.chkbxDisplayUnprocessedOnly.Text = MainMenu.sLocalizationStrings(MainMenu.iDisplayUnprocessedClipsOnly, MainMenu.iLanguageSelected)
-            Me.tbSpeakerNumber.Visible = False
+            Me.chkbxDisplayUnprocessedOnly.Text = Main.sLocalizationStrings(Main.iDisplayUnprocessedClipsOnly, Main.iLanguageSelected)
+            '      Me.tbSpeakerNumber.Visible = False
 
         End If
     End Sub
 
-   
+
     Private Sub chkbxShowPrompt_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowPrompt.CheckedChanged
         If Me.chkbxShowPrompt.Checked = True Then
             Me.lblCharacterPrompt.Visible = True
@@ -534,39 +644,30 @@ Public Class dramatizer
             Me.btnEdit.Visible = True
         End If
     End Sub
-
-
     Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
     End Sub
-
-
     Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
         Me.cbCharacters.Text = "Not a quote"
     End Sub
-
     Private Sub btnMoreOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoreOptions.Click
         ' show more
         Me.btnLessOptions.Show()
-        Me.Height = 482
+        Me.Height = 433
         Me.Panel2.Show()
         Me.btnMoreOptions.Hide()
-
     End Sub
-
     Private Sub btnLessOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLessOptions.Click
         ' show less
+        showLessOptions()
+    End Sub
+    Private Sub showLessOptions()
         Me.btnMoreOptions.Show()
         Me.Height = 300
         Me.Panel2.Hide()
         Me.btnLessOptions.Hide()
-
     End Sub
-
     Private Sub lblDisplay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDisplay.Click
-
     End Sub
-
     Private Sub chkbxDisplayOmittedClips_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayOmittedClips.CheckedChanged
         If Me.chkbxDisplayOmittedClips.Checked = True Then
             Me.chkbxDisplayUnprocessedOnly.Checked = False
@@ -580,7 +681,6 @@ Public Class dramatizer
         Else
             ' do nothing
         End If
-
     End Sub
     Public Sub goForward()
         If Main.iCurrentClipNumber >= (Main.iLastClipNumber) Then Beep() : Main.iCurrentClipNumber = 0
@@ -589,77 +689,82 @@ Public Class dramatizer
         Dim i As Integer = Main.iCurrentClipNumber
 
         If Me.rbAll.Checked = True Then
-
-            'Select Case lbForwardBackBy.SelectedIndex
-            '   Case -1, 0, 5 ' "Next clip" "Verify All" "record all" ' can't match string as string changes
+            ' "Next clip" "Verify All" "record all" ' can't match string as string changes
             i = skipForward(i)
         ElseIf Me.rbUnidentified.Checked = True Then
-
-            'Case 1 ' "Unidentified character clip"
+            '"Unidentified character clip"
             Do
                 i = skipForward(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.iNumberOfCharactersInClip(i) = 0
         ElseIf Me.rbMultiple.Checked = True Then
-            '       Case 2 '"Multiple characters in a clip"
+            '"Multiple characters in a clip"
             Do
                 i = skipForward(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.iNumberOfCharactersInClip(i) > 1
         ElseIf Me.rbUpdated.Checked = True Then
-            '      Case 3 '"Verify Updated clip"
+            '"Verify Updated clip"
             Do
                 i = skipForward(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.sCharacter(i, 0) <> Nothing
         ElseIf Me.rbSpeaker.Checked Then
-            '     Case 4 ' "Same speaker number" Record
+            ' "Same speaker number" Record
             Do
                 i = skipForward(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
         ElseIf Me.rbCharacter.Checked = True Then
-            '      Case 3 '"Verify character clip"
+            '"Verify character clip"
             Do
                 i = skipForward(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
+        ElseIf Me.rbSpeaker.Checked = True Then
+            Do
+                i = skipForward(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
         Else
-            '    Case Else
             i = skipForward(i)
-            '    End Select
         End If
         Main.iCurrentClipNumber = i
-        '    If Me.btnForward.BackColor = Color.Lime Then
-        '   Me.updateCharactersFile()
-        '   Me.btnForward.BackColor = color.lightgray
-        '   Else
         displayPropertiesOfClip(2)
-        '    End If
     End Sub
-
     Private Sub rbUnidentified_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbUnidentified.CheckedChanged
-        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iUnidentifiedClips, MainMenu.iLanguageSelected)
-
+        Me.tbDisplayClipsBy.Text = Main.sLocalizationStrings(Main.iUnidentifiedClips, Main.iLanguageSelected)
     End Sub
-
     Private Sub rbMultiple_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMultiple.CheckedChanged
-        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iMultipleClips, MainMenu.iLanguageSelected)
-
+        Me.tbDisplayClipsBy.Text = Main.sLocalizationStrings(Main.iMultipleClips, Main.iLanguageSelected)
     End Sub
-
     Private Sub rbSpeaker_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbSpeaker.CheckedChanged
-        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iSpeakerNumberClips, MainMenu.iLanguageSelected)
-
+        Me.tbDisplayClipsBy.Text = Main.sLocalizationStrings(Main.iSpeakerNumberClips, Main.iLanguageSelected)
     End Sub
-
     Private Sub rbUpdated_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbUpdated.CheckedChanged
-        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iUpdate, MainMenu.iLanguageSelected)
-
+        Me.tbDisplayClipsBy.Text = Main.sLocalizationStrings(Main.iUpdate, Main.iLanguageSelected)
+    End Sub
+    Private Sub rbAll_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbAll.CheckedChanged
+        Me.tbDisplayClipsBy.Text = Main.sLocalizationStrings(Main.iAllClips, Main.iLanguageSelected)
+    End Sub
+    Private Sub btnMoveDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoveDown.Click
+        If Me.blnMoveDown = True Then
+            ' move to bottom
+            Me.btnMoveDown.Text = Main.sLocalizationStrings(Main.iMoveUp, Main.iLanguageSelected)
+            Me.Location = New Point(0, 370)
+            MasterText.Location = New Point(512, 370)
+            Me.blnMoveDown = False
+        Else
+            ' move to top
+            Me.btnMoveDown.Text = Main.sLocalizationStrings(Main.iMoveDown, Main.iLanguageSelected)
+            MasterText.topRight()
+            Me.Location = New Point(0, 0)
+            MasterText.blnTopRight = True
+            Me.blnMoveDown = True
+        End If
     End Sub
 
-    Private Sub rbAll_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbAll.CheckedChanged
-        Me.tbDisplayClipsBy.Text = MainMenu.sLocalizationStrings(MainMenu.iAllClips, MainMenu.iLanguageSelected)
+    Private Sub statusBar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles statusBar.Click
 
     End Sub
 End Class
