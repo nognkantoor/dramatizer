@@ -53,7 +53,6 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
-
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -155,4 +154,10 @@
   <metadata name="ToolTipTranslate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="btnFastForward.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhHQAdAPAAAAAAAP///yH5BAEAAAEALAAAAAAdAB0AAAJGjI+py+0Po5y02gbAyjbr5FXed4zU
+        SAbohJKt1H5xFGs1VOfpps/OfXv4fMKV4UUzlZRJDoLZVIROu2P1gs1qt9yu92soAAA7
+</value>
+  </data>
 </root>

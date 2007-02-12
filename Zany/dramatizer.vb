@@ -47,7 +47,7 @@ Public Class dramatizer
         fillCharactersAndPromptInComboBoxs(Main.iCurrentClipNumber) ' for current clip number
         showMultipleCharactersOrEdit()
         tbCurrentClipNumber.Text = Main.iCurrentClipNumber
-        showVoiceNumber()
+        showSpeakerNumber()
     End Sub
     Private Sub resetColorsOnButtons()
         Me.btnUpdate.BackColor = Color.LightGray
@@ -58,13 +58,12 @@ Public Class dramatizer
         tbChapter.Text = Main.sChapter(Main.iCurrentClipNumber)
         tbVerse.Text = Main.sVerse(Main.iCurrentClipNumber)
     End Sub
-    Private Sub showVoiceNumber()
+    Private Sub showSpeakerNumber()
         If Main.sSpeakerNumber(Main.iCurrentClipNumber) = "" Then
             upDownSpeakerNumber.Value = 0
         Else
             upDownSpeakerNumber.Value = Main.sSpeakerNumber(Main.iCurrentClipNumber)
         End If
-
     End Sub
     Private Sub getContextText(ByVal context As Int16)
         Dim i As Integer
@@ -77,7 +76,6 @@ Public Class dramatizer
         Else
             '    temp = sScript(main.iCurrentClipNumber + i)
         End If
-
     End Sub
     Private Sub showClipSizeAndContinued()
         Try
@@ -92,7 +90,6 @@ Public Class dramatizer
         Catch ex As Exception
             ' just ignore
         End Try
-
     End Sub
     Private Sub showSpeakerText(ByVal temp As String)
         If MasterText.chkbxShowSpeakerText.Checked = True Then
@@ -103,7 +100,6 @@ Public Class dramatizer
         Else
             VoiceTalentText.Hide()
         End If
-
     End Sub
     Private Sub showContext(ByVal temp As String)
         If MasterText.chkbxShowContext.Checked = True Then
@@ -118,7 +114,6 @@ Public Class dramatizer
             MasterText.rtbContextAbove.Hide()
             MasterText.Height = 384
         End If
-
     End Sub
     Private Function processRemoveSFMcodes(ByVal temp As String)
         If MasterText.chkbxShowSFMcodes.Checked = True Then
@@ -156,7 +151,6 @@ Public Class dramatizer
         Me.cbCharacters.Text = ""
         Me.cbCharactersEdit.Text = ""
         Me.cbCharacters.DroppedDown = False
-
         For i = 1 To Main.iNumberOfCharactersInClip(iCurrentClip)
             If cbCharacters.Items.IndexOf(Main.getCharacterShort(Main.sCharacter(iCurrentClip, i))) > -1 Then
                 ' already have so do nothing
@@ -218,7 +212,6 @@ Public Class dramatizer
         ' If me.lblMultiple.Visible = True Then
         ' me.rbVerifyUpdated.Focus()
         ' End If
-
         MasterText.Hide()
         VoiceTalentText.Hide()
         MainMenu.showStatsForUnidentifiedMultipleTotal()
@@ -226,110 +219,93 @@ Public Class dramatizer
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         ' set the properties of the current clip to displayed values
         ' character
-        updateCharactersFile()
+        updateCharactersInMasterFile()
         Me.btnUpdate.BackColor = Color.LightGray
         Me.goForward()
     End Sub
-    '  Private Sub cbCharacters_Changed(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedValueChanged
-    '     Me.btnUpdate.BackColor = Color.LawnGreen
-    'End Sub
-    Private Sub cbCharacters_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
-        updateCharactersFile()
-        Me.btnForward.BackColor = Color.LightGray
-    End Sub
-    Private Sub updateCharactersFile()
-        If Me.cbCharacters.Text = Nothing Then
-            ' skip
-        Else
-            If Me.cbCharacterPrompt.Text = Nothing Then
-                ' 0 is for the human input
-                Main.sCharacter(Main.iCurrentClipNumber, 0) = Me.cbCharacters.Text
-            Else
-                Main.sCharacter(Main.iCurrentClipNumber, 0) = Me.cbCharacters.Text + " [" + Me.cbCharacterPrompt.Text + "]"
-            End If
-        End If
-        ' voice number associated with character
-        Main.sSpeakerNumber(Main.iCurrentClipNumber) = Main.assignVoiceToCharacter(Me.cbCharacters.Text)
-        ' prompt
-        '  Main.sPrompt(Main.iCurrentClipNumber) = Me.cbCharacterPrompt.Text
-        Main.writeClipsToMasterFileAndAdjustClipSize(False) ' adjust clip size false
-        displayPropertiesOfClip(2)  ' check for redundant xxxxxxxxxxxxxxxx
-        Main.displayStatusText()
-    End Sub
-    Private Sub pressedEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
-        ' pressed enter on the forward back control
-        updateCharactersFile()
-    End Sub
-    ' Private Sub pressedKey(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-    '' not working
-    '   Select Case e.KeyCode
-    '      Case Keys.Left
-    '         goForward()
-    '    Case Keys.Right
-    '       goBack()
-    '  Case Keys.Enter
-    '     updateCharactersFile()
-    '    Case Keys.Home
-    '       goHome()
-    '      Case Else
-    '' ignore
-    '  End Select
-    '' pressed enter on the forward back control
-    '   updateCharactersFile()
-    ' End Sub
-    Public Sub goForwardold()
-        If Main.iCurrentClipNumber >= (Main.iLastClipNumber) Then Beep() : Main.iCurrentClipNumber = 0
-        ' iLastClipNumber is really 1 over in order to handle splits properly
-        ' so don't show the "last" one as it is blank
-        Dim i As Integer = Main.iCurrentClipNumber
-        Select Case "XXX" 'lbForwardBackBy.SelectedIndex
-            Case -1, 0, 5 ' "Next clip" "Verify All" "record all" ' can't match string as string changes
-                i = skipForward(i)
-            Case 1 ' "Unidentified character clip"
-                Do
-                    i = skipForward(i)
-                    If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-                Loop Until Main.iNumberOfCharactersInClip(i) = 0
-            Case 2 '"Multiple characters in a clip"
-                Do
-                    i = skipForward(i)
-                    If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-                Loop Until Main.iNumberOfCharactersInClip(i) > 1
-            Case 3 '"Verify Updated clip"
-                Do
-                    i = skipForward(i)
-                    If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-                Loop Until Main.sCharacter(i, 0) <> Nothing
-            Case 4 ' "Same speaker number" Record
-                Do
-                    i = skipForward(i)
-                    If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-                Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
-            Case Else
-                i = skipForward(i)
-        End Select
-        Main.iCurrentClipNumber = i
-        '    If Me.btnForward.BackColor = Color.Lime Then
-        '   Me.updateCharactersFile()
-        '   Me.btnForward.BackColor = color.lightgray
-        '   Else
-        displayPropertiesOfClip(2)
-        '    End If
-    End Sub
-    Private Function skipForward(ByVal clipNumber As Integer)
+    Private Function skipForwardIfOmittedProcessedOrRecorded(ByVal clipNumber As Integer)
+        ' before changing anything here check for omit bug
+
+        ' main reason is checked for in the case statement
+        ' additional reasons to skip this clip are
+        ' 1 omitted text and show omitted not checked
         clipNumber += 1
+        clipNumber = skipForwardOverOmitted(clipNumber)
+        ' 2 display only clips to process is checked
+        If Me.chkbxDisplayOnlyClipsToProcess.Checked = True Then
+            ' to process or to record
+            ' 2a recording
+            If MainMenu.rbRecord.Checked = True Then
+                ' recording
+                ' 2a loop until this clip is to be recorded
+                clipNumber = skipForwardOverRecorded(clipNumber)
+            Else
+                ' not recording
+                ' 2b loop until this clip is to be processed
+                clipNumber = skipForwardOverProcessed(clipNumber)
+            End If
+        Else
+            ' show all
+        End If
+
+        '   clipNumber = Me.skipForwardProcessed(clipNumber)
+        Return clipNumber
+    End Function
+    Private Function skipForwardOverProcessed(ByVal clipNumber As Integer)
+        Do Until Main.sCharacter(clipNumber, 0) = Nothing
+            clipNumber += 1
+            If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1 : Exit Do
+        Loop
+        Return clipNumber
+    End Function
+    Private Function skipBackOverProcessed(ByVal clipNumber As Integer)
+        Do Until Main.sCharacter(clipNumber, 0) = Nothing
+            clipNumber -= 1
+            If clipNumber = 0 Then Beep() : clipNumber = Main.iLastClipNumber : Exit Do
+        Loop
+        Return clipNumber
+    End Function
+    Private Function skipForwardOverRecorded(ByVal clipNumber As Integer)
+        Do Until Main.blnRecorded(clipNumber) = False
+            clipNumber += 1
+            If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1 : Exit Do
+        Loop
+        Return clipNumber
+    End Function
+    Private Function skipBackOverRecorded(ByVal clipNumber As Integer)
+        Do Until Main.blnRecorded(clipNumber) = False
+            clipNumber -= 1
+            If clipNumber = 0 Then Beep() : clipNumber = Main.iLastClipNumber : Exit Do
+        Loop
+        Return clipNumber
+    End Function
+    Private Function skipForwardOverOmitted(ByVal clipNumber As Integer)
         If Me.chkbxDisplayOmittedClips.Checked = True Then
+            ' showing ommittede clips
             If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1
         Else
-            ' hide omitted clip
-            Do Until (Main.blnOmit(clipNumber) = False Or clipNumber = Main.iLastClipNumber)
+            ' skip over any omitted clips
+            Do Until (Main.blnOmit(clipNumber) = False) ' Or clipNumber = Main.iLastClipNumber)
                 clipNumber += 1
                 If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1 : Exit Do
             Loop
         End If
-        clipNumber = Me.skipForwardProcessed(clipNumber)
         Return clipNumber
     End Function
+    Private Function skipBackOverOmitted(ByVal clipNumber As Integer)
+        If Me.chkbxDisplayOmittedClips.Checked = True Then
+            ' showing ommittede clips
+            If clipNumber = 0 Then Beep() : clipNumber = Main.iLastClipNumber
+        Else
+            ' skip over any omitted clips
+            Do Until (Main.blnOmit(clipNumber) = False) ' Or clipNumber = Main.iLastClipNumber)
+                clipNumber -= 1
+                If clipNumber = 0 Then Beep() : clipNumber = Main.iLastClipNumber : Exit Do
+            Loop
+        End If
+        Return clipNumber
+    End Function
+
     Private Function skipBack(ByVal clipNumber As Integer)
         clipNumber -= 1
         If Me.chkbxDisplayOmittedClips.Checked = True Then
@@ -346,20 +322,26 @@ Public Class dramatizer
         Return clipNumber
     End Function
     Private Function skipForwardProcessed(ByVal clipNumber)
-        If Me.chkbxDisplayUnprocessedOnly.Checked = True Then
-            If Main.sCharacter(clipNumber, 0) = Nothing Then
-                '  not processed
-            Else
-                ' processed
-                clipNumber += 1
+        If MainMenu.rbRecord.Checked = True Then
+            ' recording
+            If Me.chkbxDisplayOnlyClipsToProcess.Checked = True Then ' unprocessed = unrecorded
+                ' hide omitted clip
+                'If  Then
+                ' '  not processed
+                ' Else
+                '    ' processed so skip forward
+                '   clipNumber += 1
             End If
         Else
             ' show all
         End If
+        '     Else
+        '        ' not recording
+        '   End If
         Return clipNumber
     End Function
     Private Function skipBackProcessed(ByVal clipNumber)
-        If Me.chkbxDisplayUnprocessedOnly.Checked = True Then
+        If Me.chkbxDisplayOnlyClipsToProcess.Checked = True Then
             If Main.sCharacter(clipNumber, 0) = Nothing Then
                 '  not processed
             Else
@@ -371,116 +353,12 @@ Public Class dramatizer
         End If
         Return clipNumber
     End Function
-
-    Public Sub goBack()
-        Me.btnUpdate.BackColor = Color.LightGray
-        Me.btnForward.BackColor = Color.LightGray
-        If Main.iCurrentClipNumber = 1 Then Main.iCurrentClipNumber = Main.iLastClipNumber + 1
-        Dim i As Integer = Main.iCurrentClipNumber
-        ' iLastClipNumber is really 1 over in order to handle splits properly
-        ' so don't show the "last" one as it is blank
-
-        If Me.rbAll.Checked = True Then
-
-            'Select Case lbForwardBackBy.SelectedIndex
-            '   Case -1, 0, 5 ' "Next clip" "Verify All" "record all" ' can't match string as string changes
-            i = skipBack(i)
-        ElseIf Me.rbUnidentified.Checked = True Then
-
-            'Case 1 ' "Unidentified character clip"
-            Do
-                i = skipBack(i)
-                If i <= 1 Then Beep() : i = 1 : Exit Do
-            Loop Until Main.iNumberOfCharactersInClip(i) = 0
-        ElseIf Me.rbMultiple.Checked = True Then
-            '       Case 2 '"Multiple characters in a clip"
-            Do
-                i = skipBack(i)
-                If i <= 1 Then Beep() : i = 1 : Exit Do
-            Loop Until Main.iNumberOfCharactersInClip(i) > 1
-        ElseIf Me.rbUpdated.Checked = True Then
-            '      Case 3 '"Verify Updated clip"
-            Do
-                i = skipBack(i)
-                If i <= 1 Then Beep() : i = 1 : Exit Do
-            Loop Until Main.sCharacter(i, 0) <> Nothing
-        ElseIf Me.rbSpeaker.Checked Then
-            '     Case 4 ' "Same speaker number" Record
-            Do
-                i = skipBack(i)
-                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
-        ElseIf Me.rbCharacter.Checked = True Then
-            '      Case 3 '"Verify character clip"
-            Do
-                i = skipBack(i)
-                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-            Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
-        ElseIf Me.rbSpeaker.Checked = True Then
-            Do
-                i = skipBack(i)
-                If i <= 1 Then Beep() : i = 1 : Exit Do
-            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
-        ElseIf Me.rbCharacter.Checked = True Then
-            Do
-                i = skipBack(i)
-                If i <= 1 Then Beep() : i = 1 : Exit Do
-            Loop Until Main.sCharacterShort(i) = Me.cbCharacters.Text
-        Else
-            i = skipBack(i)
-        End If
-        Main.iCurrentClipNumber = i
-        '    If Me.btnForward.BackColor = Color.Lime Then
-        '   Me.updateCharactersFile()
-        '   Me.btnForward.BackColor = color.lightgray
-        '   Else
-        displayPropertiesOfClip(2)
-        '    End If
-    End Sub
-
-    Private Sub goBackxxx()
-        Me.btnUpdate.BackColor = Color.LightGray
-        Me.btnForward.BackColor = Color.LightGray
-        If Main.iCurrentClipNumber = 1 Then Main.iCurrentClipNumber = Main.iLastClipNumber + 1
-        Dim i As Integer = Main.iCurrentClipNumber
-        '   Select Case lbForwardBackBy.SelectedIndex
-        Select Case "XXX"
-            Case -1, 0 ' "Next clip" "Verify All"
-                i = skipBack(i)
-            Case 1 ' "Unidentified character clip"
-                Do
-                    i = skipBack(i)
-                    If i <= 1 Then Beep() : i = 1 : Exit Do
-                Loop Until Main.iNumberOfCharactersInClip(i) = 0
-            Case 2 '"Multiple characters in a clip"
-                Do
-                    i = skipBack(i)
-                    If i <= 1 Then Beep() : i = 1 : Exit Do
-                Loop Until Main.iNumberOfCharactersInClip(i) > 1
-            Case 3 '"Verify Updated clip"
-                Do
-                    i = skipBack(i)
-                    If i <= 1 Then Beep() : i = 1 : Exit Do
-                Loop Until Main.sCharacter(i, 0) <> Nothing
-            Case 4 ' "Same speaker number"
-                Do
-                    i = skipBack(i)
-                    If i <= 1 Then Beep() : i = 1 : Exit Do
-                Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
-            Case Else
-                i = skipBack(i)
-        End Select
-        Main.iCurrentClipNumber = i
-        displayPropertiesOfClip(2)
-    End Sub
+    
     Private Sub goHome()
         Me.btnUpdate.BackColor = Color.LightGray
         Me.btnForward.BackColor = Color.LightGray
         Main.iCurrentClipNumber = 1
         displayPropertiesOfClip(2)
-    End Sub
-    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
-        Me.btnUpdate.BackColor = Color.LawnGreen
     End Sub
     Private Sub btnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEdit.Click
         editCharacter()
@@ -526,7 +404,6 @@ Public Class dramatizer
         ' Next
         ' MessageBox.Show("The chapter number was not found in the current book: " & tbBook.Text & " " & tbChapter.Text, "Chapter error", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
-
     Private Sub btnRecord_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRecord.Click
         ' result should be   XXX-000-00000 where XXX is ISO code and -000- is book and -00000- is sequence
         Dim startTime, endTime
@@ -550,8 +427,6 @@ Public Class dramatizer
             '     File.Move(tempSourceFile, tempOutputFile)
             startTime = File.GetCreationTime(tempSourceFile)
             '  Shell(Main.cbAudioProgram.Text + " " + "" + tempOutputFile + "", AppWinStyle.NormalFocus, False)
-
-
             ' program to launch
             Dim startInfo As New ProcessStartInfo(Main.cbAudioProgram.Text)
             ' file to open
@@ -591,25 +466,20 @@ Public Class dramatizer
     '        Debug.Assert(True, "Expected to find a folder here. " + Main.sTempRecordingInProgressFolder)
     '    End If
     'End Sub
-
     Public Function sPadNumber(ByVal i As Integer, ByVal temp As String)
         Return temp.PadLeft(i, "0")
     End Function
-
     Private Sub dramatizer_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If MainMenu.rbRecord.Checked Then
             Me.btnRecord.Visible = True
-            Me.chkbxDisplayUnprocessedOnly.Text = Main.sLocalizationStrings(Main.iDisplayUnrecordedClipsOnly, Main.iLanguageSelected)
+            Me.chkbxDisplayOnlyClipsToProcess.Text = Main.sLocalizationStrings(Main.iDisplayUnrecordedClipsOnly, Main.iLanguageSelected)
             '       Me.tbSpeakerNumber.Visible = True
         Else
             Me.btnRecord.Visible = False
-            Me.chkbxDisplayUnprocessedOnly.Text = Main.sLocalizationStrings(Main.iDisplayUnprocessedClipsOnly, Main.iLanguageSelected)
+            Me.chkbxDisplayOnlyClipsToProcess.Text = Main.sLocalizationStrings(Main.iDisplayUnprocessedClipsOnly, Main.iLanguageSelected)
             '      Me.tbSpeakerNumber.Visible = False
-
         End If
     End Sub
-
-
     Private Sub chkbxShowPrompt_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowPrompt.CheckedChanged
         If Me.chkbxShowPrompt.Checked = True Then
             Me.lblCharacterPrompt.Visible = True
@@ -617,10 +487,8 @@ Public Class dramatizer
         Else
             Me.cbCharacterPrompt.Visible = False
             Me.lblCharacterPrompt.Visible = False
-
         End If
     End Sub
-
     Private Sub cbCharactersEdit_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedIndexChanged
         Me.cbCharacters.Text = Me.cbCharactersEdit.Text
         Me.btnUpdate.BackColor = Color.LawnGreen
@@ -670,13 +538,13 @@ Public Class dramatizer
     End Sub
     Private Sub chkbxDisplayOmittedClips_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayOmittedClips.CheckedChanged
         If Me.chkbxDisplayOmittedClips.Checked = True Then
-            Me.chkbxDisplayUnprocessedOnly.Checked = False
+            Me.chkbxDisplayOnlyClipsToProcess.Checked = False
         Else
             ' do nothing
         End If
     End Sub
-    Private Sub chkbxDisplayUnprocessedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayUnprocessedOnly.CheckedChanged
-        If Me.chkbxDisplayUnprocessedOnly.Checked = True Then
+    Private Sub chkbxDisplayOnlyClipsToProcess_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxDisplayOnlyClipsToProcess.CheckedChanged
+        If Me.chkbxDisplayOnlyClipsToProcess.Checked = True Then
             Me.chkbxDisplayOmittedClips.Checked = False
         Else
             ' do nothing
@@ -687,47 +555,46 @@ Public Class dramatizer
         ' iLastClipNumber is really 1 over in order to handle splits properly
         ' so don't show the "last" one as it is blank
         Dim i As Integer = Main.iCurrentClipNumber
-
         If Me.rbAll.Checked = True Then
             ' "Next clip" "Verify All" "record all" ' can't match string as string changes
-            i = skipForward(i)
+            i = skipForwardIfOmittedProcessedOrRecorded(i)
         ElseIf Me.rbUnidentified.Checked = True Then
             '"Unidentified character clip"
             Do
-                i = skipForward(i)
+                i = skipForwardIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.iNumberOfCharactersInClip(i) = 0
         ElseIf Me.rbMultiple.Checked = True Then
             '"Multiple characters in a clip"
             Do
-                i = skipForward(i)
+                i = skipForwardIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.iNumberOfCharactersInClip(i) > 1
         ElseIf Me.rbUpdated.Checked = True Then
             '"Verify Updated clip"
             Do
-                i = skipForward(i)
+                i = skipForwardIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.sCharacter(i, 0) <> Nothing
         ElseIf Me.rbSpeaker.Checked Then
             ' "Same speaker number" Record
             Do
-                i = skipForward(i)
+                i = skipForwardIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
         ElseIf Me.rbCharacter.Checked = True Then
             '"Verify character clip"
             Do
-                i = skipForward(i)
+                i = skipForwardIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
         ElseIf Me.rbSpeaker.Checked = True Then
             Do
-                i = skipForward(i)
+                i = skipForwardIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
         Else
-            i = skipForward(i)
+            i = skipForwardIfOmittedProcessedOrRecorded(i)
         End If
         Main.iCurrentClipNumber = i
         displayPropertiesOfClip(2)
@@ -751,8 +618,8 @@ Public Class dramatizer
         If Me.blnMoveDown = True Then
             ' move to bottom
             Me.btnMoveDown.Text = Main.sLocalizationStrings(Main.iMoveUp, Main.iLanguageSelected)
-            Me.Location = New Point(0, 370)
-            MasterText.Location = New Point(512, 370)
+            Me.Location = New Point(0, 444)
+            MasterText.Location = New Point(512, 360)
             Me.blnMoveDown = False
         Else
             ' move to top
@@ -763,8 +630,144 @@ Public Class dramatizer
             Me.blnMoveDown = True
         End If
     End Sub
-
-    Private Sub statusBar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles statusBar.Click
+    Private Sub upDownSpeakerNumber_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles upDownSpeakerNumber.ValueChanged
+        Main.displayStatusText()
 
     End Sub
+    Public Sub goBack()
+        Me.btnUpdate.BackColor = Color.LightGray
+        Me.btnForward.BackColor = Color.LightGray
+        If Main.iCurrentClipNumber = 1 Then Main.iCurrentClipNumber = Main.iLastClipNumber + 1
+        ' iLastClipNumber is really 1 over in order to handle splits properly
+        ' so don't show the "last" one as it is blank
+        Dim i As Integer = Main.iCurrentClipNumber
+        If Me.rbAll.Checked = True Then
+            ' "Next clip" "Verify All" "record all" ' can't match string as string changes
+            i = skipBackIfOmittedProcessedOrRecorded(i)
+        ElseIf Me.rbUnidentified.Checked = True Then
+            '"Unidentified character clip"
+            Do
+                i = skipBackIfOmittedProcessedOrRecorded(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) = 0
+        ElseIf Me.rbMultiple.Checked = True Then
+            '"Multiple characters in a clip"
+            Do
+                i = skipBackIfOmittedProcessedOrRecorded(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) > 1
+        ElseIf Me.rbUpdated.Checked = True Then
+            '"Verify Updated clip"
+            Do
+                i = skipBackIfOmittedProcessedOrRecorded(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sCharacter(i, 0) <> Nothing
+        ElseIf Me.rbSpeaker.Checked Then
+            ' "Same speaker number" Record
+            Do
+                i = skipBackIfOmittedProcessedOrRecorded(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
+        ElseIf Me.rbCharacter.Checked = True Then
+            '"Verify character clip"
+            Do
+                i = skipBackIfOmittedProcessedOrRecorded(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
+        ElseIf Me.rbSpeaker.Checked = True Then
+            Do
+                i = skipBackIfOmittedProcessedOrRecorded(i)
+                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
+            Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
+        Else
+            i = skipBackIfOmittedProcessedOrRecorded(i)
+        End If
+        Main.iCurrentClipNumber = i
+        displayPropertiesOfClip(2)
+    End Sub
+    Private Function skipBackIfOmittedProcessedOrRecorded(ByVal clipNumber As Integer)
+        ' main reason is checked for in the case statement
+        ' additional reasons to skip this clip are
+        ' 1 omitted text and show omitted not checked
+        clipNumber -= 1
+        clipNumber = skipBackOverOmitted(clipNumber)
+        ' 2 display only clips to process is checked
+        If Me.chkbxDisplayOnlyClipsToProcess.Checked = True Then
+            ' to process or to record
+            ' 2a recording
+            If MainMenu.rbRecord.Checked = True Then
+                ' recording
+                ' 2a loop until this clip is to be recorded
+                clipNumber = skipBackOverRecorded(clipNumber)
+            Else
+                ' not recording
+                ' 2b loop until this clip is to be processed
+                clipNumber = skipBackOverProcessed(clipNumber)
+            End If
+        Else
+            ' show all
+        End If
+        Return clipNumber
+    End Function
+    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
+        Me.btnUpdate.BackColor = Color.LawnGreen
+        ' Me.showSpeakerNumber()
+        Me.cbCharacterPrompt.Text = Me.extractPrompt(Me.cbCharacters.Text)
+        Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
+        Me.cbCharactersEdit.Text = Me.cbCharacters.Text
+        Me.cbCharacters.BackColor = Color.LawnGreen
+        Me.cbCharacterPrompt.BackColor = Color.LawnGreen
+        updateCharactersInMasterFile()
+    End Sub
+    '  Private Sub cbCharacters_Changed(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedValueChanged
+    '     Me.btnUpdate.BackColor = Color.LawnGreen
+    'End Sub
+    Private Sub cbCharacters_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
+        ' Me.showSpeakerNumber()
+        updateCharactersInMasterFile()
+        Me.btnForward.BackColor = Color.LightGray
+    End Sub
+    Private Sub updateCharactersInMasterFile()
+        If Me.cbCharacters.Text = Nothing Then
+            ' skip
+        Else
+            If Me.cbCharacterPrompt.Text = Nothing Then
+                ' 0 is for the human input
+                Main.sCharacter(Main.iCurrentClipNumber, 0) = Me.cbCharacters.Text
+            Else
+                Main.sCharacter(Main.iCurrentClipNumber, 0) = Me.cbCharacters.Text + " [" + Me.cbCharacterPrompt.Text + "]"
+            End If
+        End If
+        ' voice number associated with character
+        Dim speaker As Integer
+        speaker = Main.assignVoiceToCharacter(Me.cbCharacters.Text)
+        Me.upDownSpeakerNumber.Value = speaker
+        Main.sSpeakerNumber(Main.iCurrentClipNumber) = speaker
+        ' prompt
+        '  Main.sPrompt(Main.iCurrentClipNumber) = Me.cbCharacterPrompt.Text
+        Main.writeClipsToMasterFileAndAdjustClipSize(False) ' adjust clip size false
+        '  displayPropertiesOfClip(2)  ' check for redundant xxxxxxxxxxxxxxxx
+        Main.displayStatusText()
+    End Sub
+    Private Sub pressedEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
+        ' pressed enter on the forward back control
+        updateCharactersInMasterFile()
+    End Sub
+    ' Private Sub pressedKey(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    '' not working
+    '   Select Case e.KeyCode
+    '      Case Keys.Left
+    '         goForward()
+    '    Case Keys.Right
+    '       goBack()
+    '  Case Keys.Enter
+    '     updateCharactersInMasterFile()
+    '    Case Keys.Home
+    '       goHome()
+    '      Case Else
+    '' ignore
+    '  End Select
+    '' pressed enter on the forward back control
+    '   updateCharactersInMasterFile()
+    ' End Sub
 End Class

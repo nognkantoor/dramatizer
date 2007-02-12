@@ -1,58 +1,42 @@
 Public Class MasterText
     Public blnTopRight As Boolean = True
-
     Private Sub chkbxShowSpeakerText_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowSpeakerText.CheckedChanged
         Try
             ' all options set in displayPropertiesOfClip
             dramatizer.displayPropertiesOfClip(2)
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub chkbxShowVerses_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowVerses.CheckedChanged
         Try
             dramatizer.displayPropertiesOfClip(2)
-
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub chkbxShowSFMcodes_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowSFMcodes.CheckedChanged
         Try
             dramatizer.displayPropertiesOfClip(2)
-
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub chkbxShowContext_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxShowContext.CheckedChanged
         Try
             dramatizer.displayPropertiesOfClip(2)
-
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Public Sub New()
-
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
-
     End Sub
-
     Private Sub MasterText_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         localizeMasterText()
         Main.processOmittedTextBasedOnCheckedInfo()
+        If Main.blnOmit(1) = True Then
+            Dim x = 1
+        End If
+
     End Sub
     Private Sub localizeMasterText()
         Me.chkbxShowContext.Text = Main.sLocalizationStrings(Main.iShowContext, Main.iLanguageSelected)
@@ -70,10 +54,7 @@ Public Class MasterText
         Me.lblClipSize.Text = Main.sLocalizationStrings(Main.iClipSize, Main.iLanguageSelected)
         Me.Text = Main.sLocalizationStrings(Main.iMasterText, Main.iLanguageSelected)
         Me.btnMoveThis.Text = Main.sLocalizationStrings(Main.iMoveToTopRight, Main.iLanguageSelected)
-
     End Sub
-
-    
     Private Sub chkbxChapterNumbers_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxChapterNumbers.CheckedChanged
         Try
             If Me.chkbxChapterNumbers.Checked = True Then
@@ -88,9 +69,7 @@ Public Class MasterText
             ' first time through this doesn't work
             '   MessageBox.Show("error " & ex.Message, "Error")
         End Try
-
     End Sub
-
     Private Sub chkbxIntroduction_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxIntroduction.CheckedChanged
         Try
             If Me.chkbxIntroduction.Checked = True Then
@@ -105,9 +84,7 @@ Public Class MasterText
             ' first time through this doesn't work
             '  MessageBox.Show("error " & ex.Message, "Error")
         End Try
-
     End Sub
-
     Private Sub chkbxHeading_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxHeading.CheckedChanged
         Try
             If Me.chkbxHeading.Checked = True Then
@@ -122,12 +99,9 @@ Public Class MasterText
             ' first time through this doesn't work
             ' MessageBox.Show("error " & ex.Message, "Error")
         End Try
-
     End Sub
-
     Private Sub chkbxThisOne_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxThisOne.CheckedChanged
         Try
-
             If Me.chkbxThisOne.Checked Then
                 Main.blnOmit(Main.iCurrentClipNumber) = True
             Else
@@ -136,7 +110,6 @@ Public Class MasterText
             Main.identifyOmittedText()
             Main.writeClipsToMasterFileAndAdjustClipSize(False)
         Catch ex As Exception
-
         End Try
     End Sub
     Private Sub chkbxFootnotes_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkbxFootnotes.CheckedChanged
@@ -154,7 +127,6 @@ Public Class MasterText
             btnMagnify.Text = "+"
         End If
     End Sub 'textBox1_KeyPress
-
     Private Sub btnMagnify_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMagnify.Click
         Dim increase As Boolean = True
         Main.changeFontSize(increase)
@@ -163,7 +135,6 @@ Public Class MasterText
         Dim increase As Boolean = False
         Main.changeFontSize(increase)
     End Sub
-
     Private Sub btnMoveThis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoveThis.Click
         If Me.blnTopRight = True Then
             ' move to top right
@@ -194,6 +165,5 @@ Public Class MasterText
             ' first time through this doesn't work
             '    MessageBox.Show("error " & ex.Message, "Error")
         End Try
-
     End Sub
 End Class

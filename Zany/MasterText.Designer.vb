@@ -1,7 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class MasterText
     Inherits System.Windows.Forms.Form
-
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -10,10 +9,8 @@ Partial Class MasterText
         End If
         MyBase.Dispose(disposing)
     End Sub
-
     'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
-
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
@@ -31,7 +28,6 @@ Partial Class MasterText
         Me.rtbTextOnly = New System.Windows.Forms.RichTextBox
         Me.chkbxChapterNumbers = New System.Windows.Forms.CheckBox
         Me.chkbxHeading = New System.Windows.Forms.CheckBox
-        Me.chkbxSectionHeadsold = New System.Windows.Forms.CheckBox
         Me.chkbxIntroduction = New System.Windows.Forms.CheckBox
         Me.lblOmitTextFoundIn = New System.Windows.Forms.Label
         Me.chkbxReferences = New System.Windows.Forms.CheckBox
@@ -39,12 +35,12 @@ Partial Class MasterText
         Me.chkbxThisOne = New System.Windows.Forms.CheckBox
         Me.lblClipSize = New System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.chkbxSectionHeads = New System.Windows.Forms.CheckBox
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.btnMagnify = New System.Windows.Forms.Button
         Me.btnShrink = New System.Windows.Forms.Button
         Me.tbFontSize = New System.Windows.Forms.TextBox
         Me.btnMoveThis = New System.Windows.Forms.Button
-        Me.chkbxSectionHeads = New System.Windows.Forms.CheckBox
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -135,7 +131,7 @@ Partial Class MasterText
         'chkbxChapterNumbers
         '
         Me.chkbxChapterNumbers.AutoSize = True
-        Me.chkbxChapterNumbers.Location = New System.Drawing.Point(606, 368)
+        Me.chkbxChapterNumbers.Location = New System.Drawing.Point(18, 87)
         Me.chkbxChapterNumbers.Name = "chkbxChapterNumbers"
         Me.chkbxChapterNumbers.Size = New System.Drawing.Size(124, 17)
         Me.chkbxChapterNumbers.TabIndex = 55
@@ -153,19 +149,6 @@ Partial Class MasterText
         Me.chkbxHeading.TabIndex = 54
         Me.chkbxHeading.Text = "Heading xxx"
         Me.chkbxHeading.UseVisualStyleBackColor = True
-        '
-        'chkbxSectionHeadsold
-        '
-        Me.chkbxSectionHeadsold.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.chkbxSectionHeadsold.AutoSize = True
-        Me.chkbxSectionHeadsold.Checked = True
-        Me.chkbxSectionHeadsold.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbxSectionHeadsold.Location = New System.Drawing.Point(18, 89)
-        Me.chkbxSectionHeadsold.Name = "chkbxSectionHeadsold"
-        Me.chkbxSectionHeadsold.Size = New System.Drawing.Size(112, 17)
-        Me.chkbxSectionHeadsold.TabIndex = 53
-        Me.chkbxSectionHeadsold.Text = "Section heads xxx"
-        Me.chkbxSectionHeadsold.UseVisualStyleBackColor = True
         '
         'chkbxIntroduction
         '
@@ -238,14 +221,26 @@ Partial Class MasterText
         Me.Panel1.Controls.Add(Me.lblOmitTextFoundIn)
         Me.Panel1.Controls.Add(Me.chkbxIntroduction)
         Me.Panel1.Controls.Add(Me.chkbxThisOne)
-        Me.Panel1.Controls.Add(Me.chkbxSectionHeadsold)
         Me.Panel1.Controls.Add(Me.chkbxReferences)
+        Me.Panel1.Controls.Add(Me.chkbxChapterNumbers)
         Me.Panel1.Controls.Add(Me.chkbxHeading)
         Me.Panel1.Controls.Add(Me.chkbxFootnotes)
         Me.Panel1.Location = New System.Drawing.Point(507, 174)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(181, 188)
         Me.Panel1.TabIndex = 60
+        '
+        'chkbxSectionHeads
+        '
+        Me.chkbxSectionHeads.AutoSize = True
+        Me.chkbxSectionHeads.Checked = True
+        Me.chkbxSectionHeads.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkbxSectionHeads.Location = New System.Drawing.Point(18, 66)
+        Me.chkbxSectionHeads.Name = "chkbxSectionHeads"
+        Me.chkbxSectionHeads.Size = New System.Drawing.Size(112, 17)
+        Me.chkbxSectionHeads.TabIndex = 59
+        Me.chkbxSectionHeads.Text = "Section heads xxx"
+        Me.chkbxSectionHeads.UseVisualStyleBackColor = True
         '
         'Panel2
         '
@@ -302,18 +297,6 @@ Partial Class MasterText
         Me.btnMoveThis.Text = "move this xxx"
         Me.btnMoveThis.UseVisualStyleBackColor = True
         '
-        'chkbxSectionHeads
-        '
-        Me.chkbxSectionHeads.AutoSize = True
-        Me.chkbxSectionHeads.Checked = True
-        Me.chkbxSectionHeads.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbxSectionHeads.Location = New System.Drawing.Point(18, 66)
-        Me.chkbxSectionHeads.Name = "chkbxSectionHeads"
-        Me.chkbxSectionHeads.Size = New System.Drawing.Size(112, 17)
-        Me.chkbxSectionHeads.TabIndex = 59
-        Me.chkbxSectionHeads.Text = "Section heads xxx"
-        Me.chkbxSectionHeads.UseVisualStyleBackColor = True
-        '
         'MasterText
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -324,7 +307,6 @@ Partial Class MasterText
         Me.Controls.Add(Me.btnMagnify)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.chkbxChapterNumbers)
         Me.Controls.Add(Me.lblClipSize)
         Me.Controls.Add(Me.rtbTextOnly)
         Me.Controls.Add(Me.tbContinued)
@@ -355,7 +337,6 @@ Partial Class MasterText
     Friend WithEvents rtbTextOnly As System.Windows.Forms.RichTextBox
     Friend WithEvents chkbxChapterNumbers As System.Windows.Forms.CheckBox
     Friend WithEvents chkbxHeading As System.Windows.Forms.CheckBox
-    Friend WithEvents chkbxSectionHeadsold As System.Windows.Forms.CheckBox
     Friend WithEvents chkbxIntroduction As System.Windows.Forms.CheckBox
     Friend WithEvents lblOmitTextFoundIn As System.Windows.Forms.Label
     Friend WithEvents chkbxReferences As System.Windows.Forms.CheckBox

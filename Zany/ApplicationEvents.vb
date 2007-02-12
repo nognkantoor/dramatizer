@@ -1,5 +1,4 @@
 Namespace My
-
     ' The following events are availble for MyApplication:
     ' 
     ' Startup: Raised when the application starts, before the startup form is created.
@@ -8,8 +7,5 @@ Namespace My
     ' StartupNextInstance: Raised when launching a single-instance application and the application is already active. 
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
-
     End Class
-
 End Namespace
-

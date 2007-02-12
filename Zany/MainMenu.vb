@@ -2,7 +2,6 @@ Imports System
 Imports System.IO
 Imports System.Text
 Imports str = Microsoft.VisualBasic.Strings
-
 Public Class MainMenu
     Public blnStartRecording As Boolean = False
     Public sProgramDirectory As String = Directory.GetCurrentDirectory ' beware that this may change
@@ -30,13 +29,9 @@ Public Class MainMenu
     '  Public iMaximumLocalizationStrings As Int16 = 2000
     '    Public sLocalizationStrings(iMaximumLocalizationStrings, iMaximumLocalizationLanguages) As String
     ' Public iLanguageSelected As Int16
-
-
     Public Sub New()
-
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
         Main.readLocalizationFile()
         Me.fillLanguageControl()
@@ -57,7 +52,6 @@ Public Class MainMenu
         ' see if master txt exists
         If File.Exists(Main.sMasterFileName) Then
             Me.rbUnidentified.Checked = True
-
             Me.setUnidentified()
             Me.setMultiple()
             Me.setUnassigned()
@@ -69,15 +63,11 @@ Public Class MainMenu
                 Me.resetAllMarksAndMenuItems()
                 Me.rbRecord.Checked = True
                 Me.rbRecord.Enabled = True
-
             Else
                 ' not ready to record yet
             End If
-
             ' not ready yet
-
         End If
-
     End Sub
     Public Sub localizeMainMenu(ByVal language As Int16)
         Me.rbInitialize.Text = Main.sLocalizationStrings(Main.iInitialize, language)
@@ -97,7 +87,6 @@ Public Class MainMenu
         Me.btnNext.Text = Main.sLocalizationStrings(Main.iNext, language)
         Me.btnTranslateMenu.Text = Main.sLocalizationStrings(Main.iTranslateMenu, language)
     End Sub
-
     Public Sub fillLanguageControl()
         Try
             Dim language As Int16 = 0
@@ -121,7 +110,6 @@ Public Class MainMenu
     Private Sub btnEnd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEnd.Click
         End
     End Sub
-
     Private Sub cbLanguage_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLanguage.SelectedIndexChanged
         Main.iLanguageSelected = Me.cbLanguage.SelectedIndex + 1
         Me.localizeMainMenu(Main.iLanguageSelected)
@@ -139,7 +127,6 @@ Public Class MainMenu
             ' ignore
         End If
     End Sub
-
     Private Sub rbStartProcessing_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbStartProcessing.CheckedChanged
         ' you can't depend on the checked status
         ' how else do we know that we have processed the text
@@ -183,7 +170,6 @@ Public Class MainMenu
             If Me.rbInitialize.Checked = True Then
                 '  dramatizer.Hide()
                 Me.Show()
-
                 Main.ToolStripProgressBar1.Maximum = 10
                 Main.ToolStripProgressBar1.ProgressBar.Value = 1
                 Main.Show()
@@ -211,6 +197,7 @@ Public Class MainMenu
             ElseIf Me.rbVerifyUpdated.Checked = True Then
                 Main.prepareToWorkFromMaster()
                 dramatizer.rbUpdated.Checked = True
+                dramatizer.chkbxDisplayOnlyClipsToProcess.Checked = False
                 dramatizer.goForward()
                 ' when come back do verify all
                 Me.rbVerifyAll.Checked = True
@@ -243,8 +230,6 @@ Public Class MainMenu
                 dramatizer.Show()
                 MasterText.Show()
                 MasterText.topRight()
-
-
             End If
         Catch ex As Exception
             MessageBox.Show("oops 1" & ex.Message)
@@ -253,7 +238,6 @@ Public Class MainMenu
     End Sub
     Private Sub btnTranslateMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTranslateMenu.Click
         translate.Show()
-
     End Sub
     Private Sub rbMultiple_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMultiple.CheckedChanged
         Try
@@ -271,55 +255,40 @@ Public Class MainMenu
             End If
             Me.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub rbVerifyUpdated_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbVerifyUpdated.CheckedChanged
         Try
             ' Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Main.sLocalizationStrings(Main.iVerifyUpdatedText, Main.iLanguageSelected))
             Me.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub rbVerifyAll_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbVerifyAll.CheckedChanged
         Try
             '  Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Main.sLocalizationStrings(Main.iVerifyAllText, Main.iLanguageSelected))
             Me.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub rbAssignVoices_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbAssignVoices.CheckedChanged
         Try
             '   Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Main.sLocalizationStrings(Main.iAssignCharacterToSpeakerText, Main.iLanguageSelected))
             Me.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub rbCreateScripts_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbCreateScripts.CheckedChanged
         Try
             '    Me.TextBox1.BackColor = Color.LightGoldenrodYellow
             Me.TextBox1.Text = (Main.sLocalizationStrings(Main.iCreateScriptsText, Main.iLanguageSelected))
             Me.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
-
         End Try
-
     End Sub
-
     Private Sub rbRecord_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbRecord.CheckedChanged
         Try
             '     Me.TextBox1.BackColor = Color.LightGoldenrodYellow
@@ -341,9 +310,7 @@ Public Class MainMenu
             End If
             Me.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
-
         End Try
-
     End Sub
     Public Sub resetAllMarksAndMenuItems()
         Me.lblAssignVoice.Visible = False
@@ -364,7 +331,6 @@ Public Class MainMenu
         Me.rbUnidentified.Enabled = False
         Me.rbVerifyAll.Enabled = False
         Me.rbVerifyUpdated.Enabled = False
-
     End Sub
     Public Sub setStart()
         If Main.checkISOcodePresent() And Main.checkQuoteTypePresent And Main.checkFileNamePresent Then
@@ -395,7 +361,6 @@ Public Class MainMenu
         Else
             '  me.lblRecord.Visible = False
         End If
-
     End Sub
     Public Sub setRecord()
         If Me.lblCreateScripts.Visible() = True Then
@@ -404,29 +369,24 @@ Public Class MainMenu
         Else
             '   me.rbRecord.Enabled = False
         End If
-
     End Sub
     Public Sub setCreateScripts()
         Dim y As Integer = Main.countUnidentifiedNotFixedYet + Main.countMultipleNotFixedYet + Main.countUnassignedCharacters
         If Main.countUnidentifiedNotFixedYet + Main.countMultipleNotFixedYet + Main.countUnassignedCharacters = 0 Then
             Me.rbCreateScripts.Enabled = True
             '          Me.rbCreateScripts.Checked = True
-
         Else
             '    me.rbCreateScripts.Enabled = False
         End If
-
     End Sub
     Public Sub setUnassigned()
         Dim iTemp As Integer = Main.countUnassignedCharacters ' 
         If iTemp = 0 And Me.lblStartProcessing.Visible Then ' all assigned and whe have started processing
             Me.lblAssignVoice.Visible = True
             '         Me.rbStartProcessing.Checked = True
-
         Else
             '      me.lblAssignVoice.Visible = False
         End If
-
     End Sub
     Public Sub setMultiple()
         Dim iTemp As Integer = Main.countMultipleNotFixedYet
@@ -442,7 +402,6 @@ Public Class MainMenu
         If iTemp = 0 Then
             Me.lblUnidentified.Visible = True
             '       Me.rbStartProcessing.Checked = True
-
         Else
             '        me.lblUnidentified.Visible = False
         End If
@@ -465,14 +424,12 @@ Public Class MainMenu
             '  me.rbStartProcessing.Enabled = True
             ' me.rbUnidentified.Enabled = True
             ' me.rbMultiple.Enabled = False
-
             '  me.rbVerifyUpdated.Enabled = True
             ' me.rbVerifyAll.Enabled = True
             ' me.rbAssignVoices.Enabled = True
             '  me.rbCreateScripts.Enabled = True
             '  Me.rbRecord.Enabled = True
         End If
-
     End Sub
     Public Sub showStatsForUnidentifiedMultipleTotal()
         Main.readClipsFromFileMaster()
@@ -497,5 +454,4 @@ Public Class MainMenu
         End If
         ' Mainmenu.TextBox1.BackColor = Color.Cyan
     End Sub
-
 End Class

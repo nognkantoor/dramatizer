@@ -241,7 +241,6 @@ Public Class SFMQuotes
             temp = regexReplace(temp, "([^\n])(<<)", sClipUnknown & "$1$2$3")
         End If
         Return temp
-
     End Function
     Private Function removeUnusedText(ByVal temp As String)
         ' \ide  encoding
@@ -271,7 +270,6 @@ Public Class SFMQuotes
         temp = regexReplace(temp, "(\\is)(.*?)(\r\n)", sClipExtra)
         Return temp
     End Function
-
     Private Function regexReplaceDotIncludesNL(ByVal sInput As String, ByVal sFind As String, ByVal sReplace As String)
         Dim expression As Regex
         expression = New Regex(sFind, RegexOptions.Singleline)

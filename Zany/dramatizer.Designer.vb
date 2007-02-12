@@ -1,7 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class dramatizer
     Inherits System.Windows.Forms.Form
-
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -10,10 +9,8 @@ Partial Class dramatizer
         End If
         MyBase.Dispose(disposing)
     End Sub
-
     'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
-
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
@@ -42,13 +39,14 @@ Partial Class dramatizer
         Me.lblCharacterName = New System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.btnLessOptions = New System.Windows.Forms.Button
+        Me.Panel3 = New System.Windows.Forms.Panel
+        Me.chkbxDisplayOmittedClips = New System.Windows.Forms.CheckBox
+        Me.chkbxDisplayOnlyClipsToProcess = New System.Windows.Forms.CheckBox
         Me.btnMoreOptions = New System.Windows.Forms.Button
         Me.btnNotAQuote = New System.Windows.Forms.Button
         Me.cbCharactersEdit = New System.Windows.Forms.ComboBox
         Me.chkbxShowPrompt = New System.Windows.Forms.CheckBox
         Me.upDownSpeakerNumber = New System.Windows.Forms.NumericUpDown
-        Me.chkbxDisplayOmittedClips = New System.Windows.Forms.CheckBox
-        Me.chkbxDisplayUnprocessedOnly = New System.Windows.Forms.CheckBox
         Me.btnRecord = New System.Windows.Forms.Button
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.rbUpdated = New System.Windows.Forms.RadioButton
@@ -58,14 +56,13 @@ Partial Class dramatizer
         Me.rbMultiple = New System.Windows.Forms.RadioButton
         Me.rbAll = New System.Windows.Forms.RadioButton
         Me.lblDisplay = New System.Windows.Forms.Label
-        Me.Panel3 = New System.Windows.Forms.Panel
         Me.tbDisplayClipsBy = New System.Windows.Forms.TextBox
         Me.btnMoveDown = New System.Windows.Forms.Button
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         CType(Me.upDownSpeakerNumber, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnUpdate
@@ -267,6 +264,36 @@ Partial Class dramatizer
         Me.btnLessOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnLessOptions.UseVisualStyleBackColor = True
         '
+        'Panel3
+        '
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel3.Controls.Add(Me.chkbxDisplayOmittedClips)
+        Me.Panel3.Controls.Add(Me.chkbxDisplayOnlyClipsToProcess)
+        Me.Panel3.Location = New System.Drawing.Point(225, 3)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(265, 63)
+        Me.Panel3.TabIndex = 55
+        '
+        'chkbxDisplayOmittedClips
+        '
+        Me.chkbxDisplayOmittedClips.AutoSize = True
+        Me.chkbxDisplayOmittedClips.Location = New System.Drawing.Point(9, 29)
+        Me.chkbxDisplayOmittedClips.Name = "chkbxDisplayOmittedClips"
+        Me.chkbxDisplayOmittedClips.Size = New System.Drawing.Size(142, 17)
+        Me.chkbxDisplayOmittedClips.TabIndex = 49
+        Me.chkbxDisplayOmittedClips.Text = "Display omitted clips  xxx"
+        Me.chkbxDisplayOmittedClips.UseVisualStyleBackColor = True
+        '
+        'chkbxDisplayOnlyClipsToProcess
+        '
+        Me.chkbxDisplayOnlyClipsToProcess.AutoSize = True
+        Me.chkbxDisplayOnlyClipsToProcess.Location = New System.Drawing.Point(9, 9)
+        Me.chkbxDisplayOnlyClipsToProcess.Name = "chkbxDisplayOnlyClipsToProcess"
+        Me.chkbxDisplayOnlyClipsToProcess.Size = New System.Drawing.Size(167, 17)
+        Me.chkbxDisplayOnlyClipsToProcess.TabIndex = 46
+        Me.chkbxDisplayOnlyClipsToProcess.Text = "Display unprecessed only  xxx"
+        Me.chkbxDisplayOnlyClipsToProcess.UseVisualStyleBackColor = True
+        '
         'btnMoreOptions
         '
         Me.btnMoreOptions.Image = CType(resources.GetObject("btnMoreOptions.Image"), System.Drawing.Image)
@@ -317,26 +344,6 @@ Partial Class dramatizer
         Me.upDownSpeakerNumber.Name = "upDownSpeakerNumber"
         Me.upDownSpeakerNumber.Size = New System.Drawing.Size(86, 20)
         Me.upDownSpeakerNumber.TabIndex = 45
-        '
-        'chkbxDisplayOmittedClips
-        '
-        Me.chkbxDisplayOmittedClips.AutoSize = True
-        Me.chkbxDisplayOmittedClips.Location = New System.Drawing.Point(9, 29)
-        Me.chkbxDisplayOmittedClips.Name = "chkbxDisplayOmittedClips"
-        Me.chkbxDisplayOmittedClips.Size = New System.Drawing.Size(142, 17)
-        Me.chkbxDisplayOmittedClips.TabIndex = 49
-        Me.chkbxDisplayOmittedClips.Text = "Display omitted clips  xxx"
-        Me.chkbxDisplayOmittedClips.UseVisualStyleBackColor = True
-        '
-        'chkbxDisplayUnprocessedOnly
-        '
-        Me.chkbxDisplayUnprocessedOnly.AutoSize = True
-        Me.chkbxDisplayUnprocessedOnly.Location = New System.Drawing.Point(9, 9)
-        Me.chkbxDisplayUnprocessedOnly.Name = "chkbxDisplayUnprocessedOnly"
-        Me.chkbxDisplayUnprocessedOnly.Size = New System.Drawing.Size(167, 17)
-        Me.chkbxDisplayUnprocessedOnly.TabIndex = 46
-        Me.chkbxDisplayUnprocessedOnly.Text = "Display unprecessed only  xxx"
-        Me.chkbxDisplayUnprocessedOnly.UseVisualStyleBackColor = True
         '
         'btnRecord
         '
@@ -437,16 +444,6 @@ Partial Class dramatizer
         Me.lblDisplay.TabIndex = 54
         Me.lblDisplay.Text = "Display clips by xxx"
         '
-        'Panel3
-        '
-        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel3.Controls.Add(Me.chkbxDisplayOmittedClips)
-        Me.Panel3.Controls.Add(Me.chkbxDisplayUnprocessedOnly)
-        Me.Panel3.Location = New System.Drawing.Point(225, 3)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(265, 63)
-        Me.Panel3.TabIndex = 55
-        '
         'tbDisplayClipsBy
         '
         Me.tbDisplayClipsBy.Location = New System.Drawing.Point(7, 50)
@@ -495,11 +492,11 @@ Partial Class dramatizer
         Me.StatusStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         CType(Me.upDownSpeakerNumber, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -530,7 +527,7 @@ Partial Class dramatizer
     Friend WithEvents chkbxShowPrompt As System.Windows.Forms.CheckBox
     Friend WithEvents cbCharactersEdit As System.Windows.Forms.ComboBox
     Friend WithEvents btnNotAQuote As System.Windows.Forms.Button
-    Friend WithEvents chkbxDisplayUnprocessedOnly As System.Windows.Forms.CheckBox
+    Friend WithEvents chkbxDisplayOnlyClipsToProcess As System.Windows.Forms.CheckBox
     Friend WithEvents chkbxDisplayOmittedClips As System.Windows.Forms.CheckBox
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel

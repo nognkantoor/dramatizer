@@ -1,28 +1,20 @@
 Public Class translate
-
     Public row As Int16 = 1
-
     Public column As Int16 = 1
-
-
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         Me.Hide()
-     
     End Sub
-
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOK.Click
         Main.sLocalizationStrings(row, Main.iLanguageSelected) = tbTarget.Text
         Main.writeLocalizationFile()
         Me.Hide()
-
     End Sub
     Public Sub New()
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
-        Me.btnForward.BackColor = Color.LightSlateGray
-
+        Me.btnForward.BackColor = Color.LightGray
+        Me.btnOK.BackColor = Color.LawnGreen
     End Sub
     Public Sub loadTranslate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
         fillControls()
@@ -30,14 +22,12 @@ Public Class translate
         ' is connected to the Load event of the form.
         ' Create the ToolTip and associate with the Form container.
         Dim toolTip1 As New ToolTip()
-
         ' Set up the delays for the ToolTip.
         toolTip1.AutoPopDelay = 5000
         toolTip1.InitialDelay = 1000
         toolTip1.ReshowDelay = 500
         ' Force the ToolTip text to be displayed whether or not the form is active.
         toolTip1.ShowAlways = True
-
         ' Set up the ToolTip text for the Buttons and Textbox.
         toolTip1.SetToolTip(Me.btnBack, Main.sLocalizationStrings(Main.iBackAndCancelChange, Main.iLanguageSelected))
         toolTip1.SetToolTip(Me.btnForward, Main.sLocalizationStrings(Main.iSaveChangeAndSeeNext, Main.iLanguageSelected))
@@ -45,8 +35,6 @@ Public Class translate
         toolTip1.SetToolTip(Me.tbSource, Main.sLocalizationStrings(Main.iTypeInOtherBox, Main.iLanguageSelected))
         toolTip1.SetToolTip(Me.btnOK, Main.sLocalizationStrings(Main.iSaveChangeAndCloseMenu, Main.iLanguageSelected))
         toolTip1.SetToolTip(Me.btnCancel, Main.sLocalizationStrings(Main.iCancelChangeAndCloseMenu, Main.iLanguageSelected))
-
-
     End Sub
     Public Sub fillControls()
         Try
@@ -61,6 +49,14 @@ Public Class translate
         End Try
     End Sub
     Private Sub btnForward_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
+        Main.sLocalizationStrings(row, Main.iLanguageSelected) = tbTarget.Text
+        '  row += 1
+        If row = Main.iMaximumLocalizationStrings Then Beep() : row = Main.iMaximumLocalizationStrings
+        fillControls()
+        Me.btnForward.BackColor = Color.LightGray
+        Main.writeLocalizationFile()
+    End Sub
+    Private Sub btnForward_RightClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
         Main.sLocalizationStrings(row, Main.iLanguageSelected) = tbTarget.Text
         row += 1
         If row = Main.iMaximumLocalizationStrings Then Beep() : row = Main.iMaximumLocalizationStrings
@@ -80,13 +76,17 @@ Public Class translate
     Private Function currentLocation()
         Return row.ToString & ", " & Main.iLanguageSelected.ToString
     End Function
-
     Private Sub tbTarget_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbTarget.TextChanged
         Me.btnForward.BackColor = Color.LimeGreen
     End Sub
-
     Private Sub tbSource_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbSource.TextChanged
         fillControls()
-
+    End Sub
+    Private Sub btnFastForward_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFastForward.Click
+        Main.sLocalizationStrings(row, Main.iLanguageSelected) = tbTarget.Text
+        row += 10
+        If row = Main.iMaximumLocalizationStrings Then Beep() : row = Main.iMaximumLocalizationStrings
+        fillControls()
+        Me.btnForward.BackColor = Color.LightSlateGray
     End Sub
 End Class
