@@ -226,7 +226,7 @@ Public Class MainMenu
                 dramatizer.rbSpeaker.Checked = True
                 dramatizer.displayMasterAndVoiceTalentText()
                 dramatizer.btnRecord.Visible = True
-                dramatizer.btnUpdate.Visible = False
+                '   dramatizer.btnUpdate.Visible = False
                 dramatizer.Show()
                 MasterText.Show()
                 MasterText.topRight()

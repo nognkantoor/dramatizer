@@ -6,6 +6,7 @@ Imports System.Text.RegularExpressions
 Public Class dramatizer
     Public blnMoreOrLess As Boolean = True
     Public blnMoveDown As Boolean = True
+    Public tempSourceFile
     '    Public main.iCurrentClipNumber As Integer
     Public Sub New()
         Try
@@ -50,7 +51,7 @@ Public Class dramatizer
         showSpeakerNumber()
     End Sub
     Private Sub resetColorsOnButtons()
-        Me.btnUpdate.BackColor = Color.LightGray
+        '    Me.btnUpdate.BackColor = Color.LightGray
         Me.btnForward.BackColor = Color.LightGray
     End Sub
     Private Sub showBookChapterVerse()
@@ -155,7 +156,7 @@ Public Class dramatizer
             If cbCharacters.Items.IndexOf(Main.getCharacterShort(Main.sCharacter(iCurrentClip, i))) > -1 Then
                 ' already have so do nothing
             Else
-                ' add short charact  name
+                ' add short character  name
                 cbCharacters.Items.Add(Main.getCharacterShort(Main.sCharacter(iCurrentClip, i)))
             End If
         Next
@@ -163,11 +164,14 @@ Public Class dramatizer
             ' human has made a choice stored in 0  (confirmed)
             Me.cbCharacters.DroppedDown = False
             Me.cbCharacters.Text = Main.sCharacter(iCurrentClip, 0)
-            Me.cbCharacters.BackColor = Color.LightBlue
+            Me.cbCharacters.BackColor = Color.LawnGreen
+            Me.cbCharactersEdit.BackColor = Color.LawnGreen
+            Me.btnForward.BackColor = Color.LightGray
         ElseIf Main.iNumberOfCharactersInClip(iCurrentClip) = 0 Then
             ' unidentified and unconfirmed
             Me.cbCharacters.Text = Main.sCharacter(iCurrentClip, 1)
             Me.cbCharacters.BackColor = Color.HotPink
+            Me.cbCharactersEdit.BackColor = Color.HotPink
             editCharacter()
         ElseIf Main.iNumberOfCharactersInClip(iCurrentClip) = 1 Then
             ' just one character - so no need to confirm 
@@ -183,45 +187,11 @@ Public Class dramatizer
         Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
         Me.cbCharactersEdit.Text = Me.cbCharacters.Text
         Me.cbCharactersEdit.Focus()
-    End Sub
-    Private Sub btnForward_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
-        '   Dim myclip As New Clip(main.iCurrentClipNumber, sTextArray, iLastClipNumber)
-        '  myclip.goForward(Me.lbForwardBackBy.SelectedItem, iLastClipNumber)
-        goForward()
-    End Sub
-    Private Sub btnBack_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
-        goBack()
-    End Sub
-    Private Sub btnStart_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStart.Click
-        goHome()
-    End Sub
-    Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
-        Me.Hide()
-        MainMenu.Show()
-        MainMenu.setCheckMarksAndEnableMenuItems()
-        ' me.enableMenuChoices()
-        'If me.lblStartProcessing.Visible = True Then
-        ' me.rbInitialize.Focus()
-        ' End If
-        ' If me.lblInitialize.Visible = True Then
-        ' me.rbUnidentified.Focus()
-        ' End If
-        ' If me.lblUnidentified.Visible = True Then
-        ' me.rbMultiple.Focus()
-        ' End If
-        ' If me.lblMultiple.Visible = True Then
-        ' me.rbVerifyUpdated.Focus()
-        ' End If
-        MasterText.Hide()
-        VoiceTalentText.Hide()
-        MainMenu.showStatsForUnidentifiedMultipleTotal()
-    End Sub
-    Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
-        ' set the properties of the current clip to displayed values
-        ' character
-        updateCharactersInMasterFile()
-        Me.btnUpdate.BackColor = Color.LightGray
-        Me.goForward()
+        If Main.iCurrentClipNumber = 1 Then
+            Me.btnForward.BackColor = Color.LightGray
+        Else
+            ' keep current color
+        End If
     End Sub
     Private Function skipForwardIfOmittedProcessedOrRecorded(ByVal clipNumber As Integer)
         ' before changing anything here check for omit bug
@@ -355,7 +325,7 @@ Public Class dramatizer
     End Function
     
     Private Sub goHome()
-        Me.btnUpdate.BackColor = Color.LightGray
+        '   Me.btnUpdate.BackColor = Color.LightGray
         Me.btnForward.BackColor = Color.LightGray
         Main.iCurrentClipNumber = 1
         displayPropertiesOfClip(2)
@@ -406,66 +376,42 @@ Public Class dramatizer
     End Sub
     Private Sub btnRecord_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRecord.Click
         ' result should be   XXX-000-00000 where XXX is ISO code and -000- is book and -00000- is sequence
-        Dim startTime, endTime
+        ' Dim startTime, endTime
         Dim i As Integer = Main.iCurrentClipNumber
-        Dim isoCode As String = "\" & Main.tbISOcode.Text & "-"
-        Dim bookNumber As String = Main.getBookNumber(i)
-        Dim sequence As String = sPadNumber(5, i.ToString)
-        Dim tempWaveFileStart As String = isoCode + bookNumber + sequence
-        Dim tempSourceFile As String
-        '      Dim tempOutputFile As String
-        '   Dim tempCWaveFile As String
-        Dim blnTagFound As Boolean = False
-        Dim extra As String = ""
-        '     createTempRecordingFolder()
-        blnTagFound = str.InStr(Main.sTag(i), "\")
-        extra = Main.justTagOrOmit(i) ' empty if no tag
-        tempSourceFile = Main.sRecordingFolder + tempWaveFileStart + extra + ".wav"
-        'tempOutputFile = Main.sTempRecordingInProgressFolder + tempWaveFileStart + extra + ".wav"
-        If File.Exists(tempSourceFile) Then
-            ' good
-            '     File.Move(tempSourceFile, tempOutputFile)
-            startTime = File.GetCreationTime(tempSourceFile)
-            '  Shell(Main.cbAudioProgram.Text + " " + "" + tempOutputFile + "", AppWinStyle.NormalFocus, False)
-            ' program to launch
-            Dim startInfo As New ProcessStartInfo(Main.cbAudioProgram.Text)
-            ' file to open
-            startInfo.Arguments = """" + tempSourceFile + """"
-            Process.Start(startInfo)
-            endTime = File.GetLastWriteTime(tempSourceFile)
-            If endTime > startTime Then ' file is written
-                Main.blnRecorded(i) = True
-                Main.writeClipsToMasterFileAndAdjustClipSize(False)
-            Else
-                ' process closed but no file written
-            End If
+        If i = 1 Then
+            Beep()
+            ' skip #1
         Else
-            ' missing file
-            MessageBox.Show("Missing wave file. This should not happen unless someone deleted files accidently. You will need to recreate the .wav files." & vbCrLf & tempSourceFile, "Missing file", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim isoCode As String = "\" & Main.tbISOcode.Text & "-"
+            Dim bookNumber As String = Main.getBookNumber(i)
+            Dim sequence As String = sPadNumber(5, i.ToString)
+            Dim tempWaveFileStart As String = isoCode + bookNumber + sequence
+            '    Dim tempSourceFile As String
+            '      Dim tempOutputFile As String
+            '   Dim tempCWaveFile As String
+            Dim blnTagFound As Boolean = False
+            Dim extra As String = ""
+            '     createTempRecordingFolder()
+            blnTagFound = str.InStr(Main.sTag(i), "\")
+            extra = Main.justTagOrOmit(i) ' empty if no tag
+            tempSourceFile = Main.sRecordingFolder + tempWaveFileStart + extra + ".wav"
+            'tempOutputFile = Main.sTempRecordingInProgressFolder + tempWaveFileStart + extra + ".wav"
+            If File.Exists(tempSourceFile) Then
+                ' good
+                ' program to launch
+                Dim startInfo As New ProcessStartInfo(Main.cbAudioProgram.Text)
+                ' file to open
+                startInfo.Arguments = """" + tempSourceFile + """"
+                Process.Start(startInfo)
+                ' removed loop here as it slows everything down
+                ' use event instead
+            Else
+                ' missing file
+                MessageBox.Show("Missing wave file. This should not happen unless someone deleted files accidently. You will need to recreate the .wav files." & vbCrLf & tempSourceFile, "Missing file", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
         End If
     End Sub
-    'Private Sub createTempRecordingFolder()
-    '    If Directory.Exists(Main.sTempRecordingInProgressFolder) Then
-    ''should not happen
-    '        If Directory.GetFiles(Main.sTempRecordingInProgressFolder).Length > 0 Then
-    '            Debug.Assert(True, "Recording in progress folder found with a file in it.")
-    '' This should not happen. Please move file back to recording folder.", "Recording already in progress?", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-    '        End If
-    '    Else
-    '' create folder
-    '        Directory.CreateDirectory(Main.sTempRecordingInProgressFolder)
-    '    End If
-    'End Sub
-    'Private Sub deleteTempRecordingFolder()
-    '    If Directory.Exists(Main.sTempRecordingInProgressFolder) Then
-    '        If Directory.GetFiles(Main.sTempRecordingInProgressFolder).Length > 0 Then
-    '            File.Move(Main.sTempRecordingInProgressFolder + "\*.*", Main.sRecordingFolder)
-    '        End If
-    '        Directory.Delete(Main.sTempRecordingInProgressFolder)
-    '    Else
-    '        Debug.Assert(True, "Expected to find a folder here. " + Main.sTempRecordingInProgressFolder)
-    '    End If
-    'End Sub
     Public Function sPadNumber(ByVal i As Integer, ByVal temp As String)
         Return temp.PadLeft(i, "0")
     End Function
@@ -491,7 +437,7 @@ Public Class dramatizer
     End Sub
     Private Sub cbCharactersEdit_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedIndexChanged
         Me.cbCharacters.Text = Me.cbCharactersEdit.Text
-        Me.btnUpdate.BackColor = Color.LawnGreen
+        Me.btnForward.BackColor = Color.LawnGreen
     End Sub
     Private Sub showMultipleCharactersOrEdit()
         If Main.iNumberOfCharactersInClip(Main.iCurrentClipNumber) > 1 Then
@@ -516,6 +462,7 @@ Public Class dramatizer
     End Sub
     Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
         Me.cbCharacters.Text = "Not a quote"
+        Me.cbCharactersEdit.Text = "Not a quote"
     End Sub
     Private Sub btnMoreOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoreOptions.Click
         ' show more
@@ -551,10 +498,12 @@ Public Class dramatizer
         End If
     End Sub
     Public Sub goForward()
+        ifRecordingDidWeWriteNewFile(Main.iCurrentClipNumber)
+
         If Main.iCurrentClipNumber >= (Main.iLastClipNumber) Then Beep() : Main.iCurrentClipNumber = 0
+        Dim i As Integer = Main.iCurrentClipNumber
         ' iLastClipNumber is really 1 over in order to handle splits properly
         ' so don't show the "last" one as it is blank
-        Dim i As Integer = Main.iCurrentClipNumber
         If Me.rbAll.Checked = True Then
             ' "Next clip" "Verify All" "record all" ' can't match string as string changes
             i = skipForwardIfOmittedProcessedOrRecorded(i)
@@ -596,8 +545,28 @@ Public Class dramatizer
         Else
             i = skipForwardIfOmittedProcessedOrRecorded(i)
         End If
+        Main.writeClipsToMasterFileAndAdjustClipSize(False)
+        Main.displayStatusText()
+
+
         Main.iCurrentClipNumber = i
         displayPropertiesOfClip(2)
+    End Sub
+    Private Sub ifRecordingDidWeWriteNewFile(i as Integer)
+        If tempSourceFile = Nothing Then
+            ' skip
+        Else
+            ' check if file size got bigger
+            Dim information As System.IO.FileInfo
+            information = My.Computer.FileSystem.GetFileInfo(tempSourceFile)
+            If information.Length > 44 Then
+                ' new info
+                Main.blnRecorded(i) = True
+            Else
+                ' same file so nothing worthwhile was saved
+            End If
+        End If
+
     End Sub
     Private Sub rbUnidentified_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbUnidentified.CheckedChanged
         Me.tbDisplayClipsBy.Text = Main.sLocalizationStrings(Main.iUnidentifiedClips, Main.iLanguageSelected)
@@ -635,12 +604,13 @@ Public Class dramatizer
 
     End Sub
     Public Sub goBack()
-        Me.btnUpdate.BackColor = Color.LightGray
+        ifRecordingDidWeWriteNewFile(Main.iCurrentClipNumber)
+        ' Me.btnUpdate.BackColor = Color.LightGray
         Me.btnForward.BackColor = Color.LightGray
         If Main.iCurrentClipNumber = 1 Then Main.iCurrentClipNumber = Main.iLastClipNumber + 1
+        Dim i As Integer = Main.iCurrentClipNumber
         ' iLastClipNumber is really 1 over in order to handle splits properly
         ' so don't show the "last" one as it is blank
-        Dim i As Integer = Main.iCurrentClipNumber
         If Me.rbAll.Checked = True Then
             ' "Next clip" "Verify All" "record all" ' can't match string as string changes
             i = skipBackIfOmittedProcessedOrRecorded(i)
@@ -710,7 +680,7 @@ Public Class dramatizer
         Return clipNumber
     End Function
     Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
-        Me.btnUpdate.BackColor = Color.LawnGreen
+        ' Me.btnUpdate.BackColor = Color.LawnGreen
         ' Me.showSpeakerNumber()
         Me.cbCharacterPrompt.Text = Me.extractPrompt(Me.cbCharacters.Text)
         Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
@@ -718,6 +688,7 @@ Public Class dramatizer
         Me.cbCharacters.BackColor = Color.LawnGreen
         Me.cbCharacterPrompt.BackColor = Color.LawnGreen
         updateCharactersInMasterFile()
+        Me.btnForward.BackColor = Color.LightGray
     End Sub
     '  Private Sub cbCharacters_Changed(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedValueChanged
     '     Me.btnUpdate.BackColor = Color.LawnGreen
@@ -770,4 +741,27 @@ Public Class dramatizer
     '' pressed enter on the forward back control
     '   updateCharactersInMasterFile()
     ' End Sub
+    Private Sub btnForward_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
+        '   Dim myclip As New Clip(main.iCurrentClipNumber, sTextArray, iLastClipNumber)
+        '  myclip.goForward(Me.lbForwardBackBy.SelectedItem, iLastClipNumber)
+        If btnForward.BackColor = Color.LawnGreen Then
+            updateCharactersInMasterFile()
+            Me.btnForward.BackColor = Color.LightGray
+        End If
+        goForward()
+    End Sub
+    Private Sub btnBack_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
+        goBack()
+    End Sub
+    Private Sub btnStart_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStart.Click
+        goHome()
+    End Sub
+    Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
+        Me.Hide()
+        MainMenu.Show()
+        MainMenu.setCheckMarksAndEnableMenuItems()
+        MasterText.Hide()
+        VoiceTalentText.Hide()
+        MainMenu.showStatsForUnidentifiedMultipleTotal()
+    End Sub
 End Class

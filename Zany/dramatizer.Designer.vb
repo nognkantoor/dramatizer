@@ -68,7 +68,7 @@ Partial Class dramatizer
         'btnUpdate
         '
         Me.btnUpdate.Image = CType(resources.GetObject("btnUpdate.Image"), System.Drawing.Image)
-        Me.btnUpdate.Location = New System.Drawing.Point(111, 14)
+        Me.btnUpdate.Location = New System.Drawing.Point(451, 266)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(46, 29)
         Me.btnUpdate.TabIndex = 39
