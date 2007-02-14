@@ -96,10 +96,10 @@ Public Class dramatizer
         If MasterText.chkbxShowSpeakerText.Checked = True Then
             Main.setFontForRTB()
             '    Main.changeFont()
-            VoiceTalentText.rtbText.Text = temp
-            VoiceTalentText.Show()
+            SpeakerText.rtbText.Text = temp
+            SpeakerText.Show()
         Else
-            VoiceTalentText.Hide()
+            SpeakerText.Hide()
         End If
     End Sub
     Private Sub showContext(ByVal temp As String)
@@ -151,6 +151,7 @@ Public Class dramatizer
         cbCharacters.Items.Clear()
         Me.cbCharacters.Text = ""
         Me.cbCharactersEdit.Text = ""
+        Me.cbCharacterPrompt.Text = ""
         Me.cbCharacters.DroppedDown = False
         For i = 1 To Main.iNumberOfCharactersInClip(iCurrentClip)
             If cbCharacters.Items.IndexOf(Main.getCharacterShort(Main.sCharacter(iCurrentClip, i))) > -1 Then
@@ -263,6 +264,7 @@ Public Class dramatizer
         Return clipNumber
     End Function
     Private Function skipBackOverOmitted(ByVal clipNumber As Integer)
+        If clipNumber < 1 Then Beep() : clipNumber = Main.iLastClipNumber
         If Me.chkbxDisplayOmittedClips.Checked = True Then
             ' showing ommittede clips
             If clipNumber = 0 Then Beep() : clipNumber = Main.iLastClipNumber
@@ -270,7 +272,7 @@ Public Class dramatizer
             ' skip over any omitted clips
             Do Until (Main.blnOmit(clipNumber) = False) ' Or clipNumber = Main.iLastClipNumber)
                 clipNumber -= 1
-                If clipNumber = 0 Then Beep() : clipNumber = Main.iLastClipNumber : Exit Do
+                If clipNumber < 1 Then Beep() : clipNumber = Main.iLastClipNumber : Exit Do
             Loop
         End If
         Return clipNumber
@@ -323,7 +325,7 @@ Public Class dramatizer
         End If
         Return clipNumber
     End Function
-    
+
     Private Sub goHome()
         '   Me.btnUpdate.BackColor = Color.LightGray
         Me.btnForward.BackColor = Color.LightGray
@@ -435,10 +437,6 @@ Public Class dramatizer
             Me.lblCharacterPrompt.Visible = False
         End If
     End Sub
-    Private Sub cbCharactersEdit_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedIndexChanged
-        Me.cbCharacters.Text = Me.cbCharactersEdit.Text
-        Me.btnForward.BackColor = Color.LawnGreen
-    End Sub
     Private Sub showMultipleCharactersOrEdit()
         If Main.iNumberOfCharactersInClip(Main.iCurrentClipNumber) > 1 Then
             'Me.cbCharacters.DroppedDown = True
@@ -531,12 +529,6 @@ Public Class dramatizer
                 i = skipForwardIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
-        ElseIf Me.rbCharacter.Checked = True Then
-            '"Verify character clip"
-            Do
-                i = skipForwardIfOmittedProcessedOrRecorded(i)
-                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-            Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
         ElseIf Me.rbSpeaker.Checked = True Then
             Do
                 i = skipForwardIfOmittedProcessedOrRecorded(i)
@@ -552,7 +544,7 @@ Public Class dramatizer
         Main.iCurrentClipNumber = i
         displayPropertiesOfClip(2)
     End Sub
-    Private Sub ifRecordingDidWeWriteNewFile(i as Integer)
+    Private Sub ifRecordingDidWeWriteNewFile(ByVal i As Integer)
         If tempSourceFile = Nothing Then
             ' skip
         Else
@@ -638,12 +630,6 @@ Public Class dramatizer
                 i = skipBackIfOmittedProcessedOrRecorded(i)
                 If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
             Loop Until Main.sSpeakerNumber(i) = Me.upDownSpeakerNumber.Value.ToString
-        ElseIf Me.rbCharacter.Checked = True Then
-            '"Verify character clip"
-            Do
-                i = skipBackIfOmittedProcessedOrRecorded(i)
-                If i >= Main.iLastClipNumber Then Beep() : i = 1 : Exit Do
-            Loop Until Main.iNumberOfCharactersInClip(i) = 0 <> Nothing
         ElseIf Me.rbSpeaker.Checked = True Then
             Do
                 i = skipBackIfOmittedProcessedOrRecorded(i)
@@ -679,17 +665,6 @@ Public Class dramatizer
         End If
         Return clipNumber
     End Function
-    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
-        ' Me.btnUpdate.BackColor = Color.LawnGreen
-        ' Me.showSpeakerNumber()
-        Me.cbCharacterPrompt.Text = Me.extractPrompt(Me.cbCharacters.Text)
-        Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
-        Me.cbCharactersEdit.Text = Me.cbCharacters.Text
-        Me.cbCharacters.BackColor = Color.LawnGreen
-        Me.cbCharacterPrompt.BackColor = Color.LawnGreen
-        updateCharactersInMasterFile()
-        Me.btnForward.BackColor = Color.LightGray
-    End Sub
     '  Private Sub cbCharacters_Changed(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedValueChanged
     '     Me.btnUpdate.BackColor = Color.LawnGreen
     'End Sub
@@ -719,10 +694,6 @@ Public Class dramatizer
         Main.writeClipsToMasterFileAndAdjustClipSize(False) ' adjust clip size false
         '  displayPropertiesOfClip(2)  ' check for redundant xxxxxxxxxxxxxxxx
         Main.displayStatusText()
-    End Sub
-    Private Sub pressedEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
-        ' pressed enter on the forward back control
-        updateCharactersInMasterFile()
     End Sub
     ' Private Sub pressedKey(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
     '' not working
@@ -761,7 +732,30 @@ Public Class dramatizer
         MainMenu.Show()
         MainMenu.setCheckMarksAndEnableMenuItems()
         MasterText.Hide()
-        VoiceTalentText.Hide()
+        SpeakerText.Hide()
+        Main.processOmittedTextBasedOnCheckedInfo()
         MainMenu.showStatsForUnidentifiedMultipleTotal()
+    End Sub
+    Private Sub cbCharactersEdit_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedIndexChanged
+        Me.cbCharacters.Text = Me.cbCharactersEdit.Text
+        Me.btnForward.BackColor = Color.LawnGreen
+    End Sub
+    Private Sub pressedEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
+        ' pressed enter on the forward back control
+        updateCharactersInMasterFile()
+    End Sub
+    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
+        If Me.cbCharacters.SelectedIndex = -1 Then
+            'skip
+        Else
+            Me.cbCharacterPrompt.Text = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex))
+
+        End If
+        Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
+        Me.cbCharactersEdit.Text = Me.cbCharacters.Text
+        Me.cbCharacters.BackColor = Color.LawnGreen
+        Me.cbCharacterPrompt.BackColor = Color.LawnGreen
+        updateCharactersInMasterFile()
+        Me.btnForward.BackColor = Color.LightGray
     End Sub
 End Class

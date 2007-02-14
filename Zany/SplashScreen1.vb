@@ -23,5 +23,6 @@ Public NotInheritable Class SplashScreen1
         Version.Text = System.String.Format(Version.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor)
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
+
     End Sub
 End Class

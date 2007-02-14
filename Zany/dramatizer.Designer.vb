@@ -17,7 +17,6 @@ Partial Class dramatizer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dramatizer))
-        Me.btnUpdate = New System.Windows.Forms.Button
         Me.lblCharacterPrompt = New System.Windows.Forms.Label
         Me.cbCharacterPrompt = New System.Windows.Forms.ComboBox
         Me.btnNext = New System.Windows.Forms.Button
@@ -50,7 +49,6 @@ Partial Class dramatizer
         Me.btnRecord = New System.Windows.Forms.Button
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.rbUpdated = New System.Windows.Forms.RadioButton
-        Me.rbCharacter = New System.Windows.Forms.RadioButton
         Me.rbUnidentified = New System.Windows.Forms.RadioButton
         Me.rbSpeaker = New System.Windows.Forms.RadioButton
         Me.rbMultiple = New System.Windows.Forms.RadioButton
@@ -64,15 +62,6 @@ Partial Class dramatizer
         CType(Me.upDownSpeakerNumber, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.Image = CType(resources.GetObject("btnUpdate.Image"), System.Drawing.Image)
-        Me.btnUpdate.Location = New System.Drawing.Point(451, 266)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(46, 29)
-        Me.btnUpdate.TabIndex = 39
-        Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'lblCharacterPrompt
         '
@@ -358,7 +347,6 @@ Partial Class dramatizer
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel2.Controls.Add(Me.rbUpdated)
-        Me.Panel2.Controls.Add(Me.rbCharacter)
         Me.Panel2.Controls.Add(Me.rbUnidentified)
         Me.Panel2.Controls.Add(Me.rbSpeaker)
         Me.Panel2.Controls.Add(Me.rbMultiple)
@@ -380,21 +368,10 @@ Partial Class dramatizer
         Me.rbUpdated.Text = "updated xxx"
         Me.rbUpdated.UseVisualStyleBackColor = True
         '
-        'rbCharacter
-        '
-        Me.rbCharacter.AutoSize = True
-        Me.rbCharacter.Location = New System.Drawing.Point(9, 78)
-        Me.rbCharacter.Name = "rbCharacter"
-        Me.rbCharacter.Size = New System.Drawing.Size(88, 17)
-        Me.rbCharacter.TabIndex = 59
-        Me.rbCharacter.TabStop = True
-        Me.rbCharacter.Text = "character xxx"
-        Me.rbCharacter.UseVisualStyleBackColor = True
-        '
         'rbUnidentified
         '
         Me.rbUnidentified.AutoSize = True
-        Me.rbUnidentified.Location = New System.Drawing.Point(9, 42)
+        Me.rbUnidentified.Location = New System.Drawing.Point(9, 50)
         Me.rbUnidentified.Name = "rbUnidentified"
         Me.rbUnidentified.Size = New System.Drawing.Size(97, 17)
         Me.rbUnidentified.TabIndex = 58
@@ -416,7 +393,7 @@ Partial Class dramatizer
         'rbMultiple
         '
         Me.rbMultiple.AutoSize = True
-        Me.rbMultiple.Location = New System.Drawing.Point(9, 60)
+        Me.rbMultiple.Location = New System.Drawing.Point(9, 73)
         Me.rbMultiple.Name = "rbMultiple"
         Me.rbMultiple.Size = New System.Drawing.Size(78, 17)
         Me.rbMultiple.TabIndex = 56
@@ -427,7 +404,7 @@ Partial Class dramatizer
         'rbAll
         '
         Me.rbAll.AutoSize = True
-        Me.rbAll.Location = New System.Drawing.Point(9, 24)
+        Me.rbAll.Location = New System.Drawing.Point(9, 27)
         Me.rbAll.Name = "rbAll"
         Me.rbAll.Size = New System.Drawing.Size(53, 17)
         Me.rbAll.TabIndex = 55
@@ -478,7 +455,6 @@ Partial Class dramatizer
         Me.Controls.Add(Me.tbBook)
         Me.Controls.Add(Me.btnEnd)
         Me.Controls.Add(Me.tbChapter)
-        Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.tbVerse)
         Me.Controls.Add(Me.btnStart)
         Me.Controls.Add(Me.btnForward)
@@ -518,7 +494,6 @@ Partial Class dramatizer
     Friend WithEvents btnNext As System.Windows.Forms.Button
     Friend WithEvents cbCharacterPrompt As System.Windows.Forms.ComboBox
     Friend WithEvents lblCharacterPrompt As System.Windows.Forms.Label
-    Friend WithEvents btnUpdate As System.Windows.Forms.Button
     Friend WithEvents btnEdit As System.Windows.Forms.Button
     Friend WithEvents lblCharacterName As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
@@ -535,7 +510,6 @@ Partial Class dramatizer
     Friend WithEvents btnMoreOptions As System.Windows.Forms.Button
     Friend WithEvents btnLessOptions As System.Windows.Forms.Button
     Friend WithEvents rbUpdated As System.Windows.Forms.RadioButton
-    Friend WithEvents rbCharacter As System.Windows.Forms.RadioButton
     Friend WithEvents rbUnidentified As System.Windows.Forms.RadioButton
     Friend WithEvents rbSpeaker As System.Windows.Forms.RadioButton
     Friend WithEvents rbMultiple As System.Windows.Forms.RadioButton

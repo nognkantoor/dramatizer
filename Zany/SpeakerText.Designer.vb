@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class VoiceTalentText
+Partial Class SpeakerText
     Inherits System.Windows.Forms.Form
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -30,12 +30,12 @@ Partial Class VoiceTalentText
         Me.rtbText.TabIndex = 1
         Me.rtbText.Text = ""
         '
-        'VoiceTalentText
+        'SpeakerText
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(545, 311)
         Me.Controls.Add(Me.rtbText)
-        Me.Name = "VoiceTalentText"
+        Me.Name = "SpeakerText"
         Me.Text = "Text xxx"
         Me.ResumeLayout(False)
 

@@ -108,10 +108,10 @@
     <Compile Include="translate.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VoiceTalentText.Designer.vb">
-      <DependentUpon>VoiceTalentText.vb</DependentUpon>
+    <Compile Include="SpeakerText.Designer.vb">
+      <DependentUpon>SpeakerText.vb</DependentUpon>
     </Compile>
-    <Compile Include="VoiceTalentText.vb">
+    <Compile Include="SpeakerText.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -146,9 +146,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>translate.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VoiceTalentText.resx">
+    <EmbeddedResource Include="SpeakerText.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>VoiceTalentText.vb</DependentUpon>
+      <DependentUpon>SpeakerText.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

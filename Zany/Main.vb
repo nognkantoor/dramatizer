@@ -143,6 +143,19 @@ Public Class Main
     Public iMoveDown = 131
     Public iRecordSpeaker = 132
     Public iRecordTotalText = 133
+    Public iAllScriptsAndWavFilesCreated = 134
+    Public iText = 135
+
+
+
+
+
+
+
+
+
+
+
     Public sProgramName As String = "Dramatizer"
     Public sProgramVersion As String = "2.0"
     Public sProjectName As String
@@ -348,7 +361,7 @@ Public Class Main
         ToolStripProgressBar1.ProgressBar.Visible = True
         ToolStripProgressBar1.ProgressBar.Maximum = 6
         ToolStripProgressBar1.ProgressBar.Value = 1
-        VoiceTalentText.rtbText.Font = New Font(fontName, fontSize)
+        SpeakerText.rtbText.Font = New Font(fontName, fontSize)
         ToolStripProgressBar1.ProgressBar.Value = 2
         MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
         MasterText.rtbTextOnly.Font = New Font(fontName, fontSize)
@@ -787,34 +800,56 @@ Public Class Main
 
         Next
     End Sub
+    Private Sub resetblnToFalseAndStringToNul()
+        Dim i As Integer
+        For i = 1 To Me.iLastClipNumber
+            blnRecorded(i) = False
+            blnOmit(i) = False
+            Me.sCharacter(i, 0) = ""
+            Me.sCharacter(i, 1) = ""
+            Me.sCharacter(i, 2) = ""
+            Me.sCharacter(i, 3) = ""
+            Me.sCharacter(i, 4) = ""
+            Me.sCharacter(i, 5) = ""
+            Me.sContinued(i) = ""
+        Next
+    End Sub
     Private Sub resetArrays()
-        Me.blnRecorded.Initialize()
+        resetblnToFalseAndStringToNul()
+
+        'Me.blnRecorded.Initialize()
         '  Me.blnOmit.Initialize() didnt work
-        resetOmitToFalse()
-        If blnOmit(1) = True Then
-            Dim x = 1
-        End If
-        Me.sTag.Initialize()
+        'resetOmitToFalse()
+        ' Me.sTag.Initialize()
         Me.iNumberOfCharactersInClip.Initialize()
         Me.iNumberToRecord.Initialize()
         Me.iVoiceColor.Initialize()
         Me.iVoiceVoiceNumber.Initialize()
-        Me.sAllClips.Initialize()
-        Me.sBook.Initialize()
-        Me.sChapter.Initialize()
-        Me.sCharacterPrompts.Initialize()
-        Me.sCharacterShort.Initialize()
-        Me.sCharacter.Initialize()
-        Me.sClipSize.Initialize()
-        Me.sContinued.Initialize()
-        Me.sID.Initialize()
+        'Me.sAllClips.Initialize()
+        'Me.sBook.Initialize()
+        'Me.sChapter.Initialize()
+        'Me.sCharacterPrompts.Initialize()
+        'Me.sCharacterShort.Initialize()
+        'Me.sCharacter.Initialize()
+        ' resetsCharacterToNothing()
+
+        ' Dim x As Integer
+        'For x = 1 To 600
+        'If sCharacter(x, 0) <> Nothing Then
+        'Dim y = 1
+        ' End If
+        ' Next
+
+        'Me.sClipSize.Initialize()
+        'Me.sContinued.Initialize()
+        'Me.sID.Initialize()
         '    Me.sPrompt.Initialize()
-        Me.sScript.Initialize()
-        Me.sSpeakerNumber.Initialize()
-        Me.sTextArray.Initialize()
-        Me.sVerse.Initialize()
-        Me.sVoiceCharacter.Initialize()
-        Me.sCharacter.Initialize()
+        'Me.sScript.Initialize()
+        'Me.sSpeakerNumber.Initialize()
+        'Me.sTextArray.Initialize()
+        'Me.sVerse.Initialize()
+        'Me.sVoiceCharacter.Initialize()
+        'Me.sCharacter.Initialize()
     End Sub
     Public Sub readClipsFromFileMaster()
         createFoldersAndMasterAndScriptsFileNames()
@@ -1135,7 +1170,7 @@ Public Class Main
         Dim temp = getCurrentInfoFromSettingsFile("<currentFont>")
         fontName = regexReplace(temp, "(.+Name=)(.+?)(, Size.+?])", "$2")
         fontSize = regexReplace(temp, "(.+Size=)(.+?)(, Units.+?])", "$2")
-        VoiceTalentText.rtbText.Font = New Font(fontName, fontSize)
+        SpeakerText.rtbText.Font = New Font(fontName, fontSize)
         MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
         MasterText.rtbContextAbove.Font = New Font(fontName, fontSize - 2)
         Me.cbFontName.Text = fontName
@@ -1398,7 +1433,7 @@ Public Class Main
         Next
         Me.rtbEncodingANSI.Font = New Font(fontName, fontSize)
         Me.rtbEncodingUTF8.Font = New Font(fontName, fontSize)
-        VoiceTalentText.rtbText.Font = New Font(fontName, fontSize)
+        SpeakerText.rtbText.Font = New Font(fontName, fontSize)
         MasterText.rtbContextAbove.Font = New Font(fontName, fontSize - 2)
         MasterText.rtbTextOnly.Font = New Font(fontName, fontSize)
         MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
@@ -2382,23 +2417,6 @@ Public Class Main
         Catch ex As Exception
             Beep()
         End Try
-        'If cbFontSize.SelectedItem = Nothing Then
-        'If cbFontSize.Text = "" Then
-        'fontSize = 14
-        'Else
-        'fontSize = cbFontSize.Text
-        'End If
-        'End If
-        ' Dim x
-        ' For x = 1 To 10
-        '  me.cbFontName.Items.Add (
-        ' Next
-        'Me.rtbEncodingANSI.Font = New Font(fontName, fontSize)
-        'Me.rtbEncodingUTF8.Font = New Font(fontName, fontSize)
-        'VoiceTalentText.rtbText.Font = New Font(fontName, fontSize)
-        'MasterText.rtbContextAbove.Font = New Font(fontName, fontSize - 2)
-        'MasterText.rtbTextOnly.Font = New Font(fontName, fontSize)
-        'MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
     End Sub
     ' main menu
     Public Sub readLocalizationFile()
@@ -2425,32 +2443,14 @@ Public Class Main
             End
         End Try
     End Sub
-    ' Private Sub fillForwardBackByControl(ByVal language As Int16)
-    '    Try
-    '       dramatizer.lbForwardBackBy.Items.Clear()
-    '      dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iNextClip, language))
-    '     dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iUnidentifiedCharacter, language))
-    '    dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iMultipleCharacters, language))
-    '   dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iUpdatedCharacter, language))
-    '  dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iSpeakerNumber, language))
-    ' dramatizer.lbForwardBackBy.Items.Add(Me.sLocalizationStrings(iNextClip, language))
-    'dramatizer.btnMoreOptions.Text = Me.sLocalizationStrings(Me.iMore, language)
-    '     dramatizer.btnLessOptions.Text = Me.sLocalizationStrings(Me.iLess, language)
-    '    dramatizer.lblDisplay.Text = Me.sLocalizationStrings(Me.iDisplayClipsBy, language)
-    '   dramatizer.rbAll.Text = Me.sLocalizationStrings(Me.iAllClips, language)
-    '  dramatizer.rbUnidentified.Text = Me.sLocalizationStrings(Me.iUnidentifiedClips, language)
-    ' dramatizer.rbMultiple.Text = Me.sLocalizationStrings(Me.iMultipleClips, language)
-    'dramatizer.rbCharacter.Text = Me.sLocalizationStrings(Me.iCharacterNameClips, language)
-    '    dramatizer.rbSpeaker.Text = Me.sLocalizationStrings(Me.iSpeakerNumberClips, language)
-    '  Catch ex As Exception
-    '     MessageBox.Show("Problem loading forward and back names into list box." & vbCrLf & ex.Message, "Problem loading forward and back names", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-    '  End Try
-    ' End Sub
     Public Sub localizeTranslate(ByVal language As Int16)
         translate.btnOK.Text = sLocalizationStrings(iOK, language)
         translate.btnCancel.Text = sLocalizationStrings(iCancel, language)
         translate.lblSource.Text = sLocalizationStrings(2, 1)
         translate.lblTarget.Text = sLocalizationStrings(2, iLanguageSelected)
+    End Sub
+    Public Sub localizeSpeakerText(ByVal language As Int16)
+        SpeakerText.Text = sLocalizationStrings(iText, language)
     End Sub
     Public Sub localizeMain(ByVal language As Int16)
         Me.Text = Me.Text
@@ -2515,14 +2515,14 @@ Public Class Main
         dramatizer.btnNotAQuote.Text = sLocalizationStrings(Me.iNotAQuote, language)
         dramatizer.btnNext.Text = sLocalizationStrings(iNext, language)
         'dramatizer.btnUpdate.Text = sLocalizationStrings(iUpdate, language)
-        dramatizer.btnUpdate.Text = "" ' using icons now
+        ' dramatizer.btnUpdate.Text = "" ' using icons now
         dramatizer.btnEdit.Text = sLocalizationStrings(iEdit, language)
         dramatizer.btnEnd.Text = sLocalizationStrings(iExit, language)
         dramatizer.btnMoreOptions.Text = sLocalizationStrings(Me.iMore, language)
         dramatizer.btnLessOptions.Text = sLocalizationStrings(Me.iLess, language)
         dramatizer.btnMoveDown.Text = Me.sLocalizationStrings(Me.iMoveDown, language)
         dramatizer.rbAll.Text = sLocalizationStrings(Me.iAllClips, language)
-        dramatizer.rbCharacter.Text = sLocalizationStrings(Me.iCharacterNameClips, language)
+        ' dramatizer.rbCharacter.Text = sLocalizationStrings(Me.iCharacterNameClips, language)
         dramatizer.rbMultiple.Text = sLocalizationStrings(Me.iMultipleClips, language)
         dramatizer.rbSpeaker.Text = sLocalizationStrings(Me.iSpeakerNumberClips, language)
         dramatizer.rbUnidentified.Text = sLocalizationStrings(Me.iUnidentifiedClips, language)
@@ -2714,4 +2714,5 @@ Public Class Main
         Me.regexReplace(temp, "\", "$1\$2" + vbCrLf)
         Return temp
     End Function
-End Class
+
+   End Class

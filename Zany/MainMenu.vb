@@ -39,6 +39,7 @@ Public Class MainMenu
         Main.localizeMain(1)
         Main.localizeTranslate(1)
         Main.localizeDramatizer(1)
+        Main.localizeSpeakerText(1)
         'Main.readCurrentSettings()
         Main.readMasterFile()
         Me.Show()
@@ -116,6 +117,7 @@ Public Class MainMenu
         Main.localizeMain(Main.iLanguageSelected)
         Main.localizeDramatizer(Main.iLanguageSelected)
         Main.localizeTranslate(Main.iLanguageSelected)
+        Main.localizeSpeakerText(Main.iLanguageSelected)
         ' moved to mastertext form
         ' Me.localizeMasterText(Me.iLanguageSelected)
     End Sub
@@ -181,7 +183,7 @@ Public Class MainMenu
                 ' finish the processing and move on
                 Me.rbUnidentified.Checked = True
                 dramatizer.btnRecord.Visible = False
-                dramatizer.btnUpdate.Visible = True
+                '     dramatizer.btnUpdate.Visible = True
             ElseIf Me.rbUnidentified.Checked = True Then
                 Main.prepareToWorkFromMaster()
                 dramatizer.rbUnidentified.Checked = True
@@ -217,7 +219,7 @@ Public Class MainMenu
                 Main.createScriptsMaster()
                 Main.createScripts1to30()
                 Main.createWaveFiles() ' do just once
-                MessageBox.Show("All scripts created. See My Documents\My Dramatizer\scripts", "file created", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(Main.sLocalizationStrings(Main.iAllScriptsAndWavFilesCreated, Main.iLanguageSelected), "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Me.rbRecord.Enabled = True
                 Me.rbRecord.Checked = True
             ElseIf Me.rbRecord.Checked = True Then

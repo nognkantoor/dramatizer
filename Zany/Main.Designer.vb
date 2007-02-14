@@ -761,6 +761,7 @@ Partial Class Main
         Me.panelEncoding.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
+
     End Sub
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
