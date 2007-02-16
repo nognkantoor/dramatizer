@@ -136,7 +136,6 @@ Public Class SFMQuotes
                 temp = removeUnusedText(temp)
                 ' keep introduction
                 temp = processIntroduction(temp, sClipExtra)
-                ' End If
                 ' get rid of cr and lf put them back in later
                 temp = removeCRLF(temp)
                 ' remove note saying what was removed
@@ -232,13 +231,15 @@ Public Class SFMQuotes
     End Function
     Private Function processContinuingQuotes(ByVal temp As String, ByVal sClipUnknown As String)
         ' continuing quotes
-        If Main.cbQuoteType.Text = "« ... »" Then ' 
+        If Main.cbQuoteType.Text = "«...»" Then ' 
             '         temp = regexReplace(temp, "(>\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
             'temp = regexReplace(temp, "(\\p\n\n<verse>.*?\n</verse>)(\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
             temp = regexReplace(temp, "([^\n])(«)", sClipUnknown & "$1$2$3")
             ' works but then makes the verse ref wrong for the following quote start loaction           temp = regexReplace(temp, "(\\p)(\r\n)+(<verse>\r\n\d*\r\n</verse> )?(«)", sClipUnknown & "$1$2$3$4")
-        ElseIf Main.cbQuoteType.Text = "<< ... >>" Then ' 
+        ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
             temp = regexReplace(temp, "([^\n])(<<)", sClipUnknown & "$1$2$3")
+        ElseIf Main.cbQuoteType.Text = " ""..."" " Then ' 
+            temp = regexReplace(temp, "([^\n])("")", "|" & sClipUnknown & "$1$2$3")
         End If
         Return temp
     End Function
@@ -256,10 +257,12 @@ Public Class SFMQuotes
         Return temp
     End Function
     Private Function processDirectQuote(ByVal temp As String, ByVal sClipUnknown As String, ByVal sClipNarrator As String)
-        If Main.cbQuoteType.Text = "« ... »" Then ' 
+        If Main.cbQuoteType.Text = "«...»" Then ' 
             temp = regexReplace(temp, "(«)(.*?)(»)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
-        ElseIf Main.cbQuoteType.Text = "<< ... >>" Then ' 
+        ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
             temp = regexReplace(temp, "(<<)(.*?)(>>)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
+        ElseIf Main.cbQuoteType.Text = " "" ... "" " Then ' "" equals " 
+            temp = regexReplace(temp, "( "")(.*?)("" )", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
         End If
         Return temp
     End Function

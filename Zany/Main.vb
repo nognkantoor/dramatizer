@@ -145,6 +145,7 @@ Public Class Main
     Public iRecordTotalText = 133
     Public iAllScriptsAndWavFilesCreated = 134
     Public iText = 135
+    Public iTextEncodingTab = 136
 
 
 
@@ -421,8 +422,9 @@ Public Class Main
     Private Sub fillQuoteTypeControl()
         cbQuoteType.Items.Clear()
         Try
-            cbQuoteType.Items.Add("« ... »")
-            cbQuoteType.Items.Add("<< ... >>")
+            cbQuoteType.Items.Add("«...»")
+            cbQuoteType.Items.Add("<<...>>")
+            cbQuoteType.Items.Add(" ""..."" ")
             '            cbQuoteType.Items.Add("» ... «")
             '           cbQuoteType.Items.Add("== ... " & vbCrLf & "<< .. >>")
             '          cbQuoteType.Items.Add("unknown")
@@ -704,11 +706,15 @@ Public Class Main
         Dim sOpenQuote As String = "«"
         Dim iIsOpenQuoteFoundAgain As Integer
         Dim sStringToCheckOut As String
-        If cbQuoteType.Text = "« ... »" Then ' 
+        If cbQuoteType.Text = "«...»" Then ' 
             sOpenQuote = "«"
-        ElseIf cbQuoteType.Text = "<< ... >>" Then ' 
+        ElseIf cbQuoteType.Text = "<<...>>" Then ' 
             sOpenQuote = "<<"
+        ElseIf cbQuoteType.Text = " ""..."" " Then ' 
+            sOpenQuote = """"
         End If
+
+
         sStringToCheckOut = temp
         iIsOpenQuoteFoundAgain = str.InStr(3, sStringToCheckOut, sOpenQuote)
         '  Debug.Assert(iIsOpenQuoteFoundAgain = 0, "Error :" & sOpenQuote & " A second open quote found inside of clip." & vbCrLf & sStringToCheckOut & vbCrLf & sChapter(i) & "." & sVerse(i))
@@ -1343,7 +1349,7 @@ Public Class Main
     End Sub
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         Me.Hide()
-        Me.Show()
+        MainMenu.Show()
     End Sub
     Private Sub btnDisplayClips_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisplayClips.Click
         Dim temp As String
@@ -1355,12 +1361,15 @@ Public Class Main
             ' do work on UTF8 box
         End If
         temp = regexReplace(temp, "\r", "oojaaooo")
-        If Me.cbQuoteType.SelectedIndex = 0 Then
+        If Me.cbQuoteType.SelectedIndex = 0 Then ' consider doing this in other places too xxxxxxxxxxxxxxxxxxxxxxx
             ' («)
             temp = regexReplace(temp, "(«)(.*?)(»)", "|" & "$1$2$3" & "|")
         ElseIf Me.cbQuoteType.SelectedIndex = 1 Then
-            ' ("<<") Then
+            ' (<<) Then
             temp = regexReplace(temp, "(<<)(.*?)(>>)", "|" & "$1$2$3" & "|")
+        ElseIf Me.cbQuoteType.SelectedIndex = 2 Then
+            ' (") Then
+            temp = regexReplace(temp, "( "")(.*?)("" )", "|" & "$1$2$3" & "|")
         End If
         temp = regexReplace(temp, "--jaa---", vbCrLf)
         temp = regexReplace(temp, "oojaaooo", vbCrLf)
@@ -1438,7 +1447,7 @@ Public Class Main
         MasterText.rtbTextOnly.Font = New Font(fontName, fontSize)
         MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
     End Sub
-    Private Sub rbEncodingANSI_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbEncodingANSI.CheckedChanged
+    Private Sub rbEncodingANSI_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If Me.rbEncodingANSI.Checked Then
             Me.rtbEncodingANSI.Show()
             Me.rtbEncodingUTF8.Hide()
@@ -1451,7 +1460,8 @@ Public Class Main
     End Sub
     Private Sub btnSetOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetOptions.Click
         ' checks : fileName, quoteType, ISO code
-        If checkISOcodePresent() And Me.checkQuoteTypePresent And Me.checkFileNamePresent Then
+        If Me.areRequiredTabsCompleted() Then
+            ' If checkISOcodePresent() And Me.checkQuoteTypePresent And Me.checkFileNamePresent Then
             Me.writeCurrentSettings()
             ' moved to starting
             ' createFoldersAndMasterAndScriptsFileNames()
@@ -1768,30 +1778,42 @@ Public Class Main
         Else
             Me.tbISOcode.Text = sISOCode
         End If
-        checkISOcodePresent()
+        '      checkISOcodePresent()
         areRequiredTabsCompleted()
     End Sub
     Private Sub cbISOcode_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbISOcode.Enter
         Dim temp As String = str.Left(Me.cbISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = temp
-        checkISOcodePresent()
+        '  checkISOcodePresent()
         areRequiredTabsCompleted()
     End Sub
     Private Sub cbISOcode_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbISOcode.SelectedIndexChanged
         Dim temp As String = str.Left(Me.cbISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = Trim(temp)
-        checkISOcodePresent()
+        ' checkISOcodePresent()
         areRequiredTabsCompleted()
     End Sub
     Private Sub cbFindISOcode_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFindISOcode.SelectedIndexChanged
         Dim temp As String = str.Right(Me.cbFindISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = temp
-        checkISOcodePresent()
+        '  checkISOcodePresent()
         areRequiredTabsCompleted()
     End Sub
     Public Function checkISOcodePresent()
         Dim temp As Boolean
         If Me.tbISOcode.Text = "Id" Then
+            Me.tbISOcode.BackColor = Color.Pink
+            Me.tabControlOptions.SelectedIndex = 3
+            temp = False
+        Else
+            Me.tbISOcode.BackColor = Color.LawnGreen
+            temp = True
+        End If
+        Return temp
+    End Function
+    Public Function checkFontPresent()
+        Dim temp As Boolean
+        If Me.cbFontName.Text = "" Then
             Me.tbISOcode.BackColor = Color.Pink
             Me.tabControlOptions.SelectedIndex = 2
             temp = False
@@ -1820,7 +1842,7 @@ Public Class Main
             temp = True
         Else
             Me.cbQuoteType.BackColor = Color.Pink
-            Me.tabControlOptions.SelectedIndex = 3
+            Me.tabControlOptions.SelectedIndex = 4
             temp = False
         End If
         Return temp
@@ -2387,11 +2409,11 @@ Public Class Main
         Me.showClipSize()
     End Sub
     Private Sub cbQuoteType_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbQuoteType.SelectedIndexChanged
-        checkQuoteTypePresent()
+        '       checkQuoteTypePresent()
         areRequiredTabsCompleted()
     End Sub
     Private Function areRequiredTabsCompleted()
-        If checkISOcodePresent() And Me.checkQuoteTypePresent And Me.checkFileNamePresent Then
+        If Me.checkFileNamePresent And checkFontPresent() And checkISOcodePresent() And Me.checkQuoteTypePresent Then
             Me.btnSetOptions.BackColor = Color.LawnGreen
             Return True
         Else
@@ -2482,7 +2504,7 @@ Public Class Main
         Me.TabPage1.Text = Me.sLocalizationStrings(Me.iInputTab, language)
         Me.TabPage1.Text = Me.sLocalizationStrings(Me.iInputTab, language)
         Me.TabPage2.Text = Me.sLocalizationStrings(Me.iQuoteTypeTab, language)
-        ' moved to mastertext Me.TabPage3.Text = Me.sLocalizationStrings(Me.iOmitTextTab, language)
+        Me.TabPage3.Text = Me.sLocalizationStrings(Me.iTextEncodingTab, language)
         Me.TabPage4.Text = Me.sLocalizationStrings(Me.iRecordingProgramTab, language)
         Me.TabPage5.Text = Me.sLocalizationStrings(Me.iClipSizeTab, language)
         Me.TabPage6.Text = Me.sLocalizationStrings(Me.iEthnologueCodeTab, language)
