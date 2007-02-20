@@ -78,15 +78,14 @@ Partial Class MasterText
         Me.tbContinued.Location = New System.Drawing.Point(506, 151)
         Me.tbContinued.Name = "tbContinued"
         Me.tbContinued.ReadOnly = True
-        Me.tbContinued.Size = New System.Drawing.Size(235, 20)
+        Me.tbContinued.Size = New System.Drawing.Size(230, 20)
         Me.tbContinued.TabIndex = 6
         '
         'chkbxShowSpeakerText
         '
         Me.chkbxShowSpeakerText.Location = New System.Drawing.Point(18, 1)
-        Me.chkbxShowSpeakerText.MaximumSize = New System.Drawing.Size(134, 24)
         Me.chkbxShowSpeakerText.Name = "chkbxShowSpeakerText"
-        Me.chkbxShowSpeakerText.Size = New System.Drawing.Size(134, 24)
+        Me.chkbxShowSpeakerText.Size = New System.Drawing.Size(204, 24)
         Me.chkbxShowSpeakerText.TabIndex = 7
         Me.chkbxShowSpeakerText.Text = "show speaker text xxx"
         Me.chkbxShowSpeakerText.UseVisualStyleBackColor = True
@@ -95,7 +94,7 @@ Partial Class MasterText
         '
         Me.chkbxShowVerses.Location = New System.Drawing.Point(18, 28)
         Me.chkbxShowVerses.Name = "chkbxShowVerses"
-        Me.chkbxShowVerses.Size = New System.Drawing.Size(134, 17)
+        Me.chkbxShowVerses.Size = New System.Drawing.Size(204, 17)
         Me.chkbxShowVerses.TabIndex = 8
         Me.chkbxShowVerses.Text = "show verses xxx"
         Me.chkbxShowVerses.UseVisualStyleBackColor = True
@@ -104,7 +103,7 @@ Partial Class MasterText
         '
         Me.chkbxShowSFMcodes.Location = New System.Drawing.Point(18, 48)
         Me.chkbxShowSFMcodes.Name = "chkbxShowSFMcodes"
-        Me.chkbxShowSFMcodes.Size = New System.Drawing.Size(134, 17)
+        Me.chkbxShowSFMcodes.Size = New System.Drawing.Size(204, 17)
         Me.chkbxShowSFMcodes.TabIndex = 9
         Me.chkbxShowSFMcodes.Text = "show sfm codes xxx"
         Me.chkbxShowSFMcodes.UseVisualStyleBackColor = True
@@ -113,7 +112,7 @@ Partial Class MasterText
         '
         Me.chkbxShowContext.Location = New System.Drawing.Point(18, 68)
         Me.chkbxShowContext.Name = "chkbxShowContext"
-        Me.chkbxShowContext.Size = New System.Drawing.Size(134, 17)
+        Me.chkbxShowContext.Size = New System.Drawing.Size(204, 17)
         Me.chkbxShowContext.TabIndex = 10
         Me.chkbxShowContext.Text = "show context xxx"
         Me.chkbxShowContext.UseVisualStyleBackColor = True
@@ -131,7 +130,7 @@ Partial Class MasterText
         'chkbxChapterNumbers
         '
         Me.chkbxChapterNumbers.AutoSize = True
-        Me.chkbxChapterNumbers.Location = New System.Drawing.Point(18, 87)
+        Me.chkbxChapterNumbers.Location = New System.Drawing.Point(19, 89)
         Me.chkbxChapterNumbers.Name = "chkbxChapterNumbers"
         Me.chkbxChapterNumbers.Size = New System.Drawing.Size(124, 17)
         Me.chkbxChapterNumbers.TabIndex = 55
@@ -155,7 +154,7 @@ Partial Class MasterText
         Me.chkbxIntroduction.AutoSize = True
         Me.chkbxIntroduction.Checked = True
         Me.chkbxIntroduction.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbxIntroduction.Location = New System.Drawing.Point(18, 47)
+        Me.chkbxIntroduction.Location = New System.Drawing.Point(19, 47)
         Me.chkbxIntroduction.Name = "chkbxIntroduction"
         Me.chkbxIntroduction.Size = New System.Drawing.Size(100, 17)
         Me.chkbxIntroduction.TabIndex = 52
@@ -176,7 +175,7 @@ Partial Class MasterText
         Me.chkbxReferences.AutoSize = True
         Me.chkbxReferences.Checked = True
         Me.chkbxReferences.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbxReferences.Location = New System.Drawing.Point(18, 131)
+        Me.chkbxReferences.Location = New System.Drawing.Point(19, 131)
         Me.chkbxReferences.Name = "chkbxReferences"
         Me.chkbxReferences.Size = New System.Drawing.Size(102, 17)
         Me.chkbxReferences.TabIndex = 57
@@ -188,7 +187,7 @@ Partial Class MasterText
         Me.chkbxFootnotes.AutoSize = True
         Me.chkbxFootnotes.Checked = True
         Me.chkbxFootnotes.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbxFootnotes.Location = New System.Drawing.Point(18, 110)
+        Me.chkbxFootnotes.Location = New System.Drawing.Point(19, 110)
         Me.chkbxFootnotes.Name = "chkbxFootnotes"
         Me.chkbxFootnotes.Size = New System.Drawing.Size(91, 17)
         Me.chkbxFootnotes.TabIndex = 56
@@ -198,7 +197,7 @@ Partial Class MasterText
         'chkbxThisOne
         '
         Me.chkbxThisOne.AutoSize = True
-        Me.chkbxThisOne.Location = New System.Drawing.Point(18, 152)
+        Me.chkbxThisOne.Location = New System.Drawing.Point(19, 152)
         Me.chkbxThisOne.Name = "chkbxThisOne"
         Me.chkbxThisOne.Size = New System.Drawing.Size(81, 17)
         Me.chkbxThisOne.TabIndex = 58
@@ -227,7 +226,7 @@ Partial Class MasterText
         Me.Panel1.Controls.Add(Me.chkbxFootnotes)
         Me.Panel1.Location = New System.Drawing.Point(507, 174)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(181, 188)
+        Me.Panel1.Size = New System.Drawing.Size(229, 188)
         Me.Panel1.TabIndex = 60
         '
         'chkbxSectionHeads
@@ -235,7 +234,7 @@ Partial Class MasterText
         Me.chkbxSectionHeads.AutoSize = True
         Me.chkbxSectionHeads.Checked = True
         Me.chkbxSectionHeads.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkbxSectionHeads.Location = New System.Drawing.Point(18, 66)
+        Me.chkbxSectionHeads.Location = New System.Drawing.Point(19, 68)
         Me.chkbxSectionHeads.Name = "chkbxSectionHeads"
         Me.chkbxSectionHeads.Size = New System.Drawing.Size(112, 17)
         Me.chkbxSectionHeads.TabIndex = 59
@@ -251,7 +250,7 @@ Partial Class MasterText
         Me.Panel2.Controls.Add(Me.chkbxShowSFMcodes)
         Me.Panel2.Location = New System.Drawing.Point(507, 1)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(223, 94)
+        Me.Panel2.Size = New System.Drawing.Size(229, 94)
         Me.Panel2.TabIndex = 61
         '
         'btnMagnify
@@ -259,7 +258,7 @@ Partial Class MasterText
         Me.btnMagnify.BackgroundImage = CType(resources.GetObject("btnMagnify.BackgroundImage"), System.Drawing.Image)
         Me.btnMagnify.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btnMagnify.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnMagnify.Location = New System.Drawing.Point(691, 226)
+        Me.btnMagnify.Location = New System.Drawing.Point(742, 226)
         Me.btnMagnify.Name = "btnMagnify"
         Me.btnMagnify.Size = New System.Drawing.Size(50, 50)
         Me.btnMagnify.TabIndex = 62
@@ -272,7 +271,7 @@ Partial Class MasterText
         Me.btnShrink.BackgroundImage = CType(resources.GetObject("btnShrink.BackgroundImage"), System.Drawing.Image)
         Me.btnShrink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btnShrink.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnShrink.Location = New System.Drawing.Point(692, 312)
+        Me.btnShrink.Location = New System.Drawing.Point(743, 312)
         Me.btnShrink.Name = "btnShrink"
         Me.btnShrink.Size = New System.Drawing.Size(50, 50)
         Me.btnShrink.TabIndex = 63
@@ -282,7 +281,7 @@ Partial Class MasterText
         '
         'tbFontSize
         '
-        Me.tbFontSize.Location = New System.Drawing.Point(691, 284)
+        Me.tbFontSize.Location = New System.Drawing.Point(742, 284)
         Me.tbFontSize.Name = "tbFontSize"
         Me.tbFontSize.ReadOnly = True
         Me.tbFontSize.Size = New System.Drawing.Size(50, 20)
@@ -300,7 +299,7 @@ Partial Class MasterText
         'MasterText
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(742, 622)
+        Me.ClientSize = New System.Drawing.Size(792, 622)
         Me.Controls.Add(Me.btnMoveThis)
         Me.Controls.Add(Me.tbFontSize)
         Me.Controls.Add(Me.btnShrink)
@@ -315,7 +314,7 @@ Partial Class MasterText
         Me.Controls.Add(Me.rtbTextWithContext)
         Me.Location = New System.Drawing.Point(0, 300)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(750, 700)
+        Me.MaximumSize = New System.Drawing.Size(800, 700)
         Me.Name = "MasterText"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "MasterText xxx"

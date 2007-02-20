@@ -684,9 +684,9 @@ Public Class dramatizer
                 Main.sCharacter(Main.iCurrentClipNumber, 0) = Me.cbCharacters.Text + " [" + Me.cbCharacterPrompt.Text + "]"
             End If
         End If
-        ' voice number associated with character
+        ' speaker number associated with character
         Dim speaker As Integer
-        speaker = Main.assignVoiceToCharacter(Me.cbCharacters.Text)
+        speaker = Main.assignSpeakerToCharacter(Me.cbCharacters.Text)
         Me.upDownSpeakerNumber.Value = speaker
         Main.sSpeakerNumber(Main.iCurrentClipNumber) = speaker
         ' prompt

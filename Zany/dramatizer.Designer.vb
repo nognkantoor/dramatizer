@@ -204,9 +204,9 @@ Partial Class dramatizer
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(414, 72)
+        Me.btnEdit.Location = New System.Drawing.Point(397, 72)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(76, 23)
+        Me.btnEdit.Size = New System.Drawing.Size(93, 23)
         Me.btnEdit.TabIndex = 40
         Me.btnEdit.Text = "Edit xxx"
         Me.btnEdit.UseVisualStyleBackColor = True
@@ -245,9 +245,9 @@ Partial Class dramatizer
         '
         Me.btnLessOptions.Image = CType(resources.GetObject("btnLessOptions.Image"), System.Drawing.Image)
         Me.btnLessOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnLessOptions.Location = New System.Drawing.Point(414, 112)
+        Me.btnLessOptions.Location = New System.Drawing.Point(397, 112)
         Me.btnLessOptions.Name = "btnLessOptions"
-        Me.btnLessOptions.Size = New System.Drawing.Size(76, 23)
+        Me.btnLessOptions.Size = New System.Drawing.Size(93, 23)
         Me.btnLessOptions.TabIndex = 50
         Me.btnLessOptions.Text = "Less xxx"
         Me.btnLessOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -431,9 +431,9 @@ Partial Class dramatizer
         'btnMoveDown
         '
         Me.btnMoveDown.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnMoveDown.Location = New System.Drawing.Point(404, 228)
+        Me.btnMoveDown.Location = New System.Drawing.Point(378, 228)
         Me.btnMoveDown.Name = "btnMoveDown"
-        Me.btnMoveDown.Size = New System.Drawing.Size(93, 23)
+        Me.btnMoveDown.Size = New System.Drawing.Size(119, 23)
         Me.btnMoveDown.TabIndex = 57
         Me.btnMoveDown.Text = "move down xxx"
         Me.btnMoveDown.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

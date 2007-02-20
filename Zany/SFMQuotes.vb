@@ -3,7 +3,7 @@ Imports System.IO
 Imports System.Text.RegularExpressions
 Imports str = Microsoft.VisualBasic.Strings
 Public Class SFMQuotes
-    Const sBlankSpeakingCharacter = "character1="""""
+    Public sBlankSpeakingCharacter = "character1="""""
     Public colMarkers As New Collection
     Dim sProgramDirectory As String
     Public sTempFolder As String = My.Computer.FileSystem.SpecialDirectories.Temp & "\Dramatizer\"
@@ -55,7 +55,7 @@ Public Class SFMQuotes
                 Else
                     ' remove blank speaking character
                     newClip = str.Replace(newClip, sBlankSpeakingCharacter, "")
-                    newClip = str.Replace(newClip, "id='" & id, sSpeakingCharacters + " id='" + id)
+                    newClip = str.Replace(newClip, "id=""" & id, sSpeakingCharacters + " id=""" + id)
                 End If
             End If
             sw.WriteLine(newClip)
@@ -81,7 +81,7 @@ Public Class SFMQuotes
             End If
           Loop
         If iCounter > 1 Then
-            sSpeakingCharacters = "multiple='" + iCounter.ToString + "' " + sSpeakingCharacters
+            sSpeakingCharacters = "multiple=""" + iCounter.ToString + """ " + sSpeakingCharacters
         End If
         Return sSpeakingCharacters
     End Function
@@ -93,8 +93,8 @@ Public Class SFMQuotes
     End Function
     Private Function getID(ByVal clip As String)
         Dim ID
-        ' <clip character1='' id='GEN 1.6'>
-        ID = getStringValue(clip, "id='", 2)
+        ' <clip character1="" id='GEN 1.6'>
+        ID = getStringValue(clip, "id=""", 2)
         Return ID
     End Function
     Private Function getStringValue(ByVal input As String, ByVal searchFor As String, ByVal offsetFromRight As Integer)
@@ -117,44 +117,70 @@ Public Class SFMQuotes
         sr.Close()
         Return myString
     End Function
+    Private Function processQuotesToMakeRegular(ByVal temp As String)
+        Select Case Main.cbQuoteType.Text
+            Case Main.sQuoteTypeCheverons
+                ' this is how we want all the quotes
+            Case Main.sQuoteTypeSIL
+                temp = regexReplace(temp, "<<", "«")
+                temp = regexReplace(temp, ">>", "»")
+            Case Main.sQuoteTypeSmart
+                temp = regexReplace(temp, " """, "«")
+                temp = regexReplace(temp, """ ", "»")
+                temp = regexReplace(temp, """", "»") ' any left over straight quote is a final
+            Case Main.sQuoteTypeStraight
+                temp = regexReplace(temp, " """, "«")
+                temp = regexReplace(temp, """ ", "»")
+                temp = regexReplace(temp, """", "»") ' any left over straight quote is a final
+            Case Else
+                Debug.Assert(True, "unknown quote type in process quotes to make regular")
+        End Select
+        Return temp
+
+    End Function
     ' find all the clips
     Public Function createClips(ByVal sEncoding As String)
         Dim sw As StreamWriter = New StreamWriter(sCreateClipsFileName, False, Text.Encoding.UTF8, 512)
         Dim quotes(100) As String
         Dim temp As String
         Dim sText As String
-        Dim sClipUnknown As String = vbCrLf & "</clip>" & vbCrLf & "<clip character1="""">" & vbCrLf
+        Dim sClipUnknown As String = vbCrLf & "</clip>" & vbCrLf & "<clip " & sBlankSpeakingCharacter & ">" & vbCrLf
         Dim sClipNarrator As String = vbCrLf & "</clip>" & vbCrLf & "<clip character1=""narrator-"">" & vbCrLf
-        Dim sClipExtra As String = vbCrLf & "</clip>" & vbCrLf & "<clip character1=""extra-"" tag='$1'>$2" & vbCrLf
+        Dim sClipExtra As String = vbCrLf & "</clip>" & vbCrLf & "<clip character1=""extra-"" tag=""$1"">$2" & vbCrLf
         Dim sClipPossibleContinuation As String = sClipUnknown
         Try
             sText = stream2string(sEncoding)
             colMarkers = createListOfMarkers(sText)
             Try
-                temp = regexReplace(sText, "(\\id)(\s)(...)(\s.*?)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag='$1'>" & vbCrLf & "$3" & sClipNarrator & "$4")
+                temp = regexReplace(sText, "(\\id)(\s)(...)(\s.*?)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 ' remove text not used
                 temp = removeUnusedText(temp)
                 ' keep introduction
                 temp = processIntroduction(temp, sClipExtra)
                 ' get rid of cr and lf put them back in later
+                temp = processQuotesToMakeRegular(temp)
                 temp = removeCRLF(temp)
                 ' remove note saying what was removed
                 temp = regexReplace(temp, "(\*\*\*\*)(.*?)(\*\*\*\*)", "")
                 Debug.Assert(Main.cbQuoteType.Text <> "", "cb quote type not set")
                 temp = processDirectQuote(temp, sClipUnknown, sClipNarrator)
                 temp = restoreCRLFandAddWhenVerticalBarPresent(temp)
-                ' guarantee that all \ start on new line
-                temp = regexReplace(temp, "\\", vbCrLf & "\")
-                temp = processStartAndEnd(temp)
+                temp = removeUnusedText(temp)
+                ' guarantee that all \ start on new line except the tag='\xxx'
+                temp = regexReplace(temp, "([^""])(\\)", vbCrLf & "$1\")
+                '    temp = regexReplace(temp, "(\r\n)(\\id)", "$2")
+                temp = processStartAndEnd(temp, sClipNarrator)
+                ' remove double new lines
+                ' temp = regexReplace(temp, "(\r\n)+", vbCrLf)
                 ' remove double new lines,
-                temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf)
+                'temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf)
                 temp = processChapterAndVerse(temp, sClipPossibleContinuation)
                 ' section
-                temp = regexReplace(temp, "(\\s\d?)(\s)(.+)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""extra-"" tag='$1'>" & vbCrLf & "$3" & sClipNarrator & "$4")
+                temp = regexReplace(temp, "(\\s\d?)(\s)(.+)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""extra-"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 ' heading
-                temp = regexReplace(temp, "(\\h\d?)(\s)(.*)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag='$1'>" & vbCrLf & "$3" & sClipNarrator & "$4")
+                temp = regexReplace(temp, "(\\h\d?)(\s)(.*)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 ' book
-                temp = regexReplace(temp, "(\\mt\d?)(\s)(.*)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag='$1'>" & vbCrLf & "$3" & sClipNarrator & "$4")
+                temp = regexReplace(temp, "(\\mt\d?)(\s)(.*)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 temp = processContinuingQuotes(temp, sClipUnknown)
                 temp = processCleanUP(temp)
                 ' save intermediate work
@@ -185,9 +211,9 @@ Public Class SFMQuotes
         temp = regexReplace(temp, "\r", "oojaaooo")
         Return temp
     End Function
-    Private Function processStartAndEnd(ByVal temp As String)
-        ' start file with <clip character1='narrator-'>
-        temp = regexReplace(temp, "^", "<clip character1=""narrator-"">" & vbCrLf)
+    Private Function processStartAndEnd(ByVal temp As String, ByVal sClipNarrator As String)
+        ' start file with <clip character1=""narrator-"">
+        temp = regexReplace(temp, "^", sClipNarrator & vbCrLf)
         ' end file with </clip>
         temp = regexReplace(temp, "(\r\n)$", "$1" & vbCrLf & "</clip>" & vbCrLf)
         Return temp
@@ -195,11 +221,11 @@ Public Class SFMQuotes
     Private Function processChapterAndVerse(ByVal temp As String, ByVal sClipPossibleContinuation As String)
         ' chapter
         ' keep chapter number
-        temp = regexReplace(temp, "(\\c)(\s)(\d+)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag='$1'>" & vbCrLf & "$3" & sClipPossibleContinuation)
+        temp = regexReplace(temp, "(\\c)(\s)(\d+)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3") ' & sClipPossibleContinuation)
         ' temp = regexReplace(temp, "(\\c)(\s)(\d+)", vbCrLf & "<chapterNumber>$3</chapterNumber>")
         ' --------------------------------------------------------
         ' verse
-        ' temp = regexReplace(temp, "(\\v)(\s)(.+?)(\s)", "</clip>" & vbCrLf & "<clip character1=""extra-"" tag='$1'>" & vbCrLf & "$3" & sClipNarrator & "$4")
+        ' temp = regexReplace(temp, "(\\v)(\s)(.+?)(\s)", "</clip>" & vbCrLf & "<clip character1=""extra-"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
         temp = regexReplace(temp, "(\\v)(\s)(.+?)(\s)", vbCrLf & "<verse>" & vbCrLf & "$3" & vbCrLf & "</verse>$4")
         ' --------------------------------------------------------
         Return temp
@@ -215,8 +241,8 @@ Public Class SFMQuotes
     Private Function processCleanUp(ByVal temp)
         ' remove double new lines
         temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf)
-        ' remove empty narrator
-        temp = regexReplace(temp, "(<clip character1=""narrator-"">)(\r\n)*(</clip>)", vbCrLf)
+        ' remove empty narrator at start
+        temp = regexReplace(temp, "(<clip character1=""narrator-"".*)(\r\n)(</clip>)", vbCrLf)
         ' add nl before </clip>
         temp = regexReplace(temp, "(</clip>)", vbCrLf & "$1")
         ' remove double new lines
@@ -224,23 +250,30 @@ Public Class SFMQuotes
         ' remove double close
         temp = regexReplace(temp, "</clip>" & vbCrLf & "</clip>", "</clip>")
         ' remove double new lines
-        temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf)
+        temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf + "333333xxxxx")
         ' remove initial nl
-        temp = regexReplace(temp, "(^\r\n)(<clip)", "$2")
+        temp = regexReplace(temp, "(^\r\n)(</clip>)", "")
+        ' remove empty text following chapter
+        ' <clip character1="" id="MRK 1.1">nl</clip>
+        temp = regexReplace(temp, "(<clip character1="""".*?>)(" + vbCrLf + ")*(</clip>)", vbCrLf + "xxxx")
         Return temp
     End Function
     Private Function processContinuingQuotes(ByVal temp As String, ByVal sClipUnknown As String)
         ' continuing quotes
-        If Main.cbQuoteType.Text = "«...»" Then ' 
-            '         temp = regexReplace(temp, "(>\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
-            'temp = regexReplace(temp, "(\\p\n\n<verse>.*?\n</verse>)(\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
-            temp = regexReplace(temp, "([^\n])(«)", sClipUnknown & "$1$2$3")
-            ' works but then makes the verse ref wrong for the following quote start loaction           temp = regexReplace(temp, "(\\p)(\r\n)+(<verse>\r\n\d*\r\n</verse> )?(«)", sClipUnknown & "$1$2$3$4")
-        ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
-            temp = regexReplace(temp, "([^\n])(<<)", sClipUnknown & "$1$2$3")
-        ElseIf Main.cbQuoteType.Text = " ""..."" " Then ' 
-            temp = regexReplace(temp, "([^\n])("")", "|" & sClipUnknown & "$1$2$3")
-        End If
+        temp = regexReplace(temp, "([^\n])(«)", sClipUnknown & "$1$2$3")
+
+
+
+        '        If Main.cbQuoteType.Text = "«...»" Then ' 
+        ''         temp = regexReplace(temp, "(>\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
+        ''temp = regexReplace(temp, "(\\p\n\n<verse>.*?\n</verse>)(\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
+        'temp = regexReplace(temp, "([^\n])(«)", sClipUnknown & "$1$2$3")
+        '' works but then makes the verse ref wrong for the following quote start loaction           temp = regexReplace(temp, "(\\p)(\r\n)+(<verse>\r\n\d*\r\n</verse> )?(«)", sClipUnknown & "$1$2$3$4")
+        'ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
+        'temp = regexReplace(temp, "([^\n])(<<)", sClipUnknown & "$1$2$3")
+        'ElseIf Main.cbQuoteType.Text = " ""..."" " Then ' 
+        'temp = regexReplace(temp, "([^\n])("")", "|" & sClipUnknown & "$1$2$3")
+        'End If
         Return temp
     End Function
     Private Function removeUnusedText(ByVal temp As String)
@@ -257,13 +290,17 @@ Public Class SFMQuotes
         Return temp
     End Function
     Private Function processDirectQuote(ByVal temp As String, ByVal sClipUnknown As String, ByVal sClipNarrator As String)
-        If Main.cbQuoteType.Text = "«...»" Then ' 
-            temp = regexReplace(temp, "(«)(.*?)(»)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
-        ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
-            temp = regexReplace(temp, "(<<)(.*?)(>>)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
-        ElseIf Main.cbQuoteType.Text = " "" ... "" " Then ' "" equals " 
-            temp = regexReplace(temp, "( "")(.*?)("" )", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
-        End If
+        temp = regexReplace(temp, "(«)(.*?)(»)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
+        ''
+
+
+        '  If Main.cbQuoteType.Text = "«...»" Then ' 
+        ' temp = regexReplace(temp, "(«)(.*?)(»)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
+        ' ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
+        ' temp = regexReplace(temp, "(<<)(.*?)(>>)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
+        ' ElseIf Main.cbQuoteType.Text = " ""..."" " Then ' "" equals " 
+        ' temp = regexReplace(temp, "( "")(.*?)("")( |oojaaooo)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
+        ' End If
         Return temp
     End Function
     Private Function processIntroduction(ByVal temp As String, ByVal sClipExtra As String)
@@ -317,14 +354,14 @@ Public Class SFMQuotes
                 temp2 = sr.ReadLine
                 verse = temp2
                 ' ElseIf temp1.Contains("'>") Then
-                '         temp = temp.Replace("'>", "' id='" & book & " " & chapter & "." & verse & "'>")
+                '         temp = temp.Replace("'>", "' id=""" & book & " " & chapter & "." & verse & "'>")
                 'ElseIf temp1.Contains(""">") Then
-                'temp = temp.Replace(""">", """ id='" & book & " " & chapter & "." & verse & "'>")
+                'temp = temp.Replace(""">", """ id=""" & book & " " & chapter & "." & verse & "'>")
             End If
-            ' ending with single quote
-            temp1 = temp1.Replace("'>", "' id='" & book & " " & chapter & "." & verse & "'>")
-            ' ending with double quote
-            temp1 = temp1.Replace(""">", """ id='" & book & " " & chapter & "." & verse & "'>")
+            ' end in single quotes 
+            ' temp1 = temp1.Replace("'>", "' id=""" & book & " " & chapter & "." & verse & """>")
+            ' with double quote
+            temp1 = temp1.Replace(""">", """ id=""" & book & " " & chapter & "." & verse & """>")
             temp1 = temp1.Replace("""narrator-""", """narrator-" & book & """")
             temp1 = temp1.Replace("""extra-""", """extra-" & book & """")
             If temp1 <> "" Then sw.WriteLine(temp1)

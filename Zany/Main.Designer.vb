@@ -28,6 +28,11 @@ Partial Class Main
         Me.btnBrowse = New System.Windows.Forms.Button
         Me.cbFileName = New System.Windows.Forms.ComboBox
         Me.lblFileName = New System.Windows.Forms.Label
+        Me.TabPage3 = New System.Windows.Forms.TabPage
+        Me.Panel9 = New System.Windows.Forms.Panel
+        Me.lblEncoding = New System.Windows.Forms.Label
+        Me.rbEncodingUTF8 = New System.Windows.Forms.RadioButton
+        Me.rbEncodingANSI = New System.Windows.Forms.RadioButton
         Me.TabPage8 = New System.Windows.Forms.TabPage
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.cbFontName = New System.Windows.Forms.ComboBox
@@ -77,16 +82,13 @@ Partial Class Main
         Me.rtbEncodingUTF8 = New System.Windows.Forms.RichTextBox
         Me.rtbEncodingANSI = New System.Windows.Forms.RichTextBox
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog
-        Me.TabPage3 = New System.Windows.Forms.TabPage
-        Me.Panel9 = New System.Windows.Forms.Panel
-        Me.lblEncoding = New System.Windows.Forms.Label
-        Me.rbEncodingUTF8 = New System.Windows.Forms.RadioButton
-        Me.rbEncodingANSI = New System.Windows.Forms.RadioButton
         Me.StatusStrip1.SuspendLayout()
         Me.panelSettings.SuspendLayout()
         Me.tabControlOptions.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
+        Me.Panel9.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.TabPage6.SuspendLayout()
@@ -102,8 +104,6 @@ Partial Class Main
         Me.TabPage7.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.panelEncoding.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        Me.Panel9.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -211,6 +211,59 @@ Partial Class Main
         Me.lblFileName.Size = New System.Drawing.Size(67, 13)
         Me.lblFileName.TabIndex = 42
         Me.lblFileName.Text = "file name xxx"
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.Panel9)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(605, 249)
+        Me.TabPage3.TabIndex = 8
+        Me.TabPage3.Text = "text encoding xxx"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Panel9
+        '
+        Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel9.Controls.Add(Me.lblEncoding)
+        Me.Panel9.Controls.Add(Me.rbEncodingUTF8)
+        Me.Panel9.Controls.Add(Me.rbEncodingANSI)
+        Me.Panel9.Location = New System.Drawing.Point(15, 30)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Size = New System.Drawing.Size(425, 76)
+        Me.Panel9.TabIndex = 49
+        Me.Panel9.Tag = ""
+        '
+        'lblEncoding
+        '
+        Me.lblEncoding.AutoSize = True
+        Me.lblEncoding.Location = New System.Drawing.Point(14, 3)
+        Me.lblEncoding.Name = "lblEncoding"
+        Me.lblEncoding.Size = New System.Drawing.Size(70, 13)
+        Me.lblEncoding.TabIndex = 42
+        Me.lblEncoding.Text = "Encoding xxx"
+        '
+        'rbEncodingUTF8
+        '
+        Me.rbEncodingUTF8.AutoSize = True
+        Me.rbEncodingUTF8.Location = New System.Drawing.Point(101, 25)
+        Me.rbEncodingUTF8.Name = "rbEncodingUTF8"
+        Me.rbEncodingUTF8.Size = New System.Drawing.Size(61, 17)
+        Me.rbEncodingUTF8.TabIndex = 17
+        Me.rbEncodingUTF8.Text = "utf8 xxx"
+        Me.rbEncodingUTF8.UseVisualStyleBackColor = True
+        '
+        'rbEncodingANSI
+        '
+        Me.rbEncodingANSI.AutoSize = True
+        Me.rbEncodingANSI.Checked = True
+        Me.rbEncodingANSI.Location = New System.Drawing.Point(20, 25)
+        Me.rbEncodingANSI.Name = "rbEncodingANSI"
+        Me.rbEncodingANSI.Size = New System.Drawing.Size(62, 17)
+        Me.rbEncodingANSI.TabIndex = 16
+        Me.rbEncodingANSI.TabStop = True
+        Me.rbEncodingANSI.Text = "ansi xxx"
+        Me.rbEncodingANSI.UseVisualStyleBackColor = True
         '
         'TabPage8
         '
@@ -361,9 +414,9 @@ Partial Class Main
         '
         'VScrollBar1
         '
-        Me.VScrollBar1.Location = New System.Drawing.Point(162, 17)
+        Me.VScrollBar1.Location = New System.Drawing.Point(162, 0)
         Me.VScrollBar1.Name = "VScrollBar1"
-        Me.VScrollBar1.Size = New System.Drawing.Size(16, 40)
+        Me.VScrollBar1.Size = New System.Drawing.Size(16, 67)
         Me.VScrollBar1.TabIndex = 43
         '
         'Panel3
@@ -674,59 +727,6 @@ Partial Class Main
         Me.rtbEncodingANSI.TabIndex = 14
         Me.rtbEncodingANSI.Text = ""
         '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.Panel9)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(605, 249)
-        Me.TabPage3.TabIndex = 8
-        Me.TabPage3.Text = "text encoding xxx"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'Panel9
-        '
-        Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel9.Controls.Add(Me.lblEncoding)
-        Me.Panel9.Controls.Add(Me.rbEncodingUTF8)
-        Me.Panel9.Controls.Add(Me.rbEncodingANSI)
-        Me.Panel9.Location = New System.Drawing.Point(15, 30)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(425, 76)
-        Me.Panel9.TabIndex = 49
-        Me.Panel9.Tag = ""
-        '
-        'lblEncoding
-        '
-        Me.lblEncoding.AutoSize = True
-        Me.lblEncoding.Location = New System.Drawing.Point(14, 3)
-        Me.lblEncoding.Name = "lblEncoding"
-        Me.lblEncoding.Size = New System.Drawing.Size(70, 13)
-        Me.lblEncoding.TabIndex = 42
-        Me.lblEncoding.Text = "Encoding xxx"
-        '
-        'rbEncodingUTF8
-        '
-        Me.rbEncodingUTF8.AutoSize = True
-        Me.rbEncodingUTF8.Location = New System.Drawing.Point(101, 25)
-        Me.rbEncodingUTF8.Name = "rbEncodingUTF8"
-        Me.rbEncodingUTF8.Size = New System.Drawing.Size(61, 17)
-        Me.rbEncodingUTF8.TabIndex = 17
-        Me.rbEncodingUTF8.Text = "utf8 xxx"
-        Me.rbEncodingUTF8.UseVisualStyleBackColor = True
-        '
-        'rbEncodingANSI
-        '
-        Me.rbEncodingANSI.AutoSize = True
-        Me.rbEncodingANSI.Checked = True
-        Me.rbEncodingANSI.Location = New System.Drawing.Point(20, 25)
-        Me.rbEncodingANSI.Name = "rbEncodingANSI"
-        Me.rbEncodingANSI.Size = New System.Drawing.Size(62, 17)
-        Me.rbEncodingANSI.TabIndex = 16
-        Me.rbEncodingANSI.TabStop = True
-        Me.rbEncodingANSI.Text = "ansi xxx"
-        Me.rbEncodingANSI.UseVisualStyleBackColor = True
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -745,6 +745,9 @@ Partial Class Main
         Me.TabPage1.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        Me.TabPage3.ResumeLayout(False)
+        Me.Panel9.ResumeLayout(False)
+        Me.Panel9.PerformLayout()
         Me.TabPage8.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
@@ -769,9 +772,6 @@ Partial Class Main
         Me.Panel8.PerformLayout()
         Me.panelEncoding.ResumeLayout(False)
         Me.panelEncoding.PerformLayout()
-        Me.TabPage3.ResumeLayout(False)
-        Me.Panel9.ResumeLayout(False)
-        Me.Panel9.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

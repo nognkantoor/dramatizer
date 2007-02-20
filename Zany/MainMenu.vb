@@ -3,6 +3,8 @@ Imports System.IO
 Imports System.Text
 Imports str = Microsoft.VisualBasic.Strings
 Public Class MainMenu
+    Public blnFirstTimeHere As Boolean = True
+    Public blnCongratulations As Boolean = False
     Public blnStartRecording As Boolean = False
     Public sProgramDirectory As String = Directory.GetCurrentDirectory ' beware that this may change
     Public sRequiredFilesFolder As String = sProgramDirectory & "\RequiredFiles" ' beware that this may change
@@ -17,7 +19,7 @@ Public Class MainMenu
     Public sCharacterNames_BookChapterVerseFileName As String = sRequiredFilesFolder & "\CharacterNames_BookChapterVerse.txt"
     Public sISO639_3file As String = sRequiredFilesFolder & "\iso-fdis-639-3_20061114.tab"
     Public sTempFileName As String = sTempFolder & "\temp.tmp"
-    Public sVoiceFile As String = sRequiredFilesFolder & "\Character-Voice.txt"
+    Public sSpeakerFile As String = sRequiredFilesFolder & "\Character-Speaker.txt"
     Public sInsertFile As String
     Public utf8 As System.Text.UTF8Encoding = New System.Text.UTF8Encoding(False)
     '    Public sProgramDirectory As String = Directory.GetCurrentDirectory ' beware that this may change
@@ -35,12 +37,9 @@ Public Class MainMenu
         ' Add any initialization after the InitializeComponent() call.
         Main.readLocalizationFile()
         Me.fillLanguageControl()
-        Me.localizeMainMenu(1) ' this must be first
-        Main.localizeMain(1)
-        Main.localizeTranslate(1)
-        Main.localizeDramatizer(1)
-        Main.localizeSpeakerText(1)
-        'Main.readCurrentSettings()
+        '    Main.readCurrentSettings()
+        Me.cbLanguage.Text = Main.sSavedLanguage
+        If Me.cbLanguage.SelectedIndex = -1 Then Me.cbLanguage.SelectedIndex = 0 ' default English
         Main.readMasterFile()
         Me.Show()
         Me.setCheckMarksAndEnableMenuItems()
@@ -89,6 +88,7 @@ Public Class MainMenu
         Me.btnTranslateMenu.Text = Main.sLocalizationStrings(Main.iTranslateMenu, language)
     End Sub
     Public Sub fillLanguageControl()
+        Dim temp As String = Main.sSavedLanguage
         Try
             Dim language As Int16 = 0
             Do
@@ -104,6 +104,7 @@ Public Class MainMenu
             Loop Until Main.sLocalizationStrings(Main.iLanguageNames, language) = Nothing
             ' set default to English -- maybe it already is
             Me.cbLanguage.Text = Me.cbLanguage.Items.Item(0)
+            Main.sSavedLanguage = temp
         Catch ex As Exception
             MessageBox.Show("Problem loading language names into list box." & vbCrLf & ex.Message, "Problem loading language names", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End Try
@@ -112,6 +113,10 @@ Public Class MainMenu
         End
     End Sub
     Private Sub cbLanguage_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLanguage.SelectedIndexChanged
+        '   If Me.blnFirstTimeHere = True Then
+        ' skip
+        '         Me.blnFirstTimeHere = False
+        '    Else
         Main.iLanguageSelected = Me.cbLanguage.SelectedIndex + 1
         Me.localizeMainMenu(Main.iLanguageSelected)
         Main.localizeMain(Main.iLanguageSelected)
@@ -120,6 +125,9 @@ Public Class MainMenu
         Main.localizeSpeakerText(Main.iLanguageSelected)
         ' moved to mastertext form
         ' Me.localizeMasterText(Me.iLanguageSelected)
+        Main.sSavedLanguage = Me.cbLanguage.Text
+        Main.writeCurrentSettings()
+        'End If
     End Sub
     Private Sub rbInitialize_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbInitialize.CheckedChanged
         If Me.rbInitialize.Checked = True Then
@@ -149,6 +157,7 @@ Public Class MainMenu
         Try
             If Me.rbUnidentified.Checked = True Then
                 Main.iUnidentfiedTotal = Main.countUnidentified()
+                Dim x = Main.iUnidentfiedTotal
                 If Main.iUnidentfiedTotal = 0 Then
                     Me.TextBox1.Text = Main.sLocalizationStrings(Main.iInfo0Unidentified, Main.iLanguageSelected).Replace("""", "")
                 ElseIf Main.iUnidentfiedTotal = 1 Then
@@ -222,6 +231,7 @@ Public Class MainMenu
                 MessageBox.Show(Main.sLocalizationStrings(Main.iAllScriptsAndWavFilesCreated, Main.iLanguageSelected), "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Me.rbRecord.Enabled = True
                 Me.rbRecord.Checked = True
+                Me.Show()
             ElseIf Me.rbRecord.Checked = True Then
                 'Me.Hide()
                 Main.blnRecordingInProgress = True
@@ -305,8 +315,9 @@ Public Class MainMenu
             End If
             temp = Main.formatFolderStructure(temp)
             ' only show message when nothing is recorded
-            If Me.rbRecord.Checked = True And Main.blnRecordingInProgress = False Then
+            If Me.rbRecord.Checked = True And Main.blnRecordingInProgress = False And blnCongratulations = False Then
                 MessageBox.Show(Main.sLocalizationStrings(Main.iCongratulationsRecord, Main.iLanguageSelected) + vbCrLf + temp, Main.sLocalizationStrings(Main.iRecord, Main.iLanguageSelected), MessageBoxButtons.OK, MessageBoxIcon.Information)
+                blnCongratulations = True
             Else
                 ' skip
             End If

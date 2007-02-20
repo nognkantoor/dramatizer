@@ -34,18 +34,18 @@ Partial Class translate
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(364, 214)
+        Me.btnCancel.Location = New System.Drawing.Point(271, 214)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.Size = New System.Drawing.Size(125, 23)
         Me.btnCancel.TabIndex = 1
         Me.btnCancel.Text = "cancel xxx"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnOK
         '
-        Me.btnOK.Location = New System.Drawing.Point(446, 214)
+        Me.btnOK.Location = New System.Drawing.Point(402, 214)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(75, 23)
+        Me.btnOK.Size = New System.Drawing.Size(125, 23)
         Me.btnOK.TabIndex = 2
         Me.btnOK.Text = "OK xxx"
         Me.btnOK.UseVisualStyleBackColor = True
@@ -153,6 +153,7 @@ Partial Class translate
         Me.Text = "translate"
         Me.ResumeLayout(False)
         Me.PerformLayout()
+
     End Sub
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents btnOK As System.Windows.Forms.Button
