@@ -42,6 +42,7 @@ Public Class MainMenu
         If Me.cbLanguage.SelectedIndex = -1 Then Me.cbLanguage.SelectedIndex = 0 ' default English
         Main.readMasterFile()
         Me.Show()
+        Me.Update()
         Me.setCheckMarksAndEnableMenuItems()
     End Sub
     Public Sub setCheckMarksAndEnableMenuItems()
@@ -188,6 +189,9 @@ Public Class MainMenu
                 Me.rbStartProcessing.Checked = True
             ElseIf Me.rbStartProcessing.Checked = True Then
                 Me.Show()
+                Me.TextBox1.Text = Main.sLocalizationStrings(Main.iInfoProcessing, Main.iLanguageSelected)
+                Me.TextBox1.Update()
+                Me.Update()
                 Main.initializeText()
                 ' finish the processing and move on
                 Me.rbUnidentified.Checked = True
@@ -223,6 +227,10 @@ Public Class MainMenu
                 Me.lblCreateScripts.Visible = False
                 Me.rbCreateScripts.Checked = True
             ElseIf Me.rbCreateScripts.Checked = True Then
+                Me.TextBox1.Text = Main.sLocalizationStrings(Main.iInfoProcessing, Main.iLanguageSelected)
+                Main.readClipsFromFileMaster()
+                ' take care of Not a quote and make corrected Master.txt for recording
+                Main.writeClipsToMasterFileAndAdjustClipSize(False)
                 Main.readClipsFromFileMaster()
                 Me.rbCreateScripts.Enabled = True
                 Main.createScriptsMaster()
@@ -344,6 +352,7 @@ Public Class MainMenu
         Me.rbUnidentified.Enabled = False
         Me.rbVerifyAll.Enabled = False
         Me.rbVerifyUpdated.Enabled = False
+        Me.Update()
     End Sub
     Public Sub setStart()
         If Main.checkISOcodePresent() And Main.checkQuoteTypePresent And Main.checkFileNamePresent Then
@@ -445,6 +454,7 @@ Public Class MainMenu
         End If
     End Sub
     Public Sub showStatsForUnidentifiedMultipleTotal()
+        Me.Update()
         Main.readClipsFromFileMaster()
         Dim unidentifiedToFix As String = Main.countUnidentifiedNotFixedYet.ToString & "  " & Main.sLocalizationStrings(Main.iUnidentifiedCharactersToFix, Main.iLanguageSelected)
         Dim unidentified As String = Main.iUnidentifiedSpeakingCharacter & "  " & Main.sLocalizationStrings(Main.iUnidentifiedCharacter, Main.iLanguageSelected)

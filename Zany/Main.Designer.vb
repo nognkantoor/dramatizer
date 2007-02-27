@@ -483,6 +483,8 @@ Partial Class Main
         'chkbxBreakAtParagraphs
         '
         Me.chkbxBreakAtParagraphs.AutoSize = True
+        Me.chkbxBreakAtParagraphs.Checked = True
+        Me.chkbxBreakAtParagraphs.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkbxBreakAtParagraphs.Location = New System.Drawing.Point(15, 120)
         Me.chkbxBreakAtParagraphs.Name = "chkbxBreakAtParagraphs"
         Me.chkbxBreakAtParagraphs.Size = New System.Drawing.Size(163, 17)

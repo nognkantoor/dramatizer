@@ -4,9 +4,9 @@ Imports System.Text
 Imports str = Microsoft.VisualBasic.Strings
 Imports System.Text.RegularExpressions
 Public Class Main
-
+    Public iTempClipNumber As Integer
     Public sSavedLanguage As String = "English"
-
+    Public sNotAQuote = "Not A Quote"
     ' these three also defined in MainMenu
     Public sProgramDirectory As String = Directory.GetCurrentDirectory ' beware that this may change
     Public sRequiredFilesFolder As String = sProgramDirectory & "\RequiredFiles" ' beware that this may change
@@ -151,6 +151,7 @@ Public Class Main
     Public iTextEncodingTab = 136
     Public iRequiredInformationMissing = 137
     Public iPleaseCorrect = 138
+    Public iInfoProcessing = 139
 
 
 
@@ -164,6 +165,7 @@ Public Class Main
 
     Public sProgramName As String = "Dramatizer"
     Public sProgramVersion As String = "2.0"
+    Public sProgramVersionFull As String = sProgramVersion + ".18 2007-02-19"
     Public sProjectName As String
     Public sProjectFileName As String
     Public sDramatizeFolder As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\My Dramatizer"
@@ -226,7 +228,7 @@ Public Class Main
     Public sChapter(iMaxClips) As String
     Public sCharacter(iMaxClips, iMaxCharacters) As String
     Public sCharacterPrompts(iMaxClips) As String ' for prompt control -- this is really too large
-    Public sCharacterShort(iMaxClips) As String ' this is really too large
+    Public sSpeakerFileCharacterShort(iMaxClips) As String ' this is really too large
     Public sClipSize(iMaxClips) As String
     Public sClosingQuote As String
     Public sContinued(iMaxClips) As String
@@ -265,7 +267,12 @@ Public Class Main
     Public sQuoteTypeCheverons As String = "«...»"
     Public sQuoteTypeSIL As String = "<<...>>"
     Public sQuoteTypeStraight As String = " ""..."" "
-    Public sQuoteTypeSmart As String = "66...99"
+    Public sQuoteTypeSmartOpen As String = str.Chr(147)
+    Public sQuoteTypeSmartClose As String = str.Chr(148)
+    Public sQuoteTypeSmart As String = Me.sQuoteTypeSmartOpen + "..." + Me.sQuoteTypeSmartClose
+
+
+
 
 
 
@@ -280,7 +287,13 @@ Public Class Main
         fillAudioProgramControl()
         Me.cbOutputFolder.Text = Me.sDramatizeFolder
         readCurrentSettings()
-        sProjectName = getFileNameWithoutExtensionFromFullName(sProjectFileName)
+        If File.Exists(sProjectFileName) Then
+            sProjectName = getFileNameWithoutExtensionFromFullName(sProjectFileName)
+        Else
+            ' skip
+            sProjectFileName = ""
+            sProjectName = ""
+        End If
         createFoldersAndMasterAndScriptsFileNames()
         Me.panelSettings.Show()
         readSpeakerFile()
@@ -487,14 +500,6 @@ Public Class Main
         End If
         Return filename
     End Function
-    Private Sub AssignCharacters()
-    End Sub
-    Private Sub AssignVoices()
-    End Sub
-    Private Sub CreateScripts()
-    End Sub
-    Private Sub Record()
-    End Sub
     Private Function selectEncodingFromRadioButtons()
         If rbEncodingANSI.Checked = True Then
             sTextEncoding = "ANSI"
@@ -622,7 +627,15 @@ Public Class Main
                         ' End If
                         writeSpeakerOmitRecordedMultipleCharacters(i, sw)
                         sw.Write(""" >")
-                        writeSplitText(i, sw, continued, splitText(continued))
+                        Me.iTempClipNumber = i
+                        writeSplitText(sw, continued, splitText(continued))
+                        If Me.iTempClipNumber = 0 Then
+                            ' skip
+                        Else
+                            ' this advances over Not a quote and following text
+                            i = Me.iTempClipNumber
+                            Me.iTempClipNumber = 0
+                        End If
                         sw.WriteLine("</clip>")
                     End If
                 Next
@@ -631,7 +644,7 @@ Public Class Main
             sw.Close()
             ifError_QuoteMarkerFoundInsideOfText_doNoSaveWork()
         Catch ex As Exception
-            MessageBox.Show("Unable to write to file " & sMasterFileName & vbCrLf & "Check to see if file is open in another application " & vbCrLf & ex.Message & vbCrLf & "Current clip " & Me.iCurrentClipNumber.ToString & vbCrLf & "Maximum clip number " & Me.iLastClipNumber.ToString, "File writing error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            MessageBox.Show("Unable to write to file " & sTempFileName & vbCrLf & "Check to see if file is open in another application " & vbCrLf & ex.Message & vbCrLf & "Current clip " & Me.iCurrentClipNumber.ToString & vbCrLf & "Maximum clip number " & Me.iLastClipNumber.ToString, "File writing error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             End
         End Try
     End Sub
@@ -646,7 +659,13 @@ Public Class Main
             sw.Write(""" size=""" & sClipSize(i))
         End If
     End Sub
-    Private Sub writeSplitText(ByVal i As Integer, ByVal sw As StreamWriter, ByVal continued As Integer, ByVal temp As String)
+    Private Sub writeSplitText(ByVal sw As StreamWriter, ByVal continued As Integer, ByVal temp As String)
+        ' check to see content should include Not a quote from next i
+        If MainMenu.rbCreateScripts.Checked = True Then
+            temp = getTempStringWithNotAQuotesAddedToIt()
+        Else
+            ' skip
+        End If
         If continued > 0 Then
             sw.Write("\p" & temp)
         Else
@@ -702,7 +721,8 @@ Public Class Main
         Dim break(100) As String
         Dim j As Integer
         temp = breakTextAtParagraphVerseOrSentence(sScript(i))
-        '  isOpenQuoteFoundAgain(temp(0))
+        ' giving too many possible errors
+        ' isOpenQuoteFoundAgain(temp(0))
         break(j) = temp(0)
         If temp(0).Length > 0 Then
             Dim iAdjustSize As Integer = Me.TrackBarClipSize.Value / 10
@@ -730,7 +750,7 @@ Public Class Main
             Case Me.sQuoteTypeSIL
                 sOpenQuote = "<<"
             Case Me.sQuoteTypeSmart
-                sOpenQuote = """"   ' xxxxxxxxxx possible error here
+                sOpenQuote = Me.sQuoteTypeSmartOpen    ' xxxxxxxxxx possible error here
             Case Me.sQuoteTypeStraight
                 sOpenQuote = """"
             Case Else
@@ -773,6 +793,7 @@ Public Class Main
         Dim j As Int16
         Dim temp As String
         Dim temp2 As String
+        '   Dim temp3 As String
         resetScript()
         Try
             ' ProgressIndicator.Show()
@@ -786,50 +807,60 @@ Public Class Main
                 MainMenu.progressBar.Update()
                 i = i + 1
                 temp = sr.ReadLine()
+                ' moved to readMaster
+                ' isThereASpeakingPart
+                ' extract script
+                '        temp3 = (Me.regexReplace(temp, "(<clip.*?>)(.*?)(</clip>)", "$2")).ToString.Trim
+                ' remove verses
+                '       temp3 = Me.regexReplace(temp3, "(.*?)(<verse>.*?</verse>)(.*?)", "$1$3")
+                ' remove \q, \p, \pc, q2, ..., \p\p
+                '      temp3 = Me.regexReplace(temp3, "(.*?)(\\..?)*(.*?)", "$1$3")
+                ' remove --
+                '     temp3 = Me.regexReplace(temp3, "(.*?)(--)(.*?)", "$1$3")
+                ' if nothing to say then toss it out
+                '    If temp3 = Nothing Then
+                '' toss out as no text to speak
+                ' i -= 1
+                '  Else
+                ' keep this
 
-                If str.InStr(temp, "></clip>") Then
-                    ' toss out as no text to speak
-                    i -= 1
+                ' must use double on characters quotes in order to handle "Herodias' daughter"
+                temp2 = regexReplace(temp, "(.+?)(character1="""")(.+)", "$2")
+                If temp2.StartsWith("character1=""") Then
+                    ' no characters in this line to use .. = unidentified speaker
+                    sCharacter(i, 1) = ""
+                    iNumberOfCharactersInClip(i) = 0
+
                 Else
-                    ' keep this
-                
-                    ' must use double on characters quotes in order to handle "Herodias' daughter"
-                    temp2 = regexReplace(temp, "(.+?)(character1="""")(.+)", "$2")
-                    If temp2.StartsWith("character1=""") Then
-                        ' no characters in this line to use .. = unidentified speaker
-                        sCharacter(i, 1) = ""
-                        iNumberOfCharactersInClip(i) = 0
-
-                    Else
-                        ' there is at least one character
-                        For j = 1 To iMaxCharacters
-                            '      sCharacter(i, j) = regexReplace(temp, "(.+\s)(character" & j.ToString & "=')(.*?)(.+)", "$3")
-                            temp2 = regexReplace(temp, "(.+?character" & j.ToString & "="")" & "(.*?)("".+)", "$2")
-                            ' if temp2 starts with <clip .... that means that it failed above test
-                            If temp2.StartsWith("<clip") Then
-                                ' no match found so skip looking for more
-                                Exit For
-                            End If
-                            sCharacter(i, j) = temp2
-                            iNumberOfCharactersInClip(i) = j
-                        Next
-                    End If
-                    sID(i) = regexReplace(temp, "(.+?id="")(.+?)("".+)", "$2")
-                    sBook(i) = regexReplace(temp, "(.+\s)(id="")(.*?)(\s.+)", "$3")
-                    sChapter(i) = regexReplace(temp, "(.+\s)(id="".*?\s)(.*?)(\..+)", "$3")
-                    sVerse(i) = regexReplace(temp, "(.+\s)(id="".*?\.)(.*?)("".+)", "$3")
-                    ' xxxxsprompt(i) = regexReplace(temp, "(.+\s)(id='.*?\.)(.*?)('.+)", "$3")
-                    temp2 = regexReplace(temp, "(.+\s)(tag="")(.*?)("".+)", "$3")
-                    If temp2.StartsWith("<clip") Then
-                        ' no match found so 
-                        sTag(i) = Nothing
-                    Else
-                        sTag(i) = temp2
-                    End If
-                    '   sSpeakerNumber(i) = regexReplace(temp, "(.+\s)(voice=')(.*?)('.+)", "$3")
-                    ' sScript(i) = (regexReplace(temp, "(.+>)(.*?)(<.+)", "$2")).ToString.Trim
-                    sScript(i) = (regexReplace(temp, "(<clip.*?>)(.*?)(</clip.+)", "$2")).ToString.Trim
+                    ' there is at least one character
+                    For j = 1 To iMaxCharacters
+                        '      sCharacter(i, j) = regexReplace(temp, "(.+\s)(character" & j.ToString & "=')(.*?)(.+)", "$3")
+                        temp2 = regexReplace(temp, "(.+?character" & j.ToString & "="")" & "(.*?)("".+)", "$2")
+                        ' if temp2 starts with <clip .... that means that it failed above test
+                        If temp2.StartsWith("<clip") Then
+                            ' no match found so skip looking for more
+                            Exit For
+                        End If
+                        sCharacter(i, j) = temp2
+                        iNumberOfCharactersInClip(i) = j
+                    Next
                 End If
+                sID(i) = regexReplace(temp, "(.+?id="")(.+?)("".+)", "$2")
+                sBook(i) = regexReplace(temp, "(.+\s)(id="")(.*?)(\s.+)", "$3")
+                sChapter(i) = regexReplace(temp, "(.+\s)(id="".*?\s)(.*?)(\..+)", "$3")
+                sVerse(i) = regexReplace(temp, "(.+\s)(id="".*?\.)(.*?)("".+)", "$3")
+                ' xxxxsprompt(i) = regexReplace(temp, "(.+\s)(id='.*?\.)(.*?)('.+)", "$3")
+                temp2 = regexReplace(temp, "(.+\s)(tag="")(.*?)("".+)", "$3")
+                If temp2.StartsWith("<clip") Then
+                    ' no match found so 
+                    sTag(i) = Nothing
+                Else
+                    sTag(i) = temp2
+                End If
+                '   sSpeakerNumber(i) = regexReplace(temp, "(.+\s)(voice=')(.*?)('.+)", "$3")
+                ' sScript(i) = (regexReplace(temp, "(.+>)(.*?)(<.+)", "$2")).ToString.Trim
+                sScript(i) = (regexReplace(temp, "(<clip.*?>)(.*?)(</clip.+)", "$2")).ToString.Trim
+                ' End If
             Loop     ' next line is the </clip>
             sr.Close()
             '     System.IO.File.Copy(sTempFileName, sMasterFileName) ' makes it less likely we will loose data on power failure
@@ -877,7 +908,7 @@ Public Class Main
         'Me.sBook.Initialize()
         'Me.sChapter.Initialize()
         'Me.sCharacterPrompts.Initialize()
-        'Me.sCharacterShort.Initialize()
+        'Me.sSpeakerFileCharacterShort.Initialize()
         'Me.sCharacter.Initialize()
         ' resetsCharacterToNothing()
 
@@ -906,50 +937,78 @@ Public Class Main
         resetArrays()
         Me.iUnidentifiedSpeakingCharacter = 0
         Me.iMultipleSpeakingCharacter = 0
+
         Dim i As Integer
         Dim temp As String
-        Try
-            Dim sr As StreamReader = New StreamReader(Me.sMasterFileName, Encoding.UTF8)
-            temp = sr.ReadLine() ' xml
-            temp = sr.ReadLine()
-            iLastClipNumber = getInitialInfo(temp)
-            Do While Not sr.EndOfStream
-                i += 1  ' count clip numbers as iLastClipNumber is wrong at this time.
-                '  Me.progressBar.Value = i
-                ' Me.progressBar.Update()
+        If File.Exists(Me.sMasterFileName) Then
+            Try
+                Dim sr As StreamReader = New StreamReader(Me.sMasterFileName, Encoding.UTF8)
+                temp = sr.ReadLine() ' xml
                 temp = sr.ReadLine()
-                If temp.StartsWith("</dramatizer>") Then Exit Do
-                readBookChapterVerse(temp, i)
-                sContinued(i) = regexReplace(temp, "(.+\s)(continued="")(.*?)(""\s.+)", "$3")
-                getOmit(temp, i)
-                sClipSize(i) = regexReplace(temp, "(.+\s)(size="")(.*?)(""\s.+)", "$3")
-                getNumberOfCharactersInClip(temp, i)
-                readRecorded(temp, i)
-                sScript(i) = ""
-                sScript(i) = (regexReplace(temp, "(<clip.+?>)(.*?)(</clip.+)", "$2")).ToString.Trim
-                sSpeakerNumber(i) = ""
-                sSpeakerNumber(i) = regexReplace(temp, "(.+\s)(speaker="")(.*?)(""\s.+)", "$3")
-                ' prompt is carried in the character name
-                '  sPrompt(i) = regexReplace(temp, "(.+\s)(prompt="")(.*?)("".+)", "$3")
-                sContinued(i) = regexReplace(temp, "(.+\s)(continued="")(.*?)("".+)", "$3")
-                countUndentifiedSpeakingCharacgters_OneSpeakingCharacter_AndMultipleSpeakingCharacters(i)
-                ' read in all the characters
-                getCharacters(temp, i)
-                getTag(temp, i)
-            Loop
-            sr.Close()
-            ' ProgressIndicator.Hide()
-            '    Me.progressBar.Visible = False
-            ' Me.tbProgress.Visible = False
-            Me.iLastClipNumber = i - 1  ' this is required to set it right
-            '    Dim x3 As String = Me.sCharacter(77, 1)
-            '   Dim x4 As String = Me.sCharacter(79, 1)
-            '  Dim x1 = x4
-        Catch ex As Exception
-            MessageBox.Show("Unable to read master file -- error 2 " & vbCrLf & sMasterFileName & vbCrLf & "Check to see if file is open in another application. " & vbCrLf & ex.Message & vbCrLf & "i = " & i.ToString, "File reading error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            End
-        End Try
+                iLastClipNumber = getInitialInfo(temp)
+                Do While Not sr.EndOfStream
+                    i += 1  ' count clip numbers as iLastClipNumber is wrong at this time.
+                    '  Me.progressBar.Value = i
+                    ' Me.progressBar.Update()
+                    temp = sr.ReadLine()
+                    If temp.StartsWith("</dramatizer>") Then Exit Do
+                    If isThereAnySpeakingPart(temp) = True Then
+
+                        readBookChapterVerse(temp, i)
+                        sContinued(i) = regexReplace(temp, "(.+\s)(continued="")(.*?)(""\s.+)", "$3")
+                        getOmit(temp, i)
+                        sClipSize(i) = regexReplace(temp, "(.+\s)(size="")(.*?)(""\s.+)", "$3")
+                        getNumberOfCharactersInClip(temp, i)
+                        readRecorded(temp, i)
+                        sScript(i) = ""
+                        sScript(i) = (regexReplace(temp, "(<clip.+?>)(.*?)(</clip.+)", "$2")).ToString.Trim
+                        sSpeakerNumber(i) = ""
+                        sSpeakerNumber(i) = regexReplace(temp, "(.+\s)(speaker="")(.*?)(""\s.+)", "$3")
+                        ' prompt is carried in the character name
+                        '  sPrompt(i) = regexReplace(temp, "(.+\s)(prompt="")(.*?)("".+)", "$3")
+                        sContinued(i) = regexReplace(temp, "(.+\s)(continued="")(.*?)("".+)", "$3")
+                        countUndentifiedSpeakingCharacgters_OneSpeakingCharacter_AndMultipleSpeakingCharacters(i)
+                        ' read in all the characters
+                        getCharacters(temp, i)
+                        getTag(temp, i)
+                    Else
+                        ' no speaking part
+                        i -= 1
+                    End If
+                Loop
+                sr.Close()
+                ' ProgressIndicator.Hide()
+                '    Me.progressBar.Visible = False
+                ' Me.tbProgress.Visible = False
+                Me.iLastClipNumber = i - 1  ' this is required to set it right
+                '    Dim x3 As String = Me.sCharacter(77, 1)
+                '   Dim x4 As String = Me.sCharacter(79, 1)
+                '  Dim x1 = x4
+            Catch ex As Exception
+                MessageBox.Show("Unable to read master file -- error 2 " & vbCrLf & sMasterFileName & vbCrLf & "Check to see if file is open in another application. " & vbCrLf & ex.Message & vbCrLf & "i = " & i.ToString, "File reading error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+                End
+            End Try
+        Else
+            ' no master file so skip reading
+        End If
     End Sub
+    Public Function isThereAnySpeakingPart(ByVal temp As String)
+        Dim temp3 As String
+        ' extract script
+        temp3 = (Me.regexReplace(temp, "(<clip.*?>)(.*?)(</clip>)", "$2")).ToString.Trim
+        ' remove verses
+        temp3 = Me.regexReplace(temp3, "(.*?)(<verse>.*?</verse>)(.*?)", "$1$3")
+        ' remove \q, \p, \pc, q2, ..., \p\p
+        temp3 = Me.regexReplace(temp3, "(.*?)(\\.\d?)*(.*?)", "$1$3")
+        ' remove --
+        temp3 = Me.regexReplace(temp3, "(.*?)(--)(.*?)", "$1$3")
+        ' if nothing to say then toss it out
+        If temp3.Length > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
     Private Function getInitialInfo(ByVal temp As String)
         Dim total = regexReplace(temp, "(.+\s)(totalClips="")(.*?)(""\s.+)", "$3")
         Dim sRecordingInProgress As String = regexReplace(temp, "(.+\s)(recordingInProgress="")(.*?)(""\s.+)", "$3")
@@ -1127,7 +1186,7 @@ Public Class Main
                 FileClose(filenum)
             Catch ex As Exception
                 ' if can't read a settings file then just display defaults
-                MessageBox.Show("error " & ex.Message, "Error")
+                '   MessageBox.Show("error " & ex.Message, "Error")
                 FileClose(filenum)
             End Try
         Else
@@ -1227,7 +1286,10 @@ Public Class Main
     Private Sub readAndSetQuoteType()
         Dim temp As String
         temp = getCurrentInfoFromSettingsFile("<currentQuoteType>")
-        If temp = " ... " Then
+        If temp = "" Then
+            ' default
+            Me.cbQuoteType.Text = Me.sQuoteTypeCheverons
+        ElseIf temp = " ... " Then
             Me.cbQuoteType.Text = Me.sQuoteTypeStraight
         Else
             Me.cbQuoteType.Text = temp
@@ -1374,16 +1436,18 @@ Public Class Main
     End Sub
     Private Sub fillSampleEncodingRTBoxes()
         ' Me.rtbEncodingANSI.Text = sProjectFileName
-
+        ' check file to be sure it is valid
         Try
             If Me.rbEncodingANSI.Checked = True Then
                 Dim ansitext As String = file2stringWithEncoding(sProjectFileName, System.Text.Encoding.UTF7)
                 ansitext = regexReplace(ansitext, "\r", "oojaaooo")
                 ansitext = regexReplace(ansitext, "\n", "--jaa---")
-                ansitext = regexReplace(ansitext, "(.*?)(\\c 4)(.*)", "$1") ' cut file
+                '  ansitext = regexReplace(ansitext, "(.*?)(\\c 4)(.*)", "$1") ' cut file
                 ansitext = regexReplace(ansitext, "--jaa---", vbCrLf)
                 ansitext = regexReplace(ansitext, "oojaaooo", vbCrLf)
                 Me.rtbEncodingANSI.Text = ansitext
+                Me.rtbEncodingANSI.Show()
+                Me.rtbEncodingUTF8.Hide()
             Else
                 Dim utf8text As String = file2stringWithEncoding(sProjectFileName, System.Text.Encoding.UTF8)
                 utf8text = regexReplace(utf8text, "\r", "oojaaooo")
@@ -1392,6 +1456,8 @@ Public Class Main
                 utf8text = regexReplace(utf8text, "--jaa---", vbCrLf)
                 utf8text = regexReplace(utf8text, "oojaaooo", vbCrLf)
                 Me.rtbEncodingUTF8.Text = utf8text
+                Me.rtbEncodingANSI.Hide()
+                Me.rtbEncodingUTF8.Show()
             End If
         Catch ex As Exception
             ' MessageBox.Show("Error 1 trying to open " & Me.sProjectFileName & vbCrLf & "See if another application has the file open.", "Error opening file", MessageBoxButtons.OK, MessageBoxIcon.Stop)
@@ -1411,15 +1477,40 @@ Public Class Main
         Me.readClipsFromFileMaster()
         dramatizer.displayMasterAndVoiceTalentText()
     End Sub
+    Private Sub verifyFileIsNotDOC(ByVal blnDocFile As Boolean)
+        If blnDocFile = True Then
+            Dim response = MessageBox.Show("This seems to be a .doc file. Please convert it to .txt." & vbCrLf & _
+                       "In Microsoft Word you will do a file save as Plain text (*.txt)." & vbCrLf & _
+                       "Do you want to stop and do that now?", "Wrong file type.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If response = vbYes Then
+                End
+            Else
+                ' we will loop until it is fixed
+            End If
+        Else
+            ' not a doc file ... good
+            ' see if first line starts with \id
+            verifyFirstLineStartsWithID()
+        End If
+
+    End Sub
     Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
-        OpenFileDialog1.FileName = ""
-        OpenFileDialog1.Filter = "Text files (*.txt, *.ptx,*.sfm)|*.txt;*.ptx;*.sfm|All files (*.*)|*.*"
-        OpenFileDialog1.ShowDialog()
-        sProjectFileName = OpenFileDialog1.FileName
+        Dim blnDocFile As Boolean
+        Do
+
+            OpenFileDialog1.FileName = ""
+            OpenFileDialog1.Filter = "Text files (*.txt, *.ptx,*.sfm)|*.txt;*.ptx;*.sfm|All files (*.*)|*.*"
+            OpenFileDialog1.ShowDialog()
+            sProjectFileName = OpenFileDialog1.FileName
+            blnDocFile = sProjectFileName.Contains(".doc")
+            verifyFileIsNotDOC(blnDocFile)
+        Loop Until blnDocFile = False
         sProjectName = getFileNameWithoutExtensionFromFullName(sProjectFileName)
         sProjectPath = getProjectPathFromFullName(sProjectFileName)
         Me.cbFileName.Text = sProjectFileName
         Me.Text = sProjectName + " - " + sProgramName
+        MainMenu.Text = Me.Text
+
         Me.panelEncoding.Show()
         Me.fillSampleEncodingRTBoxes()
         setFontForRTB()
@@ -1448,6 +1539,8 @@ Public Class Main
     End Sub
     Private Sub btnDisplayClips_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisplayClips.Click
         fillSampleEncodingRTBoxes() ' in case we are doing this again
+        ' reset updown to 0
+        VerticalScroll.Value = 0
         Dim temp As String
         If Me.rbEncodingANSI.Checked Then
             ' do work here
@@ -1456,19 +1549,12 @@ Public Class Main
             temp = regexReplace(Me.rtbEncodingUTF8.Text, "\n", "--jaa---")
             ' do work on UTF8 box
         End If
+        temp = SFMQuotes.processQuotesToMakeRegular(temp)
+        temp = SFMQuotes.processRemoveUnusedText(temp)
+        ' remove note saying what was removed
+        temp = regexReplace(temp, "(\*\*\*\*)(.*?)(\*\*\*\*)", "")
         temp = regexReplace(temp, "\r", "oojaaooo")
-        Select Case Me.cbQuoteType.Text
-            Case Me.sQuoteTypeCheverons    ' («)
-                temp = regexReplace(temp, "(«)(.*?)(»)", "|" & "$1$2$3" & "|")
-            Case Me.sQuoteTypeSIL             ' (<<) 
-                temp = regexReplace(temp, "(<<)(.*?)(>>)", "|" & "$1$2$3" & "|")
-            Case Me.sQuoteTypeSmart
-                temp = regexReplace(temp, "( "")(.*?)("")( |--jaa---)", "|" & "$1$2$3$4" & "|")
-            Case Me.sQuoteTypeStraight
-                temp = regexReplace(temp, "( "")(.*?)("")( |--jaa---)", "|" & "$1$2$3$4" & "|")
-            Case Else
-                Debug.Assert(True, "unknown quote type in btnDisplayClips")
-        End Select
+        temp = regexReplace(temp, "(«)(.*?)(»)", "|" & "$1$2$3" & "|")
         temp = regexReplace(temp, "--jaa---", vbCrLf)
         temp = regexReplace(temp, "oojaaooo", vbCrLf)
         temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf)
@@ -1545,7 +1631,7 @@ Public Class Main
         MasterText.rtbTextOnly.Font = New Font(fontName, fontSize)
         MasterText.rtbTextWithContext.Font = New Font(fontName, fontSize)
     End Sub
-    Private Sub rbEncodingANSI_CheckedChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub setEncoding()
         If Me.rbEncodingANSI.Checked Then
             Me.rtbEncodingANSI.Show()
             Me.rtbEncodingUTF8.Hide()
@@ -1567,6 +1653,7 @@ Public Class Main
             MainMenu.setCheckMarksAndEnableMenuItems()
             'Me.enableMenuChoices()
             MainMenu.Show()
+
         Else
             Beep()
             MessageBox.Show(Me.sLocalizationStrings(Me.iRequiredInformationMissing, Me.iLanguageSelected), Me.sLocalizationStrings(Me.iPleaseCorrect, Me.iLanguageSelected), MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1615,7 +1702,7 @@ Public Class Main
             temp2 = str.Trim(getCharacterShort(Me.sSpeakerFileCharacter(i)))
             If temp2 <> Nothing Then
                 j += 1
-                Me.sCharacterShort(j) = temp2
+                Me.sSpeakerFileCharacterShort(j) = temp2
             Else
                 ' toss out nul 
             End If
@@ -1646,9 +1733,10 @@ Public Class Main
     End Sub
     Public Function assignSpeakerToCharacter(ByVal character As String)
         Dim i As Integer
+        Dim temp As String = str.Trim(getCharacterShort(character))
         Do
             i += 1
-            If sSpeakerFileCharacter(i) = character Then Return iSpeakerFileSpeakerNumber(i)
+            If Me.sSpeakerFileCharacterShort(i) = temp Then Return iSpeakerFileSpeakerNumber(i)
         Loop Until sSpeakerFileCharacter(i) = "" ' end of characters in array
         Return "0" ' not assigned
     End Function
@@ -1724,7 +1812,7 @@ Public Class Main
     Public Function countUnassignedCharacters()
         Dim i, total As Integer
         For i = 1 To iLastClipNumber
-            If sSpeakerFileCharacter(i) = "0" Then
+            If sSpeakerNumber(i) = "0" Then
                 total += 1
             Else
                 ' voice assigned
@@ -1790,9 +1878,10 @@ Public Class Main
     Public Sub fillAudioProgramControl()
         Try
             Me.cbAudioProgram.Items.Add("c:\Program Files\Audacity\audacity.exe")
+            Me.cbAudioProgram.Items.Add("c:\Program Files\Adobe\audition 1.5\Audition.exe")
             Me.cbAudioProgram.Items.Add("c:\Program Files\Adobe\Adobe audition 2.0\Audition.exe")
             Me.cbAudioProgram.Items.Add("c:\Program Files\Cool2000\cool2000.exe")
-            Me.cbAudioProgram.Text = "c:\Program Files\Audacity\audacity.exe"
+            Me.cbAudioProgram.Text = "c:\Program Files\Adobe\audition 1.5\Audition.exe"
         Catch ex As Exception
             MessageBox.Show("Problem filling the audio program names control " & vbCrLf & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
@@ -1883,15 +1972,22 @@ Public Class Main
         Dim temp As String = str.Left(Me.cbISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = temp
         '  checkISOcodePresent()
-        areRequiredTabsCompleted()
+        '     areRequiredTabsCompleted()
     End Sub
-    Private Sub cbISOcode_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbISOcode.SelectedIndexChanged
+    Private Sub cbISOcode_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbISOcode.SelectedIndexChanged
+        Dim temp As String = str.Left(Me.cbISOcode.SelectedItem, 3).Trim
+        Me.tbISOcode.Text = Trim(temp)
+        ' checkISOcodePresent()
+        areRequiredTabsCompleted()
+
+    End Sub
+    Private Sub cbISOcode_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbISOcode.SelectedValueChanged
         Dim temp As String = str.Left(Me.cbISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = Trim(temp)
         ' checkISOcodePresent()
         areRequiredTabsCompleted()
     End Sub
-    Private Sub cbFindISOcode_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFindISOcode.SelectedIndexChanged
+    Private Sub cbFindISOcode_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbFindISOcode.SelectedValueChanged
         Dim temp As String = str.Right(Me.cbFindISOcode.SelectedItem, 3).Trim
         Me.tbISOcode.Text = temp
         '  checkISOcodePresent()
@@ -2402,7 +2498,7 @@ Public Class Main
     Public Sub fillCharacterNamesControl()
         Try
             Dim characterShort As String
-            For Each characterShort In Me.sCharacterShort
+            For Each characterShort In Me.sSpeakerFileCharacterShort
                 If characterShort = Nothing Then
                     ' skip all the blanks - first one and lots at the end
                 Else
@@ -2594,9 +2690,8 @@ Public Class Main
         Me.rbEncodingUTF8.Text = Me.sLocalizationStrings(Me.iUTF8, language)
         Me.lblEncoding.Text = Me.sLocalizationStrings(Me.iTextEncoding, language)
         Me.lblEthnologueCode.Text = Me.sLocalizationStrings(Me.iEthnologueCode, language)
-        Me.lblMaxClipSize.Text = Me.sLocalizationStrings(Me.iMaxClipSizeText, language)
         Me.lblCurrentPosition.Text = "" ' Me.sLocalizationStrings(Me.iCurrentLocationNumber, language)
-        Me.lblMaxClipSize.Text = Me.sLocalizationStrings(Me.iMaxClipSize, language)
+        Me.lblMaxClipSize.Text = Me.sLocalizationStrings(Me.iMaxClipSizeText, language)
         Me.chkbxBreakAtParagraphs.Text = Me.sLocalizationStrings(Me.iBreakAtMostParagraphs, language)
         Me.chkbxAdjustClipSize.Text = Me.sLocalizationStrings(Me.iUseSettingsToAdjustClipSize, language)
         Me.TabPage1.Text = Me.sLocalizationStrings(Me.iInputTab, language)
@@ -2660,7 +2755,8 @@ Public Class Main
             Dim fontName As String = Me.cbFontName.SelectedItem
             Dim fontSize As String = Me.cbFontSize.SelectedItem
             Dim temp As String
-            Dim iScriptClipNumber, i As Integer
+            Dim i As Integer
+            Dim iScriptClipNumber As Integer
             Dim iSpeakerNumber As Integer = 0
             For iSpeakerNumber = 1 To 30
                 i = 0 ' counter
@@ -2696,10 +2792,8 @@ Public Class Main
                         sw.WriteLine(iScriptClipNumber)
                         sw.Write("</td>")
                         sw.Write("</tr>")
-                        temp = Me.sScript(iScriptClipNumber)
-                        ' remove verse and \ codes
-                        temp = dramatizer.removeVerseNumber(temp)
-                        temp = dramatizer.removeSFMcodes(temp)
+                        temp = getScriptAndRemoveSFMandVerses(iScriptClipNumber)
+                        temp = fixHTMLcodes(temp)
                         sw.WriteLine("<tr>")
                         sw.Write("<td class=""clip"">")
                         sw.WriteLine(temp)
@@ -2734,7 +2828,13 @@ Public Class Main
         Try
             Dim fontName As String = Me.cbFontName.SelectedItem
             Dim fontSize As String = Me.cbFontSize.SelectedItem
-            Dim temp As String
+            Dim temp As String = ""
+            Dim tempCurrentChar As String
+            Dim tempNextChar As String = ""
+            Dim tempCharFollowingNotAQuote As String = ""
+            Dim tempNotAQuote As String = ""
+            Dim tempFollowingNotAQuote As String = ""
+            Dim tempCharFollowingNotAQuoteAndText As String = ""
             Dim iScriptClipNumber, i As Integer
             i = 0 ' counter
             Dim sw As StreamWriter = New StreamWriter(Me.sScriptSpeakerFile & "master.html", False, System.Text.Encoding.UTF8)
@@ -2753,11 +2853,8 @@ Public Class Main
                 sw.Write("</td><td class=""speaker"">")
                 sw.Write(Me.sSpeakerNumber(iScriptClipNumber))
                 sw.Write("</td><td>")
-                If Me.sCharacter(iScriptClipNumber, 0) <> Nothing Then
-                    sw.Write(Me.sCharacter(iScriptClipNumber, 0))
-                Else
-                    sw.Write(Me.sCharacter(iScriptClipNumber, 1))
-                End If
+                tempCurrentChar = getCharacter(iScriptClipNumber)
+                sw.Write(tempCurrentChar)
                 sw.Write("</td><td>")
                 sw.Write(Me.sBook(iScriptClipNumber))
                 sw.Write(" ")
@@ -2768,16 +2865,19 @@ Public Class Main
                 sw.WriteLine(iScriptClipNumber)
                 sw.Write("</td>")
                 sw.Write("</tr>")
-                temp = Me.sScript(iScriptClipNumber)
-                ' remove verse and \ codes
-                temp = dramatizer.removeVerseNumber(temp)
-                temp = dramatizer.removeSFMcodes(temp)
+                temp = getScriptAndRemoveSFMandVerses(iScriptClipNumber)
+                temp = fixHTMLcodes(temp)
                 sw.WriteLine("<tr>")
                 sw.Write("<td class=""clip"">")
                 sw.WriteLine(temp)
                 sw.Write("</td>")
                 sw.Write("</tr>")
                 sw.WriteLine()
+                tempNotAQuote = ""
+                tempNextChar = ""
+                tempCurrentChar = ""
+                tempCharFollowingNotAQuote = ""
+                temp = ""
             Next
             sw.Write("</table>")
             sw.Write("</body>")
@@ -2787,6 +2887,60 @@ Public Class Main
             MessageBox.Show("Error writing script for master " & Me.sScriptSpeakerFile & vbCrLf & ex.Message, "error writing file", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try
     End Sub
+    Private Function fixHTMLcodes(ByVal temp As String)
+        temp = Me.regexReplace(temp, "&", "&amp;")
+        temp = Me.regexReplace(temp, "<", "&lt;")
+        temp = Me.regexReplace(temp, ">", "&gt;")
+        Return temp
+    End Function
+    Public Function getTempStringWithNotAQuotesAddedToIt()
+        Dim temp As String
+        Dim tempNextChar As String = ""
+        Dim tempNotAQuote As String = ""
+        Dim tempCharFollowingNotAQuote As String = ""
+        Dim tempCurrentChar As String = getCharacter(iTempClipNumber)
+        Dim tempFollowingNotAQuote As String
+
+        temp = getScriptAndRemoveSFMandVerses(iTempClipNumber)
+        tempNextChar = getCharacter(iTempClipNumber + 1)
+        Do While tempNextChar = sNotAQuote
+            iTempClipNumber += 1
+            tempNotAQuote = getScriptAndRemoveSFMandVerses(iTempClipNumber)
+            temp = temp + " " + tempNotAQuote
+            tempCharFollowingNotAQuote = getCharacter(iTempClipNumber + 1)
+            If tempCharFollowingNotAQuote = tempCurrentChar Then
+                tempFollowingNotAQuote = getScriptAndRemoveSFMandVerses(iTempClipNumber + 1)
+                If tempFollowingNotAQuote = Nothing Then
+                    ' skip
+                Else
+                    temp = temp + " " + tempFollowingNotAQuote
+                End If
+                iTempClipNumber += 2
+            Else
+                iTempClipNumber += 1
+            End If
+            '            iTempClipNumber += 1
+            tempNextChar = getCharacter(iTempClipNumber)
+        Loop
+        Return temp
+
+    End Function
+    Public Function getScriptAndRemoveSFMandVerses(ByVal iNumber As Integer)
+        Dim temp As String
+        temp = Me.sScript(iNumber)
+        ' remove verse and \ codes
+        temp = dramatizer.removeVerseNumber(temp)
+        temp = dramatizer.removeSFMcodes(temp)
+        Return temp
+    End Function
+    Public Function getCharacter(ByVal iClipNumber As Integer)
+        If Me.sCharacter(iClipNumber, 0) <> Nothing Then
+            Return (Me.sCharacter(iClipNumber, 0))
+        Else
+            Return (Me.sCharacter(iClipNumber, 1))
+        End If
+
+    End Function
     Public Sub writeLocalizationFile()
         Try
             ' make backup
@@ -2837,11 +2991,34 @@ Public Class Main
 
     Private Sub rbEncodingANSI_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbEncodingANSI.CheckedChanged
         Try
+            setEncoding()
             fillSampleEncodingRTBoxes()
             ' don't need to do this for UTF8 also ... as changed handles both cases.
         Catch ex As Exception
             ' error thrown first time through because we don't know file name yet
-
         End Try
     End Sub
+    Private Function verifyFirstLineStartsWithID()
+        Try
+            Dim sr As StreamReader = New StreamReader(sProjectFileName, System.Text.Encoding.UTF8, True)
+            sr.Close()
+        Catch ex As Exception
+            MessageBox.Show("File is already open or locked by another program.", "File not available.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End
+        End Try
+        Try
+            Dim sr As StreamReader = New StreamReader(sProjectFileName, System.Text.Encoding.UTF8, True)
+            Dim temp As String
+            Do
+                temp = sr.ReadLine
+            Loop Until (temp.StartsWith("\id"))
+            sr.Close()
+            ' valid looking file
+        Catch ex As Exception
+            Dim response = MessageBox.Show("File does not begin with \id." & vbCrLf & "Please verify that this is the correct file by opening the file in NotePad or some other text editor.", "Missing \id line", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            End
+        End Try
+        Return True
+    End Function
+
 End Class

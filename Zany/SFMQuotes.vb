@@ -117,7 +117,7 @@ Public Class SFMQuotes
         sr.Close()
         Return myString
     End Function
-    Private Function processQuotesToMakeRegular(ByVal temp As String)
+    Public Shared Function processQuotesToMakeRegular(ByVal temp As String)
         Select Case Main.cbQuoteType.Text
             Case Main.sQuoteTypeCheverons
                 ' this is how we want all the quotes
@@ -125,16 +125,19 @@ Public Class SFMQuotes
                 temp = regexReplace(temp, "<<", "«")
                 temp = regexReplace(temp, ">>", "»")
             Case Main.sQuoteTypeSmart
-                temp = regexReplace(temp, " """, "«")
-                temp = regexReplace(temp, """ ", "»")
-                temp = regexReplace(temp, """", "»") ' any left over straight quote is a final
+                temp = regexReplace(temp, Main.sQuoteTypeSmartOpen, "«")
+                temp = regexReplace(temp, Main.sQuoteTypeSmartClose, "»")
             Case Main.sQuoteTypeStraight
-                temp = regexReplace(temp, " """, "«")
-                temp = regexReplace(temp, """ ", "»")
+                temp = regexReplace(temp, " """, " «")
+                temp = regexReplace(temp, """ ", "» ")
                 temp = regexReplace(temp, """", "»") ' any left over straight quote is a final
             Case Else
                 Debug.Assert(True, "unknown quote type in process quotes to make regular")
         End Select
+        ' quotes regularly follow footnote end so you must check for this condition in the text
+        ' temp = regexReplace(temp, "\f* «", "\f* XXXXXX»") ' any quote following footnote should be final.
+
+
         Return temp
 
     End Function
@@ -152,20 +155,21 @@ Public Class SFMQuotes
             sText = stream2string(sEncoding)
             colMarkers = createListOfMarkers(sText)
             Try
-                temp = regexReplace(sText, "(\\id)(\s)(...)(\s.*?)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
-                ' remove text not used
-                temp = removeUnusedText(temp)
+                temp = processRemoveUnusedText(sText)
+                temp = processQuotesToMakeRegular(temp)
+                '        sw.Write(temp)
+                '       sw.Close()
+                temp = regexReplace(temp, "(\\id)(\s)(...)(\s.*?)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 ' keep introduction
                 temp = processIntroduction(temp, sClipExtra)
                 ' get rid of cr and lf put them back in later
-                temp = processQuotesToMakeRegular(temp)
                 temp = removeCRLF(temp)
-                ' remove note saying what was removed
-                temp = regexReplace(temp, "(\*\*\*\*)(.*?)(\*\*\*\*)", "")
+                temp = processRemoveUnusedText(temp)
                 Debug.Assert(Main.cbQuoteType.Text <> "", "cb quote type not set")
                 temp = processDirectQuote(temp, sClipUnknown, sClipNarrator)
                 temp = restoreCRLFandAddWhenVerticalBarPresent(temp)
-                temp = removeUnusedText(temp)
+                '   temp = processRemoveUnusedText(temp)
+                temp = processRegularize(temp)
                 ' guarantee that all \ start on new line except the tag='\xxx'
                 temp = regexReplace(temp, "([^""])(\\)", vbCrLf & "$1\")
                 '    temp = regexReplace(temp, "(\r\n)(\\id)", "$2")
@@ -174,7 +178,7 @@ Public Class SFMQuotes
                 ' temp = regexReplace(temp, "(\r\n)+", vbCrLf)
                 ' remove double new lines,
                 'temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf)
-                temp = processChapterAndVerse(temp, sClipPossibleContinuation)
+                temp = processChapterAndVerse(temp, sClipNarrator)
                 ' section
                 temp = regexReplace(temp, "(\\s\d?)(\s)(.+)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""extra-"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 ' heading
@@ -182,7 +186,8 @@ Public Class SFMQuotes
                 ' book
                 temp = regexReplace(temp, "(\\mt\d?)(\s)(.*)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 temp = processContinuingQuotes(temp, sClipUnknown)
-                temp = processCleanUP(temp)
+                temp = processCleanUp(temp)
+                temp = processReturnToStartingQuoteMarks(temp)
                 ' save intermediate work
                 sw.Write(temp)
                 sw.Close()
@@ -206,6 +211,24 @@ Public Class SFMQuotes
         End Try
         Return "Error opening file - maybe regex problem"
     End Function
+    Private Function processReturnToStartingQuoteMarks(ByVal temp As String)
+        Select Case Main.cbQuoteType.Text
+            Case Main.sQuoteTypeCheverons
+                ' this is how we want all the quotes
+            Case Main.sQuoteTypeSIL
+                temp = regexReplace(temp, "«", "<<")
+                temp = regexReplace(temp, "»", ">>")
+            Case Main.sQuoteTypeSmart
+                temp = regexReplace(temp, "«", Main.sQuoteTypeSmartOpen)
+                temp = regexReplace(temp, "»", Main.sQuoteTypeSmartClose)
+            Case Main.sQuoteTypeStraight
+                temp = regexReplace(temp, "«", """")
+                temp = regexReplace(temp, "»", """")
+            Case Else
+                Debug.Assert(True, "Missing quote type in processReturnToStartingQuoteMarks")
+        End Select
+        Return temp
+    End Function
     Private Function removeCRLF(ByVal temp As String)
         temp = regexReplace(temp, "\n", "--jaa---")
         temp = regexReplace(temp, "\r", "oojaaooo")
@@ -218,10 +241,10 @@ Public Class SFMQuotes
         temp = regexReplace(temp, "(\r\n)$", "$1" & vbCrLf & "</clip>" & vbCrLf)
         Return temp
     End Function
-    Private Function processChapterAndVerse(ByVal temp As String, ByVal sClipPossibleContinuation As String)
+    Private Function processChapterAndVerse(ByVal temp As String, ByVal sClipNarrator As String)
         ' chapter
         ' keep chapter number
-        temp = regexReplace(temp, "(\\c)(\s)(\d+)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3") ' & sClipPossibleContinuation)
+        temp = regexReplace(temp, "(\\c)(\s)(\d+)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator) ' sClipPossibleContinuation)
         ' temp = regexReplace(temp, "(\\c)(\s)(\d+)", vbCrLf & "<chapterNumber>$3</chapterNumber>")
         ' --------------------------------------------------------
         ' verse
@@ -236,6 +259,11 @@ Public Class SFMQuotes
         temp = regexReplace(temp, vbCrLf & vbCrLf, vbCrLf)
         temp = regexReplace(temp, "\|\|", "\|")
         temp = regexReplace(temp, "\|", vbCrLf)
+        Return temp
+    End Function
+    Private Function processRegularize(ByVal temp)
+        ' change \m to \p
+        temp = regexReplace(temp, "(\\m.?)", "\p")
         Return temp
     End Function
     Private Function processCleanUp(ByVal temp)
@@ -260,33 +288,27 @@ Public Class SFMQuotes
     End Function
     Private Function processContinuingQuotes(ByVal temp As String, ByVal sClipUnknown As String)
         ' continuing quotes
-        temp = regexReplace(temp, "([^\n])(«)", sClipUnknown & "$1$2$3")
-
-
-
-        '        If Main.cbQuoteType.Text = "«...»" Then ' 
-        ''         temp = regexReplace(temp, "(>\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
-        ''temp = regexReplace(temp, "(\\p\n\n<verse>.*?\n</verse>)(\w)(«)", "|" & "</clip>" & vbCrLf & sClipUnknown & "$1$2$3")
-        'temp = regexReplace(temp, "([^\n])(«)", sClipUnknown & "$1$2$3")
-        '' works but then makes the verse ref wrong for the following quote start loaction           temp = regexReplace(temp, "(\\p)(\r\n)+(<verse>\r\n\d*\r\n</verse> )?(«)", sClipUnknown & "$1$2$3$4")
-        'ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
-        'temp = regexReplace(temp, "([^\n])(<<)", sClipUnknown & "$1$2$3")
-        'ElseIf Main.cbQuoteType.Text = " ""..."" " Then ' 
-        'temp = regexReplace(temp, "([^\n])("")", "|" & sClipUnknown & "$1$2$3")
-        'End If
+        temp = regexReplace(temp, "([^\n])(«)", sClipUnknown & "$1$2")
         Return temp
     End Function
-    Private Function removeUnusedText(ByVal temp As String)
+    Public Shared Function processRemoveUnusedText(ByVal temp As String)
+        ' \quote \-quote \b   remove
+        temp = regexReplace(temp, "(\\quote)|(\\-quote)|(\\b)", "")
         ' \ide  encoding
         temp = regexReplace(temp, "(\\ide)(\s)(.*?)(\r\n)", "****ide removed****")
         ' \r  cross references
         temp = regexReplace(temp, "(\\r)(\s)(.*?)(\r\n)", "****r removed****")
         ' \f \f*  footnote
-        temp = regexReplace(temp, "(\\f)(\s)(.*?)(\\f\*)", "****footnote removed****")
+        ' adding the \s at the end seems strange .. needed for niv smart quotes MRK 10.19 XXXXXXXXXXXX
+        temp = regexReplace(temp, "(\\f)(\s)(.*?)(\\f\*)\s?", "****footnote removed****")
+        '   ' \f \f*  footnote
+        '  temp = regexReplace(temp, "(\\f)(\s)(.*?)(\\f\*)", "****footnote removed****")
         ' \xref to \-xref  reference    
         temp = regexReplace(temp, "(\\xref)(.*?)(\-xref)", "****xref -xref removed****")
         ' \ref to \-ref  reference    
         temp = regexReplace(temp, "(\\ref)(.*?)(\-ref)", "****ref -ref removed****")
+        ' remove note saying what was removed
+        temp = regexReplace(temp, "(\*\*\*\*)(.*?)(\*\*\*\*)", "")
         Return temp
     End Function
     Private Function processDirectQuote(ByVal temp As String, ByVal sClipUnknown As String, ByVal sClipNarrator As String)
@@ -315,7 +337,7 @@ Public Class SFMQuotes
         expression = New Regex(sFind, RegexOptions.Singleline)
         Return expression.Replace(sInput, sReplace)
     End Function
-    Private Function regexReplace(ByVal sInput As String, ByVal sFind As String, ByVal sReplace As String)
+    Public Shared Function regexReplace(ByVal sInput As String, ByVal sFind As String, ByVal sReplace As String)
         Dim expression As Regex
         expression = New Regex(sFind)
         Return expression.Replace(sInput, sReplace)

@@ -13,6 +13,8 @@ Public Class dramatizer
             ' This call is required by the Windows Form Designer.
             InitializeComponent()
             '  Me.Text = Main.sProjectName & " - " & Main.sProgramName + " - " & Main.sProgramVersion
+
+            Me.Update()
         Catch ex As Exception
             MessageBox.Show("oops 2 " & ex.Message)
         End Try
@@ -32,7 +34,9 @@ Public Class dramatizer
     End Sub
     Public Sub displayPropertiesOfClip(ByVal context)
         Dim temp As String = ""
+        Me.Update()
         MasterText.rtbTextWithContext.Text = ""
+        MasterText.rtbContextAbove.Text = ""
         resetColorsOnButtons()
         showClipSizeAndContinued()
         getContextText(context)
@@ -253,12 +257,12 @@ Public Class dramatizer
     Private Function skipForwardOverOmitted(ByVal clipNumber As Integer)
         If Me.chkbxDisplayOmittedClips.Checked = True Then
             ' showing ommittede clips
-            If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1
+            If clipNumber >= Main.iLastClipNumber Then Beep() ': clipNumber = 1
         Else
             ' skip over any omitted clips
             Do Until (Main.blnOmit(clipNumber) = False) ' Or clipNumber = Main.iLastClipNumber)
                 clipNumber += 1
-                If clipNumber >= Main.iLastClipNumber Then Beep() : clipNumber = 1 : Exit Do
+                If clipNumber >= Main.iLastClipNumber Then Beep() : Exit Do ' clipNumber = 1
             Loop
         End If
         Return clipNumber
@@ -459,8 +463,8 @@ Public Class dramatizer
     Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
     End Sub
     Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
-        Me.cbCharacters.Text = "Not a quote"
-        Me.cbCharactersEdit.Text = "Not a quote"
+        Me.cbCharacters.Text = Main.sNotAQuote
+        Me.cbCharactersEdit.Text = Main.sNotAQuote
     End Sub
     Private Sub btnMoreOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoreOptions.Click
         ' show more
@@ -539,8 +543,6 @@ Public Class dramatizer
         End If
         Main.writeClipsToMasterFileAndAdjustClipSize(False)
         Main.displayStatusText()
-
-
         Main.iCurrentClipNumber = i
         displayPropertiesOfClip(2)
     End Sub
@@ -592,8 +594,13 @@ Public Class dramatizer
         End If
     End Sub
     Private Sub upDownSpeakerNumber_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles upDownSpeakerNumber.ValueChanged
-        Main.displayStatusText()
+        ' go to start of file
+        '  Main.iCurrentClipNumber = 1
+        ' find first for this number
+        '   Me.goForward()
+        ' endless loop
 
+        Main.displayStatusText()
     End Sub
     Public Sub goBack()
         ifRecordingDidWeWriteNewFile(Main.iCurrentClipNumber)
@@ -695,23 +702,6 @@ Public Class dramatizer
         '  displayPropertiesOfClip(2)  ' check for redundant xxxxxxxxxxxxxxxx
         Main.displayStatusText()
     End Sub
-    ' Private Sub pressedKey(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-    '' not working
-    '   Select Case e.KeyCode
-    '      Case Keys.Left
-    '         goForward()
-    '    Case Keys.Right
-    '       goBack()
-    '  Case Keys.Enter
-    '     updateCharactersInMasterFile()
-    '    Case Keys.Home
-    '       goHome()
-    '      Case Else
-    '' ignore
-    '  End Select
-    '' pressed enter on the forward back control
-    '   updateCharactersInMasterFile()
-    ' End Sub
     Private Sub btnForward_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
         '   Dim myclip As New Clip(main.iCurrentClipNumber, sTextArray, iLastClipNumber)
         '  myclip.goForward(Me.lbForwardBackBy.SelectedItem, iLastClipNumber)
@@ -738,24 +728,77 @@ Public Class dramatizer
     End Sub
     Private Sub cbCharactersEdit_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedIndexChanged
         Me.cbCharacters.Text = Me.cbCharactersEdit.Text
+        ' Me.cbCharacterPrompt.Text = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex))
         Me.btnForward.BackColor = Color.LawnGreen
     End Sub
-    Private Sub pressedEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
-        ' pressed enter on the forward back control
-        updateCharactersInMasterFile()
+    '    Private Sub pressedEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
+    ' pressed enter on the forward back control
+    '  Me.cbCharacterPrompt.Text = ""
+    '    updateCharactersInMasterFile()
+    ' End Sub
+
+    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
+        ' Dim x = Me.cbCharacters.SelectedIndex
+        updateCharacterPrompt()
+
     End Sub
-    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
+    Private Sub cbCharacters_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedValueChanged
+            Dim x = Me.cbCharacters.SelectedIndex
+        updateCharacterPrompt()
+     
+    End Sub
+
+    Private Sub updateCharacterPrompt()
+        Dim x = cbCharacters.Text
+        Dim temp, temp2, temp3 As String
         If Me.cbCharacters.SelectedIndex = -1 Then
             'skip
         Else
-            Me.cbCharacterPrompt.Text = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex))
-
+            'Me.cbCharacters.Text = Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex)
+            'Dim temp2 = Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex)
+            Me.cbCharacterPrompt.Text = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex + 1))
+            temp2 = Me.cbCharacters.SelectedIndex + 1
+            temp = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex + 1))
+            ' Me.cbCharacterPrompt.Text = Me.extractPrompt(Me.cbCharacters.Text)
         End If
-        Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
+        temp2 = Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex + 1)
+        temp2 = Main.sCharacter(Main.iCurrentClipNumber, 0)
+        temp2 = Main.sCharacter(Main.iCurrentClipNumber, 1)
+        temp2 = Main.sCharacter(Main.iCurrentClipNumber, 2)
+        temp3 = Me.cbCharacters.SelectedIndex
+        '  Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
+        Me.cbCharacters.Update()
+        Me.cbCharacterPrompt.Update()
         Me.cbCharactersEdit.Text = Me.cbCharacters.Text
         Me.cbCharacters.BackColor = Color.LawnGreen
         Me.cbCharacterPrompt.BackColor = Color.LawnGreen
         updateCharactersInMasterFile()
         Me.btnForward.BackColor = Color.LightGray
+
     End Sub
+    '  End Sub
+    ' Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
+    '    If Me.cbCharacters.SelectedIndex = -1 Then
+    ''skip
+    '  Else
+    ''Me.cbCharacters.Text = Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex)
+    ''Dim temp2 = Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex)
+    '        Me.cbCharacterPrompt.Text = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex))
+    '        Me.cbCharacterPrompt.Text = Me.extractPrompt(Me.cbCharacters.Text)
+    '    End If
+    'Dim temp2 = Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex)
+    '    temp2 = Main.sCharacter(Main.iCurrentClipNumber, 0)
+    '   temp2 = Main.sCharacter(Main.iCurrentClipNumber, 1)
+    ''    temp2 = Main.sCharacter(Main.iCurrentClipNumber, 2)
+    'Dim temp3 = Me.cbCharacters.SelectedIndex
+    '    Me.cbCharacters.Text = Me.removePrompt(Me.cbCharacters.Text)
+    ''    Me.cbCharacters.Update()
+    '    Me.cbCharacterPrompt.Update()
+    '    Me.cbCharactersEdit.Text = Me.cbCharacters.Text
+    '    Me.cbCharacters.BackColor = Color.LawnGreen
+    '    Me.cbCharacterPrompt.BackColor = Color.LawnGreen
+    '    updateCharactersInMasterFile()
+    '    Me.btnForward.BackColor = Color.LightGray
+    'End Sub
+
 End Class

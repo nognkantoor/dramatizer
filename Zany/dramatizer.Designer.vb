@@ -37,13 +37,13 @@ Partial Class dramatizer
         Me.btnEdit = New System.Windows.Forms.Button
         Me.lblCharacterName = New System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.cbCharactersEdit = New System.Windows.Forms.ComboBox
         Me.btnLessOptions = New System.Windows.Forms.Button
         Me.Panel3 = New System.Windows.Forms.Panel
         Me.chkbxDisplayOmittedClips = New System.Windows.Forms.CheckBox
         Me.chkbxDisplayOnlyClipsToProcess = New System.Windows.Forms.CheckBox
         Me.btnMoreOptions = New System.Windows.Forms.Button
         Me.btnNotAQuote = New System.Windows.Forms.Button
-        Me.cbCharactersEdit = New System.Windows.Forms.ComboBox
         Me.chkbxShowPrompt = New System.Windows.Forms.CheckBox
         Me.upDownSpeakerNumber = New System.Windows.Forms.NumericUpDown
         Me.btnRecord = New System.Windows.Forms.Button
@@ -223,11 +223,11 @@ Partial Class dramatizer
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.cbCharactersEdit)
         Me.Panel1.Controls.Add(Me.btnLessOptions)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.btnMoreOptions)
         Me.Panel1.Controls.Add(Me.btnNotAQuote)
-        Me.Panel1.Controls.Add(Me.cbCharactersEdit)
         Me.Panel1.Controls.Add(Me.chkbxShowPrompt)
         Me.Panel1.Controls.Add(Me.upDownSpeakerNumber)
         Me.Panel1.Controls.Add(Me.cbCharacters)
@@ -240,6 +240,16 @@ Partial Class dramatizer
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(499, 146)
         Me.Panel1.TabIndex = 42
+        '
+        'cbCharactersEdit
+        '
+        Me.cbCharactersEdit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cbCharactersEdit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbCharactersEdit.BackColor = System.Drawing.Color.Gold
+        Me.cbCharactersEdit.Location = New System.Drawing.Point(5, 72)
+        Me.cbCharactersEdit.Name = "cbCharactersEdit"
+        Me.cbCharactersEdit.Size = New System.Drawing.Size(386, 21)
+        Me.cbCharactersEdit.TabIndex = 47
         '
         'btnLessOptions
         '
@@ -304,16 +314,6 @@ Partial Class dramatizer
         Me.btnNotAQuote.Text = "Not a quote xxx"
         Me.btnNotAQuote.UseVisualStyleBackColor = True
         '
-        'cbCharactersEdit
-        '
-        Me.cbCharactersEdit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.cbCharactersEdit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cbCharactersEdit.BackColor = System.Drawing.Color.Gold
-        Me.cbCharactersEdit.Location = New System.Drawing.Point(5, 72)
-        Me.cbCharactersEdit.Name = "cbCharactersEdit"
-        Me.cbCharactersEdit.Size = New System.Drawing.Size(386, 21)
-        Me.cbCharactersEdit.TabIndex = 47
-        '
         'chkbxShowPrompt
         '
         Me.chkbxShowPrompt.AutoSize = True
@@ -354,7 +354,7 @@ Partial Class dramatizer
         Me.Panel2.Controls.Add(Me.lblDisplay)
         Me.Panel2.Location = New System.Drawing.Point(3, 228)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(395, 143)
+        Me.Panel2.Size = New System.Drawing.Size(369, 143)
         Me.Panel2.TabIndex = 53
         '
         'rbUpdated
