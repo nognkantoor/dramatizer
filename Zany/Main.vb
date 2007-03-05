@@ -4,6 +4,11 @@ Imports System.Text
 Imports str = Microsoft.VisualBasic.Strings
 Imports System.Text.RegularExpressions
 Public Class Main
+    Public iSavedLanguageIndexFromFile As Integer
+    Public rowLocalization As Integer
+    Public columnLocalization As Integer
+    Public blnMasterFileWrittenSinceLastRead As Boolean = True
+
     Public iTempClipNumber As Integer
     Public sSavedLanguage As String = "English"
     Public sNotAQuote = "Not A Quote"
@@ -152,6 +157,9 @@ Public Class Main
     Public iRequiredInformationMissing = 137
     Public iPleaseCorrect = 138
     Public iInfoProcessing = 139
+    Public iAddNewMenuLanguage = 140
+    Public iCorrectCurrentMenu = 141
+
 
 
 
@@ -184,7 +192,7 @@ Public Class Main
     Public utf8 As System.Text.UTF8Encoding = New System.Text.UTF8Encoding(False)
     Public sLocalizationFile As String = sRequiredFilesFolder & "\localization.txt" ' tab delimeted text
     Public sLocalizationBackupFile As String = sRequiredFilesFolder & "\localization.copy" ' tab delimeted text
-    Public iMaximumLocalizationLanguages As Int16 = 3
+    Public iMaximumLocalizationLanguages As Int16 = 4
     Public iMaximumLocalizationStrings As Int16 = 2000
     Public sLocalizationStrings(iMaximumLocalizationStrings, iMaximumLocalizationLanguages) As String
     Public iLanguageSelected As Int16
@@ -643,6 +651,8 @@ Public Class Main
             sw.Write("</dramatizer>")
             sw.Close()
             ifError_QuoteMarkerFoundInsideOfText_doNoSaveWork()
+            Me.readClipsFromFileMaster()
+            blnMasterFileWrittenSinceLastRead = True
         Catch ex As Exception
             MessageBox.Show("Unable to write to file " & sTempFileName & vbCrLf & "Check to see if file is open in another application " & vbCrLf & ex.Message & vbCrLf & "Current clip " & Me.iCurrentClipNumber.ToString & vbCrLf & "Maximum clip number " & Me.iLastClipNumber.ToString, "File writing error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             End
@@ -1147,9 +1157,9 @@ Public Class Main
             WriteLine(filenum, "<language>")
             Try
                 Dim x = Me.sSavedLanguage
-                WriteLine(filenum, Me.sSavedLanguage)
+                WriteLine(filenum, MainMenu.cbLanguage.SelectedIndex)
             Catch ex As Exception
-                WriteLine(filenum, MainMenu.cbLanguage.Items.Item(1))
+                WriteLine(filenum, 1)
             End Try
             WriteLine(filenum, "</language>")
             WriteLine(filenum, "</settings>")
@@ -1265,13 +1275,13 @@ Public Class Main
         Me.fillSampleEncodingRTBoxes()
     End Sub
     Private Sub readLanguage()
-        Dim temp As String
+        Dim temp As Integer
         Try
             temp = getCurrentInfoFromSettingsFile("<language>")
-            Me.sSavedLanguage = temp
+            Me.iSavedLanguageIndexFromFile = temp
         Catch ex As Exception
             ' default language English is set in 
-            ' MainMenu.cbLanguage SelectedIndexChanged event
+            MainMenu.cbLanguage.SelectedIndex = 0
         End Try
     End Sub
     '  Private Sub readAndSetLanguage()
@@ -1422,7 +1432,7 @@ Public Class Main
         '    setDefaultCharacters()
         Me.writeClipsToMasterFileAndAdjustClipSize(Me.chkbxAdjustClipSize.Checked()) ' adjust clip size True
         '    writeCurrentSettings()
-        Me.readClipsFromFileMaster()
+        '     Me.readClipsFromFileMaster()
         Me.iCurrentClipNumber = 1 ' always start at 1
         ' ForwardBackControl.displayMasterAndVoiceTalentText()
         MainMenu.showStatsForUnidentifiedMultipleTotal()
@@ -1894,6 +1904,27 @@ Public Class Main
         '       Me.panelEncoding.Show()
     End Sub
     Public Sub readMasterFile()
+        Dim currentTime As Double = Microsoft.VisualBasic.Timer
+        If sProjectName = Nothing Then
+            ' do nothing
+        Else
+            If File.Exists(sMasterFileName) Then
+                ' if file saved since time of last read
+                ' set flag for masterFileWritten
+                If blnMasterFileWrittenSinceLastRead Then
+                    blnMasterFileWrittenSinceLastRead = False
+                    Me.readClipsFromFileMaster()
+                Else
+                    ' already just read so skip
+
+                End If
+            Else
+                Me.iLastClipNumber = 0
+                '  loadDocument()  ' name is misleading
+            End If
+        End If
+    End Sub
+    Public Sub readMasterFileold()
         Dim currentTime As Double = Microsoft.VisualBasic.Timer
         If sProjectName = Nothing Then
             ' do nothing
@@ -2636,6 +2667,7 @@ Public Class Main
     End Sub
     ' main menu
     Public Sub readLocalizationFile()
+        Dim blnResizedArray = False
         Try
             ' Excel saves as ANSI file
             Dim sr As StreamReader = New StreamReader(Me.sLocalizationFile, Encoding.UTF7, True)
@@ -2647,12 +2679,22 @@ Public Class Main
                 temp = sr.ReadLine()
                 temp = Me.regexReplace(temp, """", "") ' remove quote marks
                 temp2 = temp.Split(vbTab)
+                If blnResizedArray = True Then
+                    ' skip
+                Else
+                    ' need to do it one time
+                    redimLocalizationStringsArray(temp2.Length - 1)
+                    blnResizedArray = True
+                End If
                 For language = 0 To temp2.Length - 1
                     If temp2(language) = "" Then temp2(language) = temp2(1) ' Column two always has English data 
                     ' row is the item and column is the language
                     sLocalizationStrings(item, language) = temp2(language)
                 Next
             Loop
+            rowLocalization = item
+            columnLocalization = language
+
             sr.Close()
         Catch ex As Exception
             MessageBox.Show(Me.sLocalizationStrings(iFileReadError, Me.iLanguageSelected) & vbCrLf & Me.sLocalizationFile & vbCrLf & vbCrLf & ex.Message, Me.sLocalizationStrings(Me.iFileReadError, Me.iLanguageSelected), MessageBoxButtons.OK, MessageBoxIcon.Stop)
@@ -3020,5 +3062,15 @@ Public Class Main
         End Try
         Return True
     End Function
+    Public Sub redimLocalizationStringsArray(ByVal iNewLanguage As Integer)
+        If iNewLanguage > iMaximumLocalizationLanguages Then
+            ' too many languages
+            ReDim Preserve sLocalizationStrings(iMaximumLocalizationStrings, iNewLanguage)
+            iMaximumLocalizationLanguages = iNewLanguage
+        Else
+            ' everything okay
+        End If
+
+    End Sub
 
 End Class

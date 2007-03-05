@@ -36,7 +36,6 @@ Partial Class MainMenu
         Me.lblMultiple = New System.Windows.Forms.Label
         Me.lblAssignVoice = New System.Windows.Forms.Label
         Me.lblCreateScripts = New System.Windows.Forms.Label
-        Me.btnTranslateMenu = New System.Windows.Forms.Button
         Me.lblInitialize = New System.Windows.Forms.Label
         Me.lblRecord = New System.Windows.Forms.Label
         Me.lblVerifyAll = New System.Windows.Forms.Label
@@ -144,7 +143,7 @@ Partial Class MainMenu
         'btnEnd
         '
         Me.btnEnd.BackColor = System.Drawing.Color.Transparent
-        Me.btnEnd.Location = New System.Drawing.Point(431, 28)
+        Me.btnEnd.Location = New System.Drawing.Point(424, 350)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(75, 23)
         Me.btnEnd.TabIndex = 8
@@ -154,7 +153,7 @@ Partial Class MainMenu
         'btnNext
         '
         Me.btnNext.BackColor = System.Drawing.Color.Transparent
-        Me.btnNext.Location = New System.Drawing.Point(512, 28)
+        Me.btnNext.Location = New System.Drawing.Point(505, 350)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(75, 23)
         Me.btnNext.TabIndex = 9
@@ -164,10 +163,10 @@ Partial Class MainMenu
         'TextBox1
         '
         Me.TextBox1.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(331, 52)
+        Me.TextBox1.Location = New System.Drawing.Point(331, 31)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(256, 283)
+        Me.TextBox1.Size = New System.Drawing.Size(256, 304)
         Me.TextBox1.TabIndex = 10
         '
         'lblLanguage
@@ -252,16 +251,6 @@ Partial Class MainMenu
         Me.lblCreateScripts.TabIndex = 42
         Me.lblCreateScripts.Visible = False
         '
-        'btnTranslateMenu
-        '
-        Me.btnTranslateMenu.BackColor = System.Drawing.Color.Transparent
-        Me.btnTranslateMenu.Location = New System.Drawing.Point(331, 349)
-        Me.btnTranslateMenu.Name = "btnTranslateMenu"
-        Me.btnTranslateMenu.Size = New System.Drawing.Size(256, 23)
-        Me.btnTranslateMenu.TabIndex = 44
-        Me.btnTranslateMenu.Text = "translate menu xxx"
-        Me.btnTranslateMenu.UseVisualStyleBackColor = False
-        '
         'lblInitialize
         '
         Me.lblInitialize.BackColor = System.Drawing.Color.Transparent
@@ -330,7 +319,6 @@ Partial Class MainMenu
         Me.Controls.Add(Me.lblVerifyAll)
         Me.Controls.Add(Me.lblRecord)
         Me.Controls.Add(Me.lblInitialize)
-        Me.Controls.Add(Me.btnTranslateMenu)
         Me.Controls.Add(Me.lblCreateScripts)
         Me.Controls.Add(Me.lblAssignVoice)
         Me.Controls.Add(Me.lblMultiple)
@@ -354,6 +342,7 @@ Partial Class MainMenu
         Me.Text = "MainMenu"
         Me.ResumeLayout(False)
         Me.PerformLayout()
+
     End Sub
     Friend WithEvents rbInitialize As System.Windows.Forms.RadioButton
     Friend WithEvents rbStartProcessing As System.Windows.Forms.RadioButton
@@ -374,7 +363,6 @@ Partial Class MainMenu
     Friend WithEvents lblMultiple As System.Windows.Forms.Label
     Friend WithEvents lblAssignVoice As System.Windows.Forms.Label
     Friend WithEvents lblCreateScripts As System.Windows.Forms.Label
-    Friend WithEvents btnTranslateMenu As System.Windows.Forms.Button
     Friend WithEvents lblInitialize As System.Windows.Forms.Label
     Friend WithEvents lblRecord As System.Windows.Forms.Label
     Friend WithEvents lblVerifyAll As System.Windows.Forms.Label

@@ -24,5 +24,8 @@ Public NotInheritable Class SplashScreen1
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
 
+
+        
+
     End Sub
 End Class

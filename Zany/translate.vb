@@ -2,12 +2,17 @@ Public Class translate
     Public row As Int16 = 1
     Public column As Int16 = 1
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
+        MainMenu.cbLanguage.SelectedIndex = MainMenu.iSavedLanguageIndex
         Me.Hide()
     End Sub
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOK.Click
         Main.sLocalizationStrings(row, Main.iLanguageSelected) = tbTarget.Text
         Main.writeLocalizationFile()
+        Main.readLocalizationFile()
+        MainMenu.fillLanguageControl()
         Me.Hide()
+        Me.Close()
+        MainMenu.cbLanguage.SelectedIndex = MainMenu.iSavedLanguageIndex
     End Sub
     Public Sub New()
         ' This call is required by the Windows Form Designer.
@@ -18,6 +23,7 @@ Public Class translate
     End Sub
     Public Sub loadTranslate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
         fillControls()
+        Dim iAddLanguage = MainMenu.cbLanguage.Items.Count - 1
         ' This example assumes that the Form_Load event handling method
         ' is connected to the Load event of the form.
         ' Create the ToolTip and associate with the Form container.
@@ -29,12 +35,23 @@ Public Class translate
         ' Force the ToolTip text to be displayed whether or not the form is active.
         toolTip1.ShowAlways = True
         ' Set up the ToolTip text for the Buttons and Textbox.
-        toolTip1.SetToolTip(Me.btnBack, Main.sLocalizationStrings(Main.iBackAndCancelChange, Main.iLanguageSelected))
-        toolTip1.SetToolTip(Me.btnForward, Main.sLocalizationStrings(Main.iSaveChangeAndSeeNext, Main.iLanguageSelected))
-        toolTip1.SetToolTip(Me.btnStart, Main.sLocalizationStrings(Main.iStartText, Main.iLanguageSelected))
-        toolTip1.SetToolTip(Me.tbSource, Main.sLocalizationStrings(Main.iTypeInOtherBox, Main.iLanguageSelected))
-        toolTip1.SetToolTip(Me.btnOK, Main.sLocalizationStrings(Main.iSaveChangeAndCloseMenu, Main.iLanguageSelected))
-        toolTip1.SetToolTip(Me.btnCancel, Main.sLocalizationStrings(Main.iCancelChangeAndCloseMenu, Main.iLanguageSelected))
+        If MainMenu.cbLanguage.SelectedIndex = iAddLanguage Then
+            ' use English
+            toolTip1.SetToolTip(Me.btnBack, Main.sLocalizationStrings(Main.iBackAndCancelChange, 1))
+            toolTip1.SetToolTip(Me.btnForward, Main.sLocalizationStrings(Main.iSaveChangeAndSeeNext, 1))
+            toolTip1.SetToolTip(Me.btnStart, Main.sLocalizationStrings(Main.iStartText, 1))
+            toolTip1.SetToolTip(Me.tbSource, Main.sLocalizationStrings(Main.iTypeInOtherBox, 1))
+            toolTip1.SetToolTip(Me.btnOK, Main.sLocalizationStrings(Main.iSaveChangeAndCloseMenu, 1))
+            toolTip1.SetToolTip(Me.btnCancel, Main.sLocalizationStrings(Main.iCancelChangeAndCloseMenu, 1))
+        Else
+            toolTip1.SetToolTip(Me.btnBack, Main.sLocalizationStrings(Main.iBackAndCancelChange, Main.iLanguageSelected))
+            toolTip1.SetToolTip(Me.btnForward, Main.sLocalizationStrings(Main.iSaveChangeAndSeeNext, Main.iLanguageSelected))
+            toolTip1.SetToolTip(Me.btnStart, Main.sLocalizationStrings(Main.iStartText, Main.iLanguageSelected))
+            toolTip1.SetToolTip(Me.tbSource, Main.sLocalizationStrings(Main.iTypeInOtherBox, Main.iLanguageSelected))
+            toolTip1.SetToolTip(Me.btnOK, Main.sLocalizationStrings(Main.iSaveChangeAndCloseMenu, Main.iLanguageSelected))
+            toolTip1.SetToolTip(Me.btnCancel, Main.sLocalizationStrings(Main.iCancelChangeAndCloseMenu, Main.iLanguageSelected))
+        End If
+
     End Sub
     Public Sub fillControls()
         Try
@@ -61,13 +78,13 @@ Public Class translate
         row += 1
         If row = Main.iMaximumLocalizationStrings Then Beep() : row = Main.iMaximumLocalizationStrings
         fillControls()
-        Me.btnForward.BackColor = Color.LightSlateGray
+        Me.btnForward.BackColor = Color.LightGray
     End Sub
     Private Sub btnBack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
         row -= 1
         If row = 0 Then Beep() : row = 1
         fillControls()
-        Me.btnForward.BackColor = Color.SlateGray
+        Me.btnForward.BackColor = Color.LightGray
     End Sub
     Private Sub btnStart_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStart.Click
         row = 1
@@ -87,6 +104,6 @@ Public Class translate
         row += 10
         If row = Main.iMaximumLocalizationStrings Then Beep() : row = Main.iMaximumLocalizationStrings
         fillControls()
-        Me.btnForward.BackColor = Color.LightSlateGray
+        Me.btnForward.BackColor = Color.LightGray
     End Sub
 End Class

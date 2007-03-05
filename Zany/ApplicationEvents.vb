@@ -7,5 +7,15 @@ Namespace My
     ' StartupNextInstance: Raised when launching a single-instance application and the application is already active. 
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
+        Protected Overrides Function OnInitialize( _
+         ByVal commandLineArgs As _
+         System.Collections.ObjectModel.ReadOnlyCollection(Of String) _
+     ) As Boolean
+            ' Set the display time to 5000 milliseconds (5 seconds). 
+            Me.MinimumSplashScreenDisplayTime = 5000
+            Me.HideSplashScreen()
+
+            Return MyBase.OnInitialize(commandLineArgs)
+        End Function
     End Class
 End Namespace

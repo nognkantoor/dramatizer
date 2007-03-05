@@ -3,7 +3,10 @@ Imports System.IO
 Imports System.Text
 Imports str = Microsoft.VisualBasic.Strings
 Public Class MainMenu
-    Public blnFirstTimeHere As Boolean = True
+    Public blnJustFilledLanguageControlSoNoNeedToReadMenuItems As Boolean = False
+    Public blnSkipThisTime As Boolean = False
+    Public blnFirstTimeThru As Boolean = True
+    Public iSavedLanguageIndex As Integer
     Public blnCongratulations As Boolean = False
     Public blnStartRecording As Boolean = False
     Public sProgramDirectory As String = Directory.GetCurrentDirectory ' beware that this may change
@@ -35,11 +38,20 @@ Public Class MainMenu
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
+        
         Main.readLocalizationFile()
         Me.fillLanguageControl()
         '    Main.readCurrentSettings()
-        Me.cbLanguage.Text = Main.sSavedLanguage
-        If Me.cbLanguage.SelectedIndex = -1 Then Me.cbLanguage.SelectedIndex = 0 ' default English
+        '  Me.cbLanguage.Text = Me.cbLanguage.Text ' will this reset
+        'If iSavedLanguageIndex = 0 Then
+        Me.cbLanguage.SelectedIndex = 1 ' requires there to be two languages 
+        'Else
+        Me.cbLanguage.SelectedIndex = 0 ' toggling sets the menus
+        'End If
+        Me.cbLanguage.SelectedIndex = Main.iSavedLanguageIndexFromFile
+        '     Me.cbLanguage.SelectedIndex = 0
+        '    Me.cbLanguage.SelectedItem = Main.sSavedLanguage
+        '   If Me.cbLanguage.SelectedIndex = -1 Or 0 Then Me.cbLanguage.SelectedIndex = 1 ' default English
         Main.readMasterFile()
         Me.Show()
         Me.Update()
@@ -52,7 +64,6 @@ Public Class MainMenu
         Me.setProcessed()
         ' see if master txt exists
         If File.Exists(Main.sMasterFileName) Then
-            Me.rbUnidentified.Checked = True
             Me.setUnidentified()
             Me.setMultiple()
             Me.setUnassigned()
@@ -66,6 +77,7 @@ Public Class MainMenu
                 Me.rbRecord.Enabled = True
             Else
                 ' not ready to record yet
+                Me.rbUnidentified.Checked = True
             End If
             ' not ready yet
         End If
@@ -86,26 +98,39 @@ Public Class MainMenu
         Me.Text = Main.sProjectName & " - " & Main.sLocalizationStrings(Main.iProgramName, language) & " - " & Main.sProgramVersion
         Me.btnEnd.Text = Main.sLocalizationStrings(Main.iExit, language)
         Me.btnNext.Text = Main.sLocalizationStrings(Main.iNext, language)
-        Me.btnTranslateMenu.Text = Main.sLocalizationStrings(Main.iTranslateMenu, language)
+        '     Me.btnTranslateMenu.Text = Main.sLocalizationStrings(Main.iTranslateMenu, language)
     End Sub
     Public Sub fillLanguageControl()
         Dim temp As String = Main.sSavedLanguage
+        Me.cbLanguage.Items.Clear() ' delete current stuff
         Try
             Dim language As Int16 = 0
             Do
                 language += 1
-                If language = 1 Then
-                    Me.lblLanguage.Text = Main.sLocalizationStrings(Main.iLanguage, language)
+                If (Main.sLocalizationStrings(Main.iLanguageNames, language)) = Nothing Then
+                    ' skip
                 Else
-                    ' add space between languages
-                    Me.lblLanguage.Text = Me.lblLanguage.Text + "  " + Main.sLocalizationStrings(Main.iLanguage, language)
+                    If language = 1 Then
+                        Me.lblLanguage.Text = Main.sLocalizationStrings(Main.iLanguage, language)
+                    Else
+                        ' add space between languages
+                        Me.lblLanguage.Text = Me.lblLanguage.Text + "  " + Main.sLocalizationStrings(Main.iLanguage, language)
+                    End If
+                    Me.cbLanguage.Items.Add(Main.sLocalizationStrings(Main.iLanguageNames, language))
                 End If
-                Me.cbLanguage.Items.Add(Main.sLocalizationStrings(Main.iLanguageNames, language))
                 If language = Main.iMaximumLocalizationLanguages Then Exit Do
             Loop Until Main.sLocalizationStrings(Main.iLanguageNames, language) = Nothing
+            ' Add and Correct
+            Me.cbLanguage.Items.Add("-------------------------------------------")
+            Me.cbLanguage.Items.Add(Main.sLocalizationStrings(Main.iAddNewMenuLanguage, 1))
+            Me.cbLanguage.Items.Add(Main.sLocalizationStrings(Main.iCorrectCurrentMenu, 1))
             ' set default to English -- maybe it already is
+            Me.blnJustFilledLanguageControlSoNoNeedToReadMenuItems = True
             Me.cbLanguage.Text = Me.cbLanguage.Items.Item(0)
+            Me.blnJustFilledLanguageControlSoNoNeedToReadMenuItems = False
             Main.sSavedLanguage = temp
+            Me.cbLanguage.Update()
+            Me.lblLanguage.Update()
         Catch ex As Exception
             MessageBox.Show("Problem loading language names into list box." & vbCrLf & ex.Message, "Problem loading language names", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End Try
@@ -113,12 +138,57 @@ Public Class MainMenu
     Private Sub btnEnd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEnd.Click
         End
     End Sub
-    Private Sub cbLanguage_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLanguage.SelectedIndexChanged
-        '   If Me.blnFirstTimeHere = True Then
-        ' skip
-        '         Me.blnFirstTimeHere = False
-        '    Else
-        Main.iLanguageSelected = Me.cbLanguage.SelectedIndex + 1
+
+    Private Sub cbLanguage_SelectedValueChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLanguage.SelectedValueChanged
+        ' changed when first added
+        '   we need to allow it
+        ' changed when selecting new language
+        '   we need to allow it
+        ' changed updated (we just filled language control again)
+        '   we don't want it
+        Dim item As Integer
+        Dim iUpdateLanguage As Integer = Me.cbLanguage.Items.Count
+        Dim iAddLanguage = Me.cbLanguage.Items.Count - 1 ' zero based
+        Dim iNewLanguage = iAddLanguage - 1 ' the divider removed
+        Dim iDivider = Me.cbLanguage.Items.Count - 2
+        Dim iCurrentLanguage = Me.cbLanguage.SelectedIndex + 1
+        '    If blnFirstTimeThru Or Me.blnJustFilledLanguageControlSoNeedToReadMenuItems Then
+        If blnJustFilledLanguageControlSoNoNeedToReadMenuItems = True Then
+            ' skip
+        Else
+        ' make changes
+            '  Me.blnJustFilledLanguageControlSoNeedToReadMenuItems = False
+            Me.blnFirstTimeThru = False
+            If iCurrentLanguage = iUpdateLanguage Then
+                ' update current language
+                translate.Show()
+            ElseIf iCurrentLanguage = iAddLanguage Then
+                ' add new language
+                Main.iLanguageSelected = iNewLanguage
+                Main.redimLocalizationStringsArray(iNewLanguage)
+                For item = 1 To Main.rowLocalization
+                    Main.sLocalizationStrings(item, iNewLanguage) = Main.sLocalizationStrings(item, 1)
+                Next
+                translate.Show()
+                translate.lblTarget.Text = "**************"
+            ElseIf iCurrentLanguage = iDivider Then
+                ' do nothing
+                Me.cbLanguage.SelectedIndex = Me.iSavedLanguageIndex
+            Else
+                Me.iSavedLanguageIndex = iCurrentLanguage - 1
+                Main.iLanguageSelected = iCurrentLanguage
+                changeMenuItems()
+            End If
+            'Else
+            ' skip
+        End If
+        If Main.iLanguageSelected = 0 Then
+            Main.iLanguageSelected = 1
+        Else
+            'skip
+        End If
+    End Sub
+    Private Sub changeMenuItems()
         Me.localizeMainMenu(Main.iLanguageSelected)
         Main.localizeMain(Main.iLanguageSelected)
         Main.localizeDramatizer(Main.iLanguageSelected)
@@ -127,8 +197,49 @@ Public Class MainMenu
         ' moved to mastertext form
         ' Me.localizeMasterText(Me.iLanguageSelected)
         Main.sSavedLanguage = Me.cbLanguage.Text
+        updateTextbox1(Main.iLanguageSelected)
         Main.writeCurrentSettings()
-        'End If
+        cbLanguage.BackColor = Color.LawnGreen
+        Me.blnSkipThisTime = True
+
+    End Sub
+    Private Sub updateTextbox1(ByVal language As Int16)
+        If Me.rbInitialize.Checked = True Then
+            Me.rbInitialize.Checked = False
+            Me.rbInitialize.Checked = True
+        End If
+        If Me.rbStartProcessing.Checked = True Then
+            Me.rbStartProcessing.Checked = False
+            Me.rbStartProcessing.Checked = True
+        End If
+        If Me.rbUnidentified.Checked = True Then
+            Me.rbUnidentified.Checked = False
+            Me.rbUnidentified.Checked = True
+        End If
+        If Me.rbMultiple.Checked = True Then
+            Me.rbMultiple.Checked = False
+            Me.rbMultiple.Checked = True
+        End If
+        If Me.rbVerifyUpdated.Checked = True Then
+            Me.rbVerifyUpdated.Checked = False
+            Me.rbVerifyUpdated.Checked = True
+        End If
+        If Me.rbVerifyAll.Checked = True Then
+            Me.rbVerifyAll.Checked = False
+            Me.rbVerifyAll.Checked = True
+        End If
+        If Me.rbAssignVoices.Checked = True Then
+            Me.rbAssignVoices.Checked = False
+            Me.rbAssignVoices.Checked = True
+        End If
+        If Me.rbCreateScripts.Checked = True Then
+            Me.rbCreateScripts.Checked = False
+            Me.rbCreateScripts.Checked = True
+        End If
+        If Me.rbRecord.Checked = True Then
+            Me.rbRecord.Checked = False
+            Me.rbRecord.Checked = True
+        End If
     End Sub
     Private Sub rbInitialize_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbInitialize.CheckedChanged
         If Me.rbInitialize.Checked = True Then
@@ -231,7 +342,7 @@ Public Class MainMenu
                 Main.readClipsFromFileMaster()
                 ' take care of Not a quote and make corrected Master.txt for recording
                 Main.writeClipsToMasterFileAndAdjustClipSize(False)
-                Main.readClipsFromFileMaster()
+                '     Main.readClipsFromFileMaster()
                 Me.rbCreateScripts.Enabled = True
                 Main.createScriptsMaster()
                 Main.createScripts1to30()
@@ -256,9 +367,9 @@ Public Class MainMenu
         End Try
         Me.setCheckMarksAndEnableMenuItems()
     End Sub
-    Private Sub btnTranslateMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTranslateMenu.Click
-        translate.Show()
-    End Sub
+    '  Private Sub btnTranslateMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTranslateMenu.Click
+    '      translate.Show()
+    '  End Sub
     Private Sub rbMultiple_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMultiple.CheckedChanged
         Try
             ' Me.TextBox1.BackColor = Color.LightGoldenrodYellow
@@ -326,10 +437,10 @@ Public Class MainMenu
             If Me.rbRecord.Checked = True And Main.blnRecordingInProgress = False And blnCongratulations = False Then
                 MessageBox.Show(Main.sLocalizationStrings(Main.iCongratulationsRecord, Main.iLanguageSelected) + vbCrLf + temp, Main.sLocalizationStrings(Main.iRecord, Main.iLanguageSelected), MessageBoxButtons.OK, MessageBoxIcon.Information)
                 blnCongratulations = True
+                Me.showStatsForUnidentifiedMultipleTotal()
             Else
                 ' skip
             End If
-            Me.showStatsForUnidentifiedMultipleTotal()
         Catch ex As Exception
         End Try
     End Sub
@@ -477,4 +588,16 @@ Public Class MainMenu
         End If
         ' Mainmenu.TextBox1.BackColor = Color.Cyan
     End Sub
+
+    Private Sub cbLanguage_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbLanguage.Enter
+        ' save current setting
+        If Me.cbLanguage.SelectedIndex < Me.cbLanguage.Items.Count - 2 Then
+            iSavedLanguageIndex = Me.cbLanguage.SelectedIndex
+            ' Main.sSavedLanguage=
+            Main.writeCurrentSettings() ' save language
+        Else
+            ' skip as these are the for Divider, Add, Correct menu
+        End If
+    End Sub
+
 End Class
