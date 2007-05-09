@@ -1,141 +1,141 @@
-English - USA	English - USA	French - France	Brazil - Portuguese
-Name of language in that language	English	fran+AOc-ais	portugu+AOo-s
-Program	Dramatizer	Dramatizer	Dramatizer
-language	Language1	Langue	Idioma
-start new project/open file	Select options	Select options nnnn	Selecione op+AOcA9Q-es
-start processing	Start processing	Traitement de d+AOk-but	Processamento de partida
-unknown/unidentified speaker	Fix unidentified characters	Fixez des caract+AOg-res non identifi+AOk-s	Fixe carateres n+AOM-o identificados
-multilple speakers	Verify multiple characters in same verse	V+AOk-rifiez des caract+AOg-res multiples dans m+AOo-me verset	Verifique m+APo-ltiplos carateres no mesmo verso
-verify updated clips	Verify updated clips	V+AOk-rifiez des clips actualis+AOk-s	Verifique clipes atualizados
-verify all clips	Verify all clips	V+AOk-rifiez tous les clips	Verifique todos os clipes
-assign character to speaker	Assign each character to a speaker	Allouez chaque caract+AOg-re +AOA- un speaker	Destine cada car+AOE-ter a um falante
-create scripts	Create scripts and wav files	Cr+AOk-ez des scripts et des dossiers wav	Crie escritas e arquivos wav
-record	Record	Enregistrer	Gravar
-about program	About	De	Sobre
-How to quit/end the program	Exit	Quitt+AOk-	Parar
-Next/proceed	Next	Ensuite	Depois
-info start project	"You may select several options for the project including the following: (1) file name, (2) text encoding, (3) Ethnologue language code, (4) font name, (5) font size, and (6) first level quote style. +AHw-These options will be saved and used for the project. You can return to make changes to your choices at any time. +AHw-Click Next to start."	"Vous pouvez choisir plusieurs options pour le projet en incluant les choses suivantes : (1) le nom de dossier, (2) le texte encodant, (3) le code Ethnologue de langue, (4) le nom de fonte, (5) la grandeur de fonte et (6) le style de la citation de premier niveau. +AHw- Ces options seront sauv+AOk-es et utilis+AOk-es pour le projet. Vous pouvez revenir pour faire des changements +AOA- vos choix d'un moment +AOA- l'autre. +AHw- Faites-un-d+AOk-clic +AMA- c+APQ-t+AOk- du d+AOk-but."	"Voc+AOo- pode selecionar v+AOE-rias op+AOcA9Q-es do projeto inclusive o seguinte: (1) nome de arquivo, (2) codifica+AOcA4w-o de texto, (3) Ethnologue langugae c+APM-digo, (4) nome de fonte, (5) tamanho de fonte, e (6) primeiro estilo de cita+AOcA4w-o de n+AO0-vel. +AHw-Essas op+AOcA9Q-es ser+AOM-o salvadas e usadas para o projeto. Voc+AOo- pode voltar para fazer modifica+AOcA9Q-es +AOA-s suas escolhas em qualquer momento. +AHw-Clique ao Lado da partida."
-info start processing file	"A clip is a sentence or group of sentences spoken by one person (or character). In the New Testament, there are between  4,000 to 6,000 clips. Dramatizer can usually identify the character speaking in at least  90 percent of the clips. +AHw-Maximum clip size should be set in Select options+AHw-Click Next to start."	"Un clip est une phrase ou un groupe de phrases parl+AOk-es par une personne (ou le caract+AOg-re). Dans le Nouveau Testament, il y a entre 4,000 +AOA- 6,000 clips. Dramatizer peut d'habitude identifier le caract+AOg-re parlant +AOA- au moins 90 pour cent des clips. la grandeur de clip de +AHw-Maximum devrait +AOo-tre mise dans Choisissez es options+AHw-Click +AMA- c+APQ-t+AOk- du d+AOk-but."	"Um clipe +AOk- uma ora+AOcA4w-o ou o grupo de ora+AOcA9Q-es ditas por uma pessoa (ou car+AOE-ter). No Novo Testamento, h+AOE- entre 4,000 para 6,000 clipes. O Dramatizer pode identificar normalmente o car+AOE-ter que fala em pelo menos 90 por cento dos clipes. +AHw-O tamanho de clipe m+AOE-ximo deve ser estabelecido em Selecione op+AOcA9Q-es +AHw-Clique ao Lado da partida."
-0 unidentified	Dramatizer was able to identify all characters. There are no unidentified characters to identify. 	Dramatizer a +AOk-t+AOk- en mesure d'identifier tous les caract+AOg-res. Il n'y a aucun caract+AOg-re non identifi+AOk- pour s'identifier.	O Dramatizer foi capaz de identificar todos os carateres. N+AOM-o h+AOE- nenhum car+AOE-ter n+AOM-o identificado para identificar.
-1 unidentified	Dramatizer was unable to identify who the character should be in one clip. Please identify the speaking character. 	Dramatizer +AOk-tait incapable de s'identifier qui le caract+AOg-re devrait +AOo-tre dans un clip. Identifiez s'il vous pla+AO4-t le caract+AOg-re parlant.	O Dramatizer foi incapaz de identificar quem o car+AOE-ter deve estar em um clipe. Por favor identifique o car+AOE-ter que fala.
-many unidentified	Dramatizer was unable to identify who the character should be in some clips. Please identify the speaking characters. 	Dramatizer +AOk-tait incapable de s'identifier qui le caract+AOg-re devrait +AOo-tre dans quelques clips. Identifiez s'il vous pla+AO4-t les caract+AOg-res parlants.	O Dramatizer foi incapaz de identificar quem o car+AOE-ter deve estar no AFs-n+APo-mero aF0-clipes. Por favor identifique os carateres falam.
-Speaker/speaker number	Speaker number	Nombre de speaker	N+APo-mero de falante
-clip number	Clip number	Nombre de clip	N+APo-mero de clipe
-prompt	Prompt	Suggestion	Prompt
-show context	Show context	Montrer Contexte	Contexto
-hide context	Hide context	Cacher contexte	Hide context
-advance to next	Clip	Clip	Clipe
-advance by Unidentfied character clip	unidentified characters	caract+AOg-res non identifi+AOk-s	carateres n+AOM-o identificados
-advance by Multiple characters clip	multiple characters	caract+AOg-res multiples	m+APo-ltiplos carateres
-advance by my Updated clip	Updated character	Caract+AOg-re actualis+AOk-	Car+AOE-ter atualizado
-0 multiple	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer +AOk-tait capable d'identifier tous les caract+AOg-res multiples (peut-+AOo-tre avec un peu d'aide de vous). Il n'y a aucun caract+AOg-re multiple pour s'identifier.	O Dramatizer foi capaz de identificar todos m+APo-ltiplos carateres (talvez com um pouco de ajuda de voc+AOo-). N+AOM-o h+AOE- nenhum m+APo-ltiplo car+AOE-ter para identificar.
-1 multiple	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer +AOk-tait capable d'identifier les caract+AOg-res dans un verset qui avait des caract+AOg-res multiples par verset. Reconsid+AOk-rez s'il vous pla+AO4-t tous ces choix pour vous assurer que le programme n'a pas fait d'erreur.	O Dramatizer foi capaz de identificar os carateres em um verso que teve m+APo-ltiplos carateres por verso. Por favor reveja todas dessas escolhas para assegurar-se que o programa n+AOM-o fez um erro.
-many multiples	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer a +AOk-t+AOk- en mesure d'identifier les caract+AOg-res dans les versets qui avaient des caract+AOg-res multiples par verset. Reconsid+AOk-rez s'il vous pla+AO4-t tous ces choix pour vous assurer que le programme n'a pas fait d'erreur.	O Dramatizer foi capaz de identificar os carateres em versos que tiveram m+APo-ltiplos carateres por verso. Por favor reveja todas dessas escolhas para assegurar-se que o programa n+AOM-o fez um erro.
-warning deleting active master file	Warning: This will delete your previously processed and saved work.+AHw-	Avertissement : Cela effacera votre travail auparavant trait+AOk- et enregistr+AOk-. +AHw-	Aviso: Isto eliminar+AOE- o seu trabalho anteriormente processado e salvado. +AHw-
-translate menu items	Translate/correct menu items	Traduire/corriger items de menu	Traduza/corrija itens de card+AOE-pio
-file name	File name	Nom de dossier	Nome de arquivo
-browse	Browse +AIU-. . .	Parcourez . . .	Brotos ternos AIU-...
-font name	Font name	Nom de fonte	Nome de fonte
-font size	Font size	Grandeur de fonte	Tamanho de fonte
-quote type	Quote type	Type de citation	Tipo de cita+AOcA4w-o
-audio recording program	Audio recording program	Programme d'enregistrement audio	Programa de registro auditivo
-display quotes	Display quotes	Citations d'+AOk-talage	Cita+AOcA9Q-es de exposi+AOcA4w-o
-text encoding	Text encoding	Texte encodant	Codifica+AOcA4w-o de texto
-ansi	ANSI	ANSI	ANSI
-utf8	UTF-8	UTF-8	UTF-8
-cancel	Cancel	Annuler	Cancelamento
-set options	Set options	Options de jeu	Op+AOcA9Q-es de jogo
-current location number	Current location number	Nombre d'endroit actuel	N+APo-mero de posi+AOcA4w-o atual
-ok	OK	Bien	OK
-update	Update	Mise +AOA- jour	Atualiza+AOcA4w-o
-edit	Edit	R+AOk-viser	Editar
-maximum clip size	Maximum clip size in seconds (approximate) 	La longueur de clip maximum en secondes (approximatives)	Tamanho de clipe m+AOE-ximo em segundos (aproximados)
-Ethnologue code	Ethnologue code	Code d'Ethnologue	C+APM-digo de Ethnologue
-Heading	Headings +AFw-h	Titres +AFw-h	T+AO0-tulos +AFw-h
-Introduction	Introductions +AFw-is +AFw-ip and +AFw-id	Les Introductions +AFw-is +AFw-ip et +AFw-id	Introdu+AOcA9Q-es +AFw-is +AFw-ip e +AFw-id
-Section heads	Section heads +AFw-s	Titres de section  +AFw-s	Se+AOcA4w-o encabe+AOc-a +AFw-s
-Footnotes	Footnotes +AFw-f+AIUAXA-f+ACo-	Les Notes en bas de page +AFw-f +AFw-f+ACo-	Notas +AFw-f +AFw-f+ACo-
-References	References +AFw-r	R+AOk-f+AOk-rences +AFw-r	Refer+AOo-ncias +AFw-r
-Chapter number	Chapter numbers +AFw-c	Nombres de chapitre +AFw-c	N+APo-meros de cap+AO0-tulo +AFw-c
-Don't speak these	Remove from final scripts	Enlever des scripts finaux	Retire de escritas finais
-Character name	Character name	Nom de caract+AOg-re	Nome de car+AOE-ter
-no INI file (short)	No INI file found.	Aucun dossier INI trouv+AOk-.	Nenhum arquivo INI encontrado.
-no INI file (long)	An INI file will be created when you save settings. This will keep your settings that you choose.	Un dossier INI sera cr+AOkA6Q- quand vous enregistrez des d+AOk-signations. Cela gardera vos d+AOksignatio- que vous choisissez.	Um arquivo INI ser+AOE- criado quando voc+AOo- salva coloca+AOcA9Q-es. Isto guardar+AOE- as suas coloca+AOcA9Q-es que voc+AOo- escolhe.
-correct the text	Please correct the problem in the source text.	Corrigez s'il vous pla+AO4-t le probl+AOg-me du texte source.	Por favor corrija o problema no texto de fonte.
-unable to process text	Unable to process the text.	Incapable de traiter le texte.	Incapaz de processar o texto.
-verify opening quote 	Verify that the opening quote	V+AOk-rifiez que la citation pr+AOk-liminaire	Verifique isto a cita+AOcA4w-o que se abre
-continue verify opening quote	found after the start of this text is really a continuing quote marker. If it is not a continuing quote marker then there is a problem.	trouv+AOk- apr+AOg-s que le d+AOk-but de ce texte est vraiment un marqueur de citation continuant. Si ce n'est pas un marqueur de citation continuant alors il y a un probl+AOg-me.	encontrado depois que a partida deste texto +AOk- realmente um marcador de cita+AOcA4w-o de continua+AOcA4w-o. Se ele n+AOM-o for um marcador de cita+AOcA4w-o de continua+AOcA4w-o ent+AOM-o h+AOE- um problema.
-continuing quote?	Is this a continuing quote marker?	Est-ce que c'est un marqueur de citation continuant ?	Isto +AOk- um marcador de cita+AOcA4w-o de continua+AOcA4w-o?
-second quote found	Second opening quote mark found	Deuxi+AOg-me marque de citation pr+AOk-liminaire trouv+AOk-e	Segunda marca de cita+AOcA4w-o de abertura encontrada
-text unusable	Dramatizer will not be able to use this text until this is corrected. Please look at the original text and see if it is possible that a closing quote marker is missing. Look for a closing quote marker found inside of a footnote. All footnotes (+AFw-f..+AFw-f+ACo-) and references (+AFw-r) are discarded at the start of processing the text in Dramatizer. Make sure that you have checked the quotations with a tool such as Paratext scripture checks.  Please correct the problem in the source text.	Dramatizer ne sera pas capable d'utiliser ce texte jusqu'+AOA- ce que ce soit corrig+AOk-. Regardez s'il vous pla+AO4-t le texte original et voir s'il est possible qu'un marqueur de citation final manque. Cherchez un marqueur de citation final trouv+AOk- +AOA- l'int+AOk-rieur d'une note en bas de page. Toutes les notes en bas de page (+AFw-f ...+AFw-f +ACo-) et les r+AOk-f+AOk-rences (+AFw-r) sont d+AOk-barrass+AOk-es au d+AOk-but de traiter le texte dans Dramatizer. Assurez-vous que vous avez v+AOk-rifi+AOk- les citations avec un instrument comme les v+AOk-rifications de Sainte +AMk-criture de Paratexte. Corrigez s'il vous pla+AO4-t le probl+AOg-me du texte source.	O Dramatizer n+AOM-o ser+AOE- capaz de usar este texto at+AOk- que isto seja corrigido. Por favor veja o texto original e ver se +AOk- poss+AO0-vel que um marcador de cita+AOcA4w-o final esteja falhando. Procure um marcador de cita+AOcA4w-o final encontrado dentro de uma nota ao p+AOk- de uma p+AOE-gina. Todas as notas (+AFw-f ...+AFw-f +ACo-) e refer+AOo-ncias (+AFw-r) s+AOM-o descartadas na partida de processar o texto em Dramatizer. Assegure-se que voc+AOo- verificou as cota+AOcA9Q-es com um instrumento como cheques de Sagrada Escritura de Paratexto. Por favor corrija o problema no texto de fonte.
-see more problems	Do you see if there are other problems?	Voyez-vous d'autres probl+AOg-mes ?	Voc+AOo- para ver se h+AOE- outros problemas?
-continuing quote tip	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.	Bout : les marqueurs de citation continuants suivent d'habitude imm+AOk-diatement apr+AOg-s +AFw-p ou les marqueurs +AFw-p+AFw-v possibles. Un marqueur de citation pr+AOk-liminaire apr+AOg-s des deux-points est le fort probablement une erreur.	Ponta: os marcadores de cita+AOcA4w-o continuam normalmente seguem imediatamente depois +AFw-p ou marcadores +AFw-p+AFw-v poss+AO0-veis. Um marcador de cita+AOcA4w-o que se abre depois de um dois-pontos +AOk- mais prov+AOE-vel um erro.
-fileReadError	File reading error	Erreur en lisant le dossier	Arquivo lendo erro
-Unidentified characters to fix	unidentified characters to fix	les caract+AOg-res non identifi+AOk-s pour fixer	carateres n+AOM-o identificados para fixar
-Multiple characters to fix	multiple characters to fix	les caract+AOg-res multiples pour fixer	m+APo-ltiplos carateres para fixar
-totalClips	total clips	clips totaux	clipes totais
-Clips to record	clips to record	les clips pour enregistrer	clipes para registrar
-ClickNextToStart	Click Next to start.	Faites un d+AOk-clic +AMA- c+APQ-t+AOk- du d+AOk-but.	Clique ao Lado da partida.
-VerifyUpdatedText	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.	V+AOk-rifiez juste les caract+AOg-res que vous avez choisis ou avez tap+AOk-s. Ne tenez pas compte de tout ceux que le programme Dramatizer fourni.	Verifique somente os carateres que voc+AOo- selecionou ou datilografou. Omita por cima de todo aqueles que o programa Dramatizer forneceu.
-VerifyAllText	Verify all characters. You must do this before assigning characters to speakers.	V+AOk-rifiez tous les caract+AOg-res. Vous devez le faire avant le fait d'allouer des caract+AOg-res aux speakers.	Verifique todos os carateres. Voc+AOo- deve fazer isto antes de destinar carateres a falantes.
-AssignCharacterToSpeakerText	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Allouez chaque caract+AOg-re +AOA- un speaker. Le z+AOk-ro de speaker est utilis+AOk- pour les caract+AOg-res non allou+AOk-s. Il devrait y avoir tr+AOg-s peu que vous aurez besoin de faire. Seulement les nouveaux caract+AOg-res.	Destine cada car+AOE-ter a um falante. O zero de falante +AOk- usado para carateres n+AOM-o destinados. Devem haver muito poucos que voc+AOo- ter+AOE- de fazer. Carateres somente novos.
-CreateScriptsText	"In the scripts folder, create a master script and a script for each speaker. Scripts are html files that can be printed out. In the recordings folder create a blank wave file for each clip."	"Dans la chemise de scripts, cr+AOk-ez un script de ma+AO4-tre et un script pour chaque speaker. Les scripts sont des dossiers Html qui peuvent +AOo-tre imprim+AOk-s. Dans la chemise d'enregistrements cr+AOk-ez un dossier d'ondes blanc pour chaque clip."	"Na pasta de escritas, crie uma escrita de mestre e uma escrita de cada falante. As escritas s+AOM-o arquivos de html que podem ser imprimidos. Nos registros pasta criam um arquivo de onda em branco de cada clipe."
-RecordText	Start recording now	Commencez +AOA- enregistrer maintenant	Comece a registrar agora
-UnassignedCharactersToFix	unassigned characters to fix	les caract+AOg-res non allou+AOk-s pour fixer	carateres n+AOM-o destinados para fixar
-showVerses	Show verses	Montrer les versets	Versos de demonstra+AOcA4w-o
-showSFMcodes	Show SFM codes	Montrez des codes de SFM	Mostre c+APM-digos de SFM
-showSpeakerText	Show speaker text	Montrez le texte de speaker	Mostre o texto de falante
-useSettingsToAdjustClipSize	Use settings to adjust clip size	Utilisez des cadres pour r+AOk-gler la grandeur de clip	Use coloca+AOcA9Q-es para ajustar o tamanho de clipe
-inputTab	Input	Contribution	Entrada
-quoteTypeTab	Quote type	Type de citation	Tipo de cita+AOcA4w-o
-omitTextTab	Omit text	Omettez le texte	Omita texto
-recordingProgramTab	Audio recording program	Programme d'enregistrement audio	Programa de registro auditivo
-clipSizeTab	Clip size	Grandeur de clip	Tamanho de clipe
-EthnologueCodeTab	Ethnologue code	Code d'Ethnologue	C+APM-digo de Ethnologue
-outputTab	Output	Production	Produ+AOcA4w-o
-displayUnrecordedOn ly	Display only clips to be recorded	Montrez seulement des clips +AOA- +AOo-tre enregistr+AOk-s	Mostre s+APM- clipes a ser registrados
-recordOneSpeakerAtATime	Record one speaker at a time	Enregistrez un speaker +AOA- la fois	Registre um falante de uma vez
-showPrompt	Show prompt	Montrer suggestion	Demonstra+AOcA4w-o pronto
-fontTab	Font	Fonte	Fonte
-OmitThisOne	Omit this one	Omettez celui-ci	Omita este
-OutputFolder	Dramatizer output folder	Chemise de production de Dramatizer	Pasta de produ+AOcA4w-o de Dramatizer
-SpeechContinuesInNextClip	Continues in next clip	Continue dans le clip suivant	Continua no seguinte clipe
-ClipSize	Clip size in seconds (approximate)	La longueur de clip en secondes (approximatives)	Tamanho de clipe em segundos (aproximados)
-PercentIdentified	 percent Dramatizer identified.	 le pour cent Dramatizer a identifi+AOk-.	 os por cento Dramatizer identificaram.
-BreakAtMostParagraphs	Break at most paragraphs	Pause +AOA- la plupart des paragraphes	Pause +AOA- la plupart des paragraphes
-DefaultSettings	Reset to default settings	La remise des cadres originaux	Recomposi+AOcA4w-o para faltar coloca+AOcA9Q-es
-MasterText	Master text	Texte de ma+AO4-tre	Texto de mestre
-AvailableDiskSpaceC	Available Disk Space Drive C:	Espace Disponible sur disque C :	O Espa+AOc-o de Disco Dispon+AO0-vel Dirige C:
-AvailableDiskSpaceD	available Disk Space Drive D:	Espace Disponible sur disque D :	O Espa+AOc-o de Disco Dispon+AO0-vel Dirige D:
-NoteAQuote	Not a quote	Pas une citation	N+AOM-o uma cita+AOcA4w-o
-DisplayUnprocessedOnly	Display only clips to process	Affichez seulement des clips pour traiter	Exponha s+APM- clipes para processar
-DisplayOmittedClips	Display omitted clips too	Afficher les clips omis aussi	A exposi+AOcA4w-o omitiu clipes tamb+AOk-m
-SaveChangeAndSeeNext	"Save change, see next item"	"Enregistrez le changement, voir l'article suivant"	"Salve a modifica+AOcA4w-o, ver o seguinte item"
-CancelChangeAndCloseMenu	Cancel change and close translate menu.	Annuler le changement et fermer le menu de traduction.	A modifica+AOcA4w-o de cancelamento e perto traduz o card+AOE-pio.
-SaveChangeAndCloseMenu	Save change and close translate menu.	Enregistrer le changement et fermer le menu de traduction.	Salve a modifica+AOcA4w-o e perto traduza o card+AOE-pio.
-BackAndCancelChange	"Go back, cancel any change."	"Retournez, annulez n'importe quel changement."	"Volte, cancele qualquer modifica+AOcA4w-o."
-GoToStart	Go to first item.	Allez au premier article.	V+AOE- ao primeiro item.
-TypeInOtherBox	Type your changes in other box please.	Tapez vos changements dans l'autre bo+AO4-te s'il vous pla+AO4-t.	Datilografe as suas modifica+AOcA9Q-es em outra caixa por favor.
-MoveToTopRight	Move this up	Mettez-le plus haut	Suba isto
-MoveToBottomLeft	Move this down	Mettez-le en bas	Mova isto abaixo
-More	More	Plus	Mais
-Less	Less	Moins	Menos
-DisplayClipsBy	Display clips by	Afficher clips par	Clipes de exposi+AOcA4w-o por
-All	All	Tous	Todos
-Unidenfied	Unidentified	Non identifi+AOk-	N+AOM-o identificado
-Multiple	Multiple	Multiple	M+APo-ltiplo
-CharacterName	Character name	Nom de caract+AOg-re	Nome de car+AOE-ter
-SpeakerNumber	Speaker number	Nombre de speaker	N+APo-mero de falante
-CongratulationsRecord	Congratulations+ACE- You are ready to start recording. Make sure you have the correct audio recording program selected in Select options. You may record in sequence or by speaker number. The default is to record by speaker number. Output files (wav) are located at:	F+AOk-licitations+ACE- Vous +AOo-tes pr+AOo-ts +AOA- commencer +AOA- enregistrer. Assurez-vous que vous avez le programme d'enregistrement audio correct choisi dans les options d'+AMk-lection. Vous pouvez enregistrer dans l'ordre ou par le nombre de speaker. Le d+AOk-faut doit enregistrer par le nombre de speaker. Les dossiers de production (wav) sont trouv+AOk-s +AOA- :	Congratula+AOcA9Q-es+ACE- Voc+AOo- est+AOE- pronto para come+AOc-ar a registrar. Assegure-se que voc+AOo- tem o programa de registro auditivo correto selecionado em Selecionam op+AOcA9Q-es. Voc+AOo- pode registrar na seq+APwA6g-ncia ou pelo n+APo-mero de falante. O default deve registrar pelo n+APo-mero de falante. Os arquivos de produ+AOcA4w-o (wav) s+AOM-o localizados em :
-MoveUp	Move up	Monter	Subir
-MoveDown	Move down	Descendre	Movimento abaixo
-RecordSpeaker	 more clips remain for this speaker	 plus de clip(s) reste pour ce speaker	mais clipe(s) permanece para este falante
-RecordTotal	 more clips remain total	 plus de clip(s) reste total	mais clipe(s) permanece total
-AllScriptsAndWavFilesCreated	All scripts and wav files were created. Look in +AFs-output folder+AF0AXA-scripts and +AFs-output folder+AF0AXA-recordings.	Tous les scripts et les fichiers d'ondes +AOk-taient cr+AOkA6Q-s. Cherchez dans la chemise +AFsAXQBc-scripts et +AFs-chemise de production+AF0AXA-enregistrements.	Todas as escritas e os arquivos wav foram criados. Olhada +AFs-em pasta de produ+AOcA4w-o+AF0- +AFw-scripts e +AFs-pasta de produ+AOcA4w-o+AF0- +AFw-recordings.
-SpeakerText	Text	Texte	Texto
-TextEncodingTab	Text encoding	Texte encodant	Codifica+AOcA4w-o de texto
-Required information missing	Required information missing	Manque d'information n+AOk-cessaire	Aus+AOo-ncia de informa+AOcA9Q-es necessitada
-PleaseCorrect	Please correct	Corrigez s'il vous pla+AO4-t	Por favor corrija
-Processing	Processing	Traitement	Processing +AIU-
-AddNew	Add new menu language	Ajoutez une nouvelle langue de menu	
-CorrectCurrentMenu	Correct current menu	Corrigez le menu actuel	
+Language name in English - Country name in English -  e.g. English - USA 	English - USA  This is for Language - Country (Please use English for this one entry. All other entries please translate into the target language.)  	French - France	Portuguese - Brazil 	Japanese-Japan
+Name of language in that language	English	fran+AOc-ais	portugu+AOo-s	+ZeVnLIqe-
+Program	Dramatizer	Dramatizer	Dramatizer	+MMkw6TDeML8wpDC2MPw-
+language	Language	Langue	Idioma	+igCKng-
+start new project/open file	Select options	Select options in french goes here	Selecione op+AOcA9Q-es	+MKow1zC3MOcw85B4Yp4-
+start processing	Start processing	Traitement de d+AOk-but	Processamento de partida	+MNcw7TC7MLmVi1nL-
+unknown/unidentified speaker	Fix unidentified characters	Fixez des caract+AOg-res non identifi+AOk-s	Fixe carateres n+AOM-o identificados	Fix unidentified characters
+multilple speakers	Verify multiple characters in same verse	V+AOk-rifiez des caract+AOg-res multiples dans m+AOo-me verset	Verifique m+APo-ltiplos carateres no mesmo verso	Verify multiple characters in same verse
+verify updated clips	Verify updated clips	V+AOk-rifiez des clips actualis+AOk-s	Verifique clipes atualizados	Verify updated clips
+verify all clips	Verify all clips	V+AOk-rifiez tous les clips	Verifique todos os clipes	Verify all clips
+assign character to speaker	Assign each character to a speaker	Allouez chaque caract+AOg-re +AOA- un speaker	Destine cada car+AOE-ter a um falante	Assign each character to a speaker
+create scripts	Create scripts and wav files	Cr+AOk-ez des scripts et des dossiers wav	Crie escritas e arquivos wav	Create scripts and wav files
+record	Record	Enregistrez	Gravar	Record
+about program	About	De	Sobre	About
+How to quit/end the program	Exit	Quitt+AOk-	Parar	Exit
+Next/proceed	Next	Ensuite	Depois	Next
+info start project	You may select several options for the project including the following: (1) file name, (2) text encoding, (3) Ethnologue language code, (4) font name, (5) font size, and (6) first level quote style. +AHw-These options will be saved and used for the project. You can return to make changes to your choices at any time. +AHw-Click Next to start.	Vous pouvez choisir plusieurs options pour le projet en incluant les choses suivantes : (1) le nom de dossier, (2) le texte encodant, (3) le code Ethnologue de langue, (4) le nom de fonte, (5) la grandeur de fonte et (6) le style de la citation de premier niveau. +AHw- Ces options seront sauv+AOk-es et utilis+AOk-es pour le projet. Vous pouvez revenir pour faire des changements +AOA- vos choix d'un moment +AOA- l'autre. +AHw- Faites-un-d+AOk-clic +AMA- c+APQ-t+AOk- du d+AOk-but.	Voc+AOo- pode selecionar v+AOE-rias op+AOcA9Q-es do projeto inclusive o seguinte: (1) nome de arquivo, (2) codifica+AOcA4w-o de texto, (3) Ethnologue langugae c+APM-digo, (4) nome de fonte, (5) tamanho de fonte, e (6) primeiro estilo de cita+AOcA4w-o de n+AO0-vel. +AHw-Essas op+AOcA9Q-es ser+AOM-o salvadas e usadas para o projeto. Voc+AOo- pode voltar para fazer modifica+AOcA9Q-es +AOA-s suas escolhas em qualquer momento. +AHw-Clique ao Lado da partida.	You may select several options for the project including the following: (1) file name, (2) text encoding, (3) Ethnologue language code, (4) font name, (5) font size, and (6) first level quote style. +AHw-These options will be saved and used for the project. You can return to make changes to your choices at any time. +AHw-Click Next to start.
+info start processing file	A clip is a sentence or group of sentences spoken by one person (or character). In the New Testament, there are between  4,000 to 6,000 clips. Dramatizer can usually identify the character speaking in at least  90 percent of the clips. +AHw-Maximum clip size should be set in Select options+AHw-Click Next to start.	Un clip est une phrase ou un groupe de phrases parl+AOk-es par une personne (ou le caract+AOg-re). Dans le Nouveau Testament, il y a entre 4,000 +AOA- 6,000 clips. Dramatizer peut d'habitude identifier le caract+AOg-re parlant +AOA- au moins 90 pour cent des clips. la grandeur de clip de +AHw-Maximum devrait +AOo-tre mise dans Choisissez es options+AHw-Click +AMA- c+APQ-t+AOk- du d+AOk-but.	Um clipe +AOk- uma ora+AOcA4w-o ou o grupo de ora+AOcA9Q-es ditas por uma pessoa (ou car+AOE-ter). No Novo Testamento, h+AOE- entre 4,000 para 6,000 clipes. O Dramatizer pode identificar normalmente o car+AOE-ter que fala em pelo menos 90 por cento dos clipes. +AHw-O tamanho de clipe m+AOE-ximo deve ser estabelecido em Selecione op+AOcA9Q-es +AHw-Clique ao Lado da partida.	A clip is a sentence or group of sentences spoken by one person (or character). In the New Testament, there are between  4,000 to 6,000 clips. Dramatizer can usually identify the character speaking in at least  90 percent of the clips. +AHw-Maximum clip size should be set in Select options+AHw-Click Next to start.
+0 unidentified	Dramatizer was able to identify all characters. There are no unidentified characters to identify. 	Dramatizer a +AOk-t+AOk- en mesure d'identifier tous les caract+AOg-res. Il n'y a aucun caract+AOg-re non identifi+AOk- pour s'identifier.	O Dramatizer foi capaz de identificar todos os carateres. N+AOM-o h+AOE- nenhum car+AOE-ter n+AOM-o identificado para identificar.	Dramatizer was able to identify all characters. There are no unidentified characters to identify. 
+1 unidentified	Dramatizer was unable to identify who the character should be in one clip. Please identify the speaking character. 	Dramatizer +AOk-tait incapable de s'identifier qui le caract+AOg-re devrait +AOo-tre dans un clip. Identifiez s'il vous pla+AO4-t le caract+AOg-re parlant.	O Dramatizer foi incapaz de identificar quem o car+AOE-ter deve estar em um clipe. Por favor identifique o car+AOE-ter que fala.	Dramatizer was unable to identify who the character should be in one clip. Please identify the speaking character. 
+many unidentified	Dramatizer was unable to identify who the character should be in some clips. Please identify the speaking characters. 	Dramatizer +AOk-tait incapable de s'identifier qui le caract+AOg-re devrait +AOo-tre dans quelques clips. Identifiez s'il vous pla+AO4-t les caract+AOg-res parlants.	O Dramatizer foi incapaz de identificar quem o car+AOE-ter deve estar no AFs-n+APo-mero aF0-clipes. Por favor identifique os carateres falam.	Dramatizer was unable to identify who the character should be in some clips. Please identify the speaking characters. 
+Speaker/speaker number	Speaker number	Nombre de speaker	N+APo-mero de falante	Speaker number
+clip number	Clip number	Nombre de clip	N+APo-mero de clipe	Clip number
+prompt	Prompt	Suggestion	Prompt	Prompt
+show context	Show context	Montrer Contexte	Contexto	Show context
+hide context	Hide context	Cacher contexte	Hide context	Hide context
+advance to next	Clip	Clip	Clipe	Clip
+advance by Unidentfied character clip	unidentified characters	caract+AOg-res non identifi+AOk-s	carateres n+AOM-o identificados	unidentified characters
+advance by Multiple characters clip	multiple characters	caract+AOg-res multiples	m+APo-ltiplos carateres	multiple characters
+advance by my Updated clip	Updated character	Caract+AOg-re actualis+AOk-	Car+AOE-ter atualizado	Updated character
+0 multiple	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 	Dramatizer +AOk-tait capable d'identifier tous les caract+AOg-res multiples (peut-+AOo-tre avec un peu d'aide de vous). Il n'y a aucun caract+AOg-re multiple pour s'identifier.	O Dramatizer foi capaz de identificar todos m+APo-ltiplos carateres (talvez com um pouco de ajuda de voc+AOo-). N+AOM-o h+AOE- nenhum m+APo-ltiplo car+AOE-ter para identificar.	Dramatizer was able to identify all multiple characters (maybe with some help from you). There are no multiple characters to identify. 
+1 multiple	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer +AOk-tait capable d'identifier les caract+AOg-res dans un verset qui avait des caract+AOg-res multiples par verset. Reconsid+AOk-rez s'il vous pla+AO4-t tous ces choix pour vous assurer que le programme n'a pas fait d'erreur.	O Dramatizer foi capaz de identificar os carateres em um verso que teve m+APo-ltiplos carateres por verso. Por favor reveja todas dessas escolhas para assegurar-se que o programa n+AOM-o fez um erro.	Dramatizer was able to identify the characters in one verse that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.
+many multiples	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.	Dramatizer a +AOk-t+AOk- en mesure d'identifier les caract+AOg-res dans les versets qui avaient des caract+AOg-res multiples par verset. Reconsid+AOk-rez s'il vous pla+AO4-t tous ces choix pour vous assurer que le programme n'a pas fait d'erreur.	O Dramatizer foi capaz de identificar os carateres em versos que tiveram m+APo-ltiplos carateres por verso. Por favor reveja todas dessas escolhas para assegurar-se que o programa n+AOM-o fez um erro.	Dramatizer was able to identify the characters in verses that had multiple characters per verse. Please review all of these choices to make sure the program didn't make a mistake.
+warning deleting active master file	Warning: This will delete your previously processed and saved work.+AHw-	Avertissement : Cela effacera votre travail auparavant trait+AOk- et enregistr+AOk-. +AHw-	Aviso: Isto eliminar+AOE- o seu trabalho anteriormente processado e salvado. +AHw-	Warning: This will delete your previously processed and saved work.+AHw-
+translate menu items	Translate/correct menu items	Traduire/corriger items de menu	Traduza/corrija itens de card+AOE-pio	Translate/correct menu items
+file name	File name	Nom de dossier	Nome de arquivo	File name
+browse	Browse +AIU-. . .	Parcourez . . .	Brotos ternos . . .	Browse +AIU-. . .
+font name	Font name	Nom de fonte	Nome de fonte	Font name
+font size	Font size	Grandeur de fonte	Tamanho de fonte	Font size
+quote type	Quote type	Type de citation	Tipo de cita+AOcA4w-o	Quote type
+audio recording program	Audio recording program	Programme d'enregistrement audio	Programa de registro auditivo	Audio recording program
+display quotes	Display quotes	Citations d'+AOk-talage	Cita+AOcA9Q-es de exposi+AOcA4w-o	Display quotes
+text encoding	Text encoding	Texte encodant	Codifica+AOcA4w-o de texto	Text encoding
+ansi	ANSI	ANSI	ANSI	ANSI
+utf8	UTF-8	UTF-8	UTF-8	UTF-8
+cancel	Cancel	Annuler	Cancelamento	Cancel
+set options	Set options	Options de jeu	Op+AOcA9Q-es de jogo	Set options
+current location number	Current location number	Nombre d'endroit actuel	N+APo-mero de posi+AOcA4w-o atual	Current location number
+ok	OK	Bien	OK	OK
+update	Update	Mise +AOA- jour	Atualiza+AOcA4w-o	Update
+edit	Edit	R+AOk-viser	Editar	Edit
+maximum clip size	Maximum clip size in seconds (approximate) 	La longueur de clip maximum en secondes (approximatives)	Tamanho de clipe m+AOE-ximo em segundos (aproximados)	Maximum clip size in seconds (approximate) 
+Ethnologue code	Ethnologue code	Code d'Ethnologue	C+APM-digo de Ethnologue	Ethnologue code
+Heading	Headings +AFw-h	Titres +AFw-h	T+AO0-tulos +AFw-h	Headings +AFw-h
+Introduction	Introductions +AFw-is +AFw-ip and +AFw-id	Les Introductions +AFw-is +AFw-ip et +AFw-id	Introdu+AOcA9Q-es +AFw-is +AFw-ip e +AFw-id	Introductions +AFw-is +AFw-ip and +AFw-id
+Section heads	Section heads +AFw-s	Titres de section  +AFw-s	Se+AOcA4w-o encabe+AOc-a +AFw-s	Section heads +AFw-s
+Footnotes	Footnotes +AFw-f+AIUAXA-f+ACo-	Les Notes en bas de page +AFw-f +AFw-f+ACo-	Notas +AFw-f +AFw-f+ACo-	Footnotes +AFw-f+AIUAXA-f+ACo-
+References	References +AFw-r	R+AOk-f+AOk-rences +AFw-r	Refer+AOo-ncias +AFw-r	References +AFw-r
+Chapter number	Chapter numbers +AFw-c	Nombres de chapitre +AFw-c	N+APo-meros de cap+AO0-tulo +AFw-c	Chapter numbers +AFw-c
+Don't speak these	Remove from final scripts	Enlever des scripts finaux	Retire de escritas finais	Remove from final scripts
+Character name	Character name	Nom de caract+AOg-re	Nome de car+AOE-ter	Character name
+no INI file (short)	No INI file found.	Aucun dossier INI trouv+AOk-.	Nenhum arquivo INI encontrado.	No INI file found.
+no INI file (long)	An INI file will be created when you save settings. This will keep your settings that you choose.	Un dossier INI sera cr+AOkA6Q- quand vous enregistrez des d+AOk-signations. Cela gardera vos d+AOksignatio- que vous choisissez.	Um arquivo INI ser+AOE- criado quando voc+AOo- salva coloca+AOcA9Q-es. Isto guardar+AOE- as suas coloca+AOcA9Q-es que voc+AOo- escolhe.	An INI file will be created when you save settings. This will keep your settings that you choose.
+correct the text	Please correct the problem in the source text.	Corrigez s'il vous pla+AO4-t le probl+AOg-me du texte source.	Por favor corrija o problema no texto de fonte.	Please correct the problem in the source text.
+unable to process text	Unable to process the text.	Incapable de traiter le texte.	Incapaz de processar o texto.	Unable to process the text.
+verify opening quote 	Verify that the opening quote	V+AOk-rifiez que la citation pr+AOk-liminaire	Verifique isto a cita+AOcA4w-o que se abre	Verify that the opening quote
+continue verify opening quote	found after the start of this text is really a continuing quote marker. If it is not a continuing quote marker then there is a problem.	trouv+AOk- apr+AOg-s que le d+AOk-but de ce texte est vraiment un marqueur de citation continuant. Si ce n'est pas un marqueur de citation continuant alors il y a un probl+AOg-me.	encontrado depois que a partida deste texto +AOk- realmente um marcador de cita+AOcA4w-o de continua+AOcA4w-o. Se ele n+AOM-o for um marcador de cita+AOcA4w-o de continua+AOcA4w-o ent+AOM-o h+AOE- um problema.	found after the start of this text is really a continuing quote marker. If it is not a continuing quote marker then there is a problem.
+continuing quote?	Is this a continuing quote marker?	Est-ce que c'est un marqueur de citation continuant ?	Isto +AOk- um marcador de cita+AOcA4w-o de continua+AOcA4w-o?	Is this a continuing quote marker?
+second quote found	Second opening quote mark found	Deuxi+AOg-me marque de citation pr+AOk-liminaire trouv+AOk-e	Segunda marca de cita+AOcA4w-o de abertura encontrada	Second opening quote mark found
+text unusable	Dramatizer will not be able to use this text until this is corrected. Please look at the original text and see if it is possible that a closing quote marker is missing. Look for a closing quote marker found inside of a footnote. All footnotes (+AFw-f..+AFw-f+ACo-) and references (+AFw-r) are discarded at the start of processing the text in Dramatizer. Make sure that you have checked the quotations with a tool such as Paratext scripture checks.  Please correct the problem in the source text.	Dramatizer ne sera pas capable d'utiliser ce texte jusqu'+AOA- ce que ce soit corrig+AOk-. Regardez s'il vous pla+AO4-t le texte original et voir s'il est possible qu'un marqueur de citation final manque. Cherchez un marqueur de citation final trouv+AOk- +AOA- l'int+AOk-rieur d'une note en bas de page. Toutes les notes en bas de page (+AFw-f ...+AFw-f +ACo-) et les r+AOk-f+AOk-rences (+AFw-r) sont d+AOk-barrass+AOk-es au d+AOk-but de traiter le texte dans Dramatizer. Assurez-vous que vous avez v+AOk-rifi+AOk- les citations avec un instrument comme les v+AOk-rifications de Sainte +AMk-criture de Paratexte. Corrigez s'il vous pla+AO4-t le probl+AOg-me du texte source.	O Dramatizer n+AOM-o ser+AOE- capaz de usar este texto at+AOk- que isto seja corrigido. Por favor veja o texto original e ver se +AOk- poss+AO0-vel que um marcador de cita+AOcA4w-o final esteja falhando. Procure um marcador de cita+AOcA4w-o final encontrado dentro de uma nota ao p+AOk- de uma p+AOE-gina. Todas as notas (+AFw-f ...+AFw-f +ACo-) e refer+AOo-ncias (+AFw-r) s+AOM-o descartadas na partida de processar o texto em Dramatizer. Assegure-se que voc+AOo- verificou as cota+AOcA9Q-es com um instrumento como cheques de Sagrada Escritura de Paratexto. Por favor corrija o problema no texto de fonte.	Dramatizer will not be able to use this text until this is corrected. Please look at the original text and see if it is possible that a closing quote marker is missing. Look for a closing quote marker found inside of a footnote. All footnotes (+AFw-f..+AFw-f+ACo-) and references (+AFw-r) are discarded at the start of processing the text in Dramatizer. Make sure that you have checked the quotations with a tool such as Paratext scripture checks.  Please correct the problem in the source text.
+see more problems	Do you see if there are other problems?	Voyez-vous d'autres probl+AOg-mes ?	Voc+AOo- para ver se h+AOE- outros problemas?	Do you see if there are other problems?
+continuing quote tip	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.	Bout : les marqueurs de citation continuants suivent d'habitude imm+AOk-diatement apr+AOg-s +AFw-p ou les marqueurs +AFw-p+AFw-v possibles. Un marqueur de citation pr+AOk-liminaire apr+AOg-s des deux-points est le fort probablement une erreur.	Ponta: os marcadores de cita+AOcA4w-o continuam normalmente seguem imediatamente depois +AFw-p ou marcadores +AFw-p+AFw-v poss+AO0-veis. Um marcador de cita+AOcA4w-o que se abre depois de um dois-pontos +AOk- mais prov+AOE-vel um erro.	Tip: Continuing quote markers usually follow immediately after +AFw-p or possible +AFw-p +AFw-v markers. An opening quote marker following a colon is most likely an error.
+fileReadError	File reading error	Erreur en lisant le dossier	Arquivo lendo erro	File reading error
+Unidentified characters to fix	unidentified characters to fix	les caract+AOg-res non identifi+AOk-s pour fixer	carateres n+AOM-o identificados para fixar	unidentified characters to fix
+Multiple characters to fix	multiple characters to fix	les caract+AOg-res multiples pour fixer	m+APo-ltiplos carateres para fixar	multiple characters to fix
+totalClips	total clips	clips totaux	clipes totais	total clips
+Clips to record	clips to record	les clips pour enregistrer	clipes para registrar	clips to record
+ClickNextToStart	Click Next to start.	Faites un d+AOk-clic +AMA- c+APQ-t+AOk- du d+AOk-but.	Clique ao Lado da partida.	Click Next to start.
+VerifyUpdatedText	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.	V+AOk-rifiez juste les caract+AOg-res que vous avez choisis ou avez tap+AOk-s. Ne tenez pas compte de tout ceux que le programme Dramatizer fourni.	Verifique somente os carateres que voc+AOo- selecionou ou datilografou. Omita por cima de todo aqueles que o programa Dramatizer forneceu.	Verify just the characters you have selected or typed in. Skip over all the ones that the Dramatizer program supplied.
+VerifyAllText	Verify all characters. You must do this before assigning characters to speakers.	V+AOk-rifiez tous les caract+AOg-res. Vous devez le faire avant le fait d'allouer des caract+AOg-res aux speakers.	Verifique todos os carateres. Voc+AOo- deve fazer isto antes de destinar carateres a falantes.	Verify all characters. You must do this before assigning characters to speakers.
+AssignCharacterToSpeakerText	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.	Allouez chaque caract+AOg-re +AOA- un speaker. Le z+AOk-ro de speaker est utilis+AOk- pour les caract+AOg-res non allou+AOk-s. Il devrait y avoir tr+AOg-s peu que vous aurez besoin de faire. Seulement les nouveaux caract+AOg-res.	Destine cada car+AOE-ter a um falante. O zero de falante +AOk- usado para carateres n+AOM-o destinados. Devem haver muito poucos que voc+AOo- ter+AOE- de fazer. Carateres somente novos.	Assign each character to a speaker. Speaker zero is used for unassigned characters. There should be very few that you will need to do. Just new characters.
+CreateScriptsText	In the scripts folder, create a master script and a script for each speaker. Scripts are html files that can be printed out. In the recordings folder create a blank wave file for each clip.	Dans la chemise de scripts, cr+AOk-ez un script de ma+AO4-tre et un script pour chaque speaker. Les scripts sont des dossiers Html qui peuvent +AOo-tre imprim+AOk-s. Dans la chemise d'enregistrements cr+AOk-ez un dossier d'ondes blanc pour chaque clip.	Na pasta de escritas, crie uma escrita de mestre e uma escrita de cada falante. As escritas s+AOM-o arquivos de html que podem ser imprimidos. Nos registros pasta criam um arquivo de onda em branco de cada clipe.	In the scripts folder, create a master script and a script for each speaker. Scripts are html files that can be printed out. In the recordings folder create a blank wave file for each clip.
+RecordText	Start recording now	Commencez +AOA- enregistrer maintenant	Comece a registrar agora	Start recording now
+UnassignedCharactersToFix	unassigned characters to fix	les caract+AOg-res non allou+AOk-s pour fixer	carateres n+AOM-o destinados para fixar	unassigned characters to fix
+showVerses	Show verses	Montrer les versets	Versos de demonstra+AOcA4w-o	Show verses
+showSFMcodes	Show SFM codes	Montrez des codes de SFM	Mostre c+APM-digos de SFM	Show SFM codes
+showSpeakerText	Show speaker text	Montrez le texte de speaker	Mostre o texto de falante	Show speaker text
+useSettingsToAdjustClipSize	Use settings to adjust clip size	Utilisez des cadres pour r+AOk-gler la grandeur de clip	Use coloca+AOcA9Q-es para ajustar o tamanho de clipe	Use settings to adjust clip size
+inputTab	Input	Contribution	Entrada	Input
+quoteTypeTab	Quote type	Type de citation	Tipo de cita+AOcA4w-o	Quote type
+omitTextTab	Omit text	Omettez le texte	Omita texto	Omit text
+recordingProgramTab	Audio recording program	Programme d'enregistrement audio	Programa de registro auditivo	Audio recording program
+clipSizeTab	Clip size	Grandeur de clip	Tamanho de clipe	Clip size
+EthnologueCodeTab	Ethnologue code	Code d'Ethnologue	C+APM-digo de Ethnologue	Ethnologue code
+outputTab	Output	Production	Produ+AOcA4w-o	Output
+displayUnrecordedOn ly	Display only clips to be recorded	Montrez seulement des clips +AOA- +AOo-tre enregistr+AOk-s	Mostre s+APM- clipes a ser registrados	Display only clips to be recorded
+recordOneSpeakerAtATime	Record one speaker at a time	Enregistrez un speaker +AOA- la fois	Registre um falante de uma vez	Record one speaker at a time
+showPrompt	Show prompt	Montrer suggestion	Demonstra+AOcA4w-o pronto	Show prompt
+fontTab	Font	Fonte	Fonte	Font
+OmitThisOne	Omit this one	Omettez celui-ci	Omita este	Omit this one
+OutputFolder	Dramatizer output folder	Chemise de production de Dramatizer	Pasta de produ+AOcA4w-o de Dramatizer	Dramatizer output folder
+SpeechContinuesInNextClip	Continues in next clip	Continue dans le clip suivant	Continua no seguinte clipe	Continues in next clip
+ClipSize	Clip size in seconds (approximate)	La longueur de clip en secondes (approximatives)	Tamanho de clipe em segundos (aproximados)	Clip size in seconds (approximate)
+PercentIdentified	 percent Dramatizer identified.	 le pour cent Dramatizer a identifi+AOk-.	 os por cento Dramatizer identificaram.	 percent Dramatizer identified.
+BreakAtMostParagraphs	Break at most paragraphs	Pause +AOA- la plupart des paragraphes	Pause +AOA- la plupart des paragraphes	Break at most paragraphs
+DefaultSettings	Reset to default settings	La remise des cadres originaux	Recomposi+AOcA4w-o para faltar coloca+AOcA9Q-es	Reset to default settings
+MasterText	Master text	Texte de ma+AO4-tre	Texto de mestre	Master text
+AvailableDiskSpaceC	Available Disk Space Drive C:	Espace Disponible sur disque C :	O Espa+AOc-o de Disco Dispon+AO0-vel Dirige C:	Available Disk Space Drive C:
+AvailableDiskSpaceD	available Disk Space Drive D:	Espace Disponible sur disque D :	O Espa+AOc-o de Disco Dispon+AO0-vel Dirige D:	available Disk Space Drive D:
+NoteAQuote	Not a quote	Pas une citation	N+AOM-o uma cita+AOcA4w-o	Not a quote
+DisplayUnprocessedOnly	Display only clips to process	Affichez seulement des clips pour traiter	Exponha s+APM- clipes para processar	Display only clips to process
+DisplayOmittedClips	Display omitted clips too	Afficher les clips omis aussi	A exposi+AOcA4w-o omitiu clipes tamb+AOk-m	Display omitted clips too
+SaveChangeAndSeeNext	Save change, see next item	Enregistrez le changement, voir l'article suivant	Salve a modifica+AOcA4w-o, ver o seguinte item	Save change, see next item
+CancelChangeAndCloseMenu	Cancel change and close translate menu.	Annuler le changement et fermer le menu de traduction.	A modifica+AOcA4w-o de cancelamento e perto traduz o card+AOE-pio.	Cancel change and close translate menu.
+SaveChangeAndCloseMenu	Save change and close translate menu.	Enregistrer le changement et fermer le menu de traduction.	Salve a modifica+AOcA4w-o e perto traduza o card+AOE-pio.	Save change and close translate menu.
+BackAndCancelChange	Go back, cancel any change.	Retournez, annulez n'importe quel changement.	Volte, cancele qualquer modifica+AOcA4w-o.	Go back, cancel any change.
+GoToStart	Go to first item.	Allez au premier article.	V+AOE- ao primeiro item.	Go to first item.
+TypeInOtherBox	Type your changes in other box please.	Tapez vos changements dans l'autre bo+AO4-te s'il vous pla+AO4-t.	Datilografe as suas modifica+AOcA9Q-es em outra caixa por favor.	Type your changes in other box please.
+MoveToTopRight	Move this up	Mettez-le plus haut	Suba isto	Move this up
+MoveToBottomLeft	Move this down	Mettez-le en bas	Mova isto abaixo	Move this down
+More	More	Plus	Mais	More
+Less	Less	Moins	Menos	Less
+DisplayClipsBy	Display clips by	Afficher clips par	Clipes de exposi+AOcA4w-o por	Display clips by
+All	All	Tous	Todos	All
+Unidenfied	Unidentified	Non identifi+AOk-	N+AOM-o identificado	Unidentified
+Multiple	Multiple	Multiple	M+APo-ltiplo	Multiple
+CharacterName	Character name	Nom de caract+AOg-re	Nome de car+AOE-ter	Character name
+SpeakerNumber	Speaker number	Nombre de speaker	N+APo-mero de falante	Speaker number
+CongratulationsRecord	Congratulations+ACE- You are ready to start recording. Make sure you have the correct audio recording program selected in Select options. You may record in sequence or by speaker number. The default is to record by speaker number. Output files (wav) are located at:	F+AOk-licitations+ACE- Vous +AOo-tes pr+AOo-ts +AOA- commencer +AOA- enregistrer. Assurez-vous que vous avez le programme d'enregistrement audio correct choisi dans les options d'+AMk-lection. Vous pouvez enregistrer dans l'ordre ou par le nombre de speaker. Le d+AOk-faut doit enregistrer par le nombre de speaker. Les dossiers de production (wav) sont trouv+AOk-s +AOA- :	Congratula+AOcA9Q-es+ACE- Voc+AOo- est+AOE- pronto para come+AOc-ar a registrar. Assegure-se que voc+AOo- tem o programa de registro auditivo correto selecionado em Selecionam op+AOcA9Q-es. Voc+AOo- pode registrar na seq+APwA6g-ncia ou pelo n+APo-mero de falante. O default deve registrar pelo n+APo-mero de falante. Os arquivos de produ+AOcA4w-o (wav) s+AOM-o localizados em :	Congratulations+ACE- You are ready to start recording. Make sure you have the correct audio recording program selected in Select options. You may record in sequence or by speaker number. The default is to record by speaker number. Output files (wav) are located at:
+MoveUp	Move up	Monter	Subir	Move up
+MoveDown	Move down	Descendre	Movimento abaixo	Move down
+RecordSpeaker	 more clips remain for this speaker	 plus de clip(s) reste pour ce speaker	mais clipe(s) permanece para este falante	 more clips remain for this speaker
+RecordTotal	 more clips remain total	 plus de clip(s) reste total	mais clipe(s) permanece total	 more clips remain total
+AllScriptsAndWavFilesCreated	All scripts and wav files were created. Look in +AFs-output folder+AF0AXA-scripts and +AFs-output folder+AF0AXA-recordings.	Tous les scripts et les fichiers d'ondes +AOk-taient cr+AOkA6Q-s. Cherchez dans la chemise +AFsAXQBc-scripts et +AFs-chemise de production+AF0AXA-enregistrements.	Todas as escritas e os arquivos wav foram criados. Olhada +AFs-em pasta de produ+AOcA4w-o+AF0- +AFw-scripts e +AFs-pasta de produ+AOcA4w-o+AF0- +AFw-recordings.	All scripts and wav files were created. Look in +AFs-output folder+AF0AXA-scripts and +AFs-output folder+AF0AXA-recordings.
+SpeakerText	Text	Texte	Texto	Text
+TextEncodingTab	Text encoding	Texte encodant	Codifica+AOcA4w-o de texto	Text encoding
+Required information missing	Required information missing	Manque d'information n+AOk-cessaire	Aus+AOo-ncia de informa+AOcA9Q-es necessitada	Required information missing
+PleaseCorrect	Please correct	Corrigez s'il vous pla+AO4-t	Por favor corrija	Please correct
+Processing	Processing	Traitement	Processing +AIU-	Processing
+AddNew	Add new menu language	Ajoutez une nouvelle langue de menu	Add new menu language	Add new menu language
+CorrectCurrentMenu	Correct current menu	Corrigez le menu actuel	Correct current menu	Correct current menu

@@ -365,7 +365,10 @@ Public Class SFMQuotes
             temp1 = sr.ReadLine
             temp2 = ""
             ' store book, chapter, verse info
-            If temp1.Contains("\id") = True Then ' contents of \id on following line
+            If temp1.Contains("\ide") = True Then ' contents of \id on following line
+                temp2 = sr.ReadLine
+
+            ElseIf temp1.Contains("\id") = True Then ' contents of \id on following line
                 temp2 = sr.ReadLine
                 book = temp2
             ElseIf temp1.Contains("\c") Then ' contents of \c on following line

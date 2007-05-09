@@ -1159,7 +1159,7 @@ Public Class Main
                 Dim x = Me.sSavedLanguage
                 WriteLine(filenum, MainMenu.cbLanguage.SelectedIndex)
             Catch ex As Exception
-                WriteLine(filenum, 1)
+                WriteLine(filenum, 0)
             End Try
             WriteLine(filenum, "</language>")
             WriteLine(filenum, "</settings>")

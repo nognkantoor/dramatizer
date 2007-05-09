@@ -28,4 +28,8 @@ Public NotInheritable Class SplashScreen1
         
 
     End Sub
+
+    Private Sub SplashScreen1_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.LostFocus
+        Me.Close()
+    End Sub
 End Class
