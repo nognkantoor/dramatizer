@@ -33,7 +33,6 @@ Partial Class dramatizer
         Me.btnStart = New System.Windows.Forms.Button
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.statusBar = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar
         Me.btnEdit = New System.Windows.Forms.Button
         Me.lblCharacterName = New System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel
@@ -56,6 +55,7 @@ Partial Class dramatizer
         Me.lblDisplay = New System.Windows.Forms.Label
         Me.tbDisplayClipsBy = New System.Windows.Forms.TextBox
         Me.btnMoveDown = New System.Windows.Forms.Button
+        Me.progressBar = New System.Windows.Forms.ProgressBar
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -183,7 +183,7 @@ Partial Class dramatizer
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusBar, Me.ToolStripProgressBar1})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusBar})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 384)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(504, 22)
@@ -195,12 +195,6 @@ Partial Class dramatizer
         Me.statusBar.Name = "statusBar"
         Me.statusBar.Size = New System.Drawing.Size(78, 17)
         Me.statusBar.Text = "Status Bar xxx"
-        '
-        'ToolStripProgressBar1
-        '
-        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
-        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
-        Me.ToolStripProgressBar1.Visible = False
         '
         'btnEdit
         '
@@ -439,11 +433,20 @@ Partial Class dramatizer
         Me.btnMoveDown.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnMoveDown.UseVisualStyleBackColor = True
         '
+        'progressBar
+        '
+        Me.progressBar.Location = New System.Drawing.Point(149, 390)
+        Me.progressBar.Name = "progressBar"
+        Me.progressBar.Size = New System.Drawing.Size(324, 13)
+        Me.progressBar.TabIndex = 58
+        Me.progressBar.Visible = False
+        '
         'dramatizer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(504, 406)
+        Me.Controls.Add(Me.progressBar)
         Me.Controls.Add(Me.btnMoveDown)
         Me.Controls.Add(Me.tbDisplayClipsBy)
         Me.Controls.Add(Me.Panel2)
@@ -489,7 +492,6 @@ Partial Class dramatizer
     Friend WithEvents btnStart As System.Windows.Forms.Button
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents statusBar As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents lblCharacterSpeakerNumber As System.Windows.Forms.Label
     Friend WithEvents btnNext As System.Windows.Forms.Button
     Friend WithEvents cbCharacterPrompt As System.Windows.Forms.ComboBox
@@ -516,4 +518,5 @@ Partial Class dramatizer
     Friend WithEvents rbAll As System.Windows.Forms.RadioButton
     Friend WithEvents tbDisplayClipsBy As System.Windows.Forms.TextBox
     Friend WithEvents btnMoveDown As System.Windows.Forms.Button
+    Friend WithEvents progressBar As System.Windows.Forms.ProgressBar
 End Class

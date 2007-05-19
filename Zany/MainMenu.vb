@@ -38,7 +38,7 @@ Public Class MainMenu
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
-        
+
         Main.readLocalizationFile()
         Me.fillLanguageControl()
         '    Main.readCurrentSettings()
@@ -156,7 +156,7 @@ Public Class MainMenu
         If blnJustFilledLanguageControlSoNoNeedToReadMenuItems = True Then
             ' skip
         Else
-        ' make changes
+            ' make changes
             '  Me.blnJustFilledLanguageControlSoNeedToReadMenuItems = False
             Me.blnFirstTimeThru = False
             If iCurrentLanguage = iUpdateLanguage Then

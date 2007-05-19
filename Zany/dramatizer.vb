@@ -22,7 +22,7 @@ Public Class dramatizer
         Try
             showLessOptions()
             '        If Me.lbForwardBackBy.SelectedItem = Nothing Then Me.lbForwardBackBy.SelectedItem = 1
-         Catch ex As Exception
+        Catch ex As Exception
             MessageBox.Show("oops 3 " & ex.Message)
         End Try
     End Sub
@@ -63,12 +63,20 @@ Public Class dramatizer
         tbChapter.Text = Main.sChapter(Main.iCurrentClipNumber)
         tbVerse.Text = Main.sVerse(Main.iCurrentClipNumber)
     End Sub
+    Private Sub getAndShowSpeakerNumberForCharacter()
+        Dim speaker As Integer
+        speaker = Main.assignSpeakerToCharacter(Me.cbCharactersEdit.Text)
+        Me.upDownSpeakerNumber.Value = speaker
+
+    End Sub
     Private Sub showSpeakerNumber()
         If Main.sSpeakerNumber(Main.iCurrentClipNumber) = "" Then
             upDownSpeakerNumber.Value = 0
         Else
             upDownSpeakerNumber.Value = Main.sSpeakerNumber(Main.iCurrentClipNumber)
         End If
+        Me.upDownSpeakerNumber.Update()
+
     End Sub
     Private Sub getContextText(ByVal context As Int16)
         Dim i As Integer
@@ -465,6 +473,8 @@ Public Class dramatizer
     Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
         Me.cbCharacters.Text = Main.sNotAQuote
         Me.cbCharactersEdit.Text = Main.sNotAQuote
+        Me.btnForward.BackColor = Color.LawnGreen
+        Me.cbCharactersEdit.BackColor = Color.LawnGreen
     End Sub
     Private Sub btnMoreOptions_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMoreOptions.Click
         ' show more
@@ -541,7 +551,7 @@ Public Class dramatizer
         Else
             i = skipForwardIfOmittedProcessedOrRecorded(i)
         End If
-        Main.writeClipsToMasterFileAndAdjustClipSize(False)
+        ' Main.writeClipsToMasterFileAndAdjustClipSize(False) -- not necessary every time we go forward ... just when background has changed and we update master file then
         Main.displayStatusText()
         Main.iCurrentClipNumber = i
         displayPropertiesOfClip(2)
@@ -676,9 +686,10 @@ Public Class dramatizer
     '     Me.btnUpdate.BackColor = Color.LawnGreen
     'End Sub
     Private Sub cbCharacters_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
-        ' Me.showSpeakerNumber()
-        updateCharactersInMasterFile()
-        Me.btnForward.BackColor = Color.LightGray
+        Me.btnForward.BackColor = Color.LawnGreen
+        btnNext.BackColor = Color.LawnGreen
+        getAndShowSpeakerNumberForCharacter()
+
     End Sub
     Private Sub updateCharactersInMasterFile()
         If Me.cbCharacters.Text = Nothing Then
@@ -702,14 +713,33 @@ Public Class dramatizer
         '  displayPropertiesOfClip(2)  ' check for redundant xxxxxxxxxxxxxxxx
         Main.displayStatusText()
     End Sub
-    Private Sub btnForward_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
-        '   Dim myclip As New Clip(main.iCurrentClipNumber, sTextArray, iLastClipNumber)
-        '  myclip.goForward(Me.lbForwardBackBy.SelectedItem, iLastClipNumber)
+    ' Private Sub btnForward_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
+    ''   Dim myclip As New Clip(main.iCurrentClipNumber, sTextArray, iLastClipNumber)
+    ''  myclip.goForward(Me.lbForwardBackBy.SelectedItem, iLastClipNumber)
+    '  If btnForward.BackColor = Color.LawnGreen Then
+    '     btnForward.BackColor = Color.Yellow
+    '    updateCharactersInMasterFile()
+    '   Me.btnForward.BackColor = Color.LightCyan
+    '   End If
+    '  goForward()
+    '     Me.btnForward.BackColor = Color.LightGray
+    ' End Sub
+    Private Sub btnForward_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnForward.Click
+        Me.UseWaitCursor = True
+        Me.Update()
         If btnForward.BackColor = Color.LawnGreen Then
+            btnForward.BackColor = Color.Yellow ' show that processing is taking place
+            btnForward.Update()
+            ' this takes 6 seconds or so
             updateCharactersInMasterFile()
-            Me.btnForward.BackColor = Color.LightGray
         End If
+        Me.btnForward.BackColor = Color.LightCyan
+        ' this is short time
         goForward()
+        Me.UseWaitCursor = False
+        ' Me.cbCharacters.DroppedDown = True
+        Me.btnForward.BackColor = Color.LightGray
+
     End Sub
     Private Sub btnBack_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
         goBack()
@@ -725,27 +755,40 @@ Public Class dramatizer
         SpeakerText.Hide()
         Main.processOmittedTextBasedOnCheckedInfo()
         MainMenu.showStatsForUnidentifiedMultipleTotal()
+        If MainMenu.rbUnidentified.Checked = True Then
+            MainMenu.rbMultiple.Checked = True
+        End If
+
     End Sub
-    Private Sub cbCharactersEdit_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedIndexChanged
-        Me.cbCharacters.Text = Me.cbCharactersEdit.Text
-        ' Me.cbCharacterPrompt.Text = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex))
-        Me.btnForward.BackColor = Color.LawnGreen
-    End Sub
+    '  Private Sub cbCharactersEdit_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedIndexChanged
+    '     Me.cbCharacters.Text = Me.cbCharactersEdit.Text
+    '' Me.cbCharacterPrompt.Text = Me.extractPrompt(Main.sCharacter(Main.iCurrentClipNumber, Me.cbCharacters.SelectedIndex))
+    '   Me.btnForward.BackColor = Color.LawnGreen
+    ' End Sub
     '    Private Sub pressedEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.Enter
     ' pressed enter on the forward back control
     '  Me.cbCharacterPrompt.Text = ""
     '    updateCharactersInMasterFile()
     ' End Sub
 
-    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
-        ' Dim x = Me.cbCharacters.SelectedIndex
-        updateCharacterPrompt()
-
-    End Sub
+    '    Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
+    '' Dim x = Me.cbCharacters.SelectedIndex
+    '   updateCharacterPrompt()
+    '  End Sub
     Private Sub cbCharacters_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedValueChanged
-            Dim x = Me.cbCharacters.SelectedIndex
+        '   Dim x = Me.cbCharacters.SelectedIndex
         updateCharacterPrompt()
-     
+        btnForward.BackColor = Color.LawnGreen
+        showSpeakerText(cbCharactersEdit.Text)
+        '      If Me.btnForward.BackColor = Color.LawnGreen Then
+        'Me.cbCharacters.DroppedDown = False ' 2007-05-14
+        'Me.btnForward.BackColor = Color.LawnGreen
+        'Else
+        'Me.cbCharacters.DroppedDown = True ' 2007-05-14
+        'Me.btnForward.BackColor = Color.LightGray
+
+        'End If
+
     End Sub
 
     Private Sub updateCharacterPrompt()
@@ -772,10 +815,12 @@ Public Class dramatizer
         Me.cbCharactersEdit.Text = Me.cbCharacters.Text
         Me.cbCharacters.BackColor = Color.LawnGreen
         Me.cbCharacterPrompt.BackColor = Color.LawnGreen
-        updateCharactersInMasterFile()
+        ' updateCharactersInMasterFile()
         Me.btnForward.BackColor = Color.LightGray
 
     End Sub
+
+
     '  End Sub
     ' Private Sub cbCharacters_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCharacters.SelectedIndexChanged
     '    If Me.cbCharacters.SelectedIndex = -1 Then
@@ -801,4 +846,17 @@ Public Class dramatizer
     '    Me.btnForward.BackColor = Color.LightGray
     'End Sub
 
+    Private Sub cbCharactersEdit_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbCharactersEdit.SelectedValueChanged
+        Me.cbCharacters.Text = Me.cbCharactersEdit.Text
+        Me.btnForward.BackColor = Color.LawnGreen
+        getAndShowSpeakerNumberForCharacter()
+    End Sub
+
+    Private Sub ToolStripProgressBar1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
+
+    Private Sub statusBar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles statusBar.Click
+
+    End Sub
 End Class

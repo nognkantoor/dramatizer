@@ -612,7 +612,17 @@ Public Class Main
             Dim sRecordingInProgress = isRecordingInProgress()
             sw.WriteLine("<dramatizer version=""" & sProgramVersion & """  recordingInProgress=""" & sRecordingInProgress & """ totalClips=""" & iLastClipNumber.ToString & """ date=""" & Microsoft.VisualBasic.DateAndTime.DateString & """  time=""" & DateAndTime.TimeOfDay & """ > ")
             ' For i = 1 To iLastClipNumber + 1 ' added one to force output of last clip okay
+            dramatizer.progressBar.Maximum = iLastClipNumber
+            dramatizer.progressBar.Visible = True
             For i = 1 To iLastClipNumber
+                If i / 100 = Int(i / 100) Then
+                    dramatizer.progressBar.Value = i
+                    dramatizer.progressBar.Update()
+                    dramatizer.statusBar.Text = i
+                    ' dramatizer.StatusStrip1.Update()
+
+                End If
+
                 If blnAdjustClipSize Then
                     ' try to adjust size
                     splitText = makeClips30SecondsOrLess(i)
@@ -1462,7 +1472,7 @@ Public Class Main
                 Dim utf8text As String = file2stringWithEncoding(sProjectFileName, System.Text.Encoding.UTF8)
                 utf8text = regexReplace(utf8text, "\r", "oojaaooo")
                 utf8text = regexReplace(utf8text, "\n", "--jaa---")
-                utf8text = regexReplace(utf8text, "(.*?)(\\c 4)(.*)", "$1") ' cut file
+                ' utf8text = regexReplace(utf8text, "(.*?)(\\c 4)(.*)", "$1") ' cut file
                 utf8text = regexReplace(utf8text, "--jaa---", vbCrLf)
                 utf8text = regexReplace(utf8text, "oojaaooo", vbCrLf)
                 Me.rtbEncodingUTF8.Text = utf8text

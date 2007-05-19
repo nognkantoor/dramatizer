@@ -354,6 +354,9 @@ Public Class SFMQuotes
     Public Function getBookChapterVerse()
         Dim sr As StreamReader = New StreamReader(sCreateClipsFileName, Text.Encoding.UTF8, True, 512)
         Dim sw As StreamWriter = New StreamWriter(sGetBookChapterVerseFileName, False, Text.Encoding.UTF8, 512)
+        Dim blnIdFound = False
+        Dim blnChapterFound = False
+        Dim blnVerseFound = False
         Dim book As String = "BBB"
         Dim chapter As String = "0"
         Dim verse As String = "0"
@@ -369,13 +372,16 @@ Public Class SFMQuotes
                 temp2 = sr.ReadLine
 
             ElseIf temp1.Contains("\id") = True Then ' contents of \id on following line
+                blnIdFound = True
                 temp2 = sr.ReadLine
                 book = temp2
             ElseIf temp1.Contains("\c") Then ' contents of \c on following line
+                blnChapterFound = True
                 temp2 = sr.ReadLine
                 chapter = temp2
                 verse = "1"
             ElseIf temp1.StartsWith("<verse>") Then ' contents of \v on following line
+                blnVerseFound = True
                 temp2 = sr.ReadLine
                 verse = temp2
                 ' ElseIf temp1.Contains("'>") Then
@@ -392,8 +398,17 @@ Public Class SFMQuotes
             If temp1 <> "" Then sw.WriteLine(temp1)
             If temp2 <> "" Then sw.WriteLine(temp2)
         Loop
+
         sr.Close()
         sw.Close()
+        If Not blnIdFound Then MessageBox.Show("missing \id", "missing marker", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If Not blnChapterFound Then MessageBox.Show("missing \c", "missing marker", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If Not blnVerseFound Then MessageBox.Show("missing \v", "missing marker", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If blnIdFound And blnChapterFound And blnVerseFound Then
+            ' continue
+        Else
+            End
+        End If
         Return temp1 & temp2 ' for testing
     End Function
     Private Function string2stream(ByVal testString As String)
