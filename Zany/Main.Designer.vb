@@ -50,6 +50,8 @@ Partial Class Main
         Me.btnDisplayClips = New System.Windows.Forms.Button
         Me.VScrollBar1 = New System.Windows.Forms.VScrollBar
         Me.Panel3 = New System.Windows.Forms.Panel
+        Me.cbDialogueQuoteType = New System.Windows.Forms.ComboBox
+        Me.lblDialogueQuoteType = New System.Windows.Forms.Label
         Me.cbQuoteType = New System.Windows.Forms.ComboBox
         Me.lblFirstLevelQuoteType = New System.Windows.Forms.Label
         Me.TabPage5 = New System.Windows.Forms.TabPage
@@ -400,7 +402,7 @@ Partial Class Main
         Me.Panel10.Controls.Add(Me.VScrollBar1)
         Me.Panel10.Location = New System.Drawing.Point(15, 110)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(425, 76)
+        Me.Panel10.Size = New System.Drawing.Size(569, 76)
         Me.Panel10.TabIndex = 49
         '
         'btnDisplayClips
@@ -422,12 +424,31 @@ Partial Class Main
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel3.Controls.Add(Me.cbDialogueQuoteType)
+        Me.Panel3.Controls.Add(Me.lblDialogueQuoteType)
         Me.Panel3.Controls.Add(Me.cbQuoteType)
         Me.Panel3.Controls.Add(Me.lblFirstLevelQuoteType)
         Me.Panel3.Location = New System.Drawing.Point(15, 30)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(425, 76)
+        Me.Panel3.Size = New System.Drawing.Size(569, 76)
         Me.Panel3.TabIndex = 48
+        '
+        'cbDialogueQuoteType
+        '
+        Me.cbDialogueQuoteType.FormattingEnabled = True
+        Me.cbDialogueQuoteType.Location = New System.Drawing.Point(161, 38)
+        Me.cbDialogueQuoteType.Name = "cbDialogueQuoteType"
+        Me.cbDialogueQuoteType.Size = New System.Drawing.Size(401, 21)
+        Me.cbDialogueQuoteType.TabIndex = 42
+        '
+        'lblDialogueQuoteType
+        '
+        Me.lblDialogueQuoteType.AutoSize = True
+        Me.lblDialogueQuoteType.Location = New System.Drawing.Point(159, 19)
+        Me.lblDialogueQuoteType.Name = "lblDialogueQuoteType"
+        Me.lblDialogueQuoteType.Size = New System.Drawing.Size(123, 13)
+        Me.lblDialogueQuoteType.TabIndex = 43
+        Me.lblDialogueQuoteType.Text = "Dialogue QuoteType xxx"
         '
         'cbQuoteType
         '
@@ -844,4 +865,6 @@ Partial Class Main
     Friend WithEvents lblEncoding As System.Windows.Forms.Label
     Friend WithEvents rbEncodingUTF8 As System.Windows.Forms.RadioButton
     Friend WithEvents rbEncodingANSI As System.Windows.Forms.RadioButton
+    Friend WithEvents cbDialogueQuoteType As System.Windows.Forms.ComboBox
+    Friend WithEvents lblDialogueQuoteType As System.Windows.Forms.Label
 End Class

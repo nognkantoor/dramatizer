@@ -81,6 +81,7 @@ Public Class MainMenu
             End If
             ' not ready yet
         End If
+        Me.UseWaitCursor = False ' 2007-07-16
     End Sub
     Public Sub localizeMainMenu(ByVal language As Int16)
         Me.rbInitialize.Text = Main.sLocalizationStrings(Main.iInitialize, language)
@@ -203,6 +204,7 @@ Public Class MainMenu
         Me.blnSkipThisTime = True
 
     End Sub
+    ' looks totally useless ...........xxxxxxxxxxxxxx
     Private Sub updateTextbox1(ByVal language As Int16)
         If Me.rbInitialize.Checked = True Then
             Me.rbInitialize.Checked = False
@@ -566,6 +568,7 @@ Public Class MainMenu
     End Sub
     Public Sub showStatsForUnidentifiedMultipleTotal()
         Me.Update()
+
         Main.readClipsFromFileMaster()
         Dim unidentifiedToFix As String = Main.countUnidentifiedNotFixedYet.ToString & "  " & Main.sLocalizationStrings(Main.iUnidentifiedCharactersToFix, Main.iLanguageSelected)
         Dim unidentified As String = Main.iUnidentifiedSpeakingCharacter & "  " & Main.sLocalizationStrings(Main.iUnidentifiedCharacter, Main.iLanguageSelected)
@@ -587,6 +590,7 @@ Public Class MainMenu
             Me.TextBox1.BackColor = Color.LightYellow
         End If
         ' Mainmenu.TextBox1.BackColor = Color.Cyan
+       
     End Sub
 
     Private Sub cbLanguage_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbLanguage.Enter

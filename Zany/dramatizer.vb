@@ -27,10 +27,10 @@ Public Class dramatizer
         End Try
     End Sub
     Public Sub displayMasterAndVoiceTalentText()
-        displayPropertiesOfClip(2)
         '  VoiceTalentText.Show()
         MasterText.Show()
         Main.displayStatusText()
+        displayPropertiesOfClip(2) ' 2007-07-16 tried placing this last ... drop down to stay dropped down in multiple
     End Sub
     Public Sub displayPropertiesOfClip(ByVal context)
         Dim temp As String = ""
@@ -373,6 +373,7 @@ Public Class dramatizer
     End Function
     Public Function removeSFMcodes(ByVal temp)
         temp = Main.regexReplace(temp, "(\\.*?)(\s|(\<)|" & vbCrLf & ")", " $3")
+        temp = Main.regexReplace(temp, "(\\.[1-3]?)", "")
         Return temp
     End Function
     Private Sub tbChapter_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbChapter.TextChanged
@@ -451,7 +452,7 @@ Public Class dramatizer
     End Sub
     Private Sub showMultipleCharactersOrEdit()
         If Main.iNumberOfCharactersInClip(Main.iCurrentClipNumber) > 1 Then
-            'Me.cbCharacters.DroppedDown = True
+            Me.cbCharacters.DroppedDown = True
             '  Me.cbCharacters.DroppedDown = False
             Me.cbCharacters.BackColor = Color.AntiqueWhite
         Else
@@ -467,7 +468,7 @@ Public Class dramatizer
             Me.cbCharactersEdit.Visible = False
             Me.btnEdit.Visible = True
         End If
-    End Sub
+    End Sub ' drop down working to here
     Private Sub chkbxDisplayUnrecordedOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
     End Sub
     Private Sub btnNotAQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotAQuote.Click
@@ -748,6 +749,7 @@ Public Class dramatizer
         goHome()
     End Sub
     Private Sub btnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.Click
+        Me.UseWaitCursor = True ' 2007-07-16
         Me.Hide()
         MainMenu.Show()
         MainMenu.setCheckMarksAndEnableMenuItems()
@@ -780,14 +782,13 @@ Public Class dramatizer
         updateCharacterPrompt()
         btnForward.BackColor = Color.LawnGreen
         showSpeakerText(cbCharactersEdit.Text)
-        '      If Me.btnForward.BackColor = Color.LawnGreen Then
-        'Me.cbCharacters.DroppedDown = False ' 2007-05-14
-        'Me.btnForward.BackColor = Color.LawnGreen
-        'Else
-        'Me.cbCharacters.DroppedDown = True ' 2007-05-14
-        'Me.btnForward.BackColor = Color.LightGray
-
-        'End If
+        If Me.btnForward.BackColor = Color.LawnGreen Then
+            Me.cbCharacters.DroppedDown = False ' 2007-05-14
+            Me.btnForward.BackColor = Color.LawnGreen
+        Else
+            Me.cbCharacters.DroppedDown = True ' 2007-05-14
+            Me.btnForward.BackColor = Color.LightGray
+        End If
 
     End Sub
 

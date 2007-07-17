@@ -9,7 +9,7 @@ Public Class SFMQuotes
     Public sTempFolder As String = My.Computer.FileSystem.SpecialDirectories.Temp & "\Dramatizer\"
     ' Public sDramatizeFolder As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\My Dramatizer"
     ' Public sProgramDirectory As String = Directory.GetCurrentDirectory ' beware that this may change
-    '    Public sRequiredFilesFolder As String = sProgramDirectory & "\RequiredFiles" ' beware that this may change
+    ' Public sRequiredFilesFolder As String = sProgramDirectory & "\RequiredFiles" ' beware that this may change
     Public sINIfile As String = sRequiredFilesFolder & "\zany.ini"
     Public sGetBookChapterVerseFileName As String = sTempFolder & "\02 - bookChapterVerse.tmp"
     Public sIdentifySpeakingCharactersFileName As String = sTempFolder & "\03 - identifyCharacters.tmp"
@@ -117,6 +117,50 @@ Public Class SFMQuotes
         sr.Close()
         Return myString
     End Function
+    Public Shared Function processDialogueQuotesToMakeRegular(ByVal temp As String)
+        Select Case Main.cbDialogueQuoteType.Text
+            Case Main.sQuoteTypeNA
+                ' nothing to process as we don't have dialogue quotes
+            Case Main.sQuoteTypeANSIEmDash
+                ' paragraph optional verse space em-dash text optional verse text  stop at nl 
+                temp = regexReplace(temp, "\n?\r?" + Chr(151), "quotation-quote-start")
+            Case Main.sQuoteTypeEmDash
+                temp = regexReplace(temp, "\n?\r?" + ChrW(8212), "quotation-quote-start")
+            Case Main.sQuoteTypeQuotationDash
+                temp = regexReplace(temp, "\n?\r?" + ChrW(8213), "quotation-quote-start")
+            Case Main.sQuoteTypeDoubleEquals
+                temp = regexReplace(temp, "\n?\r?" + "==", "quotation-quote-start")
+            Case Main.sQuoteTypeDoubleHyphen
+                temp = regexReplace(temp, "\n?\r?" + "--", "quotation-quote-start")
+            Case Else
+                Debug.Assert(True, "unknown quote type in process quotes to make regular")
+        End Select
+        ' no verse number at start, put quote mark      dialogue quotes end with /nl/, /(/, or /--/.
+        ' qqqqqqqqqqq used to replace quotation-quote-start so it isn't rematched
+        temp = regexReplace(temp, "(\\p\n?\r?)(\n?\\v [0-9]+)?(\s?quotation-quote-start)(.*)((\n\\v)(.*))*(\(|quotation-quote-start)", "$2«--$1 qqqqqqqqqqq$4$5$6$7$8--»")
+        temp = regexReplace(temp, "(\\p\n?\r?)(\n?\\v [0-9]+)?(\s?quotation-quote-start)(.*)((\n\\v)(.*))*", "$2«--$1 qqqqqqqqqqq$4$5$6$7$8--»")
+        'temp = regexReplace(temp, "(\\p\n?\r?)(\s?quotation-quote-start)((.*)(\n\\v)?)*((quotation-quote-start)|(\())?", "«--yyy$1 qqqqqqqqqqq$3$4$5$6$7$8--»")
+        'temp = regexReplace(temp, "(\\p\n?\r?)(\n?\\v [0-9]+)?(\s)?(quotation-quote-start)((.*)(\n\\v)?)*((quotation-quote-start)|(\())?", "«--$1 $2qqqqqqqqqqq$4$5$6$7$8--»")
+        ' put first verse number before quote mark so quote will be identified correctly
+        'temp = regexReplace(temp, "(\\p\n?\r?)(\s)?(\\v [0-9]+\n?\r?)?(\s)?(quotation-quote-start)((.*)(\n\\v)?)*((\s?quotation-quote-start)|(\())?", "$2$3«--$1 $4qqqqqqqqqqq$6$7$8--»")
+        ' no verse number at start, put quote mark      dialogue quotes end with /nl/, /(/, or /--/.
+        ' possible verse number start -- is so rearrange verse number at start, put quote mark      dialogue quotes end with /nl/, /(/, or /--/.
+        ' put first verse number before quote mark so quote will be identified correctly
+        'temp = regexReplace(temp, "(\\p\n?\r?)(\s)?(\\v [0-9]+\n?\r?)?(\s)?(quotation-quote-start)((.*)(\n\\v)?)*", "$2$3«--$1 $4qqqqqqqqqqq$6$7$8--»")
+
+        ' temp = regexReplace(temp, "(\\p\n?\r?)(\s)(\s\\v [0-9]+\n?\r?)(\s)(quotation-quote-start)(.*)(\n?\r?\\v)*(.*)(quotation-quote-start)|(\\p\n?\r?)(\s)(\s\\v [0-9]+\n?\r?)(\s)(quotation-quote-start)(.*)(\n?\r?\\v)*(.*)(\()|(\\p\n?\r?)(\s)(\s\\v [0-9]+\n?\r?)(\s)(quotation-quote-start)(.*)(\n?\r?\\v)*(.*)", "«--$1 $2$3$4$5$6$7$8--»")
+        'temp = regexReplace(temp, "(\\p\n?\r?)(\s\\v [0-9]+\n?\r?)(\s)(quotation-quote-start)(.*)(\n?\r?\\v)*(.*)(\()|(\\p\n?\r?)(\s)(quotation-quote-start)(.*)(\n?\r?\\v)*(.*)(--)|(\\p\n?\r?)(\s)(quotation-quote-start)(.*)(\n?\r?\\v)*(.*)", "«--$1 $2$3$4$5$6$7$8--»")
+        '      temp = regexReplace(temp, "(\\p\n?\r?)(\s\\v [0-9]+\n?\r?)(\s)(quotation-quote-start)(.*)(\n?\r?\\v)*(.*)(\()?|(\-\-)?", "$2$3«--$1 $4$5$6$7$8--»")
+        ' remove /quotation-quote-start/
+
+        temp = regexReplace(temp, "qqqqqqqqqqq", "")
+        temp = regexReplace(temp, "quotation-quote-start", "")
+        ' remove /$7/ /$8/  --- fix this at latter date if not needed xxxxxxxxxxxxxxxxxxxxx
+        temp = regexReplace(temp, "\$7", "")
+        temp = regexReplace(temp, "\$8", "")
+        Return temp
+
+    End Function
     Public Shared Function processQuotesToMakeRegular(ByVal temp As String)
         Select Case Main.cbQuoteType.Text
             Case Main.sQuoteTypeCheverons
@@ -136,8 +180,6 @@ Public Class SFMQuotes
         End Select
         ' quotes regularly follow footnote end so you must check for this condition in the text
         ' temp = regexReplace(temp, "\f* «", "\f* XXXXXX»") ' any quote following footnote should be final.
-
-
         Return temp
 
     End Function
@@ -150,6 +192,7 @@ Public Class SFMQuotes
         Dim sClipUnknown As String = vbCrLf & "</clip>" & vbCrLf & "<clip " & sBlankSpeakingCharacter & ">" & vbCrLf
         Dim sClipNarrator As String = vbCrLf & "</clip>" & vbCrLf & "<clip character1=""narrator-"">" & vbCrLf
         Dim sClipExtra As String = vbCrLf & "</clip>" & vbCrLf & "<clip character1=""extra-"" tag=""$1"">$2" & vbCrLf
+        Dim sClipExtra2 As String = vbCrLf & "</clip>" & vbCrLf & "<clip character1=""extra-"" tag=""$1"">$3" & vbCrLf
         Dim sClipPossibleContinuation As String = sClipUnknown
         Try
             sText = stream2string(sEncoding)
@@ -157,11 +200,12 @@ Public Class SFMQuotes
             Try
                 temp = processRemoveUnusedText(sText)
                 temp = processQuotesToMakeRegular(temp)
-                '        sw.Write(temp)
-                '       sw.Close()
+                temp = processDialogueQuotesToMakeRegular(temp)
+                'sw.Write(temp)
+                'sw.Close()
                 temp = regexReplace(temp, "(\\id)(\s)(...)(\s.*?)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 ' keep introduction
-                temp = processIntroduction(temp, sClipExtra)
+                temp = processIntroduction(temp, sClipExtra, sClipExtra2)
                 ' get rid of cr and lf put them back in later
                 temp = removeCRLF(temp)
                 temp = processRemoveUnusedText(temp)
@@ -169,9 +213,12 @@ Public Class SFMQuotes
                 temp = processDirectQuote(temp, sClipUnknown, sClipNarrator)
                 temp = restoreCRLFandAddWhenVerticalBarPresent(temp)
                 '   temp = processRemoveUnusedText(temp)
+                'sw.Write(temp)
+                'sw.Close()
                 temp = processRegularize(temp)
                 ' guarantee that all \ start on new line except the tag='\xxx'
-                temp = regexReplace(temp, "([^""])(\\)", vbCrLf & "$1\")
+                'temp = regexReplace(temp, "([^""])(\\)", vbCrLf & "$1")
+                temp = regexReplace(temp, "(\\)", vbCrLf & "$1")
                 '    temp = regexReplace(temp, "(\r\n)(\\id)", "$2")
                 temp = processStartAndEnd(temp, sClipNarrator)
                 ' remove double new lines
@@ -187,6 +234,8 @@ Public Class SFMQuotes
                 temp = regexReplace(temp, "(\\mt\d?)(\s)(.*)(\r\n)", "</clip>" & vbCrLf & "<clip character1=""book-chapter"" tag=""$1"">" & vbCrLf & "$3" & sClipNarrator & "$4")
                 temp = processContinuingQuotes(temp, sClipUnknown)
                 temp = processCleanUp(temp)
+                ' must do this one first
+                temp = processReturnToStartingDialogueQuoteMarks(temp)
                 temp = processReturnToStartingQuoteMarks(temp)
                 ' save intermediate work
                 sw.Write(temp)
@@ -224,6 +273,30 @@ Public Class SFMQuotes
             Case Main.sQuoteTypeStraight
                 temp = regexReplace(temp, "«", """")
                 temp = regexReplace(temp, "»", """")
+            Case Else
+                Debug.Assert(True, "Missing quote type in processReturnToStartingQuoteMarks")
+        End Select
+        Return temp
+    End Function
+    Private Function processReturnToStartingDialogueQuoteMarks(ByVal temp As String)
+        Select Case Main.cbDialogueQuoteType.Text
+            Case Main.sQuoteTypeNA, ""
+                ' skip as not used
+            Case Main.sQuoteTypeANSIEmDash
+                temp = regexReplace(temp, "«--", Chr(151))
+                temp = regexReplace(temp, "--»", "")
+            Case Main.sQuoteTypeEmDash
+                temp = regexReplace(temp, "«--", ChrW(8212))
+                temp = regexReplace(temp, "--»", "")
+            Case Main.sQuoteTypeQuotationDash
+                temp = regexReplace(temp, "«--", ChrW(8213))
+                temp = regexReplace(temp, "--»", "")
+            Case Main.sQuoteTypeDoubleEquals
+                temp = regexReplace(temp, "«--", "==")
+                temp = regexReplace(temp, "--»", "")
+            Case Main.sQuoteTypeDoubleHyphen
+                temp = regexReplace(temp, "«--", "--")
+                temp = regexReplace(temp, "--»", "")
             Case Else
                 Debug.Assert(True, "Missing quote type in processReturnToStartingQuoteMarks")
         End Select
@@ -299,8 +372,9 @@ Public Class SFMQuotes
         ' \r  cross references
         temp = regexReplace(temp, "(\\r)(\s)(.*?)(\r\n)", "****r removed****")
         ' \f \f*  footnote
-        ' adding the \s at the end seems strange .. needed for niv smart quotes MRK 10.19 XXXXXXXXXXXX
-        temp = regexReplace(temp, "(\\f)(\s)(.*?)(\\f\*)\s?", "****footnote removed****")
+        ' adding the \s at the end seems strange .. needed for niv smart quotes MRK 10.19 XXXXXXXXXXX
+        temp = regexReplace(temp, "(\\f)(\s)(.*?)(\\f\*)\s""", """****footnote removed****")
+        temp = regexReplace(temp, "(\\f)(\s)(.*?)(\\f\*)", "****footnote removed****")
         '   ' \f \f*  footnote
         '  temp = regexReplace(temp, "(\\f)(\s)(.*?)(\\f\*)", "****footnote removed****")
         ' \xref to \-xref  reference    
@@ -313,9 +387,6 @@ Public Class SFMQuotes
     End Function
     Private Function processDirectQuote(ByVal temp As String, ByVal sClipUnknown As String, ByVal sClipNarrator As String)
         temp = regexReplace(temp, "(«)(.*?)(»)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
-        ''
-
-
         '  If Main.cbQuoteType.Text = "«...»" Then ' 
         ' temp = regexReplace(temp, "(«)(.*?)(»)", "|" & sClipUnknown & "$1$2$3" & sClipNarrator & "|")
         ' ElseIf Main.cbQuoteType.Text = "<<...>>" Then ' 
@@ -325,7 +396,11 @@ Public Class SFMQuotes
         ' End If
         Return temp
     End Function
-    Private Function processIntroduction(ByVal temp As String, ByVal sClipExtra As String)
+    Private Function processIntroduction(ByVal temp As String, ByVal sClipExtra As String, ByVal sClipExtra2 As String)
+        ' \imt \imt1 \imt2 \imt3 intro material    
+        temp = regexReplace(temp, "(\\imt(1|2|3)?)(.*?)(\r\n)", sClipExtra2)
+        ' \io \io1 \io2 \io3  intro material    
+        temp = regexReplace(temp, "(\\io(1|2|3)?)(.*?)(\r\n)", sClipExtra2)
         ' \ip  intro material    
         temp = regexReplace(temp, "(\\ip)(.*?)(\r\n)", sClipExtra)
         ' \is  intro material    
@@ -370,7 +445,6 @@ Public Class SFMQuotes
             ' store book, chapter, verse info
             If temp1.Contains("\ide") = True Then ' contents of \id on following line
                 temp2 = sr.ReadLine
-
             ElseIf temp1.Contains("\id") = True Then ' contents of \id on following line
                 blnIdFound = True
                 temp2 = sr.ReadLine
@@ -398,7 +472,6 @@ Public Class SFMQuotes
             If temp1 <> "" Then sw.WriteLine(temp1)
             If temp2 <> "" Then sw.WriteLine(temp2)
         Loop
-
         sr.Close()
         sw.Close()
         If Not blnIdFound Then MessageBox.Show("missing \id", "missing marker", MessageBoxButtons.OK, MessageBoxIcon.Warning)

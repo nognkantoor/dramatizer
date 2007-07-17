@@ -159,7 +159,8 @@ Public Class Main
     Public iInfoProcessing = 139
     Public iAddNewMenuLanguage = 140
     Public iCorrectCurrentMenu = 141
-
+    Public iDialogueQuote = 142
+    Public iDialogueQuoteWarning = 142
 
 
 
@@ -279,10 +280,12 @@ Public Class Main
     Public sQuoteTypeSmartClose As String = str.Chr(148)
     Public sQuoteTypeSmart As String = Me.sQuoteTypeSmartOpen + "..." + Me.sQuoteTypeSmartClose
 
-
-
-
-
+    Public sQuoteTypeANSIEmDash As String = str.Chr(151) + vbTab + " In ANSI, the em dash is decimal 151."
+    Public sQuoteTypeEmDash As String = str.ChrW(8212) + vbTab + " In Unicode, the em dash is U+2014 (decimal 8212)."
+    Public sQuoteTypeQuotationDash As String = str.ChrW(8213) + vbTab + " In Unicode, the quotation dash is U+2015 (decimal 8213)."
+    Public sQuoteTypeDoubleEquals As String = "==" + vbTab + " two equal signs"
+    Public sQuoteTypeDoubleHyphen As String = "--" + vbTab + " two minus signs"
+    Public sQuoteTypeNA As String = " N/A "
 
     Public Sub New()
         ' This call is required by the Windows Form Designer.
@@ -292,6 +295,7 @@ Public Class Main
         '  fillForwardBackControl("English")
         fillFontControl()
         fillQuoteTypeControl()
+        fillDialogueQuoteTypeControl()
         fillAudioProgramControl()
         Me.cbOutputFolder.Text = Me.sDramatizeFolder
         readCurrentSettings()
@@ -460,16 +464,21 @@ Public Class Main
             cbQuoteType.Items.Add(Me.sQuoteTypeSIL)
             cbQuoteType.Items.Add(Me.sQuoteTypeSmart)
             cbQuoteType.Items.Add(Me.sQuoteTypeStraight)
-
-            '          cbQuoteType.Items.Add("«...»")
-            '         cbQuoteType.Items.Add("<<...>>")
-            '        cbQuoteType.Items.Add(" ""..."" ")
-            '            cbQuoteType.Items.Add("» ... «")
-            '           cbQuoteType.Items.Add("== ... " & vbCrLf & "<< .. >>")
-            '          cbQuoteType.Items.Add("unknown")
-            ' cbQuoteType.DroppedDown = True
         Catch ex As Exception
             MessageBox.Show("Problem filling quote type names into list box.", "Problem loading quote type names" & ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        End Try
+    End Sub
+    Private Sub fillDialogueQuoteTypeControl()
+        cbDialogueQuoteType.Items.Clear()
+        Try
+            cbDialogueQuoteType.Items.Add(Me.sQuoteTypeNA)
+            cbDialogueQuoteType.Items.Add(Me.sQuoteTypeANSIEmDash)
+            cbDialogueQuoteType.Items.Add(Me.sQuoteTypeEmDash)
+            cbDialogueQuoteType.Items.Add(Me.sQuoteTypeQuotationDash)
+            cbDialogueQuoteType.Items.Add(Me.sQuoteTypeDoubleEquals)
+            cbDialogueQuoteType.Items.Add(Me.sQuoteTypeDoubleHyphen)
+        Catch ex As Exception
+            MessageBox.Show("Problem filling dialogue quote type names into list box.", "Problem loading dialogue quote type names" & ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End Try
     End Sub
     Private Sub testForRequiredFoldersAndFiles()
@@ -951,6 +960,7 @@ Public Class Main
         'Me.sCharacter.Initialize()
     End Sub
     Public Sub readClipsFromFileMaster()
+        Me.UseWaitCursor = True ' 2007-07-16
         createFoldersAndMasterAndScriptsFileNames()
         '<clip  book=GEN chapter=2 verse=23 tag= voice= prompt= recorded=False multiple=1 character1=narrator-GEN >yeno.<verse>24</verse> Adýma nangaro kwa yanju-a bawanju-a kolje kamunjuro kýrdiye kam fallo waljaidý.<verse>25</verse> Kamdý-a kamudý-a tiyinja de, kattenjan nangu bawo.</clip>
         '<clip  book=GEN chapter=3 verse=1 tag=\c voice= prompt= recorded=False multiple=1 character1=book-chapter >3</clip>
@@ -1011,6 +1021,8 @@ Public Class Main
         Else
             ' no master file so skip reading
         End If
+        Me.UseWaitCursor = False ' 2007-07-16
+
     End Sub
     Public Function isThereAnySpeakingPart(ByVal temp As String)
         Dim temp3 As String
@@ -1131,6 +1143,9 @@ Public Class Main
             WriteLine(filenum, "<currentQuoteType>")
             WriteLine(filenum, Me.cbQuoteType.Text)
             WriteLine(filenum, "</currentQuoteType>")
+            WriteLine(filenum, "<currentDialogueQuoteType>")
+            WriteLine(filenum, Me.cbDialogueQuoteType.Text)
+            WriteLine(filenum, "</currentDialogueQuoteType>")
             WriteLine(filenum, "<lastClipNumber>")
             WriteLine(filenum, Me.iLastClipNumber)
             WriteLine(filenum, "</lastClipNumber>")
@@ -1313,6 +1328,13 @@ Public Class Main
             Me.cbQuoteType.Text = Me.sQuoteTypeStraight
         Else
             Me.cbQuoteType.Text = temp
+        End If
+        temp = getCurrentInfoFromSettingsFile("<currentDialogueQuoteType>")
+        If temp = "" Then
+            ' default
+            Me.cbDialogueQuoteType.Text = Me.sQuoteTypeNA
+        Else
+            Me.cbDialogueQuoteType.Text = temp
         End If
     End Sub
     Private Sub readAndSetEncoding()
@@ -1517,14 +1539,25 @@ Public Class Main
     Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
         Dim blnDocFile As Boolean
         Do
-
             OpenFileDialog1.FileName = ""
             OpenFileDialog1.Filter = "Text files (*.txt, *.ptx,*.sfm)|*.txt;*.ptx;*.sfm|All files (*.*)|*.*"
+            Me.OpenFileDialog1.Multiselect = True
+
             OpenFileDialog1.ShowDialog()
-            sProjectFileName = OpenFileDialog1.FileName
+
+            If OpenFileDialog1.FileNames.Length = 1 Then
+                ' just one file chosen
+                sProjectFileName = OpenFileDialog1.FileName
+            Else
+                ' more than one file chosen
+            End If
+            ' we will need the project name
             blnDocFile = sProjectFileName.Contains(".doc")
             verifyFileIsNotDOC(blnDocFile)
         Loop Until blnDocFile = False
+        ' me.OpenFileDialog1.
+
+
         sProjectName = getFileNameWithoutExtensionFromFullName(sProjectFileName)
         sProjectPath = getProjectPathFromFullName(sProjectFileName)
         Me.cbFileName.Text = sProjectFileName
@@ -2488,7 +2521,7 @@ Public Class Main
             Select Case Me.sTag(Me.iCurrentClipNumber)
                 Case "\s", "\s1", "\s2", "\s3"
                     MasterText.chkbxSectionHeads.BackColor = Color.OrangeRed
-                Case "\id", "\ip", "\is"
+                Case "\id", "\ip", "\is", "\imt", "\imt1", "\imt2", "\imt3", "\io", "\io1", "\io2", "\io3"
                     MasterText.chkbxIntroduction.BackColor = Color.OrangeRed
                 Case "\h", "\h1", "\h2", "\h3"
                     MasterText.chkbxHeading.BackColor = Color.OrangeRed
@@ -2731,6 +2764,7 @@ Public Class Main
         Me.btnBrowseOutputFolder.Text = Me.sLocalizationStrings(Me.iBrowse, language)
         Me.lblDramatizerOutputFolder.Text = Me.sLocalizationStrings(Me.iDramatizerOutputFolder, language)
         Me.lblFirstLevelQuoteType.Text = Me.sLocalizationStrings(Me.iQuoteType, language)
+        Me.lblDialogueQuoteType.Text = Me.sLocalizationStrings(Me.iDialogueQuote, language)
         Me.lblAudioRecordingProgram.Text = Me.sLocalizationStrings(Me.iAudioRecordingProgram, language)
         Me.btnBrowseAudio.Text = Me.sLocalizationStrings(Me.iBrowse, language)
         '  Me.btnChooseEncoding.Text = Me.sLocalizationStrings(Me.iTextEncoding, language)
@@ -3082,5 +3116,6 @@ Public Class Main
         End If
 
     End Sub
+
 
 End Class

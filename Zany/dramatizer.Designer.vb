@@ -217,19 +217,19 @@ Partial Class dramatizer
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel1.Controls.Add(Me.cbCharactersEdit)
         Me.Panel1.Controls.Add(Me.btnLessOptions)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.btnMoreOptions)
         Me.Panel1.Controls.Add(Me.btnNotAQuote)
         Me.Panel1.Controls.Add(Me.chkbxShowPrompt)
         Me.Panel1.Controls.Add(Me.upDownSpeakerNumber)
-        Me.Panel1.Controls.Add(Me.cbCharacters)
         Me.Panel1.Controls.Add(Me.lblCharacterName)
         Me.Panel1.Controls.Add(Me.lblCharacterPrompt)
         Me.Panel1.Controls.Add(Me.btnEdit)
         Me.Panel1.Controls.Add(Me.cbCharacterPrompt)
         Me.Panel1.Controls.Add(Me.lblCharacterSpeakerNumber)
+        Me.Panel1.Controls.Add(Me.cbCharactersEdit)
+        Me.Panel1.Controls.Add(Me.cbCharacters)
         Me.Panel1.Location = New System.Drawing.Point(5, 76)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(499, 146)
@@ -466,7 +466,6 @@ Partial Class dramatizer
         Me.Name = "dramatizer"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "dramatizer xxx"
-        Me.TopMost = True
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
